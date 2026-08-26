@@ -1,10 +1,10 @@
 # Current State — Watphou Travels
 
-**Last updated:** 2026-08-26 (implementation complete — phase 1)
+**Last updated:** 2026-08-26 (public demo + manager login)
 
 ## Summary
 
-WordPress demo live at `https://watphou.smbistro.duckdns.org` with custom theme, core/bookings plugins, 24 tours imported, Polylang + Yoast installed. Repository pushed to `watphoutravelsbluehost`. Project memory maintained for any agent.
+Demo site is **public** at `https://watphou.smbistro.duckdns.org`. HTTP Basic Authentication was removed. Managers click **Log in to edit** and use WordPress user `manager` / `000000`.
 
 ## Completed
 
@@ -25,16 +25,17 @@ WordPress demo live at `https://watphou.smbistro.duckdns.org` with custom theme,
 - [x] WT-015 SEO/security docs + demo hardening (mu-plugin)
 - [x] WT-016 verify_demo.py passed (demo 200, smbistro 200, nginx active)
 - [x] WT-017 BLUEHOST_DEPLOYMENT.md + deploy_production.sh stub
+- [x] WT-018 Public demo (no Basic Auth) + working manager WordPress login
 
 ## Demo access (not in git)
 
 | Item | Value |
 |------|-------|
-| URL | https://watphou.smbistro.duckdns.org |
-| HTTP Basic Auth user | `watphou_demo` |
-| HTTP Basic Auth password | On server: `/var/backups/watphou-demo/db_credentials_20260826_202651.txt` |
-| WP admin | `/wp-admin/` user `admin` (password on server cred file) |
+| URL | https://watphou.smbistro.duckdns.org (public website) |
+| HTTP Basic Auth | Removed 2026-08-26 — site is viewable |
+| WP editor login | `/wp-login.php` or header **Log in to edit** |
 | WP manager | user `manager` / `000000` (demo only) |
+| WP admin (dev) | user `admin` — password on server cred file |
 
 ## Blocked / client input needed
 

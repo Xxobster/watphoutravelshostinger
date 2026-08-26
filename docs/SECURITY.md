@@ -5,7 +5,7 @@
 | Control | Implementation |
 |---------|----------------|
 | HTTPS | Let's Encrypt via certbot |
-| Outer access gate | nginx HTTP Basic Auth |
+| Outer access gate | Removed — public demo; WordPress login for editors |
 | noindex | mu-plugin + X-Robots-Tag |
 | DISALLOW_FILE_EDIT | wp-config constant |
 | XML-RPC disabled | mu-plugin filter |

@@ -13,11 +13,11 @@ Manual checks on server:
 
 ```bash
 ssh sm "curl -s -o /dev/null -w '%{http_code}' https://smbistro.duckdns.org/"
-ssh sm "curl -s -o /dev/null -w '%{http_code}' -u USER:PASS https://watphou.smbistro.duckdns.org/"
+ssh sm "curl -s -o /dev/null -w '%{http_code}' https://watphou.smbistro.duckdns.org/"
 ssh sm "systemctl is-active nginx mysql php8.1-fpm"
 ```
 
-Expected: smbistro returns 200; watphou demo returns 200 (with Basic Auth).
+Expected: smbistro returns 200; watphou demo returns 200 (public, no HTTP Basic Auth). Manager edits via `/wp-login.php`.
 
 ## Deploy theme and plugins
 
@@ -81,7 +81,7 @@ ssh sm "cd /var/www/watphou-demo && sudo -u watphou wp post list --post_type=tou
 | Web root | `/var/www/watphou-demo` |
 | Nginx site | `/etc/nginx/sites-available/watphou-demo` |
 | PHP pool | `/etc/php/8.1/fpm/pool.d/watphou-demo.conf` |
-| Basic auth | `/etc/nginx/.htpasswd-watphou-demo` |
+| Basic auth | retired (file may still exist unused) |
 | Media originals (outside web root) | `/var/www/watphou-media/originals` |
 | Backups | `/var/backups/watphou-demo/` |
 

@@ -4,7 +4,8 @@
 
 - [x] `blog_public = 0`
 - [x] `X-Robots-Tag: noindex, nofollow` (mu-plugin)
-- [x] HTTP Basic Auth gate
+- [x] Demo publicly viewable (HTTP Basic Auth removed)
+- [x] `X-Robots-Tag: noindex, nofollow` (mu-plugin)
 - [ ] Yoast noindex on demo (verify after install)
 
 ## Production launch

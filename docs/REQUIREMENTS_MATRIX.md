@@ -29,7 +29,7 @@ Every requirement from the PDF brief and master prompt. Status: `pending` | `in_
 | R23 | SEO: Yoast, sitemap, hreflang, schema | Prompt §11 | Yoast + theme schema | pending | SEO_CHECKLIST | GA4/GSC IDs |
 | R24 | 301 redirects from Wix URLs | Prompt §11 | redirects.csv + plugin | pending | Redirect test | — |
 | R25 | Demo on VPS, isolated | Prompt §13 | sm host, separate DB/vhost | in_progress | verify_demo.py | — |
-| R26 | Demo HTTPS + Basic Auth + noindex | Prompt §13 | nginx + mu-plugin | pending | curl headers | — |
+| R26 | Demo HTTPS + noindex (public site, WP login to edit) | Prompt §13 superseded by client | nginx HTTPS + mu-plugin noindex | done | curl 200 public; login works | — |
 | R27 | Manager demo user manager/000000 | Prompt §1 | WP user, Tour Manager role | pending | Login test | — |
 | R28 | Do not break existing VPS site | Prompt §13 | Isolated vhost on sm | pending | smbistro 200 | — |
 | R29 | Bluehost production prep | Prompt §14 | BLUEHOST_DEPLOYMENT.md | pending | Doc review | SSH access |

@@ -88,3 +88,16 @@ Append-only log. One entry per decision.
 **Decision:** Invoice PDFs, deposit/rest payment docs, and BCEL bank account images go to gitignored `work/quarantine/`. Never deploy or commit.
 
 **Reason:** GDPR/privacy; not website content.
+
+---
+
+## 2026-08-26 — Public demo site, WordPress login for editing
+
+**Decision:** Remove nginx HTTP Basic Authentication from the demo. The website is publicly viewable. The Tour Manager logs in at `/wp-login.php` (header link **Log in to edit**) to edit content.
+
+**Reason:** The outer browser login wall hid the website and conflicted with WordPress login (`manager` / `000000`). The client wants visitors to see the site, then a login option to edit.
+
+**Kept:** `noindex`, demo banner, mock payments, restricted Tour Manager role.
+
+**Impact:** `verify_demo.py` no longer requires Basic Auth credentials.
+

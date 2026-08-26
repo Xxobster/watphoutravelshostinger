@@ -4,9 +4,12 @@ Plain-language guide for the **Tour Manager** role (`manager` account on demo).
 
 ## Logging in
 
-1. Open the demo URL (you will need the outer username/password from your webmaster).
-2. Go to `/wp-admin/`
-3. Log in as **manager** (demo password provided separately — change before production).
+1. Open the website: https://watphou.smbistro.duckdns.org (no extra password — the site is public).
+2. Click **Log in to edit** in the top bar, or go to `/wp-login.php`.
+3. Log in as **manager** with password **000000** (demo only — change before production).
+4. You land on the Watphou dashboard, where you can edit tours and pages.
+
+The public website stays visible to visitors. Login is only for editing.
 
 ## Dashboard
 

@@ -102,13 +102,9 @@ php_admin_value[post_max_size] = 64M
 php_admin_value[memory_limit] = 256M
 EOF
 
-echo "=== HTTP Basic Auth ==="
-BASIC_USER="watphou_demo"
-BASIC_PASS=$(openssl rand -base64 18 | tr -d '/+=' | head -c 18)
-htpasswd -bc "$BASIC_AUTH_FILE" "$BASIC_USER" "$BASIC_PASS"
-chmod 640 "$BASIC_AUTH_FILE"
-echo "BASIC_AUTH_USER=${BASIC_USER}" >> "${BACKUP_DIR}/db_credentials_${TS}.txt"
-echo "BASIC_AUTH_PASS=${BASIC_PASS}" >> "${BACKUP_DIR}/db_credentials_${TS}.txt"
+echo "=== HTTP Basic Auth (disabled — public demo site) ==="
+# Public website must be viewable. Manager edits via WordPress login at /wp-login.php
+BASIC_AUTH_FILE="/etc/nginx/.htpasswd-watphou-demo"
 
 echo "=== Nginx vhost (HTTP first) ==="
 cat > "/etc/nginx/sites-available/${NGINX_SITE}" <<EOF
@@ -121,9 +117,6 @@ server {
 
     access_log /var/log/nginx/${NGINX_SITE}-access.log;
     error_log /var/log/nginx/${NGINX_SITE}-error.log;
-
-    auth_basic "Watphou Demo";
-    auth_basic_user_file ${BASIC_AUTH_FILE};
 
     add_header X-Robots-Tag "noindex, nofollow" always;
 

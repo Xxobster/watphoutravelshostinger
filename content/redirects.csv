@@ -1,5 +1,40 @@
 old_url,new_url,http_code,notes
+/,/en/,301,home
+/2-day-tours,/en/multi-day-tours/,301,listing
+/3-day-classic-experience-in-southern-laos,/en/tours/3-day-classic-experience-in-southern-laos/,301,tour
+/3-day-highlights-of-southern-laos,/en/tours/3-day-highlights-of-southern-laos/,301,tour
+/3-days-in-southern-laos-with-cycling-escape,/en/tours/3-days-in-southern-laos-with-cycling-escape/,301,tour
+/4-day-southern-laos-escape,/en/tours/4-day-southern-laos-escape/,301,tour
+/4000-islands,/en/destinations/4000-islands/,301,destination
+/4000islands-full-day,/en/tours/4000islands-full-day/,301,tour
+/4000islands-vatphu-temple-2-day-1-night,/en/tours/4000islands-vatphu-temple-2-day-1-night/,301,tour
+/5-day-exploring-southern-laos,/en/tours/5-day-exploring-southern-laos/,301,tour
+/6-day-journey-to-the-heart-of-southern-laos,/en/tours/6-day-journey-to-the-heart-of-southern-laos/,301,tour
+/about-us,/en/about-us/,301,page
+/bolaven-plateau-1,/en/destinations/bolaven-plateau/,301,destination
+/bolaven-plateau-classic-2-day,/en/tours/bolaven-plateau-classic-2-day/,301,tour
+/bolaven-plateau-classic-full-day-tour,/en/tours/bolaven-plateau-classic-full-day-tour/,301,tour
+/bolaven-plateau-half-day,/en/tours/bolaven-plateau-half-day/,301,tour
+/book-online,/en/booking-request/,301,page
+/champasak,/en/destinations/champasak/,301,destination
+/champasak-cycling-experience,/en/tours/champasak-cycling-experience/,301,tour
+/contact-us,/en/contact/,301,page
+/dan-sinxai-eco-adventure-trek-full-day,/en/tours/dan-sinxai-eco-adventure-trek-full-day/,301,tour
+/day-tours,/en/day-tours/,301,listing
+/destinations,/en/destinations/,301,listing
+/explore-vatphu-bolaven-plateau-full-day,/en/tours/explore-vatphu-bolaven-plateau-full-day/,301,tour
+/full-day-trekking-at-dan-yai-tiger-falls,/en/tours/full-day-trekking-at-dan-yai-tiger-falls/,301,tour
 /long-tours,/en/multi-day-tours/,301,listing
+/mystic-mountain-full-day-tour,/en/tours/mystic-mountain-full-day-tour/,301,tour
+/mystic-mountain-trail-2-day1-night,/en/tours/mystic-mountain-trail-2-day1-night/,301,tour
+/pakse-city,/en/destinations/pakse/,301,destination
+/pakse-cultural-riverside-exploration-full-day,/en/tours/pakse-cultural-riverside-exploration-full-day/,301,tour
+/pakse-half-day-city-tours,/en/tours/pakse-half-day-city-tours/,301,tour
+/traditional-bamboo-weaving-class,/en/tours/traditional-bamboo-weaving-class/,301,tour
+/traditional-lao-cotton-weaving-class,/en/tours/traditional-lao-cotton-weaving-class/,301,tour
+/vatphu-champasak-discovery-2days-1night,/en/tours/vatphu-champasak-discovery-2days-1night/,301,tour
+/vatphu-riverside-gems-full-day,/en/tours/vatphu-riverside-gems-full-day/,301,tour
+/vatphu-temple-half-day,/en/tours/vatphu-temple-half-day/,301,tour
 /product-page/i-m-a-product,,410,dummy wix store
 /product-page/i-m-a-product-1,,410,dummy wix store
 /product-page/i-m-a-product-2,,410,dummy wix store

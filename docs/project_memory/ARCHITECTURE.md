@@ -90,8 +90,8 @@ Polylang links translated posts. English is source. French from backup PDFs wher
 
 ## Security layers (demo)
 
-1. HTTP Basic Auth (outer gate)
-2. WordPress login rate limiting
+1. HTTPS
+2. WordPress login for managers (`Log in to edit`)
 3. `DISALLOW_FILE_EDIT`
 4. XML-RPC disabled
 5. `noindex` + X-Robots-Tag

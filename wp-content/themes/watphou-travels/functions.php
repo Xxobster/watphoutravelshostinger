@@ -44,3 +44,19 @@ function watphou_register_patterns(): void {
 }
 
 require_once WATPHOU_THEME_PATH . '/inc/template-tags.php';
+
+add_filter( 'render_block', 'watphou_inject_login_link', 10, 2 );
+
+function watphou_inject_login_link( string $content, array $block ): string {
+	$class = $block['attrs']['className'] ?? '';
+	if ( false === strpos( $class, 'watphou-header-top' ) ) {
+		return $content;
+	}
+	if ( is_user_logged_in() ) {
+		$link = '<a href="' . esc_url( admin_url() ) . '">' . esc_html__( 'Edit website', 'watphou-travels' ) . '</a>'
+			. ' · <a href="' . esc_url( wp_logout_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Log out', 'watphou-travels' ) . '</a>';
+	} else {
+		$link = '<a href="' . esc_url( wp_login_url( admin_url() ) ) . '">' . esc_html__( 'Log in to edit', 'watphou-travels' ) . '</a>';
+	}
+	return preg_replace( '/<\/p>/', ' · ' . $link . '</p>', $content, 1 ) ?: $content;
+}

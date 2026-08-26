@@ -49,13 +49,7 @@ pm.max_children = 5
 pm.process_idle_timeout = 10s
 EOF
 
-# Basic auth
-if [ ! -f "$BASIC_AUTH_FILE" ]; then
-  BASIC_PASS=$(openssl rand -base64 18 | tr -d '/+=' | head -c 18)
-  htpasswd -bc "$BASIC_AUTH_FILE" watphou_demo "$BASIC_PASS"
-  echo "BASIC_AUTH_USER=watphou_demo" >> /var/backups/watphou-demo/db_credentials_20260826_202651.txt
-  echo "BASIC_AUTH_PASS=${BASIC_PASS}" >> /var/backups/watphou-demo/db_credentials_20260826_202651.txt
-fi
+# Basic auth disabled — public website; manager uses WordPress login
 
 # Nginx
 cat > "/etc/nginx/sites-available/${NGINX_SITE}" <<EOF
@@ -66,8 +60,6 @@ server {
     index index.php index.html;
     access_log /var/log/nginx/${NGINX_SITE}-access.log;
     error_log /var/log/nginx/${NGINX_SITE}-error.log;
-    auth_basic "Watphou Demo";
-    auth_basic_user_file ${BASIC_AUTH_FILE};
     add_header X-Robots-Tag "noindex, nofollow" always;
     location / {
         try_files \$uri \$uri/ /index.php?\$args;

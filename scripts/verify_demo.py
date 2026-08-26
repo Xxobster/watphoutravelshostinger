@@ -51,13 +51,17 @@ def main() -> int:
         ok = False
         print(f"FAIL smbistro: HTTP {smb}")
 
-    demo = fetch_status(DEMO_URL, BASIC_USER, BASIC_PASS)
+    demo = fetch_status(DEMO_URL)
     results["checks"].append({"name": "demo_https", "status": demo, "ok": demo in (200, 301, 302)})
     if demo not in (200, 301, 302):
         ok = False
-        print(f"FAIL demo: HTTP {demo} (set DEMO_BASIC_AUTH_USER/PASS if gated)")
+        print(f"FAIL demo: HTTP {demo}")
     else:
-        print(f"OK demo: HTTP {demo}")
+        print(f"OK demo public: HTTP {demo}")
+
+    login = fetch_status(DEMO_URL.rstrip("/") + "/wp-login.php")
+    results["checks"].append({"name": "wp_login", "status": login, "ok": login in (200, 302)})
+    print(f"wp-login.php: HTTP {login}")
 
     nginx = ssh_check("systemctl is-active nginx")
     results["checks"].append({"name": "nginx", "status": nginx, "ok": nginx == "active"})

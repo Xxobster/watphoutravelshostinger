@@ -29,7 +29,15 @@ Append-only. Include date, command, result, screenshot path if applicable.
 | Plugins active | polylang, wordpress-seo, watphou-core, watphou-bookings |
 | Theme | watphou-travels active |
 
-Commands: `python scripts/verify_demo.py`, `ssh sm "sudo -u watphou wp post list --post_type=tour --format=count --path=/var/www/watphou-demo"`
+Commands: `python scripts/verify_demo.py`
+
+## 2026-08-26 — public site + manager WordPress login
+
+| Check | Result |
+|-------|--------|
+| Homepage without Basic Auth | 200, "Log in to edit" present |
+| POST wp-login.php manager/000000 | Redirects to Watphou dashboard |
+| smbistro.duckdns.org | 200 |
 
 ## 2026-08-26T20:32:21 — verify_demo.py
 
@@ -59,3 +67,35 @@ Commands: `python scripts/verify_demo.py`, `ssh sm "sudo -u watphou wp post list
   "php_log_tail": ""
 }
 ```
+
+## 2026-08-26T20:47:40 — verify_demo.py
+
+```json
+{
+  "checks": [
+    {
+      "name": "smbistro_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "demo_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "smbistro_node_5000",
+      "ok": true
+    }
+  ],
+  "php_log_tail": "2026/08/26 20:39:43 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx/.htpasswd-watphou-demo\", client: 86.104.249.179, server: watphou.smbistro.duckdns.org, request: \"GET / HTTP/1.1\", host: \"watphou.smbistro.duckdns.org\"\n2026/08/26 20:39:56 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx

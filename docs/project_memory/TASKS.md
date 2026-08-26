@@ -19,6 +19,7 @@
 | WT-015 | SEO + security docs | done |
 | WT-016 | Test suite (verify_demo) | done |
 | WT-017 | Bluehost deployment doc | done |
+| WT-018 | Public demo site + working manager login | done |
 
 ## Follow-up backlog
 
