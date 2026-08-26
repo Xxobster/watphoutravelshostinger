@@ -1,0 +1,21 @@
+---
+description: Always maintain Watphou Travels project memory so any agent can continue development
+alwaysApply: true
+---
+
+# Watphou Travels — Project Memory Rule
+
+Before starting work, read:
+1. `AGENTS.md`
+2. `docs/project_memory/AGENT_ONBOARDING.md`
+3. `docs/project_memory/CURRENT_STATE.md`
+4. `docs/project_memory/TASKS.md`
+
+After completing meaningful work, update in the same commit:
+- `docs/project_memory/CURRENT_STATE.md` — status, done, next actions
+- `docs/project_memory/TASKS.md` — task statuses
+- `docs/project_memory/DECISIONS.md` — if a new decision was made
+- `docs/project_memory/TEST_LOG.md` — if tests were run
+
+Never commit secrets, invoice PDFs, bank documents, or the backup ZIP.
+Never modify the live Wix site or the existing smbistro app on the demo VPS.

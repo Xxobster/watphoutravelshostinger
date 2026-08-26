@@ -1,0 +1,1155 @@
+# MASTER CURSOR PROMPT — WATPHOU TRAVELS WORDPRESS WEBSITE
+
+Act as the lead WordPress engineer, UX designer, content-migration specialist, SEO specialist, security engineer and deployment engineer for the Watphou Travels website.
+
+Your objective is to:
+
+1. Build the new Watphou Travels WordPress website locally.
+2. Migrate the images and content from the current website.
+3. Implement every applicable requirement in the supplied PDF.
+4. Implement an online booking-request workflow.
+5. Prepare the architecture for delayed BCEL online payment.
+6. Deploy a protected demonstration version on the existing VPS.
+7. Prepare the same project for later production deployment to Bluehost.
+8. Make the website extremely easy for a non-technical manager to update.
+
+Work autonomously, but prioritize safety. Do not ask unnecessary questions. Stop and ask only if credentials or information are genuinely missing, or if an action could affect the existing website on the VPS.
+
+---
+
+# 1. AUTHORITATIVE PROJECT INFORMATION
+
+## Local project root
+
+Use:
+
+`D:\projects\watphoutravels`
+
+Do not create the main project elsewhere.
+
+## Website backup
+
+The current website backup is:
+
+`D:\projects\watphoutravels\bkp\site files - 1657fdf4-40dc-40b1-99f2-ed231b1446ae.zip`
+
+Treat the ZIP as read-only. Do not modify or overwrite it.
+
+Safely extract it into a temporary working directory inside the project. Never extract it directly into a web root or upload the original ZIP to a server.
+
+## Requirements document
+
+Read and fully implement:
+
+`D:\projects\watphoutravels\docs\Watphou_Travels_Website_Brief_Webmaster.pdf`
+
+Create:
+
+`docs/REQUIREMENTS_MATRIX.md`
+
+The matrix must list every requirement from the PDF and show:
+
+* Requirement
+* Source/page
+* Planned implementation
+* Current status
+* Test or evidence
+* Any missing client information
+
+Do not silently omit requirements.
+
+## Current website
+
+The current user-owned website is:
+
+`https://www.watphou-travels.com/`
+
+Use its content and images as migration sources when necessary.
+
+Do not modify the live Wix website or its DNS.
+
+## Main visual reference
+
+Use this as the principal design reference:
+
+`https://vietnamdiscovery.com/`
+
+Study its:
+
+* Hero presentation
+* Navigation hierarchy
+* Tour-card design
+* Page rhythm
+* Trust elements
+* Destination presentation
+* Calls to action
+* Mobile behavior
+* Typography scale
+* Image presentation
+* Tour-page organization
+
+Build an original Watphou Travels design inspired by those principles.
+
+Do not copy Vietnam Discovery’s source code, text, photographs, logo, brand assets or proprietary design exactly. Do not hotlink its images. The result must be recognizably Watphou Travels, not a clone.
+
+Use images and content from Watphou Travels’ backup/current website.
+
+## Demo server
+
+VPS IP:
+
+`185.203.119.52`
+
+An existing website is already running on this VPS. It must continue working without interruption.
+
+The Watphou Travels demo must use:
+
+* A separate directory
+* A separate database
+* A separate database user
+* A separate virtual host/server block
+* A separate URL/hostname
+* Separate logs
+* Preferably a separate PHP-FPM pool when practical
+
+Never overwrite, delete, move or replace the existing website.
+
+## Future production hosting
+
+The production website will later be deployed to Bluehost managed WordPress hosting.
+
+Do not deploy to Bluehost yet. Prepare documentation and deployment tooling so the same codebase can be transferred to Bluehost staging through SSH, SFTP, Git and WP-CLI once access is supplied.
+
+The PDF’s previous Kinsta recommendation is superseded by the decision to use Bluehost.
+
+## Manager demo credentials
+
+Create this WordPress user on the protected demo only:
+
+* Username: `manager`
+* Temporary password: `000000`
+
+This password is explicitly required for the demonstration, but it is insecure.
+
+Therefore:
+
+* Never use it on production.
+* Never give this account Administrator permissions.
+* Put the demo behind HTTPS.
+* Put the entire demo behind a separate server-level access gate such as HTTP Basic Authentication using a different, strong generated password.
+* Do not commit either password to Git.
+* Do not write the generated outer access password into repository documentation.
+* Add login rate limiting.
+* Disable WordPress file editing.
+* Prevent public user enumeration.
+* Set the demo to `noindex`.
+* Change the WordPress manager password before production.
+
+If HTTPS and the outer access gate cannot be established, do not expose the weak WordPress login publicly. Report the blocker.
+
+---
+
+# 2. WORKING RULES
+
+1. Begin with read-only inspection.
+2. Use Git from the beginning.
+3. Make small, descriptive commits after verified phases.
+4. Maintain `PROJECT_STATE.md` with completed work, current status, decisions and next actions.
+5. Never modify WordPress core files.
+6. Never use nulled, pirated or untrusted plugins/themes.
+7. Avoid paid dependencies unless approval is received.
+8. Do not use a heavy page builder such as Elementor unless there is a compelling documented reason.
+9. Prefer a custom lightweight WordPress block theme using Gutenberg and native WordPress APIs.
+10. Keep presentation in the theme and business logic/data structures in plugins.
+11. Do not commit credentials, private keys, `.env` files, production databases, booking personal data, raw backups or payment secrets.
+12. Never run destructive or broad server commands.
+13. Do not restart or reconfigure unrelated VPS services.
+14. Back up any server configuration file before changing it.
+15. Test web-server configuration before reload.
+16. Reload gracefully; do not restart the server unless strictly necessary and safe.
+17. Preserve all existing Watphou Travels public content. Do not discard tours or pages simply because they are not highlighted in the new menu.
+18. Do not invent prices, customer reviews, credentials, certifications, contact details or business facts.
+19. Missing prices must remain clearly marked as `From $XX`.
+20. Missing translations must be marked for professional translation rather than silently machine-translated.
+21. Continue through the phases automatically unless a real security or credential blocker exists.
+
+---
+
+# 3. PREFLIGHT AND CONTENT INVENTORY
+
+Before building:
+
+## Inspect the local project
+
+* Confirm whether the project already contains Git or existing code.
+* Preserve all existing work.
+* Inventory all files and directories.
+* Create an appropriate `.gitignore`.
+* Confirm the backup ZIP and PDF are readable.
+* Do not commit the ZIP, extracted raw backup or PDF unless already intentionally tracked.
+
+## Inspect the backup safely
+
+Create:
+
+`docs/BACKUP_INVENTORY.md`
+
+Identify:
+
+* HTML files
+* JSON or Wix data
+* Images and their dimensions
+* Videos
+* Documents
+* CSS and JavaScript
+* Page titles
+* Tour content
+* Contact information
+* Existing language variants
+* Image duplicates
+* Highest-resolution versions
+* Existing URL structure
+* Missing or corrupted files
+
+Generate file hashes for the original source assets so duplicates can be identified.
+
+Do not blindly upload backup contents. Map useful content into WordPress.
+
+## Inspect the live Watphou Travels website
+
+Use the current live website only when the backup is incomplete.
+
+Create:
+
+`docs/CONTENT_MIGRATION_MAP.md`
+
+For every public page, record:
+
+* Old URL
+* Page title
+* Language
+* New WordPress page/tour
+* Images used
+* Content source: backup or live site
+* New URL
+* Redirect required
+* Migration status
+
+If required, use a respectful crawler or browser automation to collect only the user-owned Watphou Travels content and media.
+
+Download images into the WordPress media library; do not hotlink them from Wix.
+
+Preserve original image files outside the public web root and create optimized WebP/AVIF versions for the website.
+
+## Inspect Vietnam Discovery
+
+Capture representative desktop and mobile screenshots for internal design analysis.
+
+Create:
+
+`docs/DESIGN_REFERENCE.md`
+
+Explain which high-level design principles will be adopted and how the Watphou design will remain original.
+
+---
+
+# 4. WORDPRESS ARCHITECTURE
+
+Build a lightweight, maintainable WordPress installation.
+
+## Theme
+
+Create an original custom block theme named approximately:
+
+`watphou-travels`
+
+Requirements:
+
+* Gutenberg-compatible
+* Mobile-first
+* Responsive
+* Translation-ready
+* Accessible
+* Fast
+* Minimal JavaScript
+* No dependency on a proprietary page builder
+* Reusable patterns for hero, tour cards, trust blocks, reviews, CTA and contact sections
+* Locked structural patterns where necessary so the manager can edit content without accidentally destroying layouts
+* Correct heading hierarchy
+* Keyboard-accessible navigation
+* Visible focus states
+* Good color contrast
+* Responsive images using WordPress image sizes
+* Local or privacy-respecting fonts where practical
+
+## Core plugin
+
+Create:
+
+`watphou-core`
+
+It should contain business data structures, not presentation.
+
+Implement:
+
+### Tour custom post type
+
+Fields must include:
+
+* Tour name
+* Short sales headline
+* Short description
+* Full description
+* Duration
+* Starting price
+* Currency
+* Price for two people
+* Price for three to four people
+* Price for five to six or more
+* Optional guide supplement
+* Standard accommodation
+* Comfort upgrade options
+* Destination
+* Tour type/theme
+* Bestseller flag
+* Priority/order
+* Hero image
+* Gallery
+* Key highlights
+* Day-by-day itinerary
+* Included items
+* Excluded items
+* Optional upgrades
+* Related tours
+* WhatsApp CTA
+* Booking-request CTA
+* SEO title and description where appropriate
+
+Use native WordPress capabilities and clearly labelled manager-friendly fields.
+
+### Taxonomies/content structures
+
+Implement:
+
+* Destinations
+* Tour types/themes
+* Duration categories
+* Reviews/testimonials
+* Team members if required
+* Global contact settings
+* Global WhatsApp number
+* Phone number
+* Email
+* Social links
+* Company trust information
+
+Do not hard-code business contact information across templates.
+
+## Multilingual
+
+Implement English, French and Thai.
+
+Use Polylang Free unless a concrete technical limitation makes another solution necessary. Document any change.
+
+Use language-specific URLs, for example:
+
+* `/en/`
+* `/fr/`
+* `/th/`
+
+Requirements:
+
+* Correct language switcher
+* Correct translated page relationships
+* Correct `hreflang`
+* Language-specific menus
+* Language-specific metadata
+* No automatic redirection that prevents search-engine crawling
+* Import existing translations if available
+* Do not fabricate missing professional translations
+* Clearly flag untranslated content in the admin area
+
+Key pages to prepare first in all three languages:
+
+* Homepage
+* Main tour packages
+* About
+* Contact
+* Booking request
+* Payment page
+* Terms and conditions
+* Privacy policy
+* Cancellation/refund information
+
+---
+
+# 5. REQUIRED WEBSITE STRUCTURE
+
+Implement the PDF structure:
+
+1. Homepage
+2. Day Tours
+3. Multi-day Tours
+4. Destinations/Themes
+5. Tailor-made Tours
+6. About Us / Why Us
+7. Contact
+8. Travel Guide / Blog for SEO
+
+Desktop menu:
+
+`Logo | Day Tours | Multi-day Tours | Destinations | Tailor-made | About Us | Contact`
+
+Add:
+
+* EN / FR / TH switcher
+* Phone number
+* WhatsApp icon
+* Clean mobile menu
+* Floating WhatsApp button on every relevant page
+
+Destinations dropdown:
+
+* Bolaven Plateau
+* 4000 Islands / Si Phan Don
+* Vat Phou and Champasak
+* Pakse and surroundings
+
+Keep navigation concise.
+
+---
+
+# 6. HOMEPAGE REQUIREMENTS
+
+Implement the PDF homepage wireframe.
+
+## Hero
+
+Use the supplied brief copy initially:
+
+Headline:
+
+`Private Journeys into Authentic Southern Laos`
+
+Subheadline:
+
+`Discover the Bolaven Plateau, the ancient temples of Vat Phou and the peaceful 4000 Islands — with a local team and European standards.`
+
+Value line:
+
+`Private tours • Flexible itineraries • From 1 day to 1 week`
+
+Primary CTA:
+
+`Explore Our Best Sellers`
+
+Secondary CTA:
+
+`WhatsApp us now`
+
+Use the strongest appropriate user-owned photograph from the current website/backup.
+
+## Best sellers
+
+Show the four priority packages with:
+
+* Large image
+* Title
+* Duration
+* Starting price
+* One-sentence benefit
+* View Details CTA
+* Request Booking CTA
+
+## Why travel with Watphou Travels
+
+Include the four brief arguments:
+
+* Local expertise and European standards
+* 100% private tours
+* Authentic experiences
+* Transparent and flexible pricing
+
+Also communicate verified strengths from the current site/brief:
+
+* Based in Pakse
+* Operating since 2008, if verified
+* French-speaking capacity
+* Bolaven coffee expertise
+* Pakse Hotel connection
+* Local Lao team
+* Existing Google and Petit Futé reputation
+
+Only display facts that can be verified from the supplied materials or current website.
+
+## Reviews
+
+Use only genuine reviews found in the supplied sources.
+
+Include:
+
+* Star rating
+* Short quotation
+* Reviewer name
+* Date when available
+* Source
+* Link to additional Google reviews
+
+Do not invent reviews.
+
+## Contact section
+
+Include:
+
+* Strong WhatsApp button
+* Name
+* Email
+* Preferred dates
+* Message
+* Phone number
+* Privacy consent
+* Anti-spam protection
+
+---
+
+# 7. TOUR PACKAGES
+
+Implement all eight core packages from the PDF:
+
+1. Bolaven Plateau Classic Full-Day Tour
+2. Bolaven Plateau Classic — 2 Days / 1 Night
+3. 4,000 Islands and Vat Phou Temple — 2 Days / 1 Night
+4. 3-Day Classic Experience in Southern Laos
+5. 4-Day Southern Laos Escape
+6. 5-Day Exploring Southern Laos
+7. Vat Phou Full-Day / Half-Day
+8. Tailor-made / Custom Tours
+
+Use the three rewritten package pages from the PDF as initial content/templates.
+
+Every tour page must follow this sequence:
+
+1. Emotional headline and main benefit
+2. Clearly visible starting price
+3. Two-to-three-sentence dream paragraph
+4. Four-to-six highlights
+5. Detailed day-by-day itinerary with photographs
+6. Included items
+7. Excluded items
+8. Optional upgrades
+9. Booking, WhatsApp and quote CTAs
+10. Related tours
+
+Use:
+
+`From $XX per person — Standard accommodation. Comfort upgrades available`
+
+until real prices are supplied.
+
+Do not hide existing Watphou tours that are not among the eight main packages. Migrate them as secondary tours.
+
+---
+
+# 8. BOOKING-REQUEST PLUGIN
+
+Create a separate plugin:
+
+`watphou-bookings`
+
+The PDF did not originally require direct booking/payment, but the following newer requirement supersedes that omission.
+
+## Required workflow
+
+This is “request first, pay later”:
+
+1. Customer selects a tour.
+2. Customer submits dates, participants and contact details.
+3. The system creates a booking request.
+4. Staff checks availability.
+5. Staff confirms the final details and amount.
+6. Staff clicks a button to create/send the payment link.
+7. Customer pays through BCEL.
+8. A verified BCEL callback updates the booking.
+9. Customer and staff receive confirmation.
+
+## Booking fields
+
+Include:
+
+* Unique booking reference
+* Selected tour
+* Preferred date
+* Alternative date
+* Number of adults
+* Number of children and ages
+* Customer name
+* Email
+* Phone
+* WhatsApp
+* Country
+* Preferred language
+* Pickup location/hotel
+* Accommodation preference
+* Guide preference
+* Customer message
+* Staff notes
+* Quoted amount
+* Currency
+* Payment expiration
+* Privacy consent
+* Creation and modification timestamps
+* Audit history
+
+## Booking states
+
+Implement a controlled state machine:
+
+* `requested`
+* `under_review`
+* `availability_confirmed`
+* `quote_sent`
+* `payment_pending`
+* `paid`
+* `confirmed`
+* `rejected`
+* `expired`
+* `cancelled`
+* `refunded`
+* `payment_failed`
+
+Prevent invalid transitions.
+
+Record who changed each status and when.
+
+## Manager booking screen
+
+The manager must be able to:
+
+* See new booking requests
+* Filter by date, tour, customer and status
+* Open a request
+* Add internal notes
+* Confirm availability
+* Adjust/finalize the quote
+* Set payment-link expiration
+* Send or resend a payment link
+* Copy a prepared WhatsApp message
+* Send an email
+* Mark a manually verified payment with a reason
+* Cancel or reject a request
+* Export an appropriate booking list
+* Never see or store card details
+
+Use nonces, capability checks, validation, sanitization and escaping throughout.
+
+Protect personal information and never expose booking records through public WordPress APIs.
+
+---
+
+# 9. BCEL PAYMENT ARCHITECTURE
+
+BCEL credentials and private documentation are not yet available.
+
+Do not invent API endpoints or pretend the live integration works.
+
+Create a payment-provider interface and a separate BCEL adapter so the booking system is not tightly coupled to one undocumented API.
+
+Prepare support for:
+
+* Sandbox and production modes
+* Merchant ID
+* API endpoint
+* Signing key or certificate
+* Callback/webhook secret
+* Payment creation
+* Payment status query
+* Payment cancellation/expiration
+* Refund handling if BCEL supports it
+* Signed callback verification
+* Idempotency
+* Exact amount/currency/reference verification
+* Safe error logging
+* Reconciliation
+* Retry handling
+
+Never store card numbers, CVV or raw payment credentials.
+
+Create an expiring, unguessable website URL such as:
+
+`/pay/{secure-token}`
+
+After validation, this page should create or open the BCEL-hosted payment session and redirect the customer to BCEL.
+
+Create a demo/mock payment provider for testing. It must be clearly marked as simulation and must never contact a real bank.
+
+Create:
+
+`docs/BCEL_INTEGRATION_REQUIREMENTS.md`
+
+List everything that must be obtained from BCEL:
+
+* Merchant contract
+* Sandbox credentials
+* Merchant identifier
+* API documentation
+* Callback/webhook documentation
+* Signing algorithm
+* Test cards or QR process
+* Supported currencies
+* Decimal/rounding rules
+* Session expiration
+* Status API
+* Refund API
+* Required legal pages
+* IP/TLS requirements
+* Production approval procedure
+
+---
+
+# 10. MANAGER EXPERIENCE
+
+Create a custom WordPress role called approximately:
+
+`Tour Manager`
+
+The demo username is `manager`.
+
+Allow the manager to:
+
+* Edit and publish tours
+* Edit approved pages
+* Manage translations
+* Upload/manage media
+* Edit prices
+* Edit itineraries
+* Manage reviews
+* Manage booking requests
+* Send payment links
+* Edit global contact/WhatsApp details
+* View relevant booking reports
+
+Do not allow the manager to:
+
+* Install or remove plugins
+* Install or remove themes
+* Edit PHP/code
+* Manage administrators
+* Create privileged users
+* Change security settings
+* Access raw payment credentials
+* Change server configuration
+* Export unnecessary personal data
+* Modify WordPress core
+
+Create a simple manager dashboard with:
+
+* New booking requests
+* Bookings awaiting action
+* Upcoming tours
+* Payment status summary
+* Quick links to add/edit tours
+* Short editing instructions
+* Warnings for missing translations or prices
+
+Create:
+
+`docs/MANAGER_GUIDE.md`
+
+Use plain language and screenshots where practical.
+
+---
+
+# 11. SEO REQUIREMENTS
+
+Implement technical and on-page SEO, not fake ranking promises.
+
+Use Yoast SEO Free unless a lighter equivalent is clearly preferable and documented.
+
+Implement:
+
+* Clean permanent URLs
+* Unique page titles
+* Unique meta descriptions
+* Canonical URLs
+* XML sitemap
+* Correct robots directives
+* `hreflang` for EN/FR/TH
+* Open Graph metadata
+* Social sharing images
+* Breadcrumbs
+* Optimized headings
+* Descriptive image filenames
+* Genuine alt text
+* Internal links
+* Related-tour links
+* 301 redirect map from old Wix URLs
+* Fast image loading
+* Lazy loading below the fold
+* Critical hero-image optimization
+* Minimal render-blocking assets
+* Correct 404 page
+* Search-friendly destination and tour archives
+* Google Analytics 4 configuration placeholder
+* Google Search Console verification placeholder
+
+Structured data should include appropriate, truthful schema such as:
+
+* `TravelAgency`
+* `Organization`
+* `WebSite`
+* `BreadcrumbList`
+* `Article` for guides
+* `TouristTrip` or appropriate tour semantics
+* `Offer` only where a real visible price exists
+* Reviews only when the displayed reviews and aggregate values are genuine
+
+Do not add misleading structured data.
+
+The demo must be `noindex, nofollow` and excluded from public sitemaps.
+
+Production must become indexable only during the approved launch.
+
+Create:
+
+`docs/SEO_CHECKLIST.md`
+
+---
+
+# 12. SECURITY AND PRIVACY
+
+Implement:
+
+* HTTPS
+* Secure cookies
+* Login rate limiting
+* Anti-spam and CSRF protection
+* WordPress nonces
+* Capability checks
+* Server-side validation
+* Output escaping
+* Prepared database queries
+* Restricted file permissions
+* `DISALLOW_FILE_EDIT`
+* Disabled XML-RPC unless demonstrably needed
+* Separate database/user from the existing VPS site
+* Separate salts and credentials
+* Security headers that do not break WordPress
+* Backups before updates/deployment
+* Minimal trusted plugins
+* Update policy
+* Redacted application logs
+* Booking-data retention controls
+* Privacy consent
+* Privacy and cookie information
+* Terms, booking conditions, cancellation/refund and payment pages
+
+Do not store passwords or BCEL secrets in Git.
+
+Keep real secrets in server environment variables or protected server configuration/wp-config constants outside version-controlled files.
+
+Create `.env.example` or an equivalent configuration template containing names only, never values.
+
+Create:
+
+`docs/SECURITY.md`
+
+---
+
+# 13. DEMO VPS DEPLOYMENT
+
+## Connection preflight
+
+Check only authorized standard SSH configuration:
+
+* Windows OpenSSH config
+* Existing SSH host entry for `185.203.119.52`
+* Active SSH agent/key
+
+Do not search browser password stores, unrelated files or unrelated credentials.
+
+If no authorized connection is available, ask for:
+
+* SSH username
+* SSH port
+* SSH key or approved authentication method
+* Whether sudo is available
+
+Never print private keys or passwords.
+
+## Read-only server audit
+
+Before changing anything, identify:
+
+* Operating system/version
+* Available disk/RAM
+* Existing web server
+* Existing virtual hosts
+* Existing document roots
+* Existing PHP/PHP-FPM versions
+* Existing database server
+* Existing Docker/container use
+* Existing ports
+* Existing TLS/certbot configuration
+* Firewall status
+* Current website health
+* Existing backup method
+
+Capture the existing website’s HTTP status and a screenshot before deployment.
+
+Write findings to:
+
+`docs/DEMO_SERVER_PREFLIGHT.md`
+
+## Isolation
+
+Use a safe separate hostname.
+
+Preferred order:
+
+1. A dedicated client-provided demo subdomain.
+2. If none exists, verify whether a temporary hostname such as `watphou-demo.185.203.119.52.sslip.io` resolves correctly and can receive HTTPS.
+3. If neither is safe, stop and request a demo hostname.
+
+Suggested directory only if compatible with the existing server:
+
+`/var/www/watphou-demo`
+
+Do not assume this path without inspecting the server.
+
+Create:
+
+* Dedicated web root
+* Dedicated Unix/service ownership where practical
+* Dedicated database
+* Dedicated database user
+* Dedicated virtual host
+* Dedicated access/error logs
+* Dedicated PHP-FPM pool where practical
+* Dedicated backup location outside the public web root
+
+If Docker is already available and provides safer isolation, consider a dedicated Compose project bound to loopback and reverse-proxied through the existing web server. Do not install or reconfigure Docker merely for convenience without evaluating the risk.
+
+## Web-server safety
+
+Before editing:
+
+* Back up affected configuration files with timestamps.
+* Record exact changes.
+* Test with `nginx -t`, `apachectl configtest` or the correct equivalent.
+* Verify the existing site before reload.
+* Gracefully reload only after a successful test.
+* Verify the existing site immediately afterward.
+* Automatically roll back the new configuration if the existing site becomes unhealthy.
+
+Do not change the existing site’s document root, PHP pool, database, DNS or certificate.
+
+## Demo protection
+
+The demo must have:
+
+* HTTPS
+* Outer HTTP Basic Authentication or equivalent strong access gate
+* Generated strong outer password
+* WordPress manager account `manager / 000000`
+* Login rate limiting
+* `noindex`
+* Disabled public registration
+* No real payments
+* Mock BCEL provider only
+* Clear “Demonstration website” indication where appropriate
+
+Do not store the outer password in Git. Report it to the user only in the final Cursor response.
+
+## Deployment
+
+Use Git, rsync over SSH, SFTP or another encrypted deployment method.
+
+Never use unencrypted FTP.
+
+Do not upload:
+
+* Original backup ZIP
+* Requirements PDF
+* Git credentials
+* SSH private keys
+* Production secrets
+* Raw developer notes
+* Unprotected database exports
+
+After deployment:
+
+* Run URL replacement safely with WP-CLI if required.
+* Flush rewrites/cache.
+* Verify file ownership and permissions.
+* Test administrator and manager access.
+* Test all forms.
+* Test booking flow.
+* Test mock payment flow.
+* Test email behavior.
+* Test language switching.
+* Test mobile layouts.
+* Verify the existing VPS website remains unchanged and healthy.
+
+Create:
+
+`docs/DEMO_DEPLOYMENT_AND_ROLLBACK.md`
+
+Include exact rollback instructions.
+
+---
+
+# 14. BLUEHOST PRODUCTION PREPARATION
+
+Do not deploy until Bluehost access is supplied.
+
+Create:
+
+`docs/BLUEHOST_DEPLOYMENT.md`
+
+Prepare for:
+
+* Bluehost managed WordPress
+* Bluehost staging
+* SSH-key authentication
+* WP-CLI
+* Private Git repository
+* Separate developer WordPress account
+* Strong production manager password
+* Daily off-site backup in addition to host backups
+* Cloudflare/Joker DNS plan if selected
+* SSL
+* Cache/CDN compatibility
+* Production mail/SMTP
+* Production BCEL credentials
+* Search Console and GA4
+* Removal of demo/noindex settings at approved launch
+* Production security review
+
+The Bluehost owner login, billing and 2FA should remain with the owner. Cursor should normally use scoped SSH/WP-CLI and WordPress developer access.
+
+Create deployment tooling that separates:
+
+* Theme/plugin code
+* Environment configuration
+* Media migration
+* Database/content migration
+* Production secrets
+
+After production begins receiving real bookings or manager content, never overwrite the entire production database with an old staging database. Deploy code and controlled migrations separately.
+
+---
+
+# 15. TESTING AND ACCEPTANCE
+
+Perform and document:
+
+## Functional tests
+
+* All required pages exist.
+* Every tour has the required structure.
+* Manager can update tours and prices.
+* Manager cannot administer plugins/themes/users.
+* Booking request is created correctly.
+* Notifications work or missing SMTP is clearly reported.
+* Valid booking-state transitions work.
+* Invalid transitions are blocked.
+* Expired payment links fail safely.
+* Unauthorized users cannot access booking data.
+* Mock BCEL callback is idempotent.
+* Amount/reference mismatch is rejected.
+* Language switcher works.
+* WhatsApp links work.
+* Forms validate correctly.
+* No fake reviews or prices appear.
+
+## Visual tests
+
+Capture desktop and mobile screenshots at minimum:
+
+* 375 px
+* 768 px
+* 1440 px
+
+Review:
+
+* Homepage
+* Tour archive
+* Representative tour page
+* Booking form
+* Payment page
+* Contact
+* Manager dashboard
+
+Check for:
+
+* Overflow
+* Clipped text
+* Broken images
+* Poor Thai rendering
+* Inconsistent spacing
+* Unreadable contrast
+* Broken menus
+* Layout shifts
+
+## Quality tests
+
+* No PHP warnings/notices
+* No browser console errors
+* No broken internal links
+* No mixed content
+* Valid sitemap
+* Correct canonical/hreflang
+* Correct demo noindex
+* Good Lighthouse performance/accessibility/SEO
+* Existing VPS website unaffected
+* Backup and rollback documented
+* Requirements matrix completed
+
+Do not report completion while critical tests fail.
+
+---
+
+# 16. REQUIRED DELIVERABLES
+
+The repository must contain:
+
+* `README.md`
+* `PROJECT_STATE.md`
+* `docs/REQUIREMENTS_MATRIX.md`
+* `docs/BACKUP_INVENTORY.md`
+* `docs/CONTENT_MIGRATION_MAP.md`
+* `docs/DESIGN_REFERENCE.md`
+* `docs/BCEL_INTEGRATION_REQUIREMENTS.md`
+* `docs/MANAGER_GUIDE.md`
+* `docs/SEO_CHECKLIST.md`
+* `docs/SECURITY.md`
+* `docs/DEMO_SERVER_PREFLIGHT.md`
+* `docs/DEMO_DEPLOYMENT_AND_ROLLBACK.md`
+* `docs/BLUEHOST_DEPLOYMENT.md`
+* Custom theme
+* `watphou-core` plugin
+* `watphou-bookings` plugin
+* Safe deployment scripts
+* Test instructions
+* Environment configuration example without secrets
+
+At completion, report:
+
+1. What was built.
+2. What content was migrated.
+3. Demo URL.
+4. Outer demo-access username/password.
+5. WordPress manager URL.
+6. WordPress manager username: `manager`.
+7. WordPress manager temporary password: `000000`.
+8. Confirmation that the old VPS website still works.
+9. Test results.
+10. Known limitations.
+11. Missing translations/content/prices.
+12. Information still required from BCEL.
+13. Information required for Bluehost deployment.
+14. Exact next actions.
+
+Do not claim BCEL production payment works until genuine sandbox and production tests have passed.
+
+Start now with local preflight, PDF extraction, backup inventory and the requirements matrix. Then build locally. When ready to deploy, use the authorized SSH configuration if available; otherwise request only the missing VPS connection details.

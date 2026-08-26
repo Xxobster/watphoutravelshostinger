@@ -1,0 +1,63 @@
+# WordPress core and runtime (not in repo — lives on server)
+/wordpress/
+/wp-config.php
+/wp-config.local.php
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.ppk
+auth.json
+.htpasswd
+
+# Work directories (extracts, quarantine, screenshots)
+/work/
+/content/media/originals/
+/content/media/optimized/
+
+# Backup archive (read-only source, never commit)
+/bkp/
+
+# Large binaries and uploads
+*.zip
+*.mp4
+*.mov
+*.avi
+*.sql
+*.sql.gz
+
+# OS and editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Node (if added later)
+node_modules/
+npm-debug.log*
+
+# Logs
+*.log
+/logs/
+
+# Sensitive client documents (invoices, bank details)
+**/quarantine/
+
+# Playwright
+/playwright-report/
+/test-results/

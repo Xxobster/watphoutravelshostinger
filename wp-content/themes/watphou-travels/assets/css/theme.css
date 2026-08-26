@@ -1,0 +1,106 @@
+/* Watphou Travels theme extras */
+
+.watphou-site-header {
+  background: var(--wp--preset--color--white);
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.watphou-header-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.35rem 1rem;
+  font-size: 0.875rem;
+  background: var(--wp--preset--color--primary);
+  color: var(--wp--preset--color--white);
+}
+
+.watphou-header-top a { color: inherit; }
+
+.watphou-header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.watphou-tour-card {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  transition: transform .2s;
+}
+
+.watphou-tour-card:hover { transform: translateY(-4px); }
+
+.watphou-tour-card__image img { width: 100%; height: 220px; object-fit: cover; display: block; }
+
+.watphou-tour-card__body { padding: 1.25rem; }
+
+.watphou-tour-card__price { font-weight: 700; color: var(--wp--preset--color--secondary); }
+
+.watphou-whatsapp-float {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 999;
+  background: #25D366;
+  color: #fff;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  text-decoration: none;
+  font-size: 1.75rem;
+}
+
+.watphou-whatsapp-float:focus { outline: 3px solid var(--wp--preset--color--secondary); outline-offset: 2px; }
+
+.watphou-demo-banner {
+  background: #b45309;
+  color: #fff;
+  text-align: center;
+  padding: .5rem;
+  font-size: .875rem;
+}
+
+.watphou-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  position: relative;
+}
+
+.watphou-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(45,80,22,.75), rgba(0,0,0,.35));
+}
+
+.watphou-hero__inner { position: relative; z-index: 1; max-width: 720px; padding: 3rem 1.5rem; }
+
+.watphou-grid-tours {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .watphou-nav-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+  .watphou-nav-menu { display: none; }
+  .watphou-nav-menu.is-open { display: block; position: absolute; top: 100%; left: 0; right: 0; background: #fff; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+}

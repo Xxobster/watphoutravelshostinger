@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "watphou/inclusions",
+  "title": "Inclusions / Exclusions",
+  "category": "watphou",
+  "icon": "yes",
+  "attributes": {
+    "type": { "type": "string", "default": "included", "enum": ["included", "excluded", "upgrades"] }
+  },
+  "supports": { "html": false }
+}
