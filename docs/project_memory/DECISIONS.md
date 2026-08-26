@@ -101,3 +101,13 @@ Append-only log. One entry per decision.
 
 **Impact:** `verify_demo.py` no longer requires Basic Auth credentials.
 
+---
+
+## 2026-08-26 — Classic PHP theme, Vietnam Discovery layout
+
+**Decision:** Switch `watphou-travels` from a Gutenberg block theme to classic PHP templates (`header.php`, `front-page.php`, etc.). Homepage structure follows vietnamdiscovery.com (two-bar header, hero, interest cards, adventure rows, destination tiles). CSS/HTML is original. Images are Watphou Wix/backup photos.
+
+**Reason:** The block-theme homepage did not resemble the agreed design target. WordPress ignores `front-page.php` while `templates/index.html` exists (`wp_is_block_theme()`).
+
+**Impact:** Deleted `templates/*.html` and `parts/*.html`. Theme version 2.0.0. Orange CTAs `#f15a24`. Prices remain `$XX` until the client supplies figures.
+

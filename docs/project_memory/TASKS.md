@@ -20,6 +20,7 @@
 | WT-016 | Test suite (verify_demo) | done |
 | WT-017 | Bluehost deployment doc | done |
 | WT-018 | Public demo site + working manager login | done |
+| WT-019 | Match vietnamdiscovery.com layout with Watphou Wix photos | done |
 
 ## Follow-up backlog
 

@@ -1,6 +1,19 @@
 # Design Reference — Watphou Travels
 
-**Inspiration:** [vietnamdiscovery.com](https://vietnamdiscovery.com/) (principles only — no code, copy, images, or brand assets reused)
+**Inspiration:** [vietnamdiscovery.com](https://vietnamdiscovery.com/)
+
+**Client request (2026-08-26):** the demo must *look like* vietnamdiscovery.com (same page rhythm and component layout). Photos, logo, phone, and copy remain Watphou’s own (from the live Wix site and backup). We write original CSS/HTML — we do not copy their source code, JavaScript, photographs, or logo.
+
+## Page layout to match (homepage)
+
+1. White sticky top bar: logo left, location, search, WhatsApp phone, language, hamburger
+2. Second nav: Home / packages mega-menu / destinations / About + orange outline **Customize trip**
+3. Full-bleed hero photo, large H1, quoted subtitle, orange **Get Started Today**
+4. Centered intro (“Explore … like Never Before” + quote mark)
+5. Horizontal **interest cards** (photo, duration badge, from $XX /Person, Explore)
+6. **Top Adventures** rows: photo + duration, title, excerpt, Travel Routes, from $XX /Person, **View tour**
+7. Popular destination tiles with overlay titles
+8. Five easy steps, Why us, reviews, contact/WhatsApp, dark footer
 
 ## Adopted principles
 
@@ -23,13 +36,12 @@
 - Use Watphou-owned photos from backup and live site
 - Use brief-supplied copy and scraped Wix content
 - Apply similar *layout patterns* (hero → cards → trust → contact)
-- Use Watphou brand colours derived from existing logo (greens, earth tones)
+- Use orange call-to-action buttons in the same *role* as Vietnam Discovery (primary action), not their exact CSS file
 
 **Do not:**
 - Copy Vietnam Discovery source code, CSS, or JavaScript
 - Hotlink or reuse their photographs
 - Reuse their text, logo, or proprietary UI components
-- Clone their exact colour palette or typography pairing
 
 ## Watphou-specific differentiators
 
@@ -43,10 +55,10 @@
 
 ## Colour and type (theme.json)
 
-- **Primary:** Deep forest green `#2D5016` (trust, nature)
-- **Secondary:** Warm gold `#C4A035` (CTAs, accents)
-- **Neutral:** Charcoal `#2C2C2C`, off-white `#FAFAF8`
-- **Fonts:** System stack with optional local "Inter" or "Source Sans 3" (no Google Fonts CDN for privacy)
+- **Primary (CTA orange):** `#f15a24`
+- **Secondary:** `#d9480f`
+- **Neutral:** Charcoal `#212529`, white bars, dark footer `#1a1d21`
+- **Fonts:** System stack (Segoe UI / Roboto / Helvetica) — no Google Fonts CDN
 
 ## Component patterns
 

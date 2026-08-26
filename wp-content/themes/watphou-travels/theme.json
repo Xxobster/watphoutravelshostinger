@@ -9,8 +9,8 @@
     },
     "color": {
       "palette": [
-        { "slug": "primary", "color": "#2D5016", "name": "Primary Green" },
-        { "slug": "secondary", "color": "#C4A035", "name": "Gold Accent" },
+        { "slug": "primary", "color": "#f15a24", "name": "Brand Orange" },
+        { "slug": "secondary", "color": "#d9480f", "name": "Orange Dark" },
         { "slug": "dark", "color": "#2C2C2C", "name": "Charcoal" },
         { "slug": "light", "color": "#FAFAF8", "name": "Off White" },
         { "slug": "white", "color": "#FFFFFF", "name": "White" }
@@ -47,7 +47,7 @@
     "typography": { "fontFamily": "var(--wp--preset--font-family--system-sans)", "fontSize": "var(--wp--preset--font-size--medium)", "lineHeight": "1.6" },
     "elements": {
       "link": { "color": { "text": "var(--wp--preset--color--primary)" } },
-      "heading": { "color": { "text": "var(--wp--preset--color--primary)" }, "typography": { "fontWeight": "700" } },
+      "heading": { "color": { "text": "var(--wp--preset--color--dark)" }, "typography": { "fontWeight": "700" } },
       "button": {
         "color": { "background": "var(--wp--preset--color--secondary)", "text": "var(--wp--preset--color--dark)" },
         "border": { "radius": "4px" },
@@ -57,12 +57,5 @@
     "blocks": {
       "core/navigation": { "typography": { "fontSize": "0.95rem" } }
     }
-  },
-  "templateParts": [
-    { "name": "header", "title": "Header", "area": "header" },
-    { "name": "footer", "title": "Footer", "area": "footer" }
-  ],
-  "customTemplates": [
-    { "name": "blank", "title": "Blank", "postTypes": ["page", "tour"] }
-  ]
+  }
 }

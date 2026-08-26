@@ -98,4 +98,55 @@ Commands: `python scripts/verify_demo.py`
       "ok": true
     }
   ],
-  "php_log_tail": "2026/08/26 20:39:43 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx/.htpasswd-watphou-demo\", client: 86.104.249.179, server: watphou.smbistro.duckdns.org, request: \"GET / HTTP/1.1\", host: \"watphou.smbistro.duckdns.org\"\n2026/08/26 20:39:56 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx
+  "php_log_tail": "2026/08/26 20:39:43 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx/.htpasswd-watphou-demo\", client: 86.104.249.179, server: watphou.smbistro.duckdns.org, request: \"GET / HTTP/1.1\", host: \"watphou.smbistro.duckdns.org\"\n2026/08/26 20:39:56 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx/.htpasswd-watphou-demo\", client: 86.104.249.179, server: watphou.smbistro.duckdns.org, request: \"GET / HTTP/1.1\", host: \"watphou.smbistro.duckdns.org\""
+}
+```
+
+## 2026-08-26T22:05:35 — verify_demo.py
+
+```json
+{
+  "checks": [
+    {
+      "name": "smbistro_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "demo_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "smbistro_node_5000",
+      "ok": true
+    }
+  ],
+  "php_log_tail": "2026/08/26 20:39:43 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx/.htpasswd-watphou-demo\", client: 86.104.249.179, server: watphou.smbistro.duckdns.org, request: \"GET / HTTP/1.1\", host: \"watphou.smbistro.duckdns.org\"\n2026/08/26 20:39:56 [error] 892485#892485: *108 user \"manager\" was not found in \"/etc/nginx/.htpasswd-watphou-demo\", client: 86.104.249.179, server: watphou.smbistro.duckdns.org, request: \"GET / HTTP/1.1\", host: \"watphou.smbistro.duckdns.org\""
+}
+```
+
+## 2026-08-26 — WT-019 Vietnam Discovery layout on demo
+
+| Check | Result |
+|-------|--------|
+| Homepage HTML | Contains hero, Discover Southern Laos Your Way, interest cards, Get Started Today, Tad Fane photo |
+| Old Gutenberg cover | Absent |
+| Logo / CSS / hero image | HTTP 200 |
+| Tours archive | HTTP 200 with new header/footer |
+| Demo HTTPS | 200 |
+| smbistro.duckdns.org | 200 |
+| nginx / Node port 5000 | active / present |
+| Playwright screenshots | work/screenshots/home_375px.png, home_768px.png, home_1440px.png |
+
+Photos are Watphou Wix/backup assets. Vietnam Discovery code and photos were not copied.

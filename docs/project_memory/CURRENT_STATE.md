@@ -1,10 +1,10 @@
 # Current State — Watphou Travels
 
-**Last updated:** 2026-08-26 (public demo + manager login)
+**Last updated:** 2026-08-26 (Vietnam Discovery layout + Wix photos)
 
 ## Summary
 
-Demo site is **public** at `https://watphou.smbistro.duckdns.org`. HTTP Basic Authentication was removed. Managers click **Log in to edit** and use WordPress user `manager` / `000000`.
+Demo site is **public** at `https://watphou.smbistro.duckdns.org`. The theme is now a classic PHP theme that follows the vietnamdiscovery.com homepage layout (hero, interest cards, adventure rows, destination tiles, steps, why-us, reviews, contact). Photos and logo come from Watphou’s Wix site / backup — not from Vietnam Discovery. HTTP Basic Authentication was removed. Managers click **Log in to edit** and use WordPress user `manager` / `000000`.
 
 ## Completed
 
@@ -26,6 +26,7 @@ Demo site is **public** at `https://watphou.smbistro.duckdns.org`. HTTP Basic Au
 - [x] WT-016 verify_demo.py passed (demo 200, smbistro 200, nginx active)
 - [x] WT-017 BLUEHOST_DEPLOYMENT.md + deploy_production.sh stub
 - [x] WT-018 Public demo (no Basic Auth) + working manager WordPress login
+- [x] WT-019 Classic theme matching Vietnam Discovery layout, using Watphou Wix photos
 
 ## Demo access (not in git)
 
@@ -51,8 +52,8 @@ Demo site is **public** at `https://watphou.smbistro.duckdns.org`. HTTP Basic Au
 
 ## Next actions
 
-1. Replace placeholder tour text with full scraped content when Wix rate limit clears (re-run `scrape_live_site.py`)
-2. Upload hero/tour images from backup manifest to media library
+1. Visual check of demo vs vietnamdiscovery.com on desktop and mobile; tweak spacing if needed
+2. Attach real Wix tour photos as featured images in the media library (WT-102)
 3. Client supplies real prices → update tour meta
 4. Import genuine Google reviews into testimonial CPT
 5. Bluehost staging deploy when credentials available

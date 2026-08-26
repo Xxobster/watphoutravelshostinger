@@ -6,7 +6,7 @@ Every requirement from the PDF brief and master prompt. Status: `pending` | `in_
 |----|-------------|--------|----------------|--------|-----------------|--------------|
 | R01 | Migrate from Wix to WordPress | PDF §1 | Full rebuild on demo VPS | in_progress | Demo URL when live | — |
 | R02 | Languages EN / FR / TH | PDF §1 | Polylang Free, /en/ /fr/ /th/ | pending | hreflang check | Professional TH translator |
-| R03 | Design inspired by vietnamdiscovery.com | PDF §1 | Custom block theme, DESIGN_REFERENCE.md | in_progress | Visual review | — |
+| R03 | Design inspired by vietnamdiscovery.com | PDF §1 | Classic PHP theme matching VD layout; Watphou photos | done | Homepage `wpt-hero` / interest cards | Visual QA vs VD |
 | R04 | Show starting prices "From $XX" | PDF §2, §6 | Tour meta + template | pending | Tour page render | Real prices from client |
 | R05 | Sales-focused homepage | PDF §5 | Hero + best sellers + why us + reviews + contact | pending | Homepage screenshot | Review text from Google |
 | R06 | Menu: Day / Multi-day / Destinations / Tailor-made / About / Contact | PDF §4 | Registered nav menus + theme header | pending | Menu crawl | — |

@@ -1,17 +1,19 @@
 (function () {
   'use strict';
-
-  var toggle = document.querySelector('.watphou-nav-toggle');
-  var menu = document.querySelector('.watphou-nav-menu');
-  if (toggle && menu) {
+  var toggle = document.querySelector('.wpt-nav-toggle');
+  var nav = document.querySelector('.wpt-nav');
+  if (toggle && nav) {
     toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
+      var open = nav.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
-
-  var wa = document.querySelector('.watphou-whatsapp-float');
-  if (wa && window.watphouTheme && window.watphouTheme.whatsapp) {
-    wa.setAttribute('href', window.watphouTheme.whatsapp);
-  }
+  document.querySelectorAll('.wpt-menu .has-children > a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        e.preventDefault();
+        a.parentElement.classList.toggle('is-open');
+      }
+    });
+  });
 })();
