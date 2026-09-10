@@ -1,97 +1,52 @@
-# Demo VPS Runbook — Watphou Travels
+# Staging Runbook — Watphou Travels
 
-SSH host alias: **`sm`** (`212.73.150.149`)
+**Current staging:** https://darkslategray-snake-182151.hostingersite.com (Hostinger)
 
-## Health check (always run after changes)
+The Virtual Private Server (VPS) demo on `sm` (`watphou.smbistro.duckdns.org`) was **removed 2026-09-10**. Do not recreate it.
+
+## Health check
 
 ```bash
 # From Windows project root
 python scripts/verify_demo.py
 ```
 
-Manual checks on server:
+Expected:
 
-```bash
-ssh sm "curl -s -o /dev/null -w '%{http_code}' https://smbistro.duckdns.org/"
-ssh sm "curl -s -o /dev/null -w '%{http_code}' https://watphou.smbistro.duckdns.org/"
-ssh sm "systemctl is-active nginx mysql php8.1-fpm"
-```
-
-Expected: smbistro returns 200; watphou demo returns 200 (public, no HTTP Basic Auth). Manager edits via `/wp-login.php`.
+- Hostinger staging HTTPS 200
+- `/wp-login.php` 200 or 302
+- On VPS `sm`: nginx active, `watphou-demo` **not** in sites-enabled, `smbistro` still present, `/var/www/watphou-demo` gone
 
 ## Deploy theme and plugins
 
-```bash
-python scripts/deploy_demo.py
-```
+Do **not** run `python scripts/deploy_demo.py` (it refuses VPS deploys).
 
-Syncs only:
-- `wp-content/themes/watphou-travels/`
-- `wp-content/plugins/watphou-core/`
-- `wp-content/plugins/watphou-bookings/`
-- `wp-content/mu-plugins/`
+Push `wp-content/themes/watphou-travels` and the two custom plugins to the Hostinger WordPress install (Hostinger panel or Hostinger deploy tools). Then re-run `python scripts/verify_demo.py`.
 
-Then on server:
+## Hostinger facts
 
-```bash
-ssh sm "cd /var/www/watphou-demo && sudo -u watphou wp cache flush && sudo -u watphou wp rewrite flush"
-```
+| Item | Value |
+|------|-------|
+| Temporary domain | `darkslategray-snake-182151.hostingersite.com` |
+| Hostinger username | `u916301613` |
+| WordPress admin user | `wptadmin` (password not in git) |
+| Search engines | Keep `noindex` until the real domain is attached |
 
-## Reload nginx (after config change)
+## Retired VPS paths (gone)
 
-```bash
-ssh sm "nginx -t && systemctl reload nginx"
-```
-
-**Never** `systemctl restart nginx` unless reload fails.
-
-## Restart PHP-FPM pool (watphou only)
-
-```bash
-ssh sm "systemctl restart php8.1-fpm"
-```
-
-## Rollback nginx config
-
-```bash
-ssh sm "ls -t /root/nginx-backup-*.tar.gz | head -1"
-# Extract and restore specific file, then nginx -t && systemctl reload nginx
-```
-
-See `docs/DEMO_DEPLOYMENT_AND_ROLLBACK.md` for full rollback.
-
-## Renew SSL certificate
-
-```bash
-ssh sm "certbot renew --dry-run"
-ssh sm "certbot certonly --nginx -d watphou.smbistro.duckdns.org"
-```
-
-## WordPress CLI examples
-
-```bash
-ssh sm "cd /var/www/watphou-demo && sudo -u watphou wp plugin list"
-ssh sm "cd /var/www/watphou-demo && sudo -u watphou wp post list --post_type=tour"
-```
-
-## Paths on server
-
-| Item | Path |
-|------|------|
+| Item | Former path |
+|------|-------------|
 | Web root | `/var/www/watphou-demo` |
 | Nginx site | `/etc/nginx/sites-available/watphou-demo` |
 | PHP pool | `/etc/php/8.1/fpm/pool.d/watphou-demo.conf` |
-| Basic auth | retired (file may still exist unused) |
-| Media originals (outside web root) | `/var/www/watphou-media/originals` |
-| Backups | `/var/backups/watphou-demo/` |
+| Offline backup (left on VPS) | `/var/backups/watphou-demo-final-20260910_142038/` |
 
-## Verify existing site untouched
+Removal script: `scripts/deprovision_demo_vps.sh` (already run).
 
-After any server change:
+## Never touch on VPS sm
 
-```bash
-ssh sm "curl -sI https://smbistro.duckdns.org/ | head -5"
-ssh sm "ss -tlnp | grep 5000"
-```
+- nginx site `smbistro`
+- nginx sites `cirlapp-duckdns` and `cirl-ip`
+- Let’s Encrypt certificates other than the deleted Watphou one
 
-Port 5000 must still show PM2 Node process.
+If nginx config on `sm` must change for **non-Watphou** work: `nginx -t` then `systemctl reload nginx` — never restart unless reload fails.

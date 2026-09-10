@@ -1,0 +1,70 @@
+{
+  "code": "5.1",
+  "slug": "5-day-exploring-southern-laos",
+  "title": "5-Day Exploring Southern Laos",
+  "headline": "The complete south: plateau, temples and two nights on the Mekong",
+  "duration": "5 days / 4 nights",
+  "duration_term": "4-6-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "Five days give the region room to breathe. After the Bolaven and Champasak, you spend two nights in the 4000 Islands instead of rushing through them. The last morning is Khone Phapheng, then either Pakse or the Cambodia border.",
+  "highlights": [
+    "Full Bolaven day with waterfalls, coffee and Phu Krateh",
+    "Champasak by boat + Vat Phou + Nang Sida",
+    "Tomo, Phou Asa and a Mekong cruise to Don Khone",
+    "Full island day: Li Phi, colonial remains, Don Loppadi",
+    "Two nights on the islands + flexible end point"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Bolaven Plateau",
+      "body": "Tad Fane, Tad Yuang, Jhai Coffee, Phu Krateh, overnight Pakse. Meals: Lunch / Dinner."
+    },
+    {
+      "day": 2,
+      "title": "Pakse to Champasak",
+      "body": "Boat, Nang Sida, Vat Phou, Champasak overnight. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 3,
+      "title": "Champasak to the 4,000 Islands",
+      "body": "Tomo, Phou Asa, boat via Don Som to Don Khone. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 4,
+      "title": "Full day in the 4,000 Islands",
+      "body": "Li Phi, Khonepasoi, French remains, Don Loppadi, overnight Don Khone. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 5,
+      "title": "Khone Phapheng then border or Pakse",
+      "body": "Khone Phapheng, then Nong Nok Khiene border or Pakse. Meals: Breakfast / Lunch."
+    }
+  ],
+  "included": [
+    "Private transportation + local island transport",
+    "4 nights accommodation + meals as mentioned + entrance fees + water"
+  ],
+  "excluded": [
+    "Guide (on request), extra meals, tips, insurance, personal expenses, optional activities"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior / comfort hotels in Pakse, Champasak and on Don Khone",
+    "Palateu shadow puppet theatre in Champasak (seasonal)",
+    "Zipline at Tad Fane or Li Phi",
+    "End the tour at the Cambodia border instead of Pakse"
+  ],
+  "destinations": [
+    "bolaven-plateau",
+    "4000-islands",
+    "champasak"
+  ],
+  "image": "sunset.jpg",
+  "cta": "Request this 5-day journey • Confirm your end point: Pakse or Cambodia border",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 40
+}

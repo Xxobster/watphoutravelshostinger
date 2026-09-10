@@ -4,10 +4,12 @@ Plain-language guide for the **Tour Manager** role (`manager` account on demo).
 
 ## Logging in
 
-1. Open the website: https://watphou.smbistro.duckdns.org (no extra password — the site is public).
-2. Click **Log in to edit** in the top bar, or go to `/wp-login.php`.
-3. Log in as **manager** with password **000000** (demo only — change before production).
-4. You land on the Watphou dashboard, where you can edit tours and pages.
+1. Open the website: https://darkslategray-snake-182151.hostingersite.com (Hostinger temporary domain; the site is public, search engines should stay on `noindex`).
+2. Go to `/wp-login.php`.
+3. Log in with the Hostinger WordPress admin user (`wptadmin`). The password is **not** stored in git.
+4. You land in WordPress admin, where you can edit tours and pages.
+
+The old demo URL `https://watphou.smbistro.duckdns.org` is retired (removed from the Virtual Private Server). The `manager` / `000000` account was for that demo only.
 
 The public website stays visible to visitors. Login is only for editing.
 

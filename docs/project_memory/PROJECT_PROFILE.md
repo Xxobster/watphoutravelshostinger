@@ -7,7 +7,7 @@ Unknown fields remain `UNRESOLVED`.
 ```yaml
 project_name: Watphou Travels WordPress Rebuild
 repository_root: D:\projects\watphoutravels
-git_remote: git@github.com:Xxobster/watphoutravelsbluehost.git
+git_remote: git@github.com:Xxobster/watphoutravelshostinger.git
 legacy_wix_repo: git@github.com:Xxobster/watphoutravels.git
 project_memory_directory: docs/project_memory
 requirements_pdf: docs/Watphou_Travels_Website_Brief_Webmaster.pdf
@@ -15,28 +15,33 @@ master_prompt: docs/chatgpt prompt 4 cursor.txt
 backup_zip: bkp/site files - 1657fdf4-40dc-40b1-99f2-ed231b1446ae.zip
 current_live_site: https://www.watphou-travels.com/
 design_reference: https://vietnamdiscovery.com/
-production_host: Bluehost managed WordPress
-production_deploy_status: NOT_STARTED
+production_host: Hostinger (temporary domain until real domain is attached)
+production_deploy_status: STAGING_ON_HOSTINGER
 ```
 
-## 2. Demo environment (confirmed 2026-08-26)
+## 2. Staging environment (Hostinger — current as of 2026-09-10)
 
 ```yaml
+staging_url: https://darkslategray-snake-182151.hostingersite.com
+staging_host: Hostinger
+staging_hostinger_username: u916301613
+staging_wordpress_title: Watphou Travels
+staging_wp_login: wptadmin
+staging_noindex: true
+staging_payments: mock_only
+```
+
+## 2b. Retired demo environment (removed from VPS sm on 2026-09-10)
+
+```yaml
+status: RETIRED
 demo_vps_alias_ssh: sm
 demo_vps_ip: 212.73.150.149
-demo_vps_os: Ubuntu 22.04.5 LTS
-demo_vps_ram_gb: 2.9
-demo_vps_disk_free_gb: 5.5
-demo_url: https://watphou.smbistro.duckdns.org
-demo_web_root: /var/www/watphou-demo
-demo_db_name: watphou_demo
-demo_db_user: watphou_demo
-demo_nginx_vhost: watphou-demo
-demo_php_pool: watphou-demo
-demo_unix_user: watphou
-demo_basic_auth: ENABLED
-demo_noindex: true
-demo_payments: mock_only
+former_demo_url: https://watphou.smbistro.duckdns.org
+former_demo_web_root: /var/www/watphou-demo
+former_demo_db_name: watphou_demo
+offline_backup_on_vps: /var/backups/watphou-demo-final-20260910_142038/
+deprovision_script: scripts/deprovision_demo_vps.sh
 ```
 
 ## 3. Rejected demo host (recorded decision)
@@ -47,15 +52,14 @@ rejected_reason: No nginx/PHP/MySQL; Node remoteandroid.service binds 80/443/808
 rejected_alternative_chosen: sm (212.73.150.149)
 ```
 
-## 4. Existing site on demo VPS (must not break)
+## 4. Other sites on VPS sm (must not break)
 
 ```yaml
+rule: Never modify smbistro, cirlapp, or cirl-ip on VPS sm
 existing_app_name: restaurant reservation system
 existing_hostname: smbistro.duckdns.org
 existing_nginx_site: smbistro
-existing_backend: Node PM2 on 127.0.0.1:5000
-existing_db: rtrs_db
-existing_cert: smbistro.duckdns.org
+note: DuckDNS for smbistro.duckdns.org did not resolve from the VPS on 2026-09-10; nginx vhost was left unchanged
 ```
 
 ## 5. Local development machine
@@ -128,5 +132,7 @@ petit_fute_reviews: UNRESOLVED
 verified_since_2008: UNRESOLVED
 smtp_demo: UNRESOLVED
 bcel_merchant_contract: UNRESOLVED
-bluehost_ssh_access: UNRESOLVED
+bluehost_ssh_access: SUPERSEDED_BY_HOSTINGER
+hostinger_temporary_domain: darkslategray-snake-182151.hostingersite.com
+final_production_domain: UNRESOLVED
 ```

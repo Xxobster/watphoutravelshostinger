@@ -35,6 +35,15 @@ def build_tar(tar_path: Path) -> None:
 
 
 def main() -> int:
+    print(
+        "VPS demo watphou.smbistro.duckdns.org was removed on 2026-09-10.\n"
+        "Current staging: https://darkslategray-snake-182151.hostingersite.com\n"
+        "Do not copy theme/plugins to /var/www/watphou-demo on Virtual Private Server (VPS) sm."
+    )
+    if os.environ.get("FORCE_VPS_DEPLOY") != "yes":
+        print("Refusing Virtual Private Server (VPS) deploy. Set FORCE_VPS_DEPLOY=yes only to restore from backup.")
+        return 1
+
     with tempfile.NamedTemporaryFile(suffix=".tar.gz", delete=False) as tmp:
         tar_path = Path(tmp.name)
     try:

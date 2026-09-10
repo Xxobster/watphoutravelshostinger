@@ -26,7 +26,43 @@ function watphou_language_switcher(): void {
 	if ( ! function_exists( 'pll_the_languages' ) ) {
 		return;
 	}
-	echo '<nav class="watphou-lang-switcher" aria-label="' . esc_attr__( 'Language', 'watphou-travels' ) . '">';
-	pll_the_languages( array( 'show_flags' => 0, 'show_names' => 1, 'display_names_as' => 'slug' ) );
-	echo '</nav>';
+	$langs = pll_the_languages(
+		array(
+			'show_flags'             => 0,
+			'show_names'             => 1,
+			'display_names_as'       => 'slug',
+			'hide_if_no_translation' => 0,
+			'raw'                    => 1,
+		)
+	);
+	if ( ! is_array( $langs ) ) {
+		return;
+	}
+	echo '<ul>';
+	foreach ( $langs as $lang ) {
+		$slug = $lang['slug'] ?? '';
+		$url  = $lang['url'] ?? '';
+		if ( '' === $slug || '' === $url ) {
+			continue;
+		}
+		// Skip unpublished French/Thai drafts so visitors are not sent to 404s.
+		if ( empty( $lang['current_lang'] ) && function_exists( 'pll_get_post' ) && get_queried_object_id() ) {
+			$translated = pll_get_post( get_queried_object_id(), $slug );
+			if ( $translated && 'publish' !== get_post_status( $translated ) ) {
+				continue;
+			}
+			if ( ! $translated && function_exists( 'pll_default_language' ) && $slug !== pll_default_language() ) {
+				continue;
+			}
+		}
+		$current = ! empty( $lang['current_lang'] );
+		printf(
+			'<li class="%1$s"><a lang="%2$s" hreflang="%2$s" href="%3$s">%4$s</a></li>',
+			$current ? 'current-lang' : 'lang-item',
+			esc_attr( $slug ),
+			esc_url( $url ),
+			esc_html( strtoupper( $slug ) )
+		);
+	}
+	echo '</ul>';
 }

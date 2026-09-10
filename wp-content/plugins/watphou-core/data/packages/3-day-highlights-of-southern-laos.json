@@ -1,0 +1,60 @@
+{
+  "code": "3.2",
+  "slug": "3-day-highlights-of-southern-laos",
+  "title": "3-Day Highlights of Southern Laos",
+  "headline": "Bolaven, Vat Phou and the 4000 Islands — the short complete circuit",
+  "duration": "3 days / 2 nights",
+  "duration_term": "3-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "Three days for travellers with little time who still want the three pillars of the south: the Bolaven Plateau with Phu Krateh, Vat Phou and Champasak, then a night on Don Khone with Li Phi and Khone Phapheng. Faster than the 3-Day Classic, with a volcano viewpoint instead of a full Bolaven market day.",
+  "highlights": [
+    "Tad Fane, Tad Yuang and Jhai Coffee",
+    "Phu Krateh volcano summit (1,300 m)",
+    "Vat Phou + Champasak + Tomo",
+    "Overnight on Don Khone",
+    "Li Phi, French remains and Khone Phapheng"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Bolaven Plateau and Phu Krateh",
+      "body": "Tad Fane, Tad Yuang, Jhai Coffee, Phu Krateh summit (~1,300 m), overnight Pakse. Meals: Lunch / Dinner."
+    },
+    {
+      "day": 2,
+      "title": "Vat Phou, Tomo and the 4,000 Islands",
+      "body": "Vat Phou, Champasak, Tomo temple, boat to Don Khone overnight. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 3,
+      "title": "Islands, Khone Phapheng, Pakse or border",
+      "body": "Li Phi, Khonepasoi, Khone Phapheng, then Pakse or Nong Nok Khiene border. Meals: Breakfast / Lunch. Total distance: about 505 km."
+    }
+  ],
+  "included": [
+    "Private minivan and driver + local island transport",
+    "2 nights accommodation",
+    "Meals as mentioned + entrance fees + bottled water"
+  ],
+  "excluded": [
+    "Guide (on request), extra meals, tips, insurance, personal expenses"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior hotels in Pakse and on Don Khone",
+    "Zipline at Tad Fane or Li Phi",
+    "End at the Cambodia border instead of Pakse"
+  ],
+  "destinations": [
+    "bolaven-plateau",
+    "4000-islands",
+    "champasak"
+  ],
+  "image": "coffee.jpg",
+  "cta": "Request these 3-day highlights • Confirm whether you finish in Pakse or at the border",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 40
+}

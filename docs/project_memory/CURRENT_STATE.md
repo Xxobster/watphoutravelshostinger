@@ -1,66 +1,61 @@
 # Current State — Watphou Travels
 
-**Last updated:** 2026-08-26 (Vietnam Discovery layout + Wix photos)
+**Last updated:** 2026-09-10 (WT-110 Polylang done; site password removed)
 
 ## Summary
 
-Demo site is **public** at `https://watphou.smbistro.duckdns.org`. The theme is now a classic PHP theme that follows the vietnamdiscovery.com homepage layout (hero, interest cards, adventure rows, destination tiles, steps, why-us, reviews, contact). Photos and logo come from Watphou’s Wix site / backup — not from Vietnam Discovery. HTTP Basic Authentication was removed. Managers click **Log in to edit** and use WordPress user `manager` / `000000`.
+Staging is live on Hostinger temporary domain **https://darkslategray-snake-182151.hostingersite.com** with the same classic PHP theme design as the former demo (vietnamdiscovery.com layout). September 2026 package texts are imported (15 tours + tailor-made page). Public prices stay **From $XX**. Search engines see `noindex, nofollow`. The front end is **open** (no HTTP Basic Auth); WordPress admin still requires a login.
 
-## Completed
+The old DuckDNS demo on Virtual Private Server (VPS) `sm` was removed earlier; `smbistro` and other sites on `sm` were not modified. Live Wix and Joker Domain Name System (DNS) are untouched.
 
-- [x] WT-001 Repository bootstrap (git, README, AGENTS, .gitignore, remote)
-- [x] WT-002 Project memory (12 files in `docs/project_memory/`)
-- [x] WT-003 Backup inventory (639 files, 21 quarantined, `BACKUP_INVENTORY.md`)
-- [x] WT-004 Content extraction (fallback JSON for 36 URLs + live scrape partial; `CONTENT_MIGRATION_MAP.md`)
-- [x] WT-005 Requirements matrix + design reference
-- [x] WT-006 Demo VPS provisioned on `sm` (212.73.150.149), smbistro verified 200
-- [x] WT-007 deploy_demo.py, verify_demo.py, screenshots.py, RUNBOOK
-- [x] WT-008 Block theme `watphou-travels`
-- [x] WT-009 Plugin `watphou-core` (tours, taxonomies, blocks, Tour Manager role)
-- [x] WT-010 Content import (36 items, 24 tours via WP-CLI)
-- [x] WT-011 Polylang EN/FR/TH languages registered
-- [x] WT-012 Plugin `watphou-bookings` (tables, state machine, admin UI)
-- [x] WT-013 Payment layer (MockProvider, Bcel stub, BCEL doc)
-- [x] WT-014 Manager dashboard + MANAGER_GUIDE.md
-- [x] WT-015 SEO/security docs + demo hardening (mu-plugin)
-- [x] WT-016 verify_demo.py passed (demo 200, smbistro 200, nginx active)
-- [x] WT-017 BLUEHOST_DEPLOYMENT.md + deploy_production.sh stub
-- [x] WT-018 Public demo (no Basic Auth) + working manager WordPress login
-- [x] WT-019 Classic theme matching Vietnam Discovery layout, using Watphou Wix photos
-
-## Demo access (not in git)
+## Staging access (not in git)
 
 | Item | Value |
 |------|-------|
-| URL | https://watphou.smbistro.duckdns.org (public website) |
-| HTTP Basic Auth | Removed 2026-08-26 — site is viewable |
-| WP editor login | `/wp-login.php` or header **Log in to edit** |
-| WP manager | user `manager` / `000000` (demo only) |
-| WP admin (dev) | user `admin` — password on server cred file |
+| URL | https://darkslategray-snake-182151.hostingersite.com |
+| Host | Hostinger (username `u916301613`, order `1009997687`) |
+| Front end | Open URL — no site password |
+| WordPress login | `/wp-login.php` — user `wptadmin` — password in `work/wp_admin_pass.txt` (gitignored) |
+| Search engines | `noindex, nofollow`; `WATPHOU_ENV=staging` in server `wp-config.php` |
+| Docs | `docs/HOSTINGER_DEPLOYMENT.md` |
+
+## Completed
+
+- [x] WT-001 through WT-019, WT-108 (see git history / earlier entries)
+- [x] WT-201 Package JSON from 20261009 PDFs; draft prices private under `content/draft/`
+- [x] WT-202 `content/redirects.csv` rewritten (keep Wix slugs, 301 tours/destinations, 410 shop)
+- [x] WT-203 Staging env mu-plugin, admin JSON importer, duration menus, homepage bestsellers 1.1/2.1/2.2/3.1
+- [x] WT-204 WordPress + theme + plugins + Polylang + Yoast on Hostinger temporary domain
+- [x] WT-205 Content import, placeholder media, password gate, noindex, smoke-test
+- [x] WT-206 `docs/HOSTINGER_DEPLOYMENT.md` + cutover Domain Name System (DNS) / email / noindex checklist in `TASKS.md`
+- [x] WT-110 Polylang English default (hide `/en/`); French/Thai empty drafts; site password removed
 
 ## Blocked / client input needed
 
 | Item | Status |
 |------|--------|
-| Real tour prices | UNRESOLVED |
+| Real tour prices | UNRESOLVED (draft spreadsheet not public) |
+| Final photography | UNRESOLVED (theme placeholders in use) |
 | Google review import | UNRESOLVED |
 | Professional Thai translations | UNRESOLVED |
 | BCEL merchant API | UNRESOLVED |
-| Bluehost SSH | UNRESOLVED |
-| SMTP for booking emails | sendmail not on demo VPS |
-| Full live scrape | Wix rate-limited; fallback placeholders used |
+| Final production domain attach + Joker cutover | UNRESOLVED |
+| SMTP for booking emails | UNRESOLVED |
 
 ## Next actions
 
-1. Visual check of demo vs vietnamdiscovery.com on desktop and mobile; tweak spacing if needed
-2. Attach real Wix tour photos as featured images in the media library (WT-102)
-3. Client supplies real prices → update tour meta
-4. Import genuine Google reviews into testimonial CPT
-5. Bluehost staging deploy when credentials available
-6. BCEL sandbox integration when contract ready
+1. WT-107 — Search Engine Optimization (SEO) polish while keeping temporary domain `noindex`
+2. Client supplies real prices → update tour meta (never invent figures)
+3. Swap placeholder photos for final client photography
+4. When ready: Hostinger domain connect → Joker A/`www` only → remove noindex (see `HOSTINGER_DEPLOYMENT.md`)
+5. Banque Pour Le Commerce Exterieur Lao (BCEL) sandbox when credentials exist
 
-## Evidence
+## Evidence (2026-09-10 Hostinger staging)
 
-- `python scripts/verify_demo.py` → demo HTTP 200, smbistro OK
-- `wp post list --post_type=tour --format=count` → 24
-- SSL cert: watphou.smbistro.duckdns.org expires 2026-11-24
+- Homepage (open, no site password): 4 bestsellers (Bolaven 1-day, Bolaven 2-day, 4000 Islands + Vat Phou 2-day, 3-day classic)
+- Polylang: `en` / `fr` / `th`; `/en/about-us/` → 301 `/about-us/`; language switcher shows EN only until FR/TH are published
+- Key pages 200: `/about-us/`, `/contact-us/`, `/day-tours/`, `/book-online/`, `/destinations/`, nested destinations, `/tailor-made-tours/`
+- Redirects: `/bolaven-plateau-classic-full-day-tour` → `/tours/...` (301); shop dummies → 410
+- Headers: `X-Robots-Tag: noindex, nofollow`; unauthenticated front → 200
+- Plugins active: watphou-core, watphou-bookings, polylang, wordpress-seo
+- No `package.json` added (WordPress deploy path, not Node/static Git import)

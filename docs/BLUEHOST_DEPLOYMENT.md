@@ -1,6 +1,9 @@
 # Bluehost Deployment — Watphou Travels
 
-**Status:** Prepared — do not deploy until SSH/access supplied.
+**Status:** SUPERSEDED 2026-09-10. Production/staging is **Hostinger**, not Bluehost. Current URL: https://darkslategray-snake-182151.hostingersite.com
+
+Keep this file only as historical notes. Do not follow the Bluehost steps below unless the host is changed again.
+
 
 ## Target
 
@@ -10,7 +13,7 @@ Bluehost managed WordPress hosting for production `watphou-travels.com`.
 
 | Layer | Method | Notes |
 |-------|--------|-------|
-| Theme + plugins | Git → SSH/SFTP | Same repo `watphoutravelsbluehost` |
+| Theme + plugins | Git → SSH/SFTP | Same repo `watphoutravelshostinger` |
 | wp-config.php | Manual on server | Never in git |
 | Media/uploads | SFTP or migration plugin | One-time + incremental |
 | Database content | WP-CLI export/import | **Never overwrite live DB after bookings** |

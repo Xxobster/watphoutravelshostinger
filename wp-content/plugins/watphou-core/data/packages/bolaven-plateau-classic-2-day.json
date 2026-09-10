@@ -1,0 +1,55 @@
+{
+  "code": "2.1",
+  "slug": "bolaven-plateau-classic-2-day",
+  "title": "Bolaven Plateau Classic – 2 Days / 1 Night",
+  "headline": "Waterfalls, coffee culture, ethnic villages and a night in the cool highlands",
+  "duration": "2 days / 1 night",
+  "duration_term": "2-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "Spend two days in the cool climate and rich culture of the Bolaven Plateau. Discover powerful waterfalls, highland markets and traditional villages, then wake up in the heart of Laos’ coffee country — far from the crowds of the main circuit. A private vehicle keeps the pace flexible.",
+  "highlights": [
+    "Tad Fane and Tad Yuang waterfalls (optional zipline)",
+    "Overnight on the plateau in a peaceful 3-star setting",
+    "Thateng Market and Katu weaving village",
+    "Tad Lo area and Ngae community traditions",
+    "Coffee tasting with a local specialist"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse to the Bolaven Plateau",
+      "body": "Departure: 08:00. Tad Champee, Tad Fane, Tad Yuang, Jhai Coffee House. Overnight at a 3-star resort on the plateau. Meals: Lunch / Dinner. Vehicle: ~100 km."
+    },
+    {
+      "day": 2,
+      "title": "Highland markets, villages, coffee and return to Pakse",
+      "body": "Thateng Market, Ban Kandone weaving village, Ban Kok Phung Tai Market, Tad Lo / Ngae community, Mr. Vieng coffee tasting, return to Pakse. Meals: Breakfast / Lunch. Total distance: about 340 km."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "1 night accommodation (standard / 3-star)",
+    "Meals as mentioned (Day 1: lunch + dinner / Day 2: breakfast + lunch)",
+    "All entrance fees mentioned + bottled water"
+  ],
+  "excluded": [
+    "English-speaking guide (available on request)",
+    "Extra meals, tips, insurance, personal expenses",
+    "Optional zipline at Tad Fane"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior / comfort hotel on the plateau",
+    "Zipline at Tad Fane"
+  ],
+  "destinations": [
+    "bolaven-plateau"
+  ],
+  "image": "bolaven.jpg",
+  "cta": "Book this 2-day experience • Chat with us on WhatsApp",
+  "page_type": "tour",
+  "bestseller": true,
+  "priority": 95
+}

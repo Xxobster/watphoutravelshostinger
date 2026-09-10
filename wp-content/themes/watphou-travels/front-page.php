@@ -74,12 +74,29 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 			$query = new WP_Query(
 				array(
 					'post_type'      => 'tour',
-					'posts_per_page' => 6,
+					'posts_per_page' => 4,
 					'meta_key'       => 'tour_priority',
 					'orderby'        => 'meta_value_num',
 					'order'          => 'DESC',
+					'meta_query'     => array(
+						array(
+							'key'   => 'tour_bestseller',
+							'value' => '1',
+						),
+					),
 				)
 			);
+			if ( ! $query->have_posts() ) {
+				$query = new WP_Query(
+					array(
+						'post_type'      => 'tour',
+						'posts_per_page' => 4,
+						'meta_key'       => 'tour_priority',
+						'orderby'        => 'meta_value_num',
+						'order'          => 'DESC',
+					)
+				);
+			}
 			$fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', 'coffee.jpg', 'waterfall.jpg' );
 			$i         = 0;
 			if ( $query->have_posts() ) :

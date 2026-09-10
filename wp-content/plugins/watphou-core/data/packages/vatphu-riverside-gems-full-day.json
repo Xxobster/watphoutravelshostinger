@@ -1,0 +1,46 @@
+{
+  "code": "1.2",
+  "slug": "vatphu-riverside-gems-full-day",
+  "title": "Vat Phou & Riverside Gems Full-Day",
+  "headline": "A UNESCO temple, a royal town and a quiet return on the Mekong",
+  "duration": "1 day",
+  "duration_term": "1-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard. Comfort upgrades and guide available.",
+  "dream": "Vat Phou is not a quick photo stop. This day gives time for the museum, the long sacred causeway and the climb to the holy spring — then Champasak town and a two-hour boat back to Pakse on the Mekong. The most complete cultural day trip from Pakse.",
+  "highlights": [
+    "Full visit of Vat Phou UNESCO World Heritage Site",
+    "Hong Nang Sida (12th-century Khmer sanctuary)",
+    "Walk in Champasak, former royal town",
+    "Return to Pakse by private boat (about 2 hours)"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse – Vat Phou – Champasak – Mekong – Pakse",
+      "body": "Morning at the Vat Phou complex: museum, electric shuttle, ancient causeway and sacred spring. Short drive to Hong Nang Sida. Walk through Champasak. Return to Pakse by boat (about two hours). Vehicle journey: approximately 90 km + boat return. Meals: not included."
+    }
+  ],
+  "included": [
+    "Private minivan and boat",
+    "All entrance fees mentioned in the program",
+    "Bottled water"
+  ],
+  "excluded": [
+    "Guide (on request), lunch, tips, insurance, personal expenses"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French) — strongly recommended for Vat Phou",
+    "Lunch in Champasak",
+    "Extra time in Champasak town or at the temple"
+  ],
+  "destinations": [
+    "champasak"
+  ],
+  "image": "vatphou.jpg",
+  "cta": "Book this Vat Phou day • Add a guide for the history of the temple",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 50
+}

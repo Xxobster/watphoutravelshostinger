@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "RETIRED 2026-09-10: Watphou is not on VPS sm. Do not run."
+exit 1
 set -eu
 DB_PASS="O79aAdDcpSoZx4d2o8n06mFu"
 ADMIN_PASS="GJ5c3fYMRG4uSNJi"

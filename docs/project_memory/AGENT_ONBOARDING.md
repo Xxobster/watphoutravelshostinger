@@ -9,7 +9,7 @@ Read this file first. Then read the files in order below.
 3. `TASKS.md` — backlog with WT-xxx IDs
 4. `ARCHITECTURE.md` — code layout and data model
 5. `CONTENT_INVENTORY.md` — URLs, tours, migration status
-6. `RUNBOOK_DEMO_VPS.md` — deploy and verify commands
+6. `RUNBOOK_DEMO_VPS.md` — retired VPS notes + current Hostinger staging URL
 
 ## 10 hard rules
 
@@ -19,7 +19,7 @@ Read this file first. Then read the files in order below.
 4. **Never invent** prices, reviews, certifications, or contact details.
 5. **Never overwrite** production database with staging/demo data.
 6. **Always update** `CURRENT_STATE.md` and `TASKS.md` in the same commit as code.
-7. **Deploy loop**: `python scripts/deploy_demo.py` → `python scripts/verify_demo.py`.
+7. **Deploy loop**: Hostinger staging (not VPS `sm`). Verify with `python scripts/verify_demo.py`. `deploy_demo.py` refuses VPS deploys.
 8. **Prices**: use `From $XX per person — Standard accommodation. Comfort upgrades available` until client supplies real figures.
 9. **Thai**: create flagged empty drafts only — no machine translation.
 10. **BCEL**: mock provider only until real merchant credentials and API docs exist.
@@ -33,7 +33,7 @@ After every meaningful change:
 3. Append to `DECISIONS.md` if you made an architectural choice
 4. Append to `TEST_LOG.md` if you ran tests
 5. Commit with a clear message
-6. Deploy and verify if `wp-content/` changed
+6. Deploy theme/plugins to Hostinger if `wp-content/` changed. Verify with `python scripts/verify_demo.py`. Never deploy Watphou to VPS `sm`.
 
 ## Key paths
 
@@ -44,7 +44,7 @@ After every meaningful change:
 | Bookings plugin | `wp-content/plugins/watphou-bookings/` |
 | Scraped content | `content/extracted/*.json` |
 | Requirements | `docs/REQUIREMENTS_MATRIX.md` |
-| Demo runbook | `RUNBOOK_DEMO_VPS.md` |
+| Staging runbook | `RUNBOOK_DEMO_VPS.md` (Hostinger URL; VPS demo retired) |
 
 ## Contact facts (verified from live site)
 

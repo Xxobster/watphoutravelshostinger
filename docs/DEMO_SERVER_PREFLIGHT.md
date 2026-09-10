@@ -1,5 +1,7 @@
 # Demo Server Preflight — Watphou Travels
 
+**Historical.** Watphou was later removed from this host (WT-108, 2026-09-10). Staging is Hostinger.
+
 **Date:** 2026-08-26  
 **Host:** `sm` / `212.73.150.149`
 

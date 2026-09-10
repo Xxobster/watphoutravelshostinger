@@ -1,0 +1,50 @@
+{
+  "code": "1.6",
+  "slug": "champasak-cycling-experience",
+  "title": "Champasak Cycling Experience",
+  "headline": "Rice fields, villages and Vat Phou at your own pace",
+  "duration": "½–1 day",
+  "duration_term": "1-day",
+  "departure": "09:00 from Ban Muang Saen",
+  "price_from": "XX",
+  "price_note": "From $XX per person — four route options. Support vehicle available.",
+  "dream": "The quiet roads around Champasak are made for a bicycle. Ride through rice fields and villages to UNESCO-listed Vat Phou, with the option to continue to Wat Muang Kang. Four routes — from a short active ride to a longer day with a support vehicle.",
+  "highlights": [
+    "Mountain bike + local guide",
+    "Countryside paths and Mekong views",
+    "Vat Phou temple and museum",
+    "Optional extension to Wat Muang Kang",
+    "Support vehicle on two of the four options"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Four flexible routes",
+      "body": "Depart 09:00 from the bike shop in Ban Muang Saen. Option 1: 100% cycling to Vat Phou and back. Option 2: cycling + songthaew return. Option 3: cycling + Wat Muang Kang. Option 4: cycling + songthaew + Wat Muang Kang. Meals: not included. Transfer from Pakse not included unless requested."
+    }
+  ],
+  "included": [
+    "Mountain bike rental",
+    "Local guide with basic English",
+    "Support vehicle on Options 2 and 4"
+  ],
+  "excluded": [
+    "Transfer from / to Pakse (can be added)",
+    "Lunch, extra water, tips, insurance, personal expenses",
+    "Higher-level English- or French-speaking guide (on request)"
+  ],
+  "upgrades": [
+    "Private transfer from Pakse and back",
+    "Qualified English- or French-speaking guide",
+    "Lunch in Champasak or near Vat Phou",
+    "Choice of the longer route (Options 3 or 4)"
+  ],
+  "destinations": [
+    "champasak"
+  ],
+  "image": "champasak.jpg",
+  "cta": "Choose your cycling option • WhatsApp us your fitness level and starting point",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 50
+}

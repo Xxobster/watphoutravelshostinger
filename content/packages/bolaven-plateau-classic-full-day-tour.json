@@ -1,0 +1,50 @@
+{
+  "code": "1.1",
+  "slug": "bolaven-plateau-classic-full-day-tour",
+  "title": "Bolaven Plateau Classic Full-Day Tour",
+  "headline": "Cool highlands, dramatic waterfalls and the real taste of Lao coffee",
+  "duration": "1 day",
+  "duration_term": "1-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard. Comfort upgrades available.",
+  "dream": "Leave the heat of Pakse behind and climb into the cool, green highlands of the Bolaven Plateau. In one day you stand above Laos’ highest waterfalls, walk through a lively highland market, and taste coffee roasted by people who grow it themselves. This is the essential Bolaven day — private, flexible, and built around nature, villages and coffee.",
+  "highlights": [
+    "Tad Fane — the tallest twin waterfall in Laos (optional zipline)",
+    "Tad Yuang — multi-tier falls with viewpoints and swimming possibilities",
+    "Highland market and everyday village life",
+    "Seed-to-cup coffee tasting with a local expert",
+    "Private air-conditioned vehicle throughout"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse – Bolaven Plateau – Pakse",
+      "body": "Departure: 08:00 from your hotel in Pakse. The road climbs quickly from the Mekong plain into a cooler climate of coffee gardens, pine trees and mist. First stop: Tad Champee. Continue to Tad Fane (about 120 m) and Tad Yuang (about 40 m). Stop at Lak 40 Café, Ban Kok Phung Tai Market, then the Tad Lo area and Ngae community. End with coffee tasting with Mr. Vieng before returning to Pakse. Vehicle journey: approximately 220 km. Meals: not included."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "All entrance fees mentioned in the program",
+    "Bottled water during the tour"
+  ],
+  "excluded": [
+    "English-speaking guide (available on request)",
+    "Lunch and extra meals",
+    "Tips, travel insurance, personal expenses",
+    "Optional zipline at Tad Fane"
+  ],
+  "upgrades": [
+    "Qualified English- or French-speaking guide",
+    "Lunch in a local restaurant",
+    "Zipline at Tad Fane"
+  ],
+  "destinations": [
+    "bolaven-plateau"
+  ],
+  "image": "tad-fane.jpg",
+  "cta": "Request this tour on WhatsApp • Get a personalized quote for your dates",
+  "page_type": "tour",
+  "bestseller": true,
+  "priority": 100
+}

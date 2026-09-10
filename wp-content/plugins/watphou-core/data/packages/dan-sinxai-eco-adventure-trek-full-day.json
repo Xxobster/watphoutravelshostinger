@@ -1,0 +1,49 @@
+{
+  "code": "1.5",
+  "slug": "dan-sinxai-eco-adventure-trek-full-day",
+  "title": "Dan Sinxai Eco Adventure Trek Full-Day",
+  "headline": "A 4-hour highland trek, hidden waterfalls and Tad Fane",
+  "duration": "1 day",
+  "duration_term": "1-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard. Comfort upgrades available.",
+  "dream": "This is not the classic waterfall loop by car. You walk about 7 km through coffee farms, pine forest and jungle to Dan Sinxai, swim or picnic at Tad Champee, then finish at Tad Yuang and Tad Fane. For travellers who want the Bolaven with their feet on the trail.",
+  "highlights": [
+    "About 4 hours / 7 km trek from Ban Lak 38",
+    "Dan Sinxai: forest, rocks, Buddha statues, hidden falls",
+    "Picnic lunch at Tad Champee",
+    "Tea and coffee tasting at Mea Boua",
+    "Tad Yuang and Tad Fane to close the day"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse – Dan Sinxai Trek – Tad Fane – Pakse",
+      "body": "Departure: 08:00. At Ban Lak 38 meet a local guide for a ~7 km trek to Dan Sinxai. Continue to Tad Champee for picnic lunch, then Tad Yuang, Mea Boua Tea Farm and Tad Fane. Vehicle journey: approximately 128 km. Meals: picnic lunch included."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "Local guide during the trek",
+    "Picnic lunch at Tad Champee",
+    "Entrance fees mentioned + bottled water"
+  ],
+  "excluded": [
+    "English-speaking guide for the whole day (available on request)",
+    "Extra meals, tips, insurance, personal expenses"
+  ],
+  "upgrades": [
+    "Qualified English- or French-speaking guide for the full day",
+    "Zipline at Tad Fane",
+    "Swimming time at Tad Champee or Tad Yuang"
+  ],
+  "destinations": [
+    "bolaven-plateau"
+  ],
+  "image": "tad-champee.jpg",
+  "cta": "Request this eco-trek • Tell us your fitness level before we confirm",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 50
+}

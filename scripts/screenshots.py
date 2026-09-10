@@ -9,7 +9,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "work" / "screenshots"
-DEMO_URL = os.environ.get("DEMO_URL", "https://watphou.smbistro.duckdns.org")
+DEMO_URL = os.environ.get(
+    "DEMO_URL",
+    "https://darkslategray-snake-182151.hostingersite.com",
+)
 BASIC_USER = os.environ.get("DEMO_BASIC_AUTH_USER", "")
 BASIC_PASS = os.environ.get("DEMO_BASIC_AUTH_PASSWORD", "")
 

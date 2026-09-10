@@ -1,0 +1,61 @@
+{
+  "code": "3.1",
+  "slug": "3-day-classic-experience-in-southern-laos",
+  "title": "3-Day Classic Experience in Southern Laos",
+  "headline": "4000 Islands + Vat Phou + Bolaven Plateau — the perfect introduction",
+  "duration": "3 days / 2 nights",
+  "duration_term": "3-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "In three days you experience the three icons of Southern Laos: the quiet river life of the 4000 Islands, the power of Khone Phapheng, the spiritual atmosphere of UNESCO-listed Vat Phou, and the cool green highlands of the Bolaven Plateau. A private vehicle and a clear rhythm make this the flagship introduction to the region.",
+  "highlights": [
+    "Overnight on Don Khone in the 4000 Islands",
+    "Li Phi and Khone Phapheng waterfalls",
+    "Full visit of Vat Phou (UNESCO World Heritage)",
+    "Full day on the Bolaven Plateau: waterfalls and coffee",
+    "Completely private journey"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse to the 4,000 Islands",
+      "body": "Don Khone: French bridge, Li Phi, Khonepasoi, Ban Hang Khone. Overnight Don Khone. Meals: Lunch / Dinner."
+    },
+    {
+      "day": 2,
+      "title": "Khone Phapheng, Vat Phou and return to Pakse",
+      "body": "Khone Phapheng, Vat Phou full visit, Champasak walk, overnight Pakse. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 3,
+      "title": "Bolaven Plateau and return to Pakse",
+      "body": "Tad Champee, Tad Fane, Tad Yuang, Lak 40 Café, markets, Tad Lo / Ngae, Mr. Vieng coffee, return Pakse. Meals: Breakfast / Lunch. Total distance: about 529 km."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "2 nights accommodation (standard / 3-star)",
+    "Meals as mentioned + entrance fees + bottled water"
+  ],
+  "excluded": [
+    "English-speaking guide (available on request)",
+    "Extra meals, tips, insurance, personal expenses",
+    "Optional activities (zipline, etc.)"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior hotels on Don Khone and in Pakse",
+    "Zipline at Li Phi or Tad Fane"
+  ],
+  "destinations": [
+    "bolaven-plateau",
+    "4000-islands",
+    "champasak"
+  ],
+  "image": "hero-islands.jpg",
+  "cta": "Start this classic journey • Request dates and price on WhatsApp",
+  "page_type": "tour",
+  "bestseller": true,
+  "priority": 85
+}

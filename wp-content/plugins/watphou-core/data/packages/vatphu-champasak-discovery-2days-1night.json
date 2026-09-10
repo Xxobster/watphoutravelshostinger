@@ -1,0 +1,53 @@
+{
+  "code": "2.3",
+  "slug": "vatphu-champasak-discovery-2days-1night",
+  "title": "Vat Phu & Champasak Discovery – 2 Days / 1 Night",
+  "headline": "Khmer temples, village crafts and a night on Don Daeng",
+  "duration": "2 days / 1 night",
+  "duration_term": "2-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "Two days focused on Champasak rather than the 4000 Islands. You walk to Nang Sida, visit Vat Phou, see bamboo and pottery workshops, sleep on Don Daeng in the Mekong, then continue to Tomo and Phou Asa. The cultural counterpart to the island packages.",
+  "highlights": [
+    "Countryside walk to Hong Thao Tao and Nang Sida",
+    "Full visit of Vat Phou UNESCO site",
+    "Bamboo and pottery workshops",
+    "Overnight on Don Daeng + optional Tak Bat",
+    "Tomo temple and Phou Asa viewpoint"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Ancient temples and Don Daeng",
+      "body": "Transfer to Champasak. Walk to Hong Thao Tao and Nang Sida. Vat Phou, bamboo and pottery workshops, ferry to Don Daeng overnight. Meals: Lunch / Dinner. Vehicle: ~58 km."
+    },
+    {
+      "day": 2,
+      "title": "Tomo, Phou Asa and return to Pakse",
+      "body": "Optional Tak Bat. Tomo Temple, Ban Kiet Ngong, Phou Asa viewpoint, Lak 14 Market, return to Pakse. Meals: Breakfast / Lunch. Total distance: about 178 km."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "1 night accommodation on Don Daeng",
+    "Meals as mentioned + entrance fees + bottled water"
+  ],
+  "excluded": [
+    "English-speaking guide (on request)",
+    "Extra meals, tips, insurance, personal expenses"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior room on Don Daeng if available",
+    "Extra time at Vat Phou or Phou Asa"
+  ],
+  "destinations": [
+    "champasak"
+  ],
+  "image": "hero-temple.jpg",
+  "cta": "Book this Champasak discovery • Ask for a guide if you want the temple stories in full",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 40
+}

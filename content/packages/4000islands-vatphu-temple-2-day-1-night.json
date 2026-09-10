@@ -1,0 +1,54 @@
+{
+  "code": "2.2",
+  "slug": "4000islands-vatphu-temple-2-day-1-night",
+  "title": "4,000 Islands & Vat Phou Temple – 2 Days / 1 Night",
+  "headline": "River life, giant waterfalls and a UNESCO temple",
+  "duration": "2 days / 1 night",
+  "duration_term": "2-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "One night on the Mekong islands, then Vat Phou on the way back to Pakse. This short journey combines the slow rhythm of Si Phan Don with the spiritual weight of a Khmer temple older than Angkor Wat. Ideal when time is limited but you still want the two signature experiences of the south.",
+  "highlights": [
+    "Overnight on Don Khone",
+    "Li Phi waterfall, French bridge and old locomotive",
+    "Khone Phapheng — the “Niagara of the East”",
+    "Full visit of Vat Phou UNESCO site",
+    "Walk in Champasak town"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse to the 4,000 Islands",
+      "body": "Ban Nakasang boat to Don Khone. French bridge, Li Phi, Khonepasoi, Ban Hang Khone. Overnight on Don Khone. Meals: Lunch / Dinner. Vehicle: ~152 km."
+    },
+    {
+      "day": 2,
+      "title": "Khone Phapheng, Vat Phou, Champasak, Pakse",
+      "body": "Khone Phapheng, ferry to Champasak, Vat Phou full visit, Champasak walk, return to Pakse. Meals: Breakfast / Lunch. Total distance: about 343 km."
+    }
+  ],
+  "included": [
+    "Private minivan and driver + local transport in the 4000 Islands",
+    "1 night accommodation",
+    "Meals as mentioned + entrance fees + bottled water"
+  ],
+  "excluded": [
+    "Guide (on request), extra meals, tips, insurance, personal expenses, optional zipline"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior / comfort hotel on Don Khone",
+    "Zipline at Li Phi",
+    "Private boat instead of shared local boat, if available"
+  ],
+  "destinations": [
+    "4000-islands",
+    "champasak"
+  ],
+  "image": "khone.jpg",
+  "cta": "Request this 2-day combination • WhatsApp us for dates and upgrades",
+  "page_type": "tour",
+  "bestseller": true,
+  "priority": 90
+}

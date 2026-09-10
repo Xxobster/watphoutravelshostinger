@@ -1,0 +1,34 @@
+{
+  "code": "T.1",
+  "slug": "tailor-made-tours",
+  "page_type": "page",
+  "title": "Tailor-made / Custom Tours",
+  "headline": "Your dates, your pace, your combination of places",
+  "duration": "Flexible",
+  "price_from": "XX",
+  "price_note": "Quoted after first contact — we start from your dates, group size and hotel level.",
+  "dream": "The published packages are starting points, not limits. Families, couples, small groups and travellers with a specific interest (coffee, temples, trekking, photography, border transfers) can have a private itinerary built around their time in Pakse. One local team handles the vehicle, hotels, boats and optional guide.",
+  "highlights": [
+    "Any mix of Bolaven, Vat Phou, Champasak and the 4000 Islands",
+    "Extra nights, slower pace, or a focus on one region only",
+    "Airport / border / hotel transfers from Pakse, Ubon, Don Det, Cambodia border",
+    "Guide in English or French",
+    "Hotel level from standard to comfort / superior"
+  ],
+  "included": [],
+  "excluded": [],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Superior hotels throughout the itinerary",
+    "Special interests: coffee farms, trekking, photography, family pace",
+    "Private boats and exclusive transfers"
+  ],
+  "destinations": [
+    "bolaven-plateau",
+    "4000-islands",
+    "champasak",
+    "pakse"
+  ],
+  "image": "logo-wpt.jpg",
+  "cta": "Send your dates and ideas on WhatsApp • We reply with a clear first proposal"
+}

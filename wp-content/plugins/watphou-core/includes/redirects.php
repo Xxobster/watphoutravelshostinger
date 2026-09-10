@@ -28,13 +28,38 @@ function watphou_core_get_redirect_map(): array {
 		return $cached;
 	}
 
-	$map  = array();
-	$file = ABSPATH . '../content/redirects.csv';
-	// Fallback: option stored on import.
 	$stored = get_option( 'watphou_redirect_map', array() );
 	if ( is_array( $stored ) && $stored ) {
 		set_transient( $cache_key, $stored, DAY_IN_SECONDS );
 		return $stored;
+	}
+
+	$map   = array();
+	$files = array(
+		WP_CONTENT_DIR . '/../content/redirects.csv',
+		dirname( ABSPATH ) . '/content/redirects.csv',
+		WATPHOU_CORE_PATH . 'data/redirects.csv',
+	);
+	foreach ( $files as $file ) {
+		$file = wp_normalize_path( $file );
+		if ( ! is_file( $file ) || ! ( $fh = fopen( $file, 'r' ) ) ) {
+			continue;
+		}
+		fgetcsv( $fh );
+		while ( ( $row = fgetcsv( $fh ) ) ) {
+			if ( count( $row ) < 3 ) {
+				continue;
+			}
+			$old  = untrailingslashit( $row[0] );
+			$new  = $row[1];
+			$code = $row[2];
+			if ( ! $old || '200' === $code || '/' === $old ) {
+				continue;
+			}
+			$map[ $old ] = ( '410' === $code ) ? '410' : $new;
+		}
+		fclose( $fh );
+		break;
 	}
 
 	set_transient( $cache_key, $map, HOUR_IN_SECONDS );

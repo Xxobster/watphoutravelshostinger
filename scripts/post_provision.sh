@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "RETIRED 2026-09-10: Watphou is not on VPS sm. Do not run."
+exit 1
 # Post-provision: install plugins, theme, import content, Polylang
 set -euo pipefail
 WEB_ROOT="/var/www/watphou-demo"

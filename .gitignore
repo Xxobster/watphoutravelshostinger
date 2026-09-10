@@ -61,3 +61,6 @@ npm-debug.log*
 # Playwright
 /playwright-report/
 /test-results/
+
+# Draft client prices (not for public display)
+/content/draft/

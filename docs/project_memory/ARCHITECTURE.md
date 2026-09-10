@@ -15,11 +15,12 @@ content/
   media_manifest.csv          Asset mapping and hashes
 
 scripts/
-  deploy_demo.py              tar-over-ssh sync wp-content
-  verify_demo.py              HTTP health checks
+  deploy_demo.py              RETIRED for VPS (refuses unless FORCE_VPS_DEPLOY=yes)
+  verify_demo.py              Hostinger staging HTTP + VPS watphou-gone checks
+  deprovision_demo_vps.sh     One-time removal of Watphou from sm (already run)
   scrape_live_site.py         Live Wix content extraction
   inventory_backup.py         Backup ZIP analysis
-  provision_demo.sh           One-time server setup (run on sm)
+  provision_demo.sh           RETIRED — exits 1
 ```
 
 ## Tour data model
@@ -76,13 +77,12 @@ Public URL: `/pay/{secure-token}` — expiring, unguessable, single-use.
 ```mermaid
 flowchart LR
   A[Edit wp-content locally] --> B[git commit]
-  B --> C[deploy_demo.py tar ssh]
-  C --> D[/var/www/watphou-demo/wp-content]
-  D --> E[wp cache flush]
-  E --> F[verify_demo.py]
+  B --> C[Deploy theme/plugins to Hostinger]
+  C --> D[darkslategray-snake-182151.hostingersite.com]
+  D --> E[verify_demo.py]
 ```
 
-Never syncs: uploads, wp-config.php, database.
+Never syncs: uploads, wp-config.php, database. Do not deploy to `/var/www/watphou-demo` on VPS `sm` (removed).
 
 ## Multilingual
 

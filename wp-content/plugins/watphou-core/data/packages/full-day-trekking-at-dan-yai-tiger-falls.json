@@ -1,0 +1,49 @@
+{
+  "code": "1.7",
+  "slug": "full-day-trekking-at-dan-yai-tiger-falls",
+  "title": "Full-Day Trekking at Dan Yai & Tiger Falls",
+  "headline": "Coffee, pine forest, a 1,290 m viewpoint and a swimming waterfall",
+  "duration": "1 day",
+  "duration_term": "1-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard. Hard-trek option available.",
+  "dream": "Start with coffee at Jhai, walk through Ban Nong Luang, then trek into pine forest and jungle to Dan Yai at 1,290 metres. Picnic in the trees, then swim or rest at the Head of Tiger Waterfall. A highland day for walkers, not a road-only waterfall tour.",
+  "highlights": [
+    "Jhai Coffee House and Ban Nong Luang village",
+    "Trek through coffee farms, pine forest and jungle",
+    "Dan Yai viewpoint at 1,290 m",
+    "Picnic in nature",
+    "Head of Tiger Waterfall — swim or rest"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse – Ban Nong Luang – Dan Yai – Tiger Falls – Pakse",
+      "body": "Departure: 08:00. Jhai Coffee House, Ban Nong Luang, trek to Dan Yai viewpoint, picnic, optional hard trek to lower falls, Head of Tiger Waterfall, return to Pakse. Vehicle journey: approximately 95 km."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "Local guide during the trek",
+    "Entrance fees mentioned + bottled water"
+  ],
+  "excluded": [
+    "English-speaking guide for the whole day (on request)",
+    "Lunch unless confirmed in the quote",
+    "Tips, insurance, personal expenses"
+  ],
+  "upgrades": [
+    "Qualified English- or French-speaking guide",
+    "Picnic lunch included in the package",
+    "Hard trek to the lower waterfalls (fit walkers only)"
+  ],
+  "destinations": [
+    "bolaven-plateau"
+  ],
+  "image": "waterfall.jpg",
+  "cta": "Request this highland trek • Tell us if you want the easy trail or the hard option",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 50
+}

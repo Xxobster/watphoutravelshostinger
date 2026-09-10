@@ -1,0 +1,49 @@
+{
+  "code": "1.4",
+  "slug": "pakse-cultural-riverside-exploration-full-day",
+  "title": "Pakse Cultural & Riverside Exploration – Full-Day",
+  "headline": "Islands, artisans, markets and the Golden Buddha above the Mekong",
+  "duration": "1 day",
+  "duration_term": "1-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard. Guide available on request.",
+  "dream": "A full day inside and around Pakse: a boat on the Mekong, weaving and stone-carving villages, the confluence of two rivers, the main market and sunset from Wat Phu Salao. Ideal for travellers who arrive or leave the same day and still want a real sense of the town.",
+  "highlights": [
+    "Boat to Don Kho Island",
+    "Ban Saphai weaving and Buddha carving village",
+    "Confluence of the Xe Don and the Mekong",
+    "Pakse Museum and Dao Heuang Market",
+    "Golden Buddha / Wat Phu Salao viewpoint"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse and the Mekong",
+      "body": "Departure: 08:00. Boat to Don Kho, Ban Saphai handicrafts, Wat Chomphet, Bung Udom and Pun Tao Kong Shrine at the confluence. Afternoon: Pakse Museum, Dao Heuang Market, Wat Phu Salao Golden Buddha. Vehicle/boat journey: approximately 45 km. Meals: not included."
+    }
+  ],
+  "included": [
+    "Private transport by boat and tuk-tuk",
+    "All entrance fees mentioned in the program",
+    "Bottled water"
+  ],
+  "excluded": [
+    "Guide (available on request)",
+    "Lunch and extra meals",
+    "Tips, insurance, personal expenses"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Lunch in a local restaurant",
+    "Extra time at the Golden Buddha for sunset"
+  ],
+  "destinations": [
+    "pakse"
+  ],
+  "image": "donkhone.jpg",
+  "cta": "Book this Pakse day • Add a guide if you want more history and context",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 50
+}

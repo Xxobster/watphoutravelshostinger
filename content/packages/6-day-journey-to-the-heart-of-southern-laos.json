@@ -1,0 +1,77 @@
+{
+  "code": "6.1",
+  "slug": "6-day-journey-to-the-heart-of-southern-laos",
+  "title": "6-Day Journey to the Heart of Southern Laos",
+  "headline": "Bolaven, Vat Phou, cycling, a Baci homestay and the 4000 Islands",
+  "duration": "6 days / 5 nights",
+  "duration_term": "4-6-day",
+  "departure": "08:00 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard accommodation. Comfort upgrades available.",
+  "dream": "The longest published journey: waterfalls and coffee, Champasak and Vat Phou, a cycling day through villages, a Baci ceremony and homestay on Don Daeng, then two days in the 4000 Islands. Built for travellers who want culture and nature at a human pace.",
+  "highlights": [
+    "Bolaven waterfalls, Jhai Coffee and Phu Krateh",
+    "Vat Phou + Nang Sida by boat from Pakse",
+    "Cycling day: pottery, weaving, Wat Muang Kang",
+    "Baci ceremony and homestay on Don Daeng",
+    "Two days in the 4000 Islands"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Bolaven Plateau and return to Pakse",
+      "body": "Tad Fane, Tad Yuang, Jhai Coffee, Phu Krateh, overnight Pakse. Meals: Lunch / Dinner."
+    },
+    {
+      "day": 2,
+      "title": "Boat to Champasak and Vat Phou",
+      "body": "Boat, Nang Sida, Vat Phou, overnight Champasak. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 3,
+      "title": "Cycling in Champasak and homestay on Don Daeng",
+      "body": "Cycling workshops and villages, boat to Don Daeng, Baci ceremony and homestay. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 4,
+      "title": "Don Daeng to the 4,000 Islands",
+      "body": "Optional Tak Bat, Tomo, Phou Asa, boat to Don Khone. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 5,
+      "title": "Full day in the 4,000 Islands",
+      "body": "Li Phi, Khonepasoi, French remains, Don Loppadi, overnight Don Khone. Meals: Breakfast / Lunch / Dinner."
+    },
+    {
+      "day": 6,
+      "title": "Khone Phapheng then Pakse or the Cambodia border",
+      "body": "Khone Phapheng, then Pakse or Nong Nok Khiene border. Meals: Breakfast / Lunch."
+    }
+  ],
+  "included": [
+    "Private transportation + local island / cycling support as in the program",
+    "5 nights (Pakse, Champasak, Don Daeng homestay, 2 nights Don Khone)",
+    "Meals as mentioned + entrance fees + bottled water"
+  ],
+  "excluded": [
+    "Full-time English-speaking guide (on request)",
+    "Extra meals, tips, insurance, personal expenses, optional theatre or zipline"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French) for all or part of the journey",
+    "Superior hotels instead of standard / homestay on selected nights",
+    "Palateu shadow puppet theatre in Champasak (seasonal)",
+    "Zipline at Tad Fane or Li Phi",
+    "End at the Cambodia border instead of Pakse"
+  ],
+  "destinations": [
+    "bolaven-plateau",
+    "4000-islands",
+    "champasak"
+  ],
+  "image": "bolaven.jpg",
+  "cta": "Request this 6-day journey • Tell us hotel level and your end point",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 40
+}

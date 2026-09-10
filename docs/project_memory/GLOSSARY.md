@@ -24,8 +24,9 @@ Terms used in this project. Full words first; acronyms in parentheses where help
 | **REST API** (Representational State Transfer Application Programming Interface) | WordPress JSON API — booking data must not be exposed here |
 | **Yoast SEO** | Free WordPress search-engine optimization plugin |
 | **Petit Futé** | French travel guide; Watphou has reviews there (text not yet imported) |
-| **VPS** (Virtual Private Server) | Remote Linux server for demo hosting |
-| **Bluehost** | Future production managed WordPress host |
-| **DuckDNS** | Free dynamic DNS service; `*.smbistro.duckdns.org` points to demo VPS |
+| **VPS** (Virtual Private Server) | Remote Linux server `sm`. Watphou demo was removed from it on 2026-09-10 |
+| **Hostinger** | Current WordPress host. Staging URL is the temporary `*.hostingersite.com` domain |
+| **Bluehost** | Former production-host plan; superseded by Hostinger |
+| **DuckDNS** | Free dynamic DNS; `smbistro.duckdns.org` still belongs to the restaurant app on `sm` — do not use for Watphou |
 | **Wix** | Current website platform being replaced |
 | **Tour Manager** | Custom WordPress role for non-technical staff |

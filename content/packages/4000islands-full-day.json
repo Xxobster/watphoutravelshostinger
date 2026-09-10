@@ -1,0 +1,50 @@
+{
+  "code": "1.3",
+  "slug": "4000islands-full-day",
+  "title": "4000 Islands Full-Day",
+  "headline": "Li Phi, island life and Khone Phapheng — the Mekong in one day",
+  "duration": "1 day",
+  "duration_term": "1-day",
+  "departure": "07:30 from Pakse",
+  "price_from": "XX",
+  "price_note": "From $XX per person — Standard. Comfort upgrades available.",
+  "dream": "Leave Pakse in the morning and spend the day on the Mekong islands. Walk the old French bridge, stand above Li Phi, then finish at Khone Phapheng — the largest waterfall in Southeast Asia by volume. A full Southern Laos classic without an overnight stay.",
+  "highlights": [
+    "Boat crossing to Don Khone",
+    "French colonial bridge and old locomotive",
+    "Li Phi (Somphamit) waterfall + optional zipline",
+    "Khonepasoi waterfall",
+    "Khone Phapheng, the “Niagara of the East”"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pakse – 4,000 Islands – Pakse",
+      "body": "Departure: 07:30 from Pakse. Drive to Ban Nakasang, boat to Don Khone. French colonial bridge, Li Phi Waterfall, Khonepasoi, then Khone Phapheng. Return to Pakse around 18:30. Vehicle journey: approximately 324 km. Meals: not included."
+    }
+  ],
+  "included": [
+    "Private minivan and driver",
+    "Local transport in the 4000 Islands",
+    "All entrance fees mentioned in the program",
+    "Bottled water"
+  ],
+  "excluded": [
+    "Guide (available on request)",
+    "Lunch and extra meals",
+    "Tips, insurance, personal expenses, optional zipline"
+  ],
+  "upgrades": [
+    "Qualified guide (English or French)",
+    "Lunch at a local restaurant on the islands",
+    "Zipline at Li Phi"
+  ],
+  "destinations": [
+    "4000-islands"
+  ],
+  "image": "liphi.jpg",
+  "cta": "Request this full-day island tour • WhatsApp us for your date",
+  "page_type": "tour",
+  "bestseller": false,
+  "priority": 50
+}
