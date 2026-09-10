@@ -44,10 +44,10 @@ add_action( 'add_meta_boxes', 'watphou_core_add_meta_boxes' );
 function watphou_core_add_meta_boxes(): void {
 	add_meta_box(
 		'watphou_tour_details',
-		__( 'Tour Details', 'watphou-core' ),
+		__( 'Tour Details (price, duration, photo notes)', 'watphou-core' ),
 		'watphou_core_render_tour_meta_box',
 		'tour',
-		'normal',
+		'side',
 		'high'
 	);
 }

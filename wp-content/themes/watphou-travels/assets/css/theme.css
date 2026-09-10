@@ -37,7 +37,23 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 }
 
 /* Demo banner */
-.watphou-demo-banner {
+.watphou-lang-banner {
+  background: #e7f1ff;
+  color: #084298;
+  text-align: center;
+  padding: .45rem 1rem;
+  font-size: .85rem;
+  border-bottom: 1px solid #b6d4fe;
+}
+
+.wpt-breadcrumbs {
+  font-size: .85rem;
+  color: var(--wpt-muted);
+  margin: 1rem 0;
+}
+.wpt-related { margin: 2rem 0 1rem; }
+.wpt-related ul { padding-left: 1.2rem; }
+.wpt-related a { color: var(--wpt-text); }
   background: #fff3cd;
   color: #664d03;
   text-align: center;
@@ -512,5 +528,4 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   .wpt-why__grid { grid-template-columns: 1fr; }
   .wpt-dest-grid { grid-template-columns: 1fr; }
   .wpt-steps__grid { grid-template-columns: 1fr; }
-  .wpt-langs { display: none; }
 }

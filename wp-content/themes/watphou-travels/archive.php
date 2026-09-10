@@ -7,6 +7,11 @@ $fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', '
 <main class="wpt-main">
 	<section class="wpt-archive-hero">
 		<div class="wpt-container">
+			<?php
+			if ( function_exists( 'watphou_core_breadcrumbs' ) ) {
+				watphou_core_breadcrumbs();
+			}
+			?>
 			<h1><?php the_archive_title(); ?></h1>
 			<?php the_archive_description( '<p>', '</p>' ); ?>
 		</div>
@@ -26,7 +31,7 @@ $fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', '
 				?>
 				<article class="wpt-tour-row">
 					<div class="wpt-tour-row__image">
-						<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
+						<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async">
 						<span class="wpt-day-badge"><?php echo esc_html( $duration ); ?></span>
 					</div>
 					<div class="wpt-tour-row__content">

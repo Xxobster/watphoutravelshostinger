@@ -1,12 +1,14 @@
 # Current State — Watphou Travels
 
-**Last updated:** 2026-09-10 (WT-110 Polylang done; site password removed)
+**Last updated:** 2026-09-10 (EN/FR/TH review pack; Google Analytics 4 and Search Console still TODO)
 
 ## Summary
 
-Staging is live on Hostinger temporary domain **https://darkslategray-snake-182151.hostingersite.com** with the same classic PHP theme design as the former demo (vietnamdiscovery.com layout). September 2026 package texts are imported (15 tours + tailor-made page). Public prices stay **From $XX**. Search engines see `noindex, nofollow`. The front end is **open** (no HTTP Basic Auth); WordPress admin still requires a login.
+Staging is live on Hostinger temporary domain **https://darkslategray-snake-182151.hostingersite.com** with the classic PHP theme. September 2026 package texts are imported (15 tours + tailor-made page). Public prices stay **From $XX**. Search engines see `noindex, nofollow`. The front end is **open**; WordPress admin still requires a login.
 
-The old DuckDNS demo on Virtual Private Server (VPS) `sm` was removed earlier; `smbistro` and other sites on `sm` were not modified. Live Wix and Joker Domain Name System (DNS) are untouched.
+French (`/fr/`) and Thai (`/th/`) public pages are **English placeholders** with a banner (not machine-translated on the website). A **review pack** of automatic French and Thai drafts lives in `docs/translations/` (Excel to edit, PDF to read). Those drafts are **not** published yet.
+
+The old DuckDNS demo on Virtual Private Server (VPS) `sm` was removed; `smbistro` was not modified. Live Wix and Joker Domain Name System (DNS) are untouched.
 
 ## Staging access (not in git)
 
@@ -18,44 +20,35 @@ The old DuckDNS demo on Virtual Private Server (VPS) `sm` was removed earlier; `
 | WordPress login | `/wp-login.php` — user `wptadmin` — password in `work/wp_admin_pass.txt` (gitignored) |
 | Search engines | `noindex, nofollow`; `WATPHOU_ENV=staging` in server `wp-config.php` |
 | Docs | `docs/HOSTINGER_DEPLOYMENT.md` |
+| Translation review | `docs/translations/Watphou_EN_FR_TH_review.xlsx` (edit) and `.pdf` (read) |
 
 ## Completed
 
-- [x] WT-001 through WT-019, WT-108 (see git history / earlier entries)
-- [x] WT-201 Package JSON from 20261009 PDFs; draft prices private under `content/draft/`
-- [x] WT-202 `content/redirects.csv` rewritten (keep Wix slugs, 301 tours/destinations, 410 shop)
-- [x] WT-203 Staging env mu-plugin, admin JSON importer, duration menus, homepage bestsellers 1.1/2.1/2.2/3.1
-- [x] WT-204 WordPress + theme + plugins + Polylang + Yoast on Hostinger temporary domain
-- [x] WT-205 Content import, placeholder media, password gate, noindex, smoke-test
-- [x] WT-206 `docs/HOSTINGER_DEPLOYMENT.md` + cutover Domain Name System (DNS) / email / noindex checklist in `TASKS.md`
-- [x] WT-110 Polylang English default (hide `/en/`); French/Thai empty drafts; site password removed
+- [x] WT-001 through WT-019, WT-108 (see git history)
+- [x] WT-201 through WT-206 Hostinger staging, packages, redirects
+- [x] WT-110 Polylang English default; FR/TH public English placeholders
+- [x] WT-107 staging Search Engine Optimization (SEO); temporary domain still `noindex`
+- [x] WT-112 Quick edit tours; no “Edit website”; Wix favicon
+- [x] WT-115 EN/FR/TH review pack (494 strings, Google Translate drafts, Excel + PDF)
 
 ## Blocked / client input needed
 
 | Item | Status |
 |------|--------|
-| Real tour prices | UNRESOLVED (draft spreadsheet not public) |
-| Final photography | UNRESOLVED (theme placeholders in use) |
+| Real tour prices | UNRESOLVED |
+| Final photography | UNRESOLVED |
 | Google review import | UNRESOLVED |
-| Professional Thai translations | UNRESOLVED |
+| Approve FR/TH drafts in the Excel review pack | OPEN (WT-104) |
+| **Google Analytics 4 (GA4) measurement ID** (`G-XXXXXXXX`) | TODO (WT-113) — Settings → Watphou Travels; do not use on staging |
+| **Google Search Console HTML verification** | TODO (WT-114) — **real domain only**, never the Hostinger temporary address |
+| Facebook / Instagram / TripAdvisor URLs | Optional |
+| Official cancellation percentages | UNRESOLVED |
 | BCEL merchant API | UNRESOLVED |
-| Final production domain attach + Joker cutover | UNRESOLVED |
+| Production domain + Joker cutover | UNRESOLVED |
 | SMTP for booking emails | UNRESOLVED |
 
 ## Next actions
 
-1. WT-107 — Search Engine Optimization (SEO) polish while keeping temporary domain `noindex`
-2. Client supplies real prices → update tour meta (never invent figures)
-3. Swap placeholder photos for final client photography
-4. When ready: Hostinger domain connect → Joker A/`www` only → remove noindex (see `HOSTINGER_DEPLOYMENT.md`)
-5. Banque Pour Le Commerce Exterieur Lao (BCEL) sandbox when credentials exist
-
-## Evidence (2026-09-10 Hostinger staging)
-
-- Homepage (open, no site password): 4 bestsellers (Bolaven 1-day, Bolaven 2-day, 4000 Islands + Vat Phou 2-day, 3-day classic)
-- Polylang: `en` / `fr` / `th`; `/en/about-us/` → 301 `/about-us/`; language switcher shows EN only until FR/TH are published
-- Key pages 200: `/about-us/`, `/contact-us/`, `/day-tours/`, `/book-online/`, `/destinations/`, nested destinations, `/tailor-made-tours/`
-- Redirects: `/bolaven-plateau-classic-full-day-tour` → `/tours/...` (301); shop dummies → 410
-- Headers: `X-Robots-Tag: noindex, nofollow`; unauthenticated front → 200
-- Plugins active: watphou-core, watphou-bookings, polylang, wordpress-seo
-- No `package.json` added (WordPress deploy path, not Node/static Git import)
+1. Review French and Thai in `docs/translations/Watphou_EN_FR_TH_review.xlsx`; mark rows Approved
+2. Send Google Analytics 4 (GA4) ID and Google Search Console code for `www.watphou-travels.com` only
+3. After approval: apply translations to Polylang copies; then production cutover

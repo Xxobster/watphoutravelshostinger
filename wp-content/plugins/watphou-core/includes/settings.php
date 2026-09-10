@@ -10,6 +10,8 @@ function watphou_core_register_settings(): void {
 	register_setting( 'watphou_settings', 'watphou_facebook', array( 'sanitize_callback' => 'esc_url_raw' ) );
 	register_setting( 'watphou_settings', 'watphou_instagram', array( 'sanitize_callback' => 'esc_url_raw' ) );
 	register_setting( 'watphou_settings', 'watphou_tripadvisor', array( 'sanitize_callback' => 'esc_url_raw' ) );
+	register_setting( 'watphou_settings', 'watphou_ga4_id', array( 'sanitize_callback' => 'sanitize_text_field' ) );
+	register_setting( 'watphou_settings', 'watphou_gsc_verification', array( 'sanitize_callback' => 'sanitize_text_field' ) );
 }
 
 function watphou_core_admin_menu(): void {
@@ -57,6 +59,18 @@ function watphou_core_settings_page(): void {
 					<td><input name="watphou_instagram" class="regular-text" value="<?php echo esc_attr( get_option( 'watphou_instagram', '' ) ); ?>"/></td></tr>
 				<tr><th><?php esc_html_e( 'TripAdvisor URL', 'watphou-core' ); ?></th>
 					<td><input name="watphou_tripadvisor" class="regular-text" value="<?php echo esc_attr( get_option( 'watphou_tripadvisor', '' ) ); ?>"/></td></tr>
+				<tr><th><?php esc_html_e( 'Google Analytics 4 measurement ID', 'watphou-core' ); ?></th>
+					<td>
+						<input name="watphou_ga4_id" class="regular-text" placeholder="G-XXXXXXXX" value="<?php echo esc_attr( get_option( 'watphou_ga4_id', '' ) ); ?>"/>
+						<p class="description"><?php esc_html_e( 'Leave empty until you have a real Google Analytics 4 (GA4) ID. Not used on staging.', 'watphou-core' ); ?></p>
+					</td>
+				</tr>
+				<tr><th><?php esc_html_e( 'Google Search Console verification', 'watphou-core' ); ?></th>
+					<td>
+						<input name="watphou_gsc_verification" class="regular-text" value="<?php echo esc_attr( get_option( 'watphou_gsc_verification', '' ) ); ?>"/>
+						<p class="description"><?php esc_html_e( 'HTML-tag content only. Use this on the real domain, not the Hostinger temporary domain.', 'watphou-core' ); ?></p>
+					</td>
+				</tr>
 			</table>
 			<?php submit_button(); ?>
 		</form>

@@ -1,63 +1,56 @@
 # Manager Guide — Watphou Travels
 
-Plain-language guide for the **Tour Manager** role (`manager` account on demo).
+Plain-language guide for the person who updates tours (Tour Manager).
 
 ## Logging in
 
-1. Open the website: https://darkslategray-snake-182151.hostingersite.com (Hostinger temporary domain; the site is public, search engines should stay on `noindex`).
-2. Go to `/wp-login.php`.
-3. Log in with the Hostinger WordPress admin user (`wptadmin`). The password is **not** stored in git.
-4. You land in WordPress admin, where you can edit tours and pages.
+1. Open **https://darkslategray-snake-182151.hostingersite.com/wp-login.php** (not the public homepage “Edit website” link — that link is removed).
+2. Use the WordPress user you were given (`wptadmin` or a Tour Manager account). The password is **not** stored in git.
+3. You land in WordPress admin.
 
-The old demo URL `https://watphou.smbistro.duckdns.org` is retired (removed from the Virtual Private Server). The `manager` / `000000` account was for that demo only.
+Visitors never see a login link. Search engines should stay on `noindex` while this is the Hostinger temporary domain.
 
-The public website stays visible to visitors. Login is only for editing.
+## Do not use Appearance → Customize
 
-## Dashboard
+The Customizer (the left-hand panel that says “You are customizing”) **cannot** change tour prices or tour photos. It only changes site-wide theme options (logo area, extra CSS). Close it.
 
-Click **Watphou** in the left menu to see:
-- New booking requests
-- Tours missing prices
-- Quick links
+## Change prices and photos (easiest)
 
-## Editing a tour
+1. Left menu → **Watphou** → **Quick edit tours**
+2. You see every published English tour in one table: photo, price, duration, homepage bestseller
+3. **Photo:** click **Change photo** → pick or upload in the Media Library → **Use this photo**
+4. **Price:** type a number (for example `95`) in **From $ (USD)**. Until real prices are confirmed, leave `XX` (the site shows “From $XX”)
+5. Click **Save all changes** at the top or bottom
 
-1. **Tours → All Tours** → click a tour
-2. Edit the title and main text in the block editor
-3. Scroll to **Tour Details** box:
-   - Duration (e.g. `1 Day`, `3D/2N`)
-   - Starting price (use real number when available; otherwise leave `XX`)
-   - Check **Best seller** for homepage featured tours
+You can also open **Tours → All Tours** and click the blue **Quick edit prices & photos** button.
+
+## Change the long text (itinerary, highlights)
+
+1. **Tours → All Tours** → click the tour title
+2. Edit the blocks (dream paragraph, itinerary days, included / excluded)
+3. Right sidebar: **Featured image** is the main photo; **Tour Details** has price and duration if you prefer to edit them here
 4. Click **Update**
 
-## Itinerary
+## Contact details (phone, email, address)
 
-Use **Itinerary Day** blocks for each day. Add highlights and included/excluded lists using the Watphou blocks.
+**Settings → Watphou Travels** (administrators only).
 
 ## Booking requests
 
 1. **Bookings** in the left menu
-2. Click a reference number
-3. Review customer details
-4. Add internal notes
-5. Use status buttons: `under_review` → `availability_confirmed` → create payment link
-6. Copy payment link or send via WhatsApp button
+2. Open a reference → notes → status buttons
 
-## Contact details
+## Languages
 
-**Settings → Watphou Travels** — update phone, WhatsApp, email, address, social links.
+English is the default public language (no `/en/` in the address). French (`/fr/`) and Thai (`/th/`) open the same pages in English with a banner until a **human** translator replaces the text. Do **not** machine-translate Thai.
 
-## Translations
-
-Use the language flags (Polylang) to switch between English, French, and Thai.  
-**Thai pages marked as drafts need a professional translator** — do not use machine translation.
+To replace a language later: **Tours** or **Pages** → filter by French or Thai → edit that copy → Update. Empty drafts 404 for visitors, so placeholders stay **Published** until the real translation is ready.
 
 ## What you cannot do
 
 - Install plugins or themes
 - Edit code
-- Create admin users
-- Change security settings
+- Create administrator users
 
 ## Need help?
 

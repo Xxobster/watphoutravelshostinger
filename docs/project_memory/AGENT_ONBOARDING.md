@@ -21,7 +21,7 @@ Read this file first. Then read the files in order below.
 6. **Always update** `CURRENT_STATE.md` and `TASKS.md` in the same commit as code.
 7. **Deploy loop**: Hostinger staging (not VPS `sm`). Verify with `python scripts/verify_demo.py`. `deploy_demo.py` refuses VPS deploys.
 8. **Prices**: use `From $XX per person — Standard accommodation. Comfort upgrades available` until client supplies real figures.
-9. **Thai**: create flagged empty drafts only — no machine translation.
+9. **Thai**: do not machine-translate. French and Thai public Uniform Resource Locators (URLs) may show English with a banner until a professional translation exists.
 10. **BCEL**: mock provider only until real merchant credentials and API docs exist.
 
 ## End-of-task ritual

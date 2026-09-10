@@ -32,18 +32,18 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 	<div class="wpt-interest__track">
 		<?php
 		$interests = array(
-			array( 'Bolaven Plateau', '1 Day', $img . '/bolaven.jpg', home_url( '/destinations/bolaven-plateau/' ) ),
-			array( '4000 Islands', '2 Days', $img . '/liphi.jpg', home_url( '/destinations/4000-islands/' ) ),
-			array( 'Vat Phou Temple', '1 Day', $img . '/vatphou.jpg', home_url( '/destinations/champasak/' ) ),
-			array( 'Coffee Culture', '1 Day', $img . '/coffee.jpg', home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
-			array( 'Waterfalls', '1 Day', $img . '/waterfall.jpg', home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
-			array( 'Pakse & Mekong', '1 Day', $img . '/donkhone.jpg', home_url( '/destinations/pakse/' ) ),
+			array( 'Bolaven Plateau', '1 Day', $img . '/bolaven.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
+			array( '4000 Islands', '2 Days', $img . '/liphi.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ),
+			array( 'Vat Phou Temple', '1 Day', $img . '/vatphou.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ),
+			array( 'Coffee Culture', '1 Day', $img . '/coffee.jpg', function_exists( 'watphou_tour_url' ) ? watphou_tour_url( 'bolaven-plateau-classic-full-day-tour' ) : home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
+			array( 'Waterfalls', '1 Day', $img . '/waterfall.jpg', function_exists( 'watphou_tour_url' ) ? watphou_tour_url( 'bolaven-plateau-classic-full-day-tour' ) : home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
+			array( 'Pakse & Mekong', '1 Day', $img . '/donkhone.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ),
 		);
 		foreach ( $interests as $item ) :
 			?>
 			<article class="wpt-interest-card">
 				<div class="wpt-interest-card__image">
-					<img src="<?php echo esc_url( $item[2] ); ?>" alt="<?php echo esc_attr( $item[0] ); ?>">
+					<img src="<?php echo esc_url( $item[2] ); ?>" alt="<?php echo esc_attr( $item[0] ); ?>" loading="lazy" decoding="async">
 					<div class="wpt-day-badge"><?php echo esc_html( $item[1] ); ?></div>
 				</div>
 				<div class="wpt-interest-card__body">
@@ -111,7 +111,7 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 					?>
 					<article class="wpt-tour-row">
 						<div class="wpt-tour-row__image">
-							<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
+							<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async">
 							<span class="wpt-day-badge"><?php echo esc_html( $duration ); ?></span>
 						</div>
 						<div class="wpt-tour-row__content">
@@ -147,17 +147,17 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 		<div class="wpt-dest-grid">
 			<?php
 			$dests = array(
-				array( 'Pakse', $img . '/donkhone.jpg', home_url( '/destinations/pakse/' ) ),
-				array( 'Bolaven Plateau', $img . '/bolaven.jpg', home_url( '/destinations/bolaven-plateau/' ) ),
-				array( 'Vat Phou', $img . '/vatphou.jpg', home_url( '/destinations/champasak/' ) ),
-				array( '4000 Islands', $img . '/liphi.jpg', home_url( '/destinations/4000-islands/' ) ),
-				array( 'Tad Fane', $img . '/tad-fane.jpg', home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
-				array( 'Coffee Highlands', $img . '/coffee.jpg', home_url( '/destinations/bolaven-plateau/' ) ),
+				array( 'Pakse', $img . '/donkhone.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ),
+				array( 'Bolaven Plateau', $img . '/bolaven.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
+				array( 'Vat Phou', $img . '/vatphou.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ),
+				array( '4000 Islands', $img . '/liphi.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ),
+				array( 'Tad Fane', $img . '/tad-fane.jpg', function_exists( 'watphou_tour_url' ) ? watphou_tour_url( 'bolaven-plateau-classic-full-day-tour' ) : home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
+				array( 'Coffee Highlands', $img . '/coffee.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
 			);
 			foreach ( $dests as $d ) :
 				?>
 				<a class="wpt-dest-tile" href="<?php echo esc_url( $d[2] ); ?>">
-					<img src="<?php echo esc_url( $d[1] ); ?>" alt="<?php echo esc_attr( $d[0] ); ?>">
+					<img src="<?php echo esc_url( $d[1] ); ?>" alt="<?php echo esc_attr( $d[0] ); ?>" loading="lazy" decoding="async">
 					<h3><?php echo esc_html( $d[0] ); ?></h3>
 				</a>
 			<?php endforeach; ?>

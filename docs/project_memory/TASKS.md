@@ -36,13 +36,17 @@
 | WT-101 | Re-scrape full Wix text when rate limit clears | pending |
 | WT-102 | Final photography into media library (placeholders used on staging) | pending |
 | WT-103 | Client real prices | blocked |
-| WT-104 | Professional TH translations | blocked |
+| WT-104 | Professional TH translations | blocked (AI draft pack ready for review: `docs/translations/`) |
 | WT-105 | BCEL live integration | blocked |
 | WT-106 | Hostinger production domain attach + Joker cutover | blocked |
-| WT-107 | Complete Search Engine Optimization (SEO) for the highest possible Google ranking | pending |
+| WT-107 | Complete Search Engine Optimization (SEO) for the highest possible Google ranking | staging done; production indexing blocked |
 | WT-109 | Deploy custom theme + plugins + content to Hostinger temporary domain | done |
-| WT-110 | Finish Polylang admin wizard on staging (EN default hide URL; FR/TH empty drafts) | done |
+| WT-110 | Finish Polylang admin wizard on staging (EN default hide URL; FR/TH empty drafts) | done (superseded: FR/TH now published English placeholders, not empty drafts) |
 | WT-111 | Production cutover checklist (DNS A/www only; SSL; remove noindex; SMTP test) | pending |
+| WT-112 | Manager Quick edit tours + remove front “Edit website” + Wix favicon | done |
+| WT-113 | Google Analytics 4 (GA4) measurement ID (`G-XXXXXXXX`) — paste in Settings → Watphou Travels | blocked (need client ID; do not invent) |
+| WT-114 | Google Search Console HTML verification — **real domain only**, never the Hostinger temporary address | blocked (need client code + production domain) |
+| WT-115 | EN/FR/TH review pack (Excel + PDF auto-drafts) | done |
 
 ### WT-111 — Production cutover checklist (do not run until approved)
 
@@ -54,7 +58,8 @@ Full detail: `docs/HOSTINGER_DEPLOYMENT.md`.
 - [ ] Primary `https://www.watphou-travels.com`; apex → www 301
 - [ ] Serialized-safe search-replace staging domain → final domain
 - [ ] `WATPHOU_ENV=production`; remove noindex (and any leftover staging auth constants)
-- [ ] Submit Yoast sitemap (final Uniform Resource Locators (URLs) only) in Google Search Console — **no** Change of Address
+- [ ] Submit Yoast sitemap (final Uniform Resource Locators (URLs) only) in Google Search Console — **no** Change of Address. Needs WT-114 first.
+- [ ] Add Google Analytics 4 (GA4) measurement ID (`G-XXXXXXXX`) in Settings → Watphou Travels (WT-113). Do not fire analytics on the Hostinger temporary domain.
 - [ ] Keep Wix paid 2–4 weeks; Hostinger backup
 - [ ] Test contact form off office network after Simple Mail Transfer Protocol (SMTP)
 
@@ -93,6 +98,8 @@ Full detail: `docs/HOSTINGER_DEPLOYMENT.md`.
    - Google Business Profile alignment (Pakse address, phone, website) when production Uniform Resource Locator (URL) is live
    - Open Graph images per tour for social and search previews
 
-**Blocked until:** production domain is live (indexing), real prices (Offer schema), genuine reviews (Review schema), Google Analytics 4 / Google Search Console identifiers, professional Thai copy (Thai pages).
+**Staging (2026-09-10):** Yoast company representation, unique titles/meta descriptions, breadcrumbs, sitemap enabled but **not** submitted, `hreflang` for published EN/FR/TH Uniform Resource Locators (URLs), TravelAgency + TouristTrip schema, legal pages, travel-guide stub, image `loading=lazy`. Temporary domain stays `noindex`.
+
+**Still blocked until production:** indexing, Google Search Console sitemap submit, Google Analytics 4 (GA4) ID, Google Business Profile, Offer schema (real prices), Review schema (genuine reviews), professional French/Thai copy.
 
 **Evidence:** `docs/SEO_CHECKLIST.md` all production items checked; sitemap accepted in Google Search Console; Lighthouse run logged in `docs/project_memory/TEST_LOG.md`.

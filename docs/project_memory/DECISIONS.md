@@ -157,3 +157,40 @@ Append-only log. One entry per decision.
 
 **Impact:** `watphou-staging-gate.php` stays in the repo as an opt-in (only runs if `WATPHOU_STAGING_USER` / `WATPHOU_STAGING_PASS` are defined in `wp-config.php`). Polylang English is default with `/en/` hidden; French and Thai exist as empty drafts only.
 
+---
+
+## 2026-09-10 — French/Thai are published English placeholders, not empty drafts
+
+**Decision:** Keep one WordPress page/tour **per language** (Polylang Free requirement). Publish the French and Thai copies with the **same English text**, status `publish`, meta `_watphou_translation_status=english-placeholder`, and a public banner. Do **not** machine-translate Thai (or tour bodies).
+
+**Alternatives considered:**
+- Leave 50 empty drafts — visitors clicking FR/TH get “page not found”
+- Auto-translate plugin — forbidden for Thai; Polylang Free does not translate
+- Hide FR/TH until a translator finishes — language switcher still 404s
+
+**Reason:** Empty drafts have no public Uniform Resource Locator (URL). The user needs FR/TH to open a page. English with a banner is honest and indexable later when the real domain is live.
+
+**Impact:** `/fr/` and `/th/` return HTTP 200. A human translator edits the French or Thai copy in admin (filter by language) and removes the placeholder meta. Language home slugs may be `/fr/home-2/` because WordPress unique slugs; `/fr/` still resolves.
+
+---
+
+## 2026-09-10 — Yoast first-time configuration done in code, not the wizard
+
+**Decision:** Apply Yoast Search Engine Optimization (Yoast SEO) company name, titles, meta description templates, breadcrumbs, sitemap-on, tracking-off, `environment_type=staging`, and dismiss the first-time notice via options. Unique per-page titles come from verified Watphou copy (Pakse, Bolaven, Vat Phou, 4000 Islands). Cancellation page does **not** invent percentage fees.
+
+**Reason:** The admin wizard is slow and easy to skip. Staging must stay `noindex`. We cannot invent Google Analytics 4 (GA4) or Google Search Console codes.
+
+**Impact:** Settings fields exist for GA4 and Search Console. Those stay empty until the client sends real IDs. Do not submit `sitemap_index.xml` for the Hostinger temporary domain.
+
+---
+
+## 2026-09-10 — Auto-translate French and Thai for a review pack only
+
+**Decision:** Generate automatic French and Thai drafts (Google Translate, MyMemory fallback) of all public website strings into `docs/translations/Watphou_EN_FR_TH_review.xlsx` (editable) and `.pdf` (readable). Do **not** publish those drafts on WordPress until a human marks rows Approved.
+
+**Reason:** The client asked for automatic FR/TH so they can review on paper/Excel. The live `/fr/` and `/th/` pages stay English + banner. Thai still needs a human before it goes public.
+
+**Impact:** WT-115 done. Rebuild with `python scripts/build_translation_review.py`. WT-113 (Google Analytics 4) and WT-114 (Google Search Console, real domain only) stay TODO.
+
+
+

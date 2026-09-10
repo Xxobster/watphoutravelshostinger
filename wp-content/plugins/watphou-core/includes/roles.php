@@ -82,7 +82,7 @@ add_filter( 'login_redirect', 'watphou_core_login_redirect', 10, 3 );
 
 function watphou_core_login_redirect( $redirect_to, $requested, $user ) {
 	if ( $user instanceof WP_User && in_array( 'tour_manager', (array) $user->roles, true ) ) {
-		return admin_url( 'admin.php?page=watphou-dashboard' );
+		return admin_url( 'admin.php?page=watphou-tour-desk' );
 	}
 	return $redirect_to;
 }

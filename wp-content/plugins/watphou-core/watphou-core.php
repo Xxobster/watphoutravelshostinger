@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Core
  * Description: Tours, destinations, settings, and business logic for Watphou Travels.
- * Version: 1.1.0
+ * Version: 1.3.0
  * Author: Watphou Travels
  * Text Domain: watphou-core
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_CORE_VERSION', '1.1.0' );
+define( 'WATPHOU_CORE_VERSION', '1.3.0' );
 define( 'WATPHOU_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WATPHOU_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -23,7 +23,12 @@ require_once WATPHOU_CORE_PATH . 'includes/roles.php';
 require_once WATPHOU_CORE_PATH . 'includes/blocks.php';
 require_once WATPHOU_CORE_PATH . 'includes/redirects.php';
 require_once WATPHOU_CORE_PATH . 'includes/schema.php';
+require_once WATPHOU_CORE_PATH . 'includes/seo.php';
+require_once WATPHOU_CORE_PATH . 'includes/i18n.php';
+require_once WATPHOU_CORE_PATH . 'includes/setup-i18n-seo.php';
 require_once WATPHOU_CORE_PATH . 'includes/admin-dashboard.php';
+require_once WATPHOU_CORE_PATH . 'includes/admin-tour-desk.php';
+require_once WATPHOU_CORE_PATH . 'includes/admin-tour-list.php';
 require_once WATPHOU_CORE_PATH . 'includes/admin-notices.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-cli.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-admin.php';
@@ -43,7 +48,7 @@ add_filter( 'pll_get_post_types', 'watphou_core_pll_post_types', 10, 2 );
 add_filter( 'pll_get_taxonomies', 'watphou_core_pll_taxonomies', 10, 2 );
 
 /**
- * Let Polylang manage tours (English published; French/Thai as drafts).
+ * Let Polylang manage tours (English published; French/Thai English placeholders until translated).
  *
  * @param string[] $types Post types Polylang already knows.
  * @return string[]

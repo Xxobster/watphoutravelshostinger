@@ -35,17 +35,18 @@ function watphou_core_dashboard_page(): void {
 		</div>
 		<h2><?php esc_html_e( 'Quick links', 'watphou-core' ); ?></h2>
 		<ul>
+			<li><a href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-tour-desk' ) ); ?>"><?php esc_html_e( 'Quick edit prices & photos', 'watphou-core' ); ?></a></li>
 			<li><a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=tour' ) ); ?>"><?php esc_html_e( 'Add a tour', 'watphou-core' ); ?></a></li>
-			<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=tour' ) ); ?>"><?php esc_html_e( 'Edit tours', 'watphou-core' ); ?></a></li>
+			<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=tour' ) ); ?>"><?php esc_html_e( 'All tours (full list)', 'watphou-core' ); ?></a></li>
 			<li><a href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-bookings' ) ); ?>"><?php esc_html_e( 'Booking requests', 'watphou-core' ); ?></a></li>
 			<li><a href="<?php echo esc_url( admin_url( 'options-general.php?page=watphou-settings' ) ); ?>"><?php esc_html_e( 'Contact settings', 'watphou-core' ); ?></a></li>
 		</ul>
 		<h2><?php esc_html_e( 'Editing tips', 'watphou-core' ); ?></h2>
 		<ol>
-			<li><?php esc_html_e( 'Edit tour title and main content in the block editor.', 'watphou-core' ); ?></li>
-			<li><?php esc_html_e( 'Set duration and prices in the Tour Details box below the editor.', 'watphou-core' ); ?></li>
+			<li><?php esc_html_e( 'Prices and photos: Watphou → Quick edit tours (do not use Appearance → Customize).', 'watphou-core' ); ?></li>
+			<li><?php esc_html_e( 'Long text and itinerary: Tours → click the tour → Edit text.', 'watphou-core' ); ?></li>
 			<li><?php esc_html_e( 'Use Itinerary Day blocks for day-by-day schedules.', 'watphou-core' ); ?></li>
-			<li><?php esc_html_e( 'Check language flags — Thai pages need professional translation.', 'watphou-core' ); ?></li>
+			<li><?php esc_html_e( 'Thai pages need a professional translator — do not machine-translate.', 'watphou-core' ); ?></li>
 		</ol>
 	</div>
 	<?php

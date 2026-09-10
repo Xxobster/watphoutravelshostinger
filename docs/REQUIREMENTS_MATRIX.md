@@ -5,7 +5,7 @@ Every requirement from the PDF brief and master prompt. Status: `pending` | `in_
 | ID | Requirement | Source | Implementation | Status | Test / evidence | Missing info |
 |----|-------------|--------|----------------|--------|-----------------|--------------|
 | R01 | Migrate from Wix to WordPress | PDF §1 | Full rebuild on demo VPS | in_progress | Demo URL when live | — |
-| R02 | Languages EN / FR / TH | PDF §1 | Polylang Free, /en/ /fr/ /th/ | pending | hreflang check | Professional TH translator |
+| R02 | Languages EN / FR / TH | PDF §1 | Polylang Free; `/fr/` `/th/` published English placeholders + banner | in_progress | HTTP 200 + hreflang | Professional FR/TH translator |
 | R03 | Design inspired by vietnamdiscovery.com | PDF §1 | Classic PHP theme matching VD layout; Watphou photos | done | Homepage `wpt-hero` / interest cards | Visual QA vs VD |
 | R04 | Show starting prices "From $XX" | PDF §2, §6 | Tour meta + template | pending | Tour page render | Real prices from client |
 | R05 | Sales-focused homepage | PDF §5 | Hero + best sellers + why us + reviews + contact | pending | Homepage screenshot | Review text from Google |
@@ -26,15 +26,15 @@ Every requirement from the PDF brief and master prompt. Status: `pending` | `in_
 | R20 | BCEL payment architecture | Prompt §9 | Provider interface + stub | pending | Mock payment test | BCEL contract + API |
 | R21 | Manager role (non-admin) | Prompt §10 | tour_manager role | pending | Capability test | — |
 | R22 | Manager dashboard | Prompt §10 | Admin dashboard page | pending | Screenshot | — |
-| R23 | SEO: Yoast, sitemap, hreflang, schema | Prompt §11 | Yoast + theme schema; full ranking work is WT-107 | pending | SEO_CHECKLIST | GA4/GSC IDs |
+| R23 | SEO: Yoast, sitemap, hreflang, schema | Prompt §11 | Yoast + schema on staging; production indexing is WT-107 leftover | in_progress | SEO_CHECKLIST | GA4/GSC IDs, real domain |
 | R24 | 301 redirects from Wix URLs | Prompt §11 | redirects.csv + plugin | pending | Redirect test | — |
 | R25 | Isolated staging (not on live Wix) | Prompt §13 | Hostinger temporary domain; VPS demo retired WT-108 | done | verify_demo.py Hostinger 200 | — |
 | R26 | Staging HTTPS + noindex (public site, WP login to edit) | Prompt §13 superseded by client | Hostinger HTTPS + robots noindex | done | curl 200; meta noindex | — |
 | R27 | Manager demo user manager/000000 | Prompt §1 | Was VPS demo; Hostinger admin is `wptadmin` | n/a | Login test | Hostinger password not in git |
 | R28 | Do not break existing VPS site | Prompt §13 | Watphou vhost removed; smbistro nginx unchanged | done | smbistro site still enabled | DuckDNS for smbistro did not resolve 2026-09-10 |
 | R29 | Hostinger production prep | Prompt §14 superseded | Temporary `hostingersite.com`; attach real domain later | in_progress | Staging URL | Final domain |
-| R30 | Privacy / terms / cancellation pages | Prompt §12 | Legal page templates | pending | Pages exist | Legal copy |
-| R31 | Travel Guide / Blog (optional SEO) | PDF §3 | Post type `post` archive | pending | Archive URL | Content |
+| R30 | Privacy / terms / cancellation pages | Prompt §12 | Published pages; cancellation defers to quote | done | `/privacy-policy/` `/terms/` `/cancellation/` | Official cancellation % |
+| R31 | Travel Guide / Blog (optional SEO) | PDF §3 | Stub page `/travel-guide/` | in_progress | Page 200 | Longer articles |
 | R32 | Fast loading, optimized images | PDF §3 | WebP, lazy load, theme perf | pending | Lighthouse | — |
 | R33 | Accessible navigation | Prompt §4 | Keyboard nav, focus, contrast | pending | a11y check | — |
 | R34 | Production: Hostinger (temporary domain now) | Decision 2026-09-10 | Hostinger WordPress | in_progress | Staging URL | Real domain |

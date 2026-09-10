@@ -30,12 +30,12 @@ function watphou_core_register_taxonomies(): void {
 			'hierarchical'      => true,
 			'rewrite'           => array( 'slug' => 'tour-type' ),
 			'show_in_rest'      => true,
-			'show_admin_column' => true,
+			'show_admin_column' => false,
 		)
 	);
 
 	register_taxonomy(
-		'duration_cat',
+		'duration',
 		array( 'tour' ),
 		array(
 			'labels'            => array(
@@ -46,7 +46,8 @@ function watphou_core_register_taxonomies(): void {
 			'hierarchical'      => true,
 			'rewrite'           => array( 'slug' => 'duration' ),
 			'show_in_rest'      => true,
-			'show_admin_column' => true,
+			'show_admin_column' => false,
+			'show_ui'           => true,
 		)
 	);
 }

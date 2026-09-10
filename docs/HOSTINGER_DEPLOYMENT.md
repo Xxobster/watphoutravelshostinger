@@ -61,7 +61,7 @@ Public prices stay **From $XX**. Spreadsheet draft prices live only in gitignore
 - [x] `define( 'WATPHOU_ENV', 'staging' );` in Hostinger `wp-config.php`
 - [x] Mu-plugin noindex while not production
 - [x] Strong WordPress admin password (not demo `000000`)
-- [x] Polylang: English default, hide `/en/`; French/Thai empty drafts only (no machine translation)
+- [x] Polylang: English default, hide `/en/`; French/Thai published as English placeholders with a banner (no machine translation)
 - [ ] Do **not** submit the temporary-domain sitemap to Google Search Console
 - HTTP Basic Auth is **not** required: `noindex` + staging banner are enough while the temporary domain is public to reviewers
 

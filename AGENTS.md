@@ -30,7 +30,7 @@ Rebuild **watphou-travels.com** from Wix to WordPress with a custom block theme 
 6. Update `docs/project_memory/CURRENT_STATE.md` and `TASKS.md` in the same commit as code changes.
 7. Do not deploy to Virtual Private Server (VPS) `sm`. Verify staging with `python scripts/verify_demo.py`. Deploy theme/plugins to Hostinger, then confirm `https://darkslategray-snake-182151.hostingersite.com`.
 8. Use `From $XX` placeholders until real prices are supplied.
-9. Thai translations must be flagged drafts — no machine translation.
+9. Thai: do not machine-translate. French/Thai public pages may show English with a banner until a professional translation exists.
 10. BCEL payment stays mock/stub until real credentials exist.
 
 ## End-of-task ritual
