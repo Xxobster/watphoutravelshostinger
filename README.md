@@ -18,7 +18,7 @@ python scripts/verify_demo.py
 
 ## Staging site (Hostinger temporary domain)
 
-- **URL**: https://darkslategray-snake-182151.hostingersite.com
+- **URL**: https://watphoutravels.site
 - **WordPress admin**: `/wp-login.php` — user `wptadmin` (password not in git)
 - **Environment**: Temporary Hostinger domain, `noindex`, mock payments only
 - **Retired**: `https://watphou.smbistro.duckdns.org` was removed from Virtual Private Server (VPS) `sm` on 2026-09-10

@@ -1,14 +1,13 @@
 # Watphou Travels — English / French / Thai review pack
 
-**Status:** automatic drafts for **review only**. Not published on the website.
+**Status:** the reviewed workbook is the live source for `/fr/` and `/th/` (plugin `watphou-core` 1.5.0).
 
 | File | Use |
 |------|-----|
-| [Watphou_EN_FR_TH_review.xlsx](Watphou_EN_FR_TH_review.xlsx) | **Edit this.** Columns: English (source), French (auto draft), Thai (auto draft), Reviewer notes, Status (dropdown). |
-| [Watphou_EN_FR_TH_review.pdf](Watphou_EN_FR_TH_review.pdf) | Readable snapshot of the same rows (English, then French, then Thai). |
+| [Watphou_EN_FR_TH_reviewed.xlsx](Watphou_EN_FR_TH_reviewed.xlsx) | **Current public French and Thai.** Replace this file and re-export when wording changes. |
+| [Watphou_EN_FR_TH_review.xlsx](Watphou_EN_FR_TH_review.xlsx) | Older automatic-draft pack. Do not publish this one. |
+| [Watphou_EN_FR_TH_review.pdf](Watphou_EN_FR_TH_review.pdf) | Readable snapshot of the older automatic drafts. |
 
-Machine source: Google Translate (MyMemory as fallback), with place names and `$XX` protected. Thai is **not** a professional translation. Do not put it on the public site until a human has approved the row (set Status to `Approved` in Excel).
+Export into WordPress: `python scripts/export_reviewed_translations.py` (writes `content/translations/reviewed_en_fr_th.json` and `wp-content/plugins/watphou-core/data/reviewed_en_fr_th.json`). The plugin applies French and Thai on the next few page loads after the JSON hash changes.
 
-Rebuild: `python scripts/build_translation_review.py` (needs `deep-translator`, `openpyxl`, `reportlab`).
-
-JSON source of truth: `content/translations/review_en_fr_th.json`.
+Tour import example (English + **FR** + **TH** sheets): `python scripts/build_package_import_example.py`.

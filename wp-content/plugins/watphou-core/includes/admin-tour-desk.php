@@ -89,6 +89,7 @@ function watphou_core_render_tour_desk(): void {
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Quick edit tours', 'watphou-core' ); ?></h1>
 		<p><?php esc_html_e( 'Change the photo, starting price, duration, and homepage bestseller here. You do not need Appearance → Customize. Use “Edit text” only when you want to change the itinerary or long description.', 'watphou-core' ); ?></p>
+		<p><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-package-sheet' ) ); ?>"><?php esc_html_e( 'Add or update tour text from Excel', 'watphou-core' ); ?></a></p>
 		<p>
 			<strong><?php esc_html_e( 'Price:', 'watphou-core' ); ?></strong>
 			<?php esc_html_e( 'Type a number (for example 95) or leave XX until the real price is confirmed. The website shows “From $XX” until then.', 'watphou-core' ); ?>

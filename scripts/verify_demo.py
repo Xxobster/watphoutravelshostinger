@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SSH_HOST = os.environ.get("DEMO_SSH_HOST", "sm")
 STAGING_URL = os.environ.get(
     "STAGING_URL",
-    "https://darkslategray-snake-182151.hostingersite.com",
+    "https://watphoutravels.site",
 )
 # Legacy alias so older docs still work
 DEMO_URL = os.environ.get("DEMO_URL", STAGING_URL)

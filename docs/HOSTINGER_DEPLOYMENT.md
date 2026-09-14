@@ -1,6 +1,10 @@
 # Hostinger Deployment — Watphou Travels
 
-**Staging URL:** https://darkslategray-snake-182151.hostingersite.com  
+**Public staging URL (send to the customer):** https://watphoutravels.site  
+**Also:** https://www.watphoutravels.site  
+**Hostinger preview (owner fallback only):** https://darkslategray-snake-182151.hostingersite.com  
+Do **not** send the preview hostname to reviewers: some networks return NXDOMAIN (`DNS_PROBE_FINISHED_NXDOMAIN`). Live `watphou-travels.com` on Wix is unchanged.  
+
 **Account:** Hostinger Business plan (order `1009997687`, username `u916301613`)  
 **GitHub:** https://github.com/Xxobster/watphoutravelshostinger  
 
@@ -26,7 +30,7 @@ No fake `package.json`.
 | Theme `watphou-travels` | Active (same design as former demo) |
 | Plugins `watphou-core`, `watphou-bookings` | Active |
 | Polylang + Yoast Search Engine Optimization (Yoast SEO) | Installed and active |
-| Must-Use plugins (mu-plugins): `watphou-env.php`, `watphou-staging-gate.php` | Deployed |
+| Must-Use plugins (mu-plugins): `watphou-env.php`, `watphou-staging-gate.php`, `watphou-public-hosts.php` | Deployed |
 | `WATPHOU_ENV` | `staging` in server `wp-config.php` (not in git) |
 | Content | 16 tours + tailor-made page from September 2026 package texts; prices **From $XX** |
 | Redirects | `content/redirects.csv` loaded into WordPress option |
@@ -51,7 +55,7 @@ After code changes: clear Hostinger website cache (and keep **cacheless mode** o
 Hostinger web Hypertext Preprocessor (PHP) cannot rely on `exec` / WordPress Command Line Interface (WP-CLI).
 
 1. Bundle JSON under `wp-content/plugins/watphou-core/data/packages/`
-2. WordPress admin → **Watphou → Import packages** → Run import  
+2. WordPress admin → **Watphou → Add tours (Excel)** → download the example sheet, or (webmaster) JSON import at the bottom of that page  
    Or use a one-shot PHP bootstrap that calls `watphou_core_import_packages()` (delete after use)
 
 Public prices stay **From $XX**. Spreadsheet draft prices live only in gitignored `content/draft/prices_draft.json`.

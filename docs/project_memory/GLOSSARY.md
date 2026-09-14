@@ -25,7 +25,7 @@ Terms used in this project. Full words first; acronyms in parentheses where help
 | **Yoast SEO** | Free WordPress search-engine optimization plugin |
 | **Petit Futé** | French travel guide; Watphou has reviews there (text not yet imported) |
 | **VPS** (Virtual Private Server) | Remote Linux server `sm`. Watphou demo was removed from it on 2026-09-10 |
-| **Hostinger** | Current WordPress host. Staging URL is the temporary `*.hostingersite.com` domain |
+| **Hostinger** | Current WordPress host. Public staging URL is `https://watphoutravels.site`; the `*.hostingersite.com` preview name is a fallback only |
 | **Bluehost** | Former production-host plan; superseded by Hostinger |
 | **DuckDNS** | Free dynamic DNS; `smbistro.duckdns.org` still belongs to the restaurant app on `sm` — do not use for Watphou |
 | **Wix** | Current website platform being replaced |

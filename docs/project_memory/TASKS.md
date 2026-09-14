@@ -36,7 +36,7 @@
 | WT-101 | Re-scrape full Wix text when rate limit clears | pending |
 | WT-102 | Final photography into media library (placeholders used on staging) | pending |
 | WT-103 | Client real prices | blocked |
-| WT-104 | Professional TH translations | blocked (AI draft pack ready for review: `docs/translations/`) |
+| WT-104 | Professional TH translations | done for current pack (human-reviewed Excel published as WT-117; further edits welcome) |
 | WT-105 | BCEL live integration | blocked |
 | WT-106 | Hostinger production domain attach + Joker cutover | blocked |
 | WT-107 | Complete Search Engine Optimization (SEO) for the highest possible Google ranking | staging done; production indexing blocked |
@@ -47,6 +47,9 @@
 | WT-113 | Google Analytics 4 (GA4) measurement ID (`G-XXXXXXXX`) — paste in Settings → Watphou Travels | blocked (need client ID; do not invent) |
 | WT-114 | Google Search Console HTML verification — **real domain only**, never the Hostinger temporary address | blocked (need client code + production domain) |
 | WT-115 | EN/FR/TH review pack (Excel + PDF auto-drafts) | done |
+| WT-116 | Manager Excel import for tours + example workbook (3-Day Classic); fix Import packages 404 | done |
+| WT-117 | Publish reviewed FR/TH from `Watphou_EN_FR_TH_reviewed.xlsx`; add FR and TH sheets to the tour-import example Excel | done |
+| WT-118 | Public staging hostname after Hostinger preview NXDOMAIN (`watphoutravels.site`) | done |
 
 ### WT-111 — Production cutover checklist (do not run until approved)
 

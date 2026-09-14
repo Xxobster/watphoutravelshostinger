@@ -192,5 +192,40 @@ Append-only log. One entry per decision.
 
 **Impact:** WT-115 done. Rebuild with `python scripts/build_translation_review.py`. WT-113 (Google Analytics 4) and WT-114 (Google Search Console, real domain only) stay TODO.
 
+---
+
+## 2026-09-10 — Manager adds tours with Excel, photos with Quick edit
+
+**Decision:** Replace the broken **Import packages** admin page with **Add tours (Excel)**. The manager downloads an example `.xlsx` filled with the live **3-Day Classic Experience** package, edits or copies rows, uploads the workbook, then sets the photo on **Quick edit tours**. The Excel file never changes pictures. JSON folder import stays as a collapsed webmaster tool.
+
+**Reason:** The old page slug `watphou-import` 404’d (WordPress menu used a stricter permission than Quick edit, and the word “import” is often blocked). An Excel sheet matches how the manager already works. Real prices stay `XX` until supplied.
+
+**Impact:** Plugin `watphou-core` 1.4.0. Example file: `wp-content/plugins/watphou-core/data/watphou-package-import-example.xlsx`. Rebuild with `python scripts/build_package_import_example.py`.
+
+---
+
+## 2026-09-11 — Publish reviewed French and Thai; Excel has FR and TH sheets
+
+**Decision:** Use `docs/translations/Watphou_EN_FR_TH_reviewed.xlsx` as the live French and Thai copy (all 494 rows marked **Revised**). Do not overwrite English. Hide the English-placeholder banner once those texts are stored. Future wording changes: replace that Excel file, re-export JSON, deploy the plugin JSON. The tour-import example workbook now has a **FR** sheet and a **TH** sheet (same slug as English; day titles/bodies as extra columns). Uploading that file updates `/fr/` and `/th/` for those tours.
+
+**Reason:** The client asked to publish these reviewed texts now, and to keep French and Thai editable in the same manager Excel file as the English example. Thai on the website is this human-reviewed pack, not a fresh machine translation at request time.
+
+**Impact:** Plugin `watphou-core` 1.5.0. Rebuild JSON with `python scripts/export_reviewed_translations.py`. Rebuild the example with `python scripts/build_package_import_example.py`.
+
+---
+
+## 2026-09-14 — Public staging URL is watphoutravels.site, not the Hostinger preview name
+
+**Decision:** Claim Hostinger’s free domain `watphoutravels.site`, park it on the existing WordPress site, point Domain Name System (DNS) at Hostinger, and tell reviewers to use **https://watphoutravels.site**. Do **not** change `watphou-travels.com` (still on Wix / Joker). Keep the preview hostname as a fallback for people whose DNS already resolves it. A must-use plugin rewrites home, site, and HTML URLs to the hostname the visitor used, so WordPress does not 301 them onto `*.hostingersite.com`.
+
+**Alternatives considered:**
+- Keep only `darkslategray-snake-182151.hostingersite.com` — fails with NXDOMAIN on some visitor networks (the customer’s screenshot).
+- Another `*.hostingersite.com` preview — same Domain Name System (DNS) problem.
+- Attach `watphou-travels.com` now — forbidden until production cutover.
+
+**Reason:** Hostinger preview names CNAME to `free.cdn.hstgr.net`. That name is missing from some resolvers, so the site looks “down” even while it answers HTTP 200 for the owner. A normal registered domain on Hostinger nameservers plus a real Secure Sockets Layer (SSL) certificate is visible worldwide. Apex uses A records (not ALIAS) so resolvers that mishandle ALIAS still work.
+
+**Impact:** Customer URL: `https://watphoutravels.site`. Must-use plugin `wp-content/mu-plugins/watphou-public-hosts.php`. Staging stays `noindex`. Apex A records: `88.222.222.65` and `2.57.91.249`. `www` CNAME to Hostinger CDN.
+
 
 

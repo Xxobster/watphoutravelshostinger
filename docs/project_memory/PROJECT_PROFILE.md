@@ -22,7 +22,9 @@ production_deploy_status: STAGING_ON_HOSTINGER
 ## 2. Staging environment (Hostinger — current as of 2026-09-10)
 
 ```yaml
-staging_url: https://darkslategray-snake-182151.hostingersite.com
+staging_url: https://watphoutravels.site
+staging_url_www: https://www.watphoutravels.site
+staging_url_preview_fallback: https://darkslategray-snake-182151.hostingersite.com
 staging_host: Hostinger
 staging_hostinger_username: u916301613
 staging_wordpress_title: Watphou Travels
@@ -133,6 +135,6 @@ verified_since_2008: UNRESOLVED
 smtp_demo: UNRESOLVED
 bcel_merchant_contract: UNRESOLVED
 bluehost_ssh_access: SUPERSEDED_BY_HOSTINGER
-hostinger_temporary_domain: darkslategray-snake-182151.hostingersite.com
+hostinger_temporary_domain: watphoutravels.site (preview fallback darkslategray-snake-182151.hostingersite.com)
 final_production_domain: UNRESOLVED
 ```

@@ -471,3 +471,191 @@ Credentials: `work/staging_basic_auth.txt`, `work/wp_admin_pass.txt` (gitignored
   ]
 }
 ```
+
+## 2026-09-10 — Excel tour import on staging (WT-116)
+
+| Check | Result |
+|-------|--------|
+| Old `admin.php?page=watphou-import` | HTTP 403 (Hostinger blocks the word “import” in that address) |
+| New `admin.php?page=watphou-package-sheet` | HTTP 200, title “Add tours (Excel)”, upload form present |
+| Example workbook download | HTTP 200, Excel type, 11 629 bytes, slug `3-day-classic-experience-in-southern-laos` |
+| Public homepage | HTTP 200 |
+| `python scripts/verify_demo.py` | Hostinger 200, wp-login 200, Virtual Private Server (VPS) watphou demo gone |
+
+## 2026-09-10T20:05:13 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-11T18:35:49 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-11 — WT-117 reviewed French / Thai live on Hostinger staging
+
+Source: `docs/translations/Watphou_EN_FR_TH_reviewed.xlsx` (494 rows, status Revised, 0 empty French/Thai). Plugin `watphou-core` 1.5.0.
+
+| Check | Result |
+|-------|--------|
+| `https://darkslategray-snake-182151.hostingersite.com/fr/` | HTTP 200. Heading: Découvrez le sud du Laos à votre façon. Menu: Accueil. Bestseller: Circuit classique de 3 jours. No English-placeholder banner. |
+| `https://darkslategray-snake-182151.hostingersite.com/th/` | HTTP 200. Heading: เที่ยวลาวใต้ในแบบของคุณ. Menu: หน้าแรก. Bestseller: ทัวร์คลาสสิก 3 วันในลาวใต้. No banner. |
+| French 3-Day Classic tour | HTTP 200. Heading: Circuit classique de 3 jours dans le sud du Laos |
+| Thai 3-Day Classic tour | HTTP 200. Heading: ทัวร์คลาสสิก 3 วันในลาวใต้ |
+| French privacy page | HTTP 200. Heading: Politique de confidentialité |
+| Thai privacy page | HTTP 200. Heading: นโยบายความเป็นส่วนตัว |
+| English home | HTTP 200. Heading still Discover Southern Laos Your Way |
+| Example Excel sheets | How to use, Tours, Itinerary, **FR**, **TH**, Column meanings. Header comments include slug and cta (Call To Action). |
+| `python scripts/verify_demo.py` | Hostinger 200, wp-login 200, Virtual Private Server (VPS) Watphou demo gone, smbistro present |
+
+## 2026-09-14 — WT-118 public staging hostname (customer NXDOMAIN on preview URL)
+
+Cause: `darkslategray-snake-182151.hostingersite.com` CNAME → `free.cdn.hstgr.net`. Some visitor resolvers return NXDOMAIN (`DNS_PROBE_FINISHED_NXDOMAIN`) while the owner still gets HTTP 200.
+
+Fix: Hostinger free domain `watphoutravels.site` parked on the same WordPress root. Apex A `88.222.222.65` / `2.57.91.249`. `www` CNAME to Hostinger CDN. SSL certificate covers apex and www. Must-use plugin `watphou-public-hosts.php` keeps URLs on the hostname the visitor used.
+
+| Check | Result |
+|-------|--------|
+| `https://watphoutravels.site/` via Hostinger CDN | HTTP 200. Heading: Discover Southern Laos Your Way. `noindex`. |
+| `https://watphoutravels.site/fr/` | HTTP 200. Heading: Découvrez le sud du Laos à votre façon. |
+| `https://watphoutravels.site/th/` | HTTP 200. Heading: เที่ยวลาวใต้ในแบบของคุณ. |
+| `https://www.watphoutravels.site/` | HTTP 200. Same English home. |
+| WordPress canonical | After cache purge, no 301 to `*.hostingersite.com` (`x-redirect-by: WordPress` gone). |
+| Live Wix `watphou-travels.com` | Untouched. |
+| `python scripts/verify_demo.py` | HTTP 200 on `https://watphoutravels.site/`, wp-login HTTP 200, Virtual Private Server (VPS) Watphou demo still gone |
+
+
+
+## 2026-09-14T16:06:35 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-14T16:07:46 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```

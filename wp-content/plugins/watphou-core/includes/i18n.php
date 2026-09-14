@@ -198,10 +198,38 @@ function watphou_core_language_placeholder_banner(): void {
 	if ( 'en' === $lang ) {
 		return;
 	}
+	if ( get_option( 'watphou_reviewed_i18n_hash' ) ) {
+		return;
+	}
+	$map = function_exists( 'watphou_core_ui_map' ) ? watphou_core_ui_map() : array();
+	if ( ! empty( $map[ $lang ] ) ) {
+		return;
+	}
 	if ( 'fr' === $lang ) {
 		$text = 'La version française est en cours de rédaction. Cette page s’affiche pour l’instant en anglais. / French translation is in progress. This page is currently in English.';
 	} else {
 		$text = 'Thai translation is in progress. This page is currently in English. We do not use machine translation.';
 	}
 	echo '<div class="watphou-lang-banner" role="status">' . esc_html( $text ) . '</div>';
+}
+
+add_action( 'wp_loaded', 'watphou_core_maybe_flush_language_rewrites', 99 );
+
+function watphou_core_maybe_flush_language_rewrites(): void {
+	if ( wp_installing() || wp_doing_ajax() || wp_doing_cron() ) {
+		return;
+	}
+	if ( ! function_exists( 'PLL' ) ) {
+		return;
+	}
+	if ( get_option( 'watphou_pll_rewrites' ) === '1.5.0' ) {
+		return;
+	}
+	$opt = get_option( 'polylang' );
+	if ( is_array( $opt ) ) {
+		$opt['redirect_lang'] = 1;
+		update_option( 'polylang', $opt );
+	}
+	flush_rewrite_rules( false );
+	update_option( 'watphou_pll_rewrites', '1.5.0', false );
 }

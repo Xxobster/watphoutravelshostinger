@@ -34,6 +34,8 @@ function watphou_is_non_production(): bool {
 add_action( 'send_headers', function () {
 	if ( watphou_is_non_production() ) {
 		header( 'X-Robots-Tag: noindex, nofollow', true );
+		header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0', true );
+		header( 'Pragma: no-cache', true );
 	}
 } );
 
