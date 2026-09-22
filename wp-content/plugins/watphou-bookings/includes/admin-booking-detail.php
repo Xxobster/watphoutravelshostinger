@@ -42,8 +42,11 @@ function watphou_bookings_detail_page( int $id ): void {
 		<h1><?php echo esc_html( $booking->reference ); ?> — <?php echo esc_html( $booking->status ); ?></h1>
 		<p><a href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-bookings' ) ); ?>">&larr; <?php esc_html_e( 'Back', 'watphou-bookings' ); ?></a></p>
 		<table class="widefat striped"><tbody>
-			<?php foreach ( array( 'customer_name', 'email', 'phone', 'whatsapp', 'tour_name', 'preferred_date', 'adults', 'customer_message' ) as $f ) : ?>
-				<tr><th><?php echo esc_html( ucwords( str_replace( '_', ' ', $f ) ) ); ?></th><td><?php echo esc_html( $booking->$f ?? '' ); ?></td></tr>
+			<?php
+			$show = array( 'tour_name', 'tour_id', 'customer_name', 'email', 'phone', 'whatsapp', 'preferred_date', 'alt_date', 'adults', 'children', 'country', 'pickup_location', 'customer_message', 'staff_notes', 'language' );
+			foreach ( $show as $f ) :
+				?>
+				<tr><th><?php echo esc_html( ucwords( str_replace( '_', ' ', $f ) ) ); ?></th><td><?php echo nl2br( esc_html( (string) ( $booking->$f ?? '' ) ) ); ?></td></tr>
 			<?php endforeach; ?>
 		</tbody></table>
 		<h2><?php esc_html_e( 'Actions', 'watphou-bookings' ); ?></h2>

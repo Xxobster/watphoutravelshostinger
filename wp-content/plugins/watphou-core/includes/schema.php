@@ -47,7 +47,9 @@ function watphou_core_output_schema(): void {
 			),
 			'itinerary'   => get_post_meta( $pid, 'tour_duration', true ),
 		);
-		$image = get_the_post_thumbnail_url( $pid, 'large' );
+		$image = function_exists( 'watphou_core_tour_featured_url' )
+			? watphou_core_tour_featured_url( $pid, 'large' )
+			: get_the_post_thumbnail_url( $pid, 'large' );
 		if ( $image ) {
 			$schema['image'] = $image;
 		}

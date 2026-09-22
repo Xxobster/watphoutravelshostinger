@@ -9,7 +9,7 @@ function watphou_core_ensure_package_terms(): void {
 		'1-day'   => 'Day Tours',
 		'2-day'   => '2-Day Tours',
 		'3-day'   => '3-Day Tours',
-		'4-6-day' => '4–6 Day Tours',
+		'4-6-day' => '4-6 Day Tours',
 	);
 	foreach ( $terms as $slug => $name ) {
 		if ( ! term_exists( $slug, 'duration' ) ) {
@@ -162,23 +162,38 @@ function watphou_core_upsert_tour_from_data( array $data ): array {
 
 	watphou_core_ensure_package_terms();
 
-	$title   = (string) ( $data['title'] ?? $slug );
-	$code    = (string) ( $data['code'] ?? '' );
+	$title    = (string) ( $data['title'] ?? $slug );
+	$code     = (string) ( $data['code'] ?? '' );
 	$existing = watphou_core_find_tour_id( $slug, $code );
+	if ( ! empty( $data['id'] ) ) {
+		$by_id = (int) $data['id'];
+		if ( $by_id && 'tour' === get_post_type( $by_id ) ) {
+			$existing = $by_id;
+		}
+	}
+	$status = sanitize_key( (string) ( $data['post_status'] ?? 'publish' ) );
+	if ( ! in_array( $status, array( 'publish', 'draft', 'pending', 'future', 'private' ), true ) ) {
+		$status = 'publish';
+	}
 	$postarr  = array(
 		'post_type'    => 'tour',
 		'post_title'   => $title,
 		'post_name'    => $slug,
-		'post_status'  => 'publish',
+		'post_status'  => $status,
 		'post_content' => watphou_core_build_tour_content( $data ),
 		'post_excerpt' => $data['dream'] ?? ( $data['headline'] ?? '' ),
 	);
 
 	$created = false;
 	if ( $existing ) {
-		$postarr['ID']        = $existing;
-		$postarr['post_name'] = get_post_field( 'post_name', $existing ) ?: $slug;
-		$post_id              = wp_update_post( $postarr, true );
+		$postarr['ID'] = $existing;
+		$old_name      = (string) get_post_field( 'post_name', $existing );
+		if ( ! empty( $data['allow_slug_change'] ) && $slug ) {
+			$postarr['post_name'] = $slug;
+		} else {
+			$postarr['post_name'] = $old_name ?: $slug;
+		}
+		$post_id = wp_update_post( $postarr, true );
 	} else {
 		$post_id = wp_insert_post( $postarr, true );
 		$created = true;
@@ -201,6 +216,15 @@ function watphou_core_upsert_tour_from_data( array $data ): array {
 	update_post_meta( $post_id, 'tour_headline', $data['headline'] ?? '' );
 	update_post_meta( $post_id, 'tour_duration', $data['duration'] ?? '' );
 	update_post_meta( $post_id, 'tour_price_from', $price );
+	if ( array_key_exists( 'price_note', $data ) ) {
+		update_post_meta( $post_id, 'tour_price_note', (string) $data['price_note'] );
+	}
+	if ( function_exists( 'watphou_apply_amount_to_price_note' ) ) {
+		$note = trim( (string) get_post_meta( $post_id, 'tour_price_note', true ) );
+		if ( '' !== $note ) {
+			update_post_meta( $post_id, 'tour_price_note', watphou_apply_amount_to_price_note( $note, $price ) );
+		}
+	}
 	update_post_meta( $post_id, 'tour_currency', 'USD' );
 	update_post_meta( $post_id, 'tour_bestseller', ! empty( $data['bestseller'] ) ? '1' : '0' );
 	update_post_meta( $post_id, 'tour_priority', (string) (int) ( $data['priority'] ?? 0 ) );
@@ -448,4 +472,154 @@ function watphou_core_map_excel_destinations( string $raw ): array {
 		}
 	}
 	return array_values( array_unique( $out ) );
+}
+
+/**
+ * @return array<string, mixed>
+ */
+function watphou_core_parse_tour_blocks( string $html ): array {
+	$out = array(
+		'dream'      => '',
+		'cta'        => '',
+		'highlights' => array(),
+		'included'   => array(),
+		'excluded'   => array(),
+		'upgrades'   => array(),
+		'itinerary'  => array(),
+	);
+	if ( preg_match_all( '/<!-- wp:paragraph --><p>(.*?)<\/p><!-- \/wp:paragraph -->/s', $html, $paras ) ) {
+		foreach ( $paras[1] as $i => $p ) {
+			$text = trim( html_entity_decode( wp_strip_all_tags( $p ), ENT_QUOTES, 'UTF-8' ) );
+			if ( '' === $text ) {
+				continue;
+			}
+			if ( false !== strpos( $p, '<strong>' ) && $i === ( count( $paras[1] ) - 1 ) ) {
+				$out['cta'] = $text;
+			} elseif ( '' === $out['dream'] ) {
+				$out['dream'] = $text;
+			}
+		}
+	}
+	if ( preg_match( '/<!-- wp:watphou\/highlights -->(.*?)<!-- \/wp:watphou\/highlights -->/s', $html, $m ) ) {
+		$out['highlights'] = watphou_core_excel_split_list( html_entity_decode( wp_strip_all_tags( $m[1] ), ENT_QUOTES, 'UTF-8' ) );
+	}
+	if ( preg_match_all( '/<!-- wp:watphou\/itinerary-day ({.*?}) -->(?:<p>)?(.*?)(?:<\/p>)?<!-- \/wp:watphou\/itinerary-day -->/s', $html, $days, PREG_SET_ORDER ) ) {
+		foreach ( $days as $day ) {
+			$attrs = json_decode( $day[1], true );
+			$out['itinerary'][] = array(
+				'day'   => (int) ( $attrs['day'] ?? count( $out['itinerary'] ) + 1 ),
+				'title' => (string) ( $attrs['title'] ?? '' ),
+				'body'  => trim( html_entity_decode( wp_strip_all_tags( $day[2] ), ENT_QUOTES, 'UTF-8' ) ),
+			);
+		}
+	}
+	if ( preg_match_all( '/<!-- wp:watphou\/inclusions ({.*?}) -->(.*?)<!-- \/wp:watphou\/inclusions -->/s', $html, $incs, PREG_SET_ORDER ) ) {
+		foreach ( $incs as $inc ) {
+			$attrs = json_decode( $inc[1], true );
+			$type  = (string) ( $attrs['type'] ?? 'included' );
+			$list  = watphou_core_excel_split_list( html_entity_decode( wp_strip_all_tags( $inc[2] ), ENT_QUOTES, 'UTF-8' ) );
+			if ( isset( $out[ $type ] ) ) {
+				$out[ $type ] = $list;
+			}
+		}
+	}
+	return $out;
+}
+
+/**
+ * @return array<string, mixed>
+ */
+function watphou_core_get_tour_editor_fields( int $post_id ): array {
+	$empty = array(
+		'title'         => '',
+		'slug'          => '',
+		'status'        => 'draft',
+		'headline'      => '',
+		'duration'      => '',
+		'duration_term' => '1-day',
+		'destinations'  => array(),
+		'price_from'    => 'XX',
+		'bestseller'    => false,
+		'thumb'         => 0,
+		'dream'         => '',
+		'cta'           => '',
+		'highlights'    => array(),
+		'included'      => array(),
+		'excluded'      => array(),
+		'upgrades'      => array(),
+		'itinerary'     => array(),
+	);
+	if ( $post_id < 1 ) {
+		return $empty;
+	}
+	$post = get_post( $post_id );
+	if ( ! $post instanceof WP_Post ) {
+		return $empty;
+	}
+	$parsed = watphou_core_parse_tour_blocks( (string) $post->post_content );
+	$terms  = wp_get_object_terms( $post_id, 'duration', array( 'fields' => 'slugs' ) );
+	$dest   = wp_get_object_terms( $post_id, 'destination', array( 'fields' => 'slugs' ) );
+	$dur_term = ( ! is_wp_error( $terms ) && ! empty( $terms ) ) ? (string) $terms[0] : watphou_core_map_duration_term( (string) get_post_meta( $post_id, 'tour_duration', true ) );
+	$highlights = get_post_meta( $post_id, '_watphou_highlights', true );
+	$included   = get_post_meta( $post_id, '_watphou_included', true );
+	$excluded   = get_post_meta( $post_id, '_watphou_excluded', true );
+	$upgrades   = get_post_meta( $post_id, '_watphou_upgrades', true );
+	$itinerary  = get_post_meta( $post_id, '_watphou_itinerary', true );
+	return array(
+		'title'         => $post->post_title,
+		'slug'          => $post->post_name,
+		'status'        => $post->post_status,
+		'headline'      => (string) get_post_meta( $post_id, 'tour_headline', true ),
+		'duration'      => (string) get_post_meta( $post_id, 'tour_duration', true ),
+		'duration_term' => $dur_term,
+		'destinations'  => is_wp_error( $dest ) ? array() : array_values( $dest ),
+		'price_from'    => (string) get_post_meta( $post_id, 'tour_price_from', true ) ?: 'XX',
+		'bestseller'    => in_array( (string) get_post_meta( $post_id, 'tour_bestseller', true ), array( '1', 'true' ), true ),
+		'thumb'         => (int) get_post_thumbnail_id( $post_id ),
+		'dream'         => $post->post_excerpt ?: (string) $parsed['dream'],
+		'cta'           => (string) get_post_meta( $post_id, '_watphou_cta', true ) ?: (string) $parsed['cta'],
+		'highlights'    => is_array( $highlights ) && $highlights ? $highlights : $parsed['highlights'],
+		'included'      => is_array( $included ) && $included ? $included : $parsed['included'],
+		'excluded'      => is_array( $excluded ) && $excluded ? $excluded : $parsed['excluded'],
+		'upgrades'      => is_array( $upgrades ) && $upgrades ? $upgrades : $parsed['upgrades'],
+		'itinerary'     => is_array( $itinerary ) && $itinerary ? $itinerary : $parsed['itinerary'],
+	);
+}
+
+function watphou_core_store_tour_lists( int $post_id, array $data ): void {
+	update_post_meta( $post_id, '_watphou_highlights', $data['highlights'] ?? array() );
+	update_post_meta( $post_id, '_watphou_included', $data['included'] ?? array() );
+	update_post_meta( $post_id, '_watphou_excluded', $data['excluded'] ?? array() );
+	update_post_meta( $post_id, '_watphou_upgrades', $data['upgrades'] ?? array() );
+	update_post_meta( $post_id, '_watphou_itinerary', $data['itinerary'] ?? array() );
+	update_post_meta( $post_id, '_watphou_cta', $data['cta'] ?? '' );
+}
+
+add_action( 'init', 'watphou_core_maybe_backfill_duration_terms', 60 );
+
+function watphou_core_maybe_backfill_duration_terms(): void {
+	if ( '1.6.0' === (string) get_option( 'watphou_duration_backfill' ) ) {
+		return;
+	}
+	if ( ! taxonomy_exists( 'duration' ) ) {
+		return;
+	}
+	watphou_core_ensure_package_terms();
+	$tours = get_posts(
+		array(
+			'post_type'      => 'tour',
+			'posts_per_page' => -1,
+			'post_status'    => 'any',
+			'lang'           => '',
+		)
+	);
+	foreach ( $tours as $tour ) {
+		$have = wp_get_object_terms( $tour->ID, 'duration', array( 'fields' => 'ids' ) );
+		if ( ! is_wp_error( $have ) && ! empty( $have ) ) {
+			continue;
+		}
+		$dur = (string) get_post_meta( $tour->ID, 'tour_duration', true );
+		wp_set_object_terms( $tour->ID, watphou_core_map_duration_term( $dur ), 'duration', false );
+	}
+	update_option( 'watphou_duration_backfill', '1.6.0', false );
 }

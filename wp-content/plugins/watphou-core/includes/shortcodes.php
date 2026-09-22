@@ -42,7 +42,7 @@ add_shortcode( 'watphou_featured_tours', function ( $atts ) {
 
 add_filter( 'shortcode_atts_watphou_booking_form', function ( $out, $pairs, $atts ) {
 	if ( empty( $out['tour_id'] ) && is_singular( 'tour' ) ) {
-		$out['tour_id'] = get_the_ID();
+		$out['tour_id'] = (int) get_queried_object_id();
 	}
 	return $out;
 }, 10, 3 );

@@ -69,6 +69,23 @@ function watphou_rewire_absolute_urls( string $value ): string {
 add_filter( 'pre_option_home', 'watphou_filter_public_url', 20 );
 add_filter( 'pre_option_siteurl', 'watphou_filter_public_url', 20 );
 
+add_action(
+	'template_redirect',
+	static function () {
+		if ( is_ssl() ) {
+			return;
+		}
+		$host = watphou_request_host();
+		if ( ! in_array( $host, watphou_allowed_public_hosts(), true ) ) {
+			return;
+		}
+		$uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) $_SERVER['REQUEST_URI'] : '/';
+		wp_safe_redirect( 'https://' . $host . $uri, 301 );
+		exit;
+	},
+	0
+);
+
 add_filter( 'pll_check_canonical_url', '__return_false' );
 
 add_filter(

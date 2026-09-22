@@ -9,7 +9,7 @@
 | Old URL slug | Type | New target | Status |
 |--------------|------|------------|--------|
 | `/` | home | `/en/` homepage | pending |
-| `/about-us` | page | `/en/about-us/` | pending |
+| `/about-us` | page | `/about-us/` | done (Wix copy 2026-09-19) |
 | `/contact-us` | page | `/en/contact/` | pending |
 | `/book-online` | page | `/en/booking-request/` | pending |
 | `/destinations` | archive | `/en/destinations/` | pending |
@@ -71,7 +71,7 @@
 |------|----|----|-----|
 | Homepage | source | PDF partial | draft needed |
 | Core 8 tours | source | PDF partial | draft needed |
-| About | source | needed | draft needed |
+| About | Wix live copy | English until reviewed | English until reviewed |
 | Contact | source | needed | draft needed |
 | Legal pages | needed | needed | needed |
 

@@ -26,10 +26,10 @@ class Watphou_Import_CLI {
 		}
 
 		$featured = array(
-			'bolaven-plateau-classic-full-day-tour' => 100,
-			'bolaven-plateau-classic-2-day'         => 90,
-			'4000islands-vatphu-temple-2-day-1-night' => 85,
-			'3-day-classic-experience-in-southern-laos' => 80,
+			'bolaven-plateau-classic-full-day-tour'       => 100,
+			'4000islands-vatphu-temple-2-day-1-night'     => 90,
+			'3-day-classic-experience-in-southern-laos'   => 80,
+			'4-day-southern-laos-escape'                  => 70,
 		);
 
 		$files = glob( $json_dir . '/*.json' );

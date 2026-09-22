@@ -61,6 +61,6 @@
   "image": "fisherman.jpg",
   "cta": "Plan this 4-day escape • Tell us if you finish in Pakse or at the Cambodia border",
   "page_type": "tour",
-  "bestseller": false,
+  "bestseller": true,
   "priority": 40
 }

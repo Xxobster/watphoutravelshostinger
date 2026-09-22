@@ -133,26 +133,23 @@ function watphou_core_seed_legal_and_guide_pages(): void {
 		'privacy-policy' => array(
 			'title'   => 'Privacy Policy',
 			'content' => '<p>Watphou Travels (Pakse, Laos) collects only the information you send through our enquiry form, email, or WhatsApp so we can answer your tour request.</p>'
-				. '<p>Typical fields: name, email, phone, travel dates, group size, and your message. We do not sell this information. We do not invent or publish traveller reviews.</p>'
-				. '<p>Contact: <a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a> · ' . esc_html( $phone ) . '<br>' . esc_html( $addr ) . '</p>'
-				. '<p>This page will be reviewed with a lawyer before the public domain launch if you need extra clauses (cookies, analytics identifiers).</p>',
+				. '<p>Typical fields: name, email, phone, travel dates, group size, and your message. We do not sell this information.</p>'
+				. '<p>Contact: <a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a> · ' . esc_html( $phone ) . '<br>' . esc_html( $addr ) . '</p>',
 		),
 		'terms'          => array(
 			'title'   => 'Terms of Use',
-			'content' => '<p>Watphou Travels offers 100% private tours in Southern Laos, departing from Pakse. Information on this website describes itineraries; your confirmed quote is the booking contract.</p>'
-				. '<p>Public prices currently show as <strong>From $XX</strong> until the company confirms real rates. Do not treat placeholder prices as a payable amount.</p>'
-				. '<p>Bookings are requested by form or WhatsApp. Banque Pour Le Commerce Exterieur Lao (BCEL) online payment is not live yet.</p>'
+			'content' => '<p>Watphou Travels offers private tours in Southern Laos, departing from Pakse. Pages on this website describe itineraries. Your written quotation is the contract once you accept it.</p>'
 				. '<p>Contact: <a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a> · ' . esc_html( $phone ) . '<br>' . esc_html( $addr ) . '</p>',
 		),
 		'cancellation'   => array(
 			'title'   => 'Cancellation',
-			'content' => '<p>Cancellation and payment terms are written on your personal quote. We do not publish a generic percentage here until the company confirms the official policy.</p>'
+			'content' => '<p>Cancellation and payment conditions are provided with your quotation and clearly confirmed before booking.</p>'
 				. '<p>To change or cancel a request, write to <a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a> or WhatsApp ' . esc_html( $phone ) . '.</p>'
 				. '<p>' . esc_html( $addr ) . '</p>',
 		),
 		'travel-guide'   => array(
 			'title'   => 'Southern Laos Travel Guide',
-			'content' => '<p>A short, factual guide to the places we operate from Pakse. Use it to choose a private day tour or a multi-day journey. We do not pad this page with invented history or prices.</p>'
+			'content' => '<p>A short, factual guide to the places we operate from Pakse. Use it to choose a private day tour or a multi-day journey.</p>'
 				. '<h2>Pakse</h2><p>Pakse is the gateway to Southern Laos and the office of Watphou Travels (Street N°5, Ban Vat Luang). Most private tours start here.</p>'
 				. '<p><a href="' . esc_url( home_url( '/destinations/pakse/' ) ) . '">Pakse tours</a></p>'
 				. '<h2>Bolaven Plateau</h2><p>Highlands east of Pakse known for Tad Fane and Tad Yuang waterfalls and coffee farms. A classic full-day private tour from Pakse.</p>'
@@ -302,7 +299,7 @@ function watphou_core_backfill_yoast_meta(): void {
 	$page_seo = array(
 		'about-us'         => array( 'About Watphou Travels | Local team in Pakse', 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' ),
 		'contact-us'       => array( 'Contact Watphou Travels | Pakse, Laos', 'WhatsApp +85620 9949 5858 · sales.watphoutravel@gmail.com · Street N°5, Ban Vat Luang, Pakse. Ask for a private tour in Southern Laos.' ),
-		'book-online'      => array( 'Request a private tour | Watphou Travels', 'Send dates and group size for a private tour from Pakse. We reply by email or WhatsApp. Prices show as From $XX until confirmed.' ),
+		'book-online'      => array( 'Request a quote | Watphou Travels', 'Send dates and group size for a private tour from Pakse. We reply with a quote by email or WhatsApp.' ),
 		'day-tours'        => array( 'Day tours from Pakse | Watphou Travels', 'Private one-day tours from Pakse: Bolaven Plateau waterfalls, Vat Phou, Champasak and Pakse riverside.' ),
 		'2-day-tours'      => array( '2-day private tours | Watphou Travels', 'Two-day private journeys from Pakse: Bolaven Plateau or 4000 Islands and Vat Phou.' ),
 		'3-day-tours'      => array( '3-day Southern Laos tours | Watphou Travels', 'Three-day private itineraries in Southern Laos, departing from Pakse with a local team.' ),
@@ -330,10 +327,20 @@ function watphou_core_backfill_yoast_meta(): void {
 		if ( ! $post ) {
 			continue;
 		}
-		$slug  = $post->post_name;
+		$slug  = function_exists( 'watphou_core_canonical_content_slug' )
+			? watphou_core_canonical_content_slug( (string) $post->post_name )
+			: (string) $post->post_name;
 		$title = wp_strip_all_tags( preg_replace( '/^\[DRAFT (FR|TH)\]\s*/i', '', $post->post_title ) );
 		if ( 'page' === $post->post_type && isset( $page_seo[ $slug ] ) ) {
-			update_post_meta( $post_id, '_yoast_wpseo_title', $page_seo[ $slug ][0] );
+			$seo_title = $page_seo[ $slug ][0];
+			if ( 'book-online' === $slug && function_exists( 'watphou_core_quote_seo_titles' ) && function_exists( 'pll_get_post_language' ) ) {
+				$lang = pll_get_post_language( $post_id );
+				$map  = watphou_core_quote_seo_titles();
+				if ( is_string( $lang ) && isset( $map[ $lang ] ) ) {
+					$seo_title = $map[ $lang ];
+				}
+			}
+			update_post_meta( $post_id, '_yoast_wpseo_title', $seo_title );
 			update_post_meta( $post_id, '_yoast_wpseo_metadesc', $page_seo[ $slug ][1] );
 			update_post_meta( $post_id, '_yoast_wpseo_focuskw', $title );
 			continue;

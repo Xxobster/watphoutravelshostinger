@@ -831,26 +831,6 @@
   },
   {
     "kind": "page",
-    "location": "terms",
-    "field": "copy",
-    "en": "Public prices currently show as From $XX until the company confirms real rates. Do not treat placeholder prices as a payable amount.",
-    "fr": "Les prix publics s'affichent actuellement sous la forme From $XX jusqu'à ce que l'entreprise confirme les tarifs réels. Ne considérez pas les prix réservés comme un montant à payer.",
-    "th": "ราคาสาธารณะปัจจุบันแสดงเป็น From $XX จนกว่าบริษัทจะยืนยันอัตราจริง อย่าถือว่าราคาตัวยึดตำแหน่งเป็นจำนวนเงินที่ต้องชำระ",
-    "status": "AI draft — review",
-    "notes": ""
-  },
-  {
-    "kind": "page",
-    "location": "terms",
-    "field": "copy",
-    "en": "Bookings are requested by form or WhatsApp. Banque Pour Le Commerce Exterieur Lao (BCEL) online payment is not live yet.",
-    "fr": "Les réservations se font par formulaire ou WhatsApp. Le paiement en ligne Banque Pour Le Commerce Exterieur Lao (BCEL) n'est pas encore en ligne.",
-    "th": "กรุณาจองตามแบบฟอร์มหรือ WhatsApp Banque Pour Le Commerce Exterieur Lao (BCEL) การชำระเงินออนไลน์ยังไม่สามารถใช้งานได้",
-    "status": "AI draft — review",
-    "notes": ""
-  },
-  {
-    "kind": "page",
     "location": "cancellation",
     "field": "copy",
     "en": "Cancellation",

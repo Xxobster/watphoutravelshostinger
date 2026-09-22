@@ -23,7 +23,9 @@ $fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', '
 			while ( have_posts() ) {
 				the_post();
 				$pid   = get_the_ID();
-				$thumb = get_the_post_thumbnail_url( $pid, 'large' );
+				$thumb = function_exists( 'watphou_core_tour_featured_url' )
+					? watphou_core_tour_featured_url( (int) $pid, 'large' )
+					: get_the_post_thumbnail_url( $pid, 'large' );
 				if ( ! $thumb ) {
 					$thumb = $img . '/' . $fallbacks[ $i % count( $fallbacks ) ];
 				}
@@ -35,7 +37,7 @@ $fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', '
 						<span class="wpt-day-badge"><?php echo esc_html( $duration ); ?></span>
 					</div>
 					<div class="wpt-tour-row__content">
-						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<h3><a href="<?php echo esc_url( function_exists( 'watphou_localized_permalink' ) ? watphou_localized_permalink() : get_permalink() ); ?>"><?php the_title(); ?></a></h3>
 						<div class="wpt-tour-row__desc"><?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_excerpt() ?: get_the_content() ), 36 ) ); ?></div>
 					</div>
 					<div class="wpt-tour-row__price">
@@ -44,7 +46,7 @@ $fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', '
 							<span class="wpt-price__num">$XX</span>
 							<span><?php esc_html_e( '/Person', 'watphou-travels' ); ?></span>
 						</div>
-						<a class="wpt-view-tour" href="<?php the_permalink(); ?>"><?php esc_html_e( 'View tour', 'watphou-travels' ); ?></a>
+						<a class="wpt-view-tour" href="<?php echo esc_url( function_exists( 'watphou_localized_permalink' ) ? watphou_localized_permalink() : get_permalink() ); ?>"><?php esc_html_e( 'View tour', 'watphou-travels' ); ?></a>
 					</div>
 				</article>
 				<?php

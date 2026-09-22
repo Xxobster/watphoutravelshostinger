@@ -1,0 +1,348 @@
+{
+  "What's included": {
+    "fr": "Inclus",
+    "th": "รวมในแพ็กเกจ"
+  },
+  "What's not included": {
+    "fr": "Non inclus",
+    "th": "ไม่รวมในแพ็กเกจ"
+  },
+  "Optional upgrades": {
+    "fr": "Options de confort",
+    "th": "ตัวเลือกอัปเกรด"
+  },
+  "Day %d": {
+    "fr": "Jour %d",
+    "th": "วันที่ %d"
+  },
+  "Tours": {
+    "fr": "Circuits",
+    "th": "ทัวร์"
+  },
+  "WhatsApp us": {
+    "fr": "Nous contacter sur WhatsApp",
+    "th": "ติดต่อเราทาง WhatsApp"
+  },
+  "Tour details are filled in. Add your dates and contact details.": {
+    "fr": "Les informations du circuit sont déjà renseignées. Ajoutez vos dates et vos coordonnées.",
+    "th": "รายละเอียดทัวร์ถูกกรอกไว้แล้ว กรุณาเพิ่มวันเดินทางและข้อมูลติดต่อ"
+  },
+  "Tour photos": {
+    "fr": "Photos du circuit",
+    "th": "รูปทัวร์"
+  },
+  "Phone/WhatsApp:": {
+    "fr": "Téléphone/WhatsApp :",
+    "th": "โทรศัพท์/WhatsApp:"
+  },
+  "Email:": {
+    "fr": "E-mail :",
+    "th": "อีเมล:"
+  },
+  "Phone:": {
+    "fr": "Téléphone :",
+    "th": "โทรศัพท์:"
+  },
+  "Facebook page:": {
+    "fr": "Page Facebook :",
+    "th": "เพจ Facebook:"
+  },
+  "4000 Islands": {
+    "fr": "4000 îles"
+  },
+  "4000 Islands (Si Phan Don)": {
+    "fr": "4000 îles"
+  },
+  "From $%s per person — Standard accommodation. Comfort upgrades available.": {
+    "fr": "À partir de %s $ par personne — Hébergement standard. Options de confort disponibles.",
+    "th": "เริ่มต้น %s ดอลลาร์สหรัฐต่อท่าน — ที่พักมาตรฐาน มีตัวเลือกอัปเกรดความสะดวกสบาย"
+  },
+  "From $%s per person — Standard.": {
+    "fr": "À partir de %s $ par personne — Standard.",
+    "th": "เริ่มต้น %s ดอลลาร์สหรัฐต่อท่าน — มาตรฐาน"
+  },
+  "From $XX per person — Standard.": {
+    "fr": "À partir de XX $ par personne — Standard.",
+    "th": "เริ่มต้น XX ดอลลาร์สหรัฐต่อท่าน — มาตรฐาน"
+  },
+  "From $XX per person — Standard accommodation. Comfort upgrades available.": {
+    "fr": "À partir de XX $ par personne — Hébergement standard. Options de confort disponibles.",
+    "th": "เริ่มต้น XX ดอลลาร์สหรัฐต่อท่าน — ที่พักมาตรฐาน มีตัวเลือกอัปเกรดความสะดวกสบาย"
+  },
+  "Popular Private Tours": {
+    "fr": "Circuits privés populaires",
+    "th": "ทัวร์ส่วนตัวยอดนิยม"
+  },
+  "A selection of our most popular journeys in Southern Laos.": {
+    "fr": "Une sélection de nos voyages les plus demandés dans le sud du Laos.",
+    "th": "ทริปยอดนิยมของเราในลาวใต้"
+  },
+  "Plan Your Private Tour in 5 Simple Steps": {
+    "fr": "Organisez votre circuit privé en 5 étapes simples",
+    "th": "วางแผนทัวร์ส่วนตัวใน 5 ขั้นตอนง่าย ๆ"
+  },
+  "We receive your request, prepare a quotation, confirm what is included, then finalise the tour with you.": {
+    "fr": "Nous recevons votre demande, préparons un devis, confirmons les inclusions, puis finalisons le circuit avec vous.",
+    "th": "เรารับคำขอของคุณ จัดทำใบเสนอราคา ยืนยันรายการที่รวมไว้ แล้วสรุปทัวร์ร่วมกับคุณ"
+  },
+  "Send Your Request": {
+    "fr": "Envoyez votre demande",
+    "th": "ส่งคำขอของคุณ"
+  },
+  "Receive a Quotation": {
+    "fr": "Recevez un devis",
+    "th": "รับใบเสนอราคา"
+  },
+  "Our Pakse team replies with a clear quotation for your group and dates.": {
+    "fr": "Notre équipe de Pakse vous répond avec un devis clair pour votre groupe et vos dates.",
+    "th": "ทีมงานที่ Pakse จะตอบกลับด้วยใบเสนอราคาที่ชัดเจนตามจำนวนผู้เดินทางและวันเดินทางของคุณ"
+  },
+  "Confirm Inclusions": {
+    "fr": "Confirmez les inclusions",
+    "th": "ยืนยันรายการที่รวม"
+  },
+  "We confirm what is included with you before you accept the quotation.": {
+    "fr": "Nous confirmons avec vous ce qui est inclus avant que vous n’acceptiez le devis.",
+    "th": "เรายืนยันรายการที่รวมกับคุณก่อนที่คุณจะยอมรับใบเสนอราคา"
+  },
+  "Finalise Your Tour": {
+    "fr": "Finalisez votre circuit",
+    "th": "สรุปทัวร์ของคุณ"
+  },
+  "Once you accept, we finalise the itinerary and you travel with our local team.": {
+    "fr": "Une fois le devis accepté, nous finalisons l’itinéraire et vous voyagez avec notre équipe locale.",
+    "th": "เมื่อคุณยอมรับแล้ว เราจะสรุปแผนการเดินทาง และคุณเดินทางกับทีมงานท้องถิ่นของเรา"
+  },
+  "Private tours across Southern Laos — from one day to one week.": {
+    "fr": "Des circuits privés dans tout le sud du Laos — d’une journée à une semaine.",
+    "th": "ทัวร์ส่วนตัวทั่วลาวใต้ — ตั้งแต่หนึ่งวันถึงหนึ่งสัปดาห์"
+  },
+  "No tours for this destination yet.": {
+    "fr": "Aucun circuit pour cette destination pour le moment.",
+    "th": "ยังไม่มีทัวร์สำหรับจุดหมายนี้"
+  },
+  "Tailor-made tours from Pakse (T.1)": {
+    "fr": "Circuits sur mesure depuis Pakse (T.1)",
+    "th": "ทัวร์ตามความต้องการจาก Pakse (T.1)"
+  },
+  "Page not found": {
+    "fr": "Page introuvable",
+    "th": "ไม่พบหน้านี้"
+  },
+  "Sorry, we could not find that page.": {
+    "fr": "Désolé, cette page est introuvable.",
+    "th": "ขออภัย ไม่พบหน้านี้"
+  },
+  "Return home": {
+    "fr": "Retour à l’accueil",
+    "th": "กลับหน้าแรก"
+  },
+  "Image viewer": {
+    "fr": "Visionneuse d’images",
+    "th": "ตัวแสดงรูปภาพ"
+  },
+  "Close": {
+    "fr": "Fermer",
+    "th": "ปิด"
+  },
+  "Previous image": {
+    "fr": "Image précédente",
+    "th": "รูปก่อนหน้า"
+  },
+  "Next image": {
+    "fr": "Image suivante",
+    "th": "รูปถัดไป"
+  },
+  "Open menu": {
+    "fr": "Ouvrir le menu",
+    "th": "เปิดเมนู"
+  },
+  "Private tour": {
+    "fr": "Circuit privé",
+    "th": "ทัวร์ส่วนตัว"
+  },
+  "Primary": {
+    "fr": "Principal",
+    "th": "เมนูหลัก"
+  },
+  "Breadcrumb": {
+    "fr": "Fil d’Ariane",
+    "th": "เส้นทางหน้า"
+  },
+  "Your tour": {
+    "fr": "Votre circuit",
+    "th": "ทัวร์ของคุณ"
+  },
+  "Tour": {
+    "fr": "Circuit",
+    "th": "ทัวร์"
+  },
+  "Select a tour (or describe it in the message)": {
+    "fr": "Choisissez un circuit (ou décrivez-le dans le message)",
+    "th": "เลือกทัวร์ (หรืออธิบายในข้อความ)"
+  },
+  "Tour name": {
+    "fr": "Nom du circuit",
+    "th": "ชื่อทัวร์"
+  },
+  "Package code": {
+    "fr": "Code du forfait",
+    "th": "รหัสแพ็กเกจ"
+  },
+  "Duration": {
+    "fr": "Durée",
+    "th": "ระยะเวลา"
+  },
+  "Departure": {
+    "fr": "Départ",
+    "th": "จุดออกเดินทาง"
+  },
+  "Starting price": {
+    "fr": "Prix de départ",
+    "th": "ราคาเริ่มต้น"
+  },
+  "Tour summary": {
+    "fr": "Résumé du circuit",
+    "th": "สรุปทัวร์"
+  },
+  "Your details": {
+    "fr": "Vos informations",
+    "th": "ข้อมูลของคุณ"
+  },
+  "Name": {
+    "fr": "Nom",
+    "th": "ชื่อ"
+  },
+  "(required)": {
+    "fr": "(obligatoire)",
+    "th": "(จำเป็น)"
+  },
+  "Email": {
+    "fr": "E-mail",
+    "th": "อีเมล"
+  },
+  "Phone": {
+    "fr": "Téléphone",
+    "th": "โทรศัพท์"
+  },
+  "Preferred date": {
+    "fr": "Date souhaitée",
+    "th": "วันเดินทางที่ต้องการ"
+  },
+  "Alternative date": {
+    "fr": "Date de repli",
+    "th": "วันสำรอง"
+  },
+  "Adults": {
+    "fr": "Adultes",
+    "th": "ผู้ใหญ่"
+  },
+  "Children": {
+    "fr": "Enfants",
+    "th": "เด็ก"
+  },
+  "Country": {
+    "fr": "Pays",
+    "th": "ประเทศ"
+  },
+  "Pickup / hotel": {
+    "fr": "Prise en charge / hôtel",
+    "th": "จุดรับ / โรงแรม"
+  },
+  "Hotel name in Pakse": {
+    "fr": "Nom de l’hôtel à Pakse",
+    "th": "ชื่อโรงแรมใน Pakse"
+  },
+  "Message": {
+    "fr": "Message",
+    "th": "ข้อความ"
+  },
+  "Dates, pace, dietary needs, or questions": {
+    "fr": "Dates, rythme, régime alimentaire ou questions",
+    "th": "วันเดินทาง จังหวะการเที่ยว ข้อจำกัดด้านอาหาร หรือคำถาม"
+  },
+  "Agreement to the privacy policy": {
+    "fr": "Acceptation de la politique de confidentialité",
+    "th": "ยอมรับนโยบายความเป็นส่วนตัว"
+  },
+  "I agree to the <a href=\"%s\">privacy policy</a>.": {
+    "fr": "J’accepte la <a href=\"%s\">politique de confidentialité</a>.",
+    "th": "ฉันยอมรับ<a href=\"%s\">นโยบายความเป็นส่วนตัว</a>"
+  },
+  "This saves your request for the Pakse office and emails them. You will see a confirmation on this page. We reply by email or WhatsApp.": {
+    "fr": "Cela enregistre votre demande pour le bureau de Pakse et leur envoie un e-mail. Une confirmation s’affiche sur cette page. Nous vous répondons par e-mail ou WhatsApp.",
+    "th": "ระบบจะบันทึกคำขอของคุณให้สำนักงานที่ Pakse และส่งอีเมลถึงทีมงาน คุณจะเห็นข้อความยืนยันในหน้านี้ เราจะติดต่อกลับทางอีเมลหรือ WhatsApp"
+  },
+  "Please complete these required fields:": {
+    "fr": "Veuillez renseigner ces champs obligatoires :",
+    "th": "กรุณากรอกช่องที่จำเป็นเหล่านี้:"
+  },
+  "Sending…": {
+    "fr": "Envoi…",
+    "th": "กำลังส่ง…"
+  },
+  "The request could not be sent. Check your connection and try again.": {
+    "fr": "La demande n’a pas pu être envoyée. Vérifiez votre connexion et réessayez.",
+    "th": "ไม่สามารถส่งคำขอได้ กรุณาตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง"
+  },
+  "Please enter your name.": {
+    "fr": "Veuillez indiquer votre nom.",
+    "th": "กรุณากรอกชื่อของคุณ"
+  },
+  "Please enter your email address.": {
+    "fr": "Veuillez indiquer votre adresse e-mail.",
+    "th": "กรุณากรอกอีเมลของคุณ"
+  },
+  "Please enter a valid email address (for example name@example.com).": {
+    "fr": "Veuillez indiquer une adresse e-mail valide (par exemple nom@exemple.com).",
+    "th": "กรุณากรอกอีเมลให้ถูกต้อง (เช่น name@example.com)"
+  },
+  "Please choose a preferred date.": {
+    "fr": "Veuillez choisir une date souhaitée.",
+    "th": "กรุณาเลือกวันเดินทางที่ต้องการ"
+  },
+  "Please agree to the privacy policy.": {
+    "fr": "Veuillez accepter la politique de confidentialité.",
+    "th": "กรุณายอมรับนโยบายความเป็นส่วนตัว"
+  },
+  "Thank you. We received your tour request. The Pakse office will reply by email or WhatsApp.": {
+    "fr": "Merci. Nous avons bien reçu votre demande de circuit. Le bureau de Pakse vous répondra par e-mail ou WhatsApp.",
+    "th": "ขอบคุณ เราได้รับคำขอทัวร์ของคุณแล้ว สำนักงานที่ Pakse จะติดต่อกลับทางอีเมลหรือ WhatsApp"
+  },
+  "Tour destinations": {
+    "fr": "Destinations visitées",
+    "th": "จุดหมายปลายทาง"
+  },
+  "WhatsApp": {
+    "fr": "WhatsApp",
+    "th": "WhatsApp"
+  },
+  "From $XX per person — Standard. Comfort upgrades available.": {
+    "fr": "À partir de XX $ par personne — Formule standard. Options de confort disponibles.",
+    "th": "เริ่มต้น XX ดอลลาร์สหรัฐต่อท่าน — แพ็กเกจมาตรฐาน มีตัวเลือกอัปเกรดความสะดวกสบาย"
+  },
+  "From $%s per person — Standard. Comfort upgrades available.": {
+    "fr": "À partir de %s $ par personne — Formule standard. Options de confort disponibles.",
+    "th": "เริ่มต้น %s ดอลลาร์สหรัฐต่อท่าน — แพ็กเกจมาตรฐาน มีตัวเลือกอัปเกรดความสะดวกสบาย"
+  },
+  "Request a quote": {
+    "fr": "Demander un devis",
+    "th": "ขอใบเสนอราคา"
+  },
+  "08:00 from Pakse": {
+    "fr": "Départ de Pakse à 8 h 00",
+    "th": "ออกเดินทางจาก Pakse เวลา 08:00 น."
+  },
+  "07:30 from Pakse": {
+    "fr": "Départ de Pakse à 7 h 30",
+    "th": "ออกเดินทางจาก Pakse เวลา 07:30 น."
+  },
+  "Request this tour": {
+    "fr": "Demander ce circuit",
+    "th": "สอบถามเกี่ยวกับทัวร์นี้"
+  },
+  "Related tours": {
+    "fr": "Circuits similaires",
+    "th": "ทัวร์ที่เกี่ยวข้อง"
+  }
+}

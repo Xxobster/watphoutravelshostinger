@@ -1,14 +1,14 @@
 {
-  "rows": 494,
+  "rows": 497,
   "kinds": {
-    "ui": 77,
-    "page": 17,
+    "ui": 78,
+    "page": 19,
     "dest": 4,
     "package": 396
   },
   "fields": {
-    "string": 77,
-    "copy": 21,
+    "string": 78,
+    "copy": 23,
     "title": 16,
     "headline": 16,
     "duration": 16,
@@ -48,14 +48,14 @@
     "excluded[4]": 1
   },
   "status": {
-    "Revised": 494
+    "Revised": 497
   },
   "empty_fr": 0,
   "empty_th": 0,
   "same_as_en_fr": 6,
   "same_as_en_th": 2,
   "locations": {
-    "ui:header": 17,
+    "ui:header": 18,
     "ui:home": 45,
     "ui:footer": 7,
     "ui:tour": 3,
@@ -85,7 +85,8 @@
     "package:1.4 pakse-cultural-riverside-exploration-full-day": 23,
     "package:T.1 tailor-made-tours": 15,
     "package:2.3 vatphu-champasak-discovery-2days-1night": 24,
-    "package:1.2 vatphu-riverside-gems-full-day": 20
+    "package:1.2 vatphu-riverside-gems-full-day": 20,
+    "page:book-online": 2
   },
   "plugin_copy": "D:\\projects\\watphoutravels\\wp-content\\plugins\\watphou-core\\data\\reviewed_en_fr_th.json"
 }

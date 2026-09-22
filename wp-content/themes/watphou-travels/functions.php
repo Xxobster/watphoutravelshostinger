@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_THEME_VERSION', '2.1.0' );
+define( 'WATPHOU_THEME_VERSION', '2.4.3' );
 define( 'WATPHOU_THEME_PATH', get_template_directory() );
 define( 'WATPHOU_THEME_URI', get_template_directory_uri() );
 
@@ -28,6 +28,18 @@ function watphou_theme_assets(): void {
 	wp_enqueue_style( 'watphou-theme', get_stylesheet_uri(), array(), WATPHOU_THEME_VERSION );
 	wp_enqueue_style( 'watphou-theme-extra', WATPHOU_THEME_URI . '/assets/css/theme.css', array(), WATPHOU_THEME_VERSION );
 	wp_enqueue_script( 'watphou-theme', WATPHOU_THEME_URI . '/assets/js/theme.js', array(), WATPHOU_THEME_VERSION, true );
+	wp_localize_script(
+		'watphou-theme',
+		'watphouTheme',
+		array(
+			'i18n' => array(
+				'viewer' => __( 'Image viewer', 'watphou-travels' ),
+				'close'  => __( 'Close', 'watphou-travels' ),
+				'prev'   => __( 'Previous image', 'watphou-travels' ),
+				'next'   => __( 'Next image', 'watphou-travels' ),
+			),
+		)
+	);
 }
 
 add_filter( 'wp_get_attachment_image_attributes', 'watphou_lazy_images', 20 );
@@ -54,8 +66,74 @@ function watphou_preload_hero(): void {
 	if ( ! is_front_page() ) {
 		return;
 	}
-	$url = WATPHOU_THEME_URI . '/assets/images/tad-fane.jpg';
-	echo '<link rel="preload" as="image" href="' . esc_url( $url ) . '">' . "\n";
+	$slides = function_exists( 'watphou_home_hero_slides' ) ? watphou_home_hero_slides() : array();
+	if ( ! $slides ) {
+		return;
+	}
+	echo '<link rel="preload" as="image" href="' . esc_url( $slides[0]['url'] ) . '" fetchpriority="high">' . "\n";
 }
 
 require_once WATPHOU_THEME_PATH . '/inc/template-tags.php';
+
+add_filter( 'template_include', 'watphou_theme_template_include' );
+
+/**
+ * Duration listing pages, Destinations hub, and About Us use dedicated templates (not empty page content).
+ */
+function watphou_theme_template_include( string $template ): string {
+	if ( ! is_page() ) {
+		return $template;
+	}
+	$id = get_queried_object_id();
+	$en = $id;
+	if ( function_exists( 'pll_get_post' ) ) {
+		$maybe = pll_get_post( $id, 'en' );
+		if ( $maybe ) {
+			$en = (int) $maybe;
+		}
+	}
+	$slug = (string) get_post_field( 'post_name', $en );
+	$slug = preg_replace( '/-(?:2|3|fr|th)$/', '', $slug ) ?: $slug;
+	$map  = array(
+		'day-tours'       => '1-day',
+		'2-day-tours'     => '2-day',
+		'3-day-tours'     => '3-day',
+		'4-6-day-tours'   => '4-6-day',
+	);
+	if ( isset( $map[ $slug ] ) ) {
+		$GLOBALS['watphou_listing_duration'] = $map[ $slug ];
+		$custom = WATPHOU_THEME_PATH . '/template-tour-listing.php';
+		if ( is_readable( $custom ) ) {
+			return $custom;
+		}
+	}
+	if ( 'destinations' === $slug ) {
+		$custom = WATPHOU_THEME_PATH . '/template-destinations.php';
+		if ( is_readable( $custom ) ) {
+			return $custom;
+		}
+	}
+	if ( 'about-us' === $slug ) {
+		$custom = WATPHOU_THEME_PATH . '/template-about.php';
+		if ( is_readable( $custom ) ) {
+			return $custom;
+		}
+	}
+	return $template;
+}
+
+add_action( 'pre_get_posts', 'watphou_theme_catalog_queries' );
+
+function watphou_theme_catalog_queries( WP_Query $query ): void {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+	if ( $query->is_post_type_archive( 'tour' ) || $query->is_tax( 'destination' ) || $query->is_tax( 'duration' ) ) {
+		$query->set( 'posts_per_page', -1 );
+		$query->set( 'orderby', 'menu_order' );
+		$query->set( 'order', 'ASC' );
+		if ( function_exists( 'watphou_core_current_lang_slug' ) ) {
+			$query->set( 'lang', watphou_core_current_lang_slug() );
+		}
+	}
+}

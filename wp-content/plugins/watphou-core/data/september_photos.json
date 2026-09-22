@@ -1,0 +1,963 @@
+{
+  "version": "1.7.0",
+  "skip_home_hero_folder": "1.Home (Hero pic)",
+  "home_hero": [
+    {
+      "file": "01-tad-fan-hero.jpg",
+      "alt": "Tad Fane waterfall on the Bolaven Plateau",
+      "bytes": 398461
+    },
+    {
+      "file": "02-sunrise-and-fisherman-on-the-mekong-hero.jpg",
+      "alt": "Sunrise and a fisherman on the Mekong River",
+      "bytes": 275058
+    },
+    {
+      "file": "03-vat-phou-temple-hero.jpg",
+      "alt": "Vat Phou temple near Champasak",
+      "bytes": 375593
+    },
+    {
+      "file": "04-khone-phapheng-waterfall-hero.jpg",
+      "alt": "Khone Phapheng waterfall",
+      "bytes": 361937
+    },
+    {
+      "file": "05-don-khon-champasak-laos-hero.jpg",
+      "alt": "Don Khon in Champasak",
+      "bytes": 236652
+    },
+    {
+      "file": "06-phou-salao-pakse-champasak-hero.jpg",
+      "alt": "Phou Salao viewpoint above Pakse",
+      "bytes": 218952
+    },
+    {
+      "file": "07-tad-yuang-hero2.jpg",
+      "alt": "Tad Yuang waterfall",
+      "bytes": 379119
+    },
+    {
+      "file": "08-wat-phou-temple-hero.jpg",
+      "alt": "Wat Phou temple",
+      "bytes": 278273
+    },
+    {
+      "file": "09-temple-buddha-in-khong-island-hero.jpg",
+      "alt": "Temple Buddha on Khong Island",
+      "bytes": 126187
+    },
+    {
+      "file": "10-sunrise-and-fisherman-on-the-mekong-hero-2.jpg",
+      "alt": "Fishermen at sunrise on the Mekong River",
+      "bytes": 177618
+    },
+    {
+      "file": "11-phou-salao-pakse-champasak-hero-2.jpg",
+      "alt": "Phou Salao mountain above Pakse",
+      "bytes": 279068
+    }
+  ],
+  "tours": {
+    "bolaven-plateau-classic-full-day-tour": {
+      "code": "1.1",
+      "folder": "1.1 Bolaven Plateau Classic Full-Day Tour",
+      "featured": "featured.jpg",
+      "featured_src": "Tad Yuang waterfall.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Tad Yuang waterfall",
+      "featured_bytes": 300510,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Ban Kokphung Tai.jpg",
+          "alt": "Ban Kokphung Tai",
+          "bytes": 300057
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Mr Vieng Katou coffee.jpg",
+          "alt": "Mr Vieng Katou coffee",
+          "bytes": 285996
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Spirit house at Ban Khieng Tad Soung, Bolaven.jpg",
+          "alt": "Spirit house at Ban Khieng Tad Soung, Bolaven",
+          "bytes": 381732
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Tad Champee.jpg",
+          "alt": "Tad Champee",
+          "bytes": 348463
+        }
+      ]
+    },
+    "vatphu-riverside-gems-full-day": {
+      "code": "1.2",
+      "folder": "1.2 Vat Phou & Riverside Gems Full-Day",
+      "featured": "featured.jpg",
+      "featured_src": "Vatphou temple.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Vatphou temple",
+      "featured_bytes": 311502,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Boat in Champasak.jpg",
+          "alt": "Boat in Champasak",
+          "bytes": 295432
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393706
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Vat Phu.jpg",
+          "alt": "Vat Phu",
+          "bytes": 310387
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Watphou temple.jpg",
+          "alt": "Watphou temple",
+          "bytes": 302919
+        }
+      ]
+    },
+    "4000islands-full-day": {
+      "code": "1.3",
+      "folder": "1.3 4000 Islands Full-Day",
+      "featured": "featured.jpg",
+      "featured_src": "Liphi with sunset.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Liphi with sunset",
+      "featured_bytes": 267566,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "4000 islands.jpg",
+          "alt": "4000 islands",
+          "bytes": 111919
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 213298
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Liphi.jpg",
+          "alt": "Liphi",
+          "bytes": 296868
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Sunset on the Mekong.jpg",
+          "alt": "Sunset on the Mekong",
+          "bytes": 217348
+        }
+      ]
+    },
+    "pakse-cultural-riverside-exploration-full-day": {
+      "code": "1.4",
+      "folder": "1.4 Pakse Cultural & Riverside Exploration \u2013 Full-Day",
+      "featured": "featured.jpg",
+      "featured_src": "Phou Salao.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Phou Salao",
+      "featured_bytes": 88056,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Boat on the Mekong.jpg",
+          "alt": "Boat on the Mekong",
+          "bytes": 151506
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Buddha Carving.jpg",
+          "alt": "Buddha Carving",
+          "bytes": 249191
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Salao Mountain.jpg",
+          "alt": "Salao Mountain",
+          "bytes": 154412
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Wat Sopse, Pakse.jpg",
+          "alt": "Wat Sopse, Pakse",
+          "bytes": 282026
+        }
+      ]
+    },
+    "dan-sinxai-eco-adventure-trek-full-day": {
+      "code": "1.5",
+      "folder": "1.5 Dan Sinxai Eco Adventure Trek Full-Day",
+      "featured": "featured.jpg",
+      "featured_src": "Trekking in Bolaven.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Trekking in Bolaven",
+      "featured_bytes": 429236,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Dan Sinxai 6.jpg",
+          "alt": "Dan Sinxai 6",
+          "bytes": 509425
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Dan Sinxai.jpg",
+          "alt": "Dan Sinxai",
+          "bytes": 506370
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Tad Champee.jpg",
+          "alt": "Tad Champee",
+          "bytes": 348463
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Trekking in Paksong.jpg",
+          "alt": "Trekking in Paksong",
+          "bytes": 448100
+        }
+      ]
+    },
+    "champasak-cycling-experience": {
+      "code": "1.6",
+      "folder": "1.6 Champasak Cycling Experience",
+      "featured": "featured.jpg",
+      "featured_src": "Cycling in Champasak.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Cycling in Champasak",
+      "featured_bytes": 191026,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Cycling in Champasak 1.jpg",
+          "alt": "Cycling in Champasak 1",
+          "bytes": 394115
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Cycling in Champasak 2.jpg",
+          "alt": "Cycling in Champasak 2",
+          "bytes": 473633
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Wat Muangkang.jpg",
+          "alt": "Wat Muangkang",
+          "bytes": 269868
+        }
+      ]
+    },
+    "full-day-trekking-at-dan-yai-tiger-falls": {
+      "code": "1.7",
+      "folder": "1.7 Full-Day Trekking at Dan Yai & Tiger Falls",
+      "featured": "featured.jpg",
+      "featured_src": "Tad Khamued waterfall.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg"
+      ],
+      "featured_alt": "Tad Khamued waterfall",
+      "featured_bytes": 455025,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Trekking in Bolaven Plateau.jpg",
+          "alt": "Trekking in Bolaven Plateau",
+          "bytes": 426070
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Trekking in Nong Luang, Paksong.jpg",
+          "alt": "Trekking in Nong Luang, Paksong",
+          "bytes": 180402
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Trekking in Paksong, Bolaven.jpg",
+          "alt": "Trekking in Paksong, Bolaven",
+          "bytes": 108677
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Trekking in Paksong.jpg",
+          "alt": "Trekking in Paksong",
+          "bytes": 236682
+        }
+      ]
+    },
+    "bolaven-plateau-classic-2-day": {
+      "code": "2.1",
+      "folder": "2.1 Bolaven Plateau Classic \u2013 2 Days & 1 Night",
+      "featured": "featured.jpg",
+      "featured_src": "Tad Fane.JPG",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg"
+      ],
+      "featured_alt": "Tad Fane",
+      "featured_bytes": 437997,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Ban Kokphung Tai.jpg",
+          "alt": "Ban Kokphung Tai",
+          "bytes": 300057
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Coffee in Bolaven Plateau.jpg",
+          "alt": "Coffee in Bolaven Plateau",
+          "bytes": 219435
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Jhai Coffee.jpg",
+          "alt": "Jhai Coffee",
+          "bytes": 296025
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Mr Vieng coffee.jpg",
+          "alt": "Mr Vieng coffee",
+          "bytes": 456710
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Mr Vieng Katou coffee.jpg",
+          "alt": "Mr Vieng Katou coffee",
+          "bytes": 285996
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Spirit house at Ban Khieng Tad Soung, Bolaven.jpg",
+          "alt": "Spirit house at Ban Khieng Tad Soung, Bolaven",
+          "bytes": 381732
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Tad Champee.jpg",
+          "alt": "Tad Champee",
+          "bytes": 348463
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Tad Yuang waterfall.jpg",
+          "alt": "Tad Yuang waterfall",
+          "bytes": 300510
+        }
+      ]
+    },
+    "4000islands-vatphu-temple-2-day-1-night": {
+      "code": "2.2",
+      "folder": "2.2 4,000 Islands & Vat Phu Temple \u2013 2-Day 1-Night",
+      "featured": "featured.jpg",
+      "featured_src": "Liphi with sunset.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg"
+      ],
+      "featured_alt": "Liphi with sunset",
+      "featured_bytes": 267566,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Boat in 4000 islands.jpg",
+          "alt": "Boat in 4000 islands",
+          "bytes": 182580
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Coffee in Bolaven.jpg",
+          "alt": "Coffee in Bolaven",
+          "bytes": 183882
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Fisherman in 4000 islands.jpg",
+          "alt": "Fisherman in 4000 islands",
+          "bytes": 207795
+        },
+        {
+          "file": "g04.jpg",
+          "src": "French colonial bridge in 4000 islands.jpg",
+          "alt": "French colonial bridge in 4000 islands",
+          "bytes": 136438
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 214546
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Railway Memorail.jpg",
+          "alt": "Railway Memorail",
+          "bytes": 97246
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Vat Phu.jpg",
+          "alt": "Vat Phu",
+          "bytes": 310387
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Vatphou temple.jpg",
+          "alt": "Vatphou temple",
+          "bytes": 311502
+        }
+      ]
+    },
+    "vatphu-champasak-discovery-2days-1night": {
+      "code": "2.3",
+      "folder": "2.3 Vat Phu & Champasak Discovery \u2013 2-Day  1-Night",
+      "featured": "featured.jpg",
+      "featured_src": "Vatphou temple.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg"
+      ],
+      "featured_alt": "Vatphou temple",
+      "featured_bytes": 311502,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Bamboo weaving in Champasak.png",
+          "alt": "Bamboo weaving in Champasak",
+          "bytes": 261596
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Boat on Don Deng.jpg",
+          "alt": "Boat on Don Deng",
+          "bytes": 102063
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Local Pottery.jpg",
+          "alt": "Local Pottery",
+          "bytes": 131472
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Phou Assa.jpeg",
+          "alt": "Phou Assa",
+          "bytes": 294890
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Tomo temple.jpg",
+          "alt": "Tomo temple",
+          "bytes": 636419
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Vat Phu.jpg",
+          "alt": "Vat Phu",
+          "bytes": 310387
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Watphou temple.jpg",
+          "alt": "Watphou temple",
+          "bytes": 302919
+        }
+      ]
+    },
+    "3-day-classic-experience-in-southern-laos": {
+      "code": "3.1",
+      "folder": "3.1 3-Day Classic Experience in Southern Laos",
+      "featured": "featured.jpg",
+      "featured_src": "4000 islands.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg",
+        "g09.jpg",
+        "g10.jpg"
+      ],
+      "featured_alt": "4000 islands",
+      "featured_bytes": 97863,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "4000 islands Laos.JPG",
+          "alt": "4000 islands Laos",
+          "bytes": 102245
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Boat in 4000 islands.jpg",
+          "alt": "Boat in 4000 islands",
+          "bytes": 182580
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Coffee in Bolaven Plateau.jpg",
+          "alt": "Coffee in Bolaven Plateau",
+          "bytes": 151493
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Coffee in Paksong.jpg",
+          "alt": "Coffee in Paksong",
+          "bytes": 161292
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 214546
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Liphi with sunset.jpg",
+          "alt": "Liphi with sunset",
+          "bytes": 267566
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Railway Memorail.jpg",
+          "alt": "Railway Memorail",
+          "bytes": 97246
+        },
+        {
+          "file": "g09.jpg",
+          "src": "Tad Yuang waterfall.JPG",
+          "alt": "Tad Yuang waterfall",
+          "bytes": 285470
+        },
+        {
+          "file": "g10.jpg",
+          "src": "Vatphou temple.jpg",
+          "alt": "Vatphou temple",
+          "bytes": 311502
+        }
+      ]
+    },
+    "3-day-highlights-of-southern-laos": {
+      "code": "3.2",
+      "folder": "3.2 3-Day Highlights of Southern Laos",
+      "featured": "featured.jpg",
+      "featured_src": "Tad Fane.JPG",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg",
+        "g09.jpg",
+        "g10.jpg"
+      ],
+      "featured_alt": "Tad Fane",
+      "featured_bytes": 437997,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Fisherman in 4000 islands.jpg",
+          "alt": "Fisherman in 4000 islands",
+          "bytes": 207795
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 214546
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Liphi with sunset.jpg",
+          "alt": "Liphi with sunset",
+          "bytes": 267566
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Old railway bridge.jpg",
+          "alt": "Old railway bridge",
+          "bytes": 91583
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Sunset on the Mekong.jpg",
+          "alt": "Sunset on the Mekong",
+          "bytes": 224664
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Tad Yuang waterfall.JPG",
+          "alt": "Tad Yuang waterfall",
+          "bytes": 285470
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Top of volcano.jpeg",
+          "alt": "Top of volcano",
+          "bytes": 362136
+        },
+        {
+          "file": "g09.jpg",
+          "src": "Trekking on volcano in Bolaven Plateau.jpeg",
+          "alt": "Trekking on volcano in Bolaven Plateau",
+          "bytes": 504415
+        },
+        {
+          "file": "g10.jpg",
+          "src": "Vatphou temple.jpg",
+          "alt": "Vatphou temple",
+          "bytes": 311502
+        }
+      ]
+    },
+    "4-day-southern-laos-escape": {
+      "code": "4.1",
+      "folder": "4.1 4-Day Southern Laos Escape",
+      "featured": "featured.jpg",
+      "featured_src": "Tad Fane.JPG",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg",
+        "g09.jpg",
+        "g10.jpg"
+      ],
+      "featured_alt": "Tad Fane",
+      "featured_bytes": 437997,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "4000 islands.jpg",
+          "alt": "4000 islands",
+          "bytes": 295432
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Fisherman in 4000 islands.jpg",
+          "alt": "Fisherman in 4000 islands",
+          "bytes": 207795
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 214546
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Old railway bridge.jpg",
+          "alt": "Old railway bridge",
+          "bytes": 106073
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Sunset on the Mekong.jpg",
+          "alt": "Sunset on the Mekong",
+          "bytes": 224664
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Tad Yuang waterfall.JPG",
+          "alt": "Tad Yuang waterfall",
+          "bytes": 285470
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Top of volcano.jpeg",
+          "alt": "Top of volcano",
+          "bytes": 362136
+        },
+        {
+          "file": "g09.jpg",
+          "src": "Trekking on volcano in Bolaven Plateau.jpeg",
+          "alt": "Trekking on volcano in Bolaven Plateau",
+          "bytes": 504415
+        },
+        {
+          "file": "g10.jpg",
+          "src": "Vatphou temple.jpg",
+          "alt": "Vatphou temple",
+          "bytes": 311502
+        }
+      ]
+    },
+    "5-day-exploring-southern-laos": {
+      "code": "5.1",
+      "folder": "5.1 5-Day Exploring Southern Laos",
+      "featured": "featured.jpg",
+      "featured_src": "Liphi with sunset.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg",
+        "g09.jpg",
+        "g10.jpg"
+      ],
+      "featured_alt": "Liphi with sunset",
+      "featured_bytes": 275275,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Boat in Champasak.jpg",
+          "alt": "Boat in Champasak",
+          "bytes": 295432
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Fisherman in 4000 islands.jpg",
+          "alt": "Fisherman in 4000 islands",
+          "bytes": 207795
+        },
+        {
+          "file": "g04.jpg",
+          "src": "French locomotive.jpg",
+          "alt": "French locomotive",
+          "bytes": 537813
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Jhai Coffee.jpg",
+          "alt": "Jhai Coffee",
+          "bytes": 306469
+        },
+        {
+          "file": "g06.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 214546
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Old railway bridge.jpg",
+          "alt": "Old railway bridge",
+          "bytes": 106073
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Phou Assa.jpeg",
+          "alt": "Phou Assa",
+          "bytes": 314553
+        },
+        {
+          "file": "g09.jpg",
+          "src": "Tad Yuang waterfall.JPG",
+          "alt": "Tad Yuang waterfall",
+          "bytes": 285470
+        },
+        {
+          "file": "g10.jpg",
+          "src": "The fisherman in 4000 islands.jpeg",
+          "alt": "The fisherman in 4000 islands",
+          "bytes": 201555
+        }
+      ]
+    },
+    "6-day-journey-to-the-heart-of-southern-laos": {
+      "code": "6.1",
+      "folder": "6.1 6-Day Journey to the Heart of Southern Laos",
+      "featured": "featured.jpg",
+      "featured_src": "Vatphou temple.jpg",
+      "gallery": [
+        "g01.jpg",
+        "g02.jpg",
+        "g03.jpg",
+        "g04.jpg",
+        "g05.jpg",
+        "g06.jpg",
+        "g07.jpg",
+        "g08.jpg",
+        "g09.jpg",
+        "g10.jpg"
+      ],
+      "featured_alt": "Vatphou temple",
+      "featured_bytes": 311502,
+      "gallery_meta": [
+        {
+          "file": "g01.jpg",
+          "src": "Bicycle in Champasak.jpeg",
+          "alt": "Bicycle in Champasak",
+          "bytes": 280214
+        },
+        {
+          "file": "g02.jpg",
+          "src": "Boat in Champasak.jpg",
+          "alt": "Boat in Champasak",
+          "bytes": 295432
+        },
+        {
+          "file": "g03.jpg",
+          "src": "Champasak colonial house.jpg",
+          "alt": "Champasak colonial house",
+          "bytes": 393821
+        },
+        {
+          "file": "g04.jpg",
+          "src": "Cotton weaving in Champasak.jpg",
+          "alt": "Cotton weaving in Champasak",
+          "bytes": 267672
+        },
+        {
+          "file": "g05.jpg",
+          "src": "Fisherman in 4000 islands.jpg",
+          "alt": "Fisherman in 4000 islands",
+          "bytes": 179819
+        },
+        {
+          "file": "g06.jpg",
+          "src": "French locomotive.jpg",
+          "alt": "French locomotive",
+          "bytes": 517071
+        },
+        {
+          "file": "g07.jpg",
+          "src": "Jhai Coffee.jpg",
+          "alt": "Jhai Coffee",
+          "bytes": 296025
+        },
+        {
+          "file": "g08.jpg",
+          "src": "Khonephapheng.jpg",
+          "alt": "Khonephapheng",
+          "bytes": 214546
+        },
+        {
+          "file": "g09.jpg",
+          "src": "Liphi with sunset.jpg",
+          "alt": "Liphi with sunset",
+          "bytes": 267566
+        },
+        {
+          "file": "g10.jpg",
+          "src": "Old railway bridge.jpg",
+          "alt": "Old railway bridge",
+          "bytes": 106073
+        }
+      ]
+    }
+  },
+  "destinations": {
+    "bolaven.jpg": "1.1/Tad Yuang waterfall.jpg",
+    "liphi.jpg": "1.3/Liphi with sunset.jpg",
+    "vatphou.jpg": "1.2/Vatphou temple.jpg",
+    "donkhone.jpg": "1.4/Phou Salao.jpg"
+  }
+}

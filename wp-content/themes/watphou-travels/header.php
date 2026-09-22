@@ -52,37 +52,23 @@ defined( 'ABSPATH' ) || exit;
 			<ul class="wpt-menu">
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '/' ) : home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'day-tours' ) : home_url( '/day-tours/' ) ); ?>"><?php esc_html_e( 'Day Tours', 'watphou-travels' ); ?></a></li>
-				<li class="has-children">
-					<a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '2-day-tours' ) : home_url( '/2-day-tours/' ) ); ?>"><?php esc_html_e( 'Tour Packages', 'watphou-travels' ); ?> <span>▾</span></a>
-					<ul class="wpt-dropdown">
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'day-tours' ) : home_url( '/day-tours/' ) ); ?>"><?php esc_html_e( 'Day Tours', 'watphou-travels' ); ?></a></li>
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '2-day-tours' ) : home_url( '/2-day-tours/' ) ); ?>"><?php esc_html_e( '2-Day Tours', 'watphou-travels' ); ?></a></li>
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '3-day-tours' ) : home_url( '/3-day-tours/' ) ); ?>"><?php esc_html_e( '3-Day Tours', 'watphou-travels' ); ?></a></li>
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '4-6-day-tours' ) : home_url( '/4-6-day-tours/' ) ); ?>"><?php esc_html_e( '4–6 Day Tours', 'watphou-travels' ); ?></a></li>
-						<li><a href="<?php echo esc_url( get_post_type_archive_link( 'tour' ) ); ?>"><?php esc_html_e( 'View all tours', 'watphou-travels' ); ?></a></li>
-					</ul>
-				</li>
+				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '2-day-tours' ) : home_url( '/2-day-tours/' ) ); ?>"><?php esc_html_e( '2-Day Tours', 'watphou-travels' ); ?></a></li>
+				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '3-day-tours' ) : home_url( '/3-day-tours/' ) ); ?>"><?php esc_html_e( '3-Day Tours', 'watphou-travels' ); ?></a></li>
+				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '4-6-day-tours' ) : home_url( '/4-6-day-tours/' ) ); ?>"><?php esc_html_e( '4-6 Day Tours', 'watphou-travels' ); ?></a></li>
 				<li class="has-children">
 					<a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'destinations' ) : home_url( '/destinations/' ) ); ?>"><?php esc_html_e( 'Destinations', 'watphou-travels' ); ?> <span>▾</span></a>
 					<ul class="wpt-dropdown">
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ); ?>">Bolaven Plateau</a></li>
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ); ?>">4000 Islands (Si Phan Don)</a></li>
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ); ?>">Vat Phou &amp; Champasak</a></li>
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ); ?>">Pakse &amp; Surroundings</a></li>
+						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ); ?>"><?php esc_html_e( 'Bolaven Plateau', 'watphou-travels' ); ?></a></li>
+						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ); ?>"><?php esc_html_e( '4000 Islands (Si Phan Don)', 'watphou-travels' ); ?></a></li>
+						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ); ?>"><?php esc_html_e( 'Vat Phou & Champasak', 'watphou-travels' ); ?></a></li>
+						<li><a href="<?php echo esc_url( function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ); ?>"><?php esc_html_e( 'Pakse & Surroundings', 'watphou-travels' ); ?></a></li>
 					</ul>
 				</li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'tailor-made-tours' ) : home_url( '/tailor-made-tours/' ) ); ?>"><?php esc_html_e( 'Tailor-made', 'watphou-travels' ); ?></a></li>
-				<li class="has-children">
-					<a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'about-us' ) : home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About Us', 'watphou-travels' ); ?> <span>▾</span></a>
-					<ul class="wpt-dropdown">
-						<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'about-us' ) : home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About us', 'watphou-travels' ); ?></a></li>
-						<li><a href="<?php echo esc_url( ( function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' ) ) . '#why-us' ); ?>"><?php esc_html_e( 'Why travel with us', 'watphou-travels' ); ?></a></li>
-						<li><a href="<?php echo esc_url( ( function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' ) ) . '#reviews' ); ?>"><?php esc_html_e( 'Reviews', 'watphou-travels' ); ?></a></li>
-					</ul>
-				</li>
+				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'about-us' ) : home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About Us', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'contact-us' ) : home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact', 'watphou-travels' ); ?></a></li>
 			</ul>
-			<a class="wpt-cta-outline" href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'book-online' ) : home_url( '/book-online/' ) ); ?>"><?php esc_html_e( 'Customize trip', 'watphou-travels' ); ?></a>
+			<a class="wpt-cta-outline" href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'book-online' ) : home_url( '/book-online/' ) ); ?>"><?php esc_html_e( 'Request a quote', 'watphou-travels' ); ?></a>
 		</div>
 	</nav>
 </header>

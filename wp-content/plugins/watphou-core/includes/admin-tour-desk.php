@@ -59,16 +59,24 @@ function watphou_core_render_tour_desk(): void {
 			$price    = sanitize_text_field( $row['price'] ?? 'XX' );
 			$duration = sanitize_text_field( $row['duration'] ?? '' );
 			$thumb    = isset( $row['thumb'] ) ? (int) $row['thumb'] : 0;
-			update_post_meta( $id, 'tour_price_from', $price !== '' ? $price : 'XX' );
-			update_post_meta( $id, 'tour_duration', $duration );
-			update_post_meta( $id, 'tour_bestseller', ! empty( $row['bestseller'] ) ? '1' : '0' );
-			if ( $duration && taxonomy_exists( 'duration' ) ) {
-				wp_set_object_terms( $id, watphou_core_map_duration_term( $duration ), 'duration', false );
-			}
-			if ( $thumb > 0 ) {
-				set_post_thumbnail( $id, $thumb );
-			} elseif ( isset( $row['clear_thumb'] ) ) {
-				delete_post_thumbnail( $id );
+			$ids      = function_exists( 'watphou_core_tour_translation_ids' ) ? watphou_core_tour_translation_ids( $id ) : array( $id );
+			foreach ( $ids as $tid ) {
+				if ( function_exists( 'watphou_core_set_tour_price' ) ) {
+					watphou_core_set_tour_price( $tid, $price );
+				} else {
+					update_post_meta( $tid, 'tour_price_from', $price !== '' ? $price : 'XX' );
+				}
+				if ( function_exists( 'watphou_core_set_tour_duration' ) ) {
+					watphou_core_set_tour_duration( $tid, $duration );
+				} else {
+					update_post_meta( $tid, 'tour_duration', $duration );
+				}
+				update_post_meta( $tid, 'tour_bestseller', ! empty( $row['bestseller'] ) ? '1' : '0' );
+				if ( $thumb > 0 ) {
+					set_post_thumbnail( $tid, $thumb );
+				} elseif ( isset( $row['clear_thumb'] ) ) {
+					delete_post_thumbnail( $tid );
+				}
 			}
 			++$saved;
 		}
@@ -77,7 +85,7 @@ function watphou_core_render_tour_desk(): void {
 	$query_args = array(
 		'post_type'      => 'tour',
 		'posts_per_page' => -1,
-		'post_status'    => 'publish',
+		'post_status'    => array( 'publish', 'draft', 'pending' ),
 		'orderby'        => 'title',
 		'order'          => 'ASC',
 	);
@@ -88,8 +96,11 @@ function watphou_core_render_tour_desk(): void {
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Quick edit tours', 'watphou-core' ); ?></h1>
-		<p><?php esc_html_e( 'Change the photo, starting price, duration, and homepage bestseller here. You do not need Appearance → Customize. Use “Edit text” only when you want to change the itinerary or long description.', 'watphou-core' ); ?></p>
-		<p><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-package-sheet' ) ); ?>"><?php esc_html_e( 'Add or update tour text from Excel', 'watphou-core' ); ?></a></p>
+		<p><?php esc_html_e( 'Change the photo, starting price, duration, and homepage bestseller here. You do not need Appearance → Customize. Use “Edit text” to change titles, itinerary, and French/Thai copy. Price, photo, duration, and homepage flag update the listing pages, the tour page, the request form, and French/Thai copies of the same tour.', 'watphou-core' ); ?></p>
+		<p>
+			<a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-tours' ) ); ?>"><?php esc_html_e( 'Manage tours (add, hide, preview, EN/FR/TH text)', 'watphou-core' ); ?></a>
+			<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-package-sheet' ) ); ?>"><?php esc_html_e( 'Add or update tour text from Excel', 'watphou-core' ); ?></a>
+		</p>
 		<p>
 			<strong><?php esc_html_e( 'Price:', 'watphou-core' ); ?></strong>
 			<?php esc_html_e( 'Type a number (for example 95) or leave XX until the real price is confirmed. The website shows “From $XX” until then.', 'watphou-core' ); ?>
@@ -129,6 +140,9 @@ function watphou_core_render_tour_desk(): void {
 						</td>
 						<td>
 							<strong><?php echo esc_html( get_the_title( $tid ) ); ?></strong><br>
+							<?php if ( 'publish' !== $tour->post_status ) : ?>
+								<em><?php esc_html_e( 'Draft — not on the public website', 'watphou-core' ); ?></em><br>
+							<?php endif; ?>
 							<a href="<?php echo esc_url( get_permalink( $tid ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'View on site', 'watphou-core' ); ?></a>
 						</td>
 						<td>
@@ -144,7 +158,7 @@ function watphou_core_render_tour_desk(): void {
 							</label>
 						</td>
 						<td>
-							<a class="button" href="<?php echo esc_url( get_edit_post_link( $tid, 'raw' ) ); ?>"><?php esc_html_e( 'Edit text', 'watphou-core' ); ?></a>
+							<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-tours&tour=' . (int) $tid ) ); ?>"><?php esc_html_e( 'Edit text', 'watphou-core' ); ?></a>
 						</td>
 					</tr>
 				<?php endforeach; ?>

@@ -50,6 +50,6 @@
   "image": "bolaven.jpg",
   "cta": "Book this 2-day experience • Chat with us on WhatsApp",
   "page_type": "tour",
-  "bestseller": true,
+  "bestseller": false,
   "priority": 95
 }

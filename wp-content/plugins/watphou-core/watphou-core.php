@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Core
  * Description: Tours, destinations, settings, and business logic for Watphou Travels.
- * Version: 1.5.0
+ * Version: 1.7.3
  * Author: Watphou Travels
  * Text Domain: watphou-core
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_CORE_VERSION', '1.5.0' );
+define( 'WATPHOU_CORE_VERSION', '1.7.3' );
 define( 'WATPHOU_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WATPHOU_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -32,7 +32,11 @@ require_once WATPHOU_CORE_PATH . 'includes/admin-tour-list.php';
 require_once WATPHOU_CORE_PATH . 'includes/admin-notices.php';
 require_once WATPHOU_CORE_PATH . 'includes/xlsx-reader.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-tour.php';
+require_once WATPHOU_CORE_PATH . 'includes/catalog.php';
+require_once WATPHOU_CORE_PATH . 'includes/photos.php';
+require_once WATPHOU_CORE_PATH . 'includes/admin-tour-manager.php';
 require_once WATPHOU_CORE_PATH . 'includes/apply-reviewed-i18n.php';
+require_once WATPHOU_CORE_PATH . 'includes/copy-review.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-cli.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-admin.php';
 require_once WATPHOU_CORE_PATH . 'includes/shortcodes.php';
@@ -41,6 +45,7 @@ add_action( 'init', 'watphou_core_register_post_types' );
 add_action( 'init', 'watphou_core_register_taxonomies' );
 add_action( 'init', 'watphou_core_register_meta' );
 add_action( 'init', 'watphou_core_register_blocks' );
+add_action( 'init', 'watphou_core_maybe_sync_live_prices', 30 );
 add_action( 'admin_init', 'watphou_core_register_settings' );
 add_action( 'admin_menu', 'watphou_core_admin_menu' );
 add_action( 'admin_notices', 'watphou_core_admin_notices' );

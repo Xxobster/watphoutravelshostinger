@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Bookings
  * Description: Booking requests, state machine, and payment workflow for Watphou Travels.
- * Version: 1.0.0
+ * Version: 1.1.8
  * Author: Watphou Travels
  * Text Domain: watphou-bookings
  * Requires PHP: 8.0
@@ -10,8 +10,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_BOOKINGS_VERSION', '1.0.0' );
+define( 'WATPHOU_BOOKINGS_VERSION', '1.1.8' );
 define( 'WATPHOU_BOOKINGS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'WATPHOU_BOOKINGS_URL', plugin_dir_url( __FILE__ ) );
 
 require_once WATPHOU_BOOKINGS_PATH . 'includes/database.php';
 require_once WATPHOU_BOOKINGS_PATH . 'includes/state-machine.php';
@@ -23,6 +24,30 @@ require_once WATPHOU_BOOKINGS_PATH . 'includes/payment/interface.php';
 require_once WATPHOU_BOOKINGS_PATH . 'includes/payment/mock-provider.php';
 require_once WATPHOU_BOOKINGS_PATH . 'includes/payment/bcel-provider.php';
 require_once WATPHOU_BOOKINGS_PATH . 'includes/payment-router.php';
+
+add_action( 'wp_enqueue_scripts', 'watphou_bookings_enqueue_public' );
+
+function watphou_bookings_enqueue_public(): void {
+	wp_enqueue_script(
+		'watphou-bookings-form',
+		WATPHOU_BOOKINGS_URL . 'assets/form.js',
+		array(),
+		WATPHOU_BOOKINGS_VERSION,
+		true
+	);
+	wp_localize_script(
+		'watphou-bookings-form',
+		'watphouBookings',
+		array(
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'i18n'    => array(
+				'missingTitle' => __( 'Please complete these required fields:', 'watphou-bookings' ),
+				'sending'      => __( 'Sending…', 'watphou-bookings' ),
+				'network'      => __( 'The request could not be sent. Check your connection and try again.', 'watphou-bookings' ),
+			),
+		)
+	);
+}
 
 register_activation_hook( __FILE__, 'watphou_bookings_activate' );
 

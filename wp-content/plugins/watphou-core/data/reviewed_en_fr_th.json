@@ -70,7 +70,7 @@
     "kind": "ui",
     "location": "header",
     "field": "string",
-    "en": "4–6 Day Tours",
+    "en": "4-6 Day Tours",
     "fr": "Circuits de 4 à 6 jours",
     "th": "ทัวร์ 4–6 วัน",
     "notes": "",
@@ -5431,6 +5431,39 @@
     "fr": "Matinée dans l’ensemble de Vat Phou : musée, navette électrique, ancienne chaussée et source sacrée. Court trajet jusqu’à Hong Nang Sida. Promenade dans Champasak. Retour à Pakse en bateau (environ deux heures). Trajet en véhicule : environ 90 km, puis retour en bateau. Repas : non inclus.",
     "th": "ช่วงเช้าเที่ยวพื้นที่วัดพู: พิพิธภัณฑ์ รถรับส่งไฟฟ้า ทางเดินโบราณ และบ่อน้ำศักดิ์สิทธิ์ จากนั้นขับรถระยะสั้นไป Hong Nang Sida เดินเล่นใน Champasak แล้วล่องเรือกลับ Pakse (ประมาณ 2 ชั่วโมง) ระยะทางโดยรถประมาณ 90 กม. แล้วเดินทางกลับด้วยเรือ ไม่รวมมื้ออาหาร",
     "notes": "",
+    "status": "Revised"
+  },
+  {
+    "id": 495,
+    "kind": "ui",
+    "location": "header",
+    "field": "string",
+    "en": "Request a quote",
+    "fr": "Demander un devis",
+    "th": "ขอใบเสนอราคา",
+    "notes": "Header button and quote page title (text review item 16).",
+    "status": "Revised"
+  },
+  {
+    "id": 496,
+    "kind": "page",
+    "location": "book-online",
+    "field": "copy",
+    "en": "Request a quote",
+    "fr": "Demander un devis",
+    "th": "ขอใบเสนอราคา",
+    "notes": "Renamed from Book Online.",
+    "status": "Revised"
+  },
+  {
+    "id": 497,
+    "kind": "page",
+    "location": "book-online",
+    "field": "copy",
+    "en": "You are requesting a private tour. We reply with a clear quote for your dates.",
+    "fr": "Vous demandez un circuit privé. Nous vous répondons avec un devis clair pour vos dates.",
+    "th": "คุณกำลังขอทัวร์ส่วนตัว เราจะตอบกลับด้วยใบเสนอราคาที่ชัดเจนตามวันเดินทางของคุณ",
+    "notes": "Quote page intro. French/Thai follow the reviewed pack wording for quote and private tour.",
     "status": "Revised"
   }
 ]

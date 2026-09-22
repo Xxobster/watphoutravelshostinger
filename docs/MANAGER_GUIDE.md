@@ -14,10 +14,22 @@ Visitors never see a login link. Search engines should stay on `noindex` while t
 
 The Customizer (the left-hand panel that says “You are customizing”) **cannot** change tour prices or tour photos. It only changes site-wide theme options (logo area, extra CSS). Close it.
 
+## Change tour text, add a tour, hide or preview (main tool)
+
+1. Left menu → **Watphou** → **Manage tours**
+2. Click a tour title or **Edit texts**. You see **English**, **French**, and **Thai** tabs with the same fields as the Excel package sheets (slug, title, headline, duration, destinations, introduction, highlights, itinerary days, included / not included, upgrades, call to action)
+3. **Add new tour** creates a draft. Fill the English tab (required). Fill French and Thai when you have professional text — do not machine-translate Thai
+4. **Save as draft (hide + preview first)** — visitors do not see it. Click **Preview this tour** while you are logged in
+5. **Save and publish on the website** — the tour appears in the matching menu (Day Tour, 2-DAY Tours, 3-DAY Tours, 4-6 Day Tours) and destination pages
+6. **Hide from website** / **Show on website** on the tour list turn a tour off or on without deleting it
+7. **Delete** moves the tour (and its French/Thai copies) to the trash
+
+You do **not** need to edit the public website or the block editor for this. **Edit text** on Quick edit tours opens this same screen.
+
 ## Change prices and photos (easiest)
 
 1. Left menu → **Watphou** → **Quick edit tours**
-2. You see every published English tour in one table: photo, price, duration, homepage bestseller
+2. You see every English tour in one table (published and drafts): photo, price, duration, homepage bestseller
 3. **Photo:** click **Change photo** → pick or upload in the Media Library → **Use this photo**
 4. **Price:** type a number (for example `95`) in **From $ (USD)**. Until real prices are confirmed, leave `XX` (the site shows “From $XX”)
 5. Click **Save all changes** at the top or bottom
@@ -39,10 +51,7 @@ Allowed destination names (comma-separated): `bolaven-plateau`, `4000-islands`, 
 
 ## Change the long text in the editor (optional)
 
-1. **Tours → All Tours** → click the tour title
-2. Edit the blocks (dream paragraph, itinerary days, included / excluded)
-3. Right sidebar: **Featured image** is the main photo; **Tour Details** has price and duration if you prefer to edit them here
-4. Click **Update**
+Prefer **Watphou → Manage tours**. The old **Tours → All Tours** list still exists; opening a tour there sends you to Manage tours so the block editor is not required.
 
 ## Contact details (phone, email, address)
 
@@ -57,7 +66,7 @@ Allowed destination names (comma-separated): `bolaven-plateau`, `4000-islands`, 
 
 English is the default public language (no `/en/` in the address). French (`/fr/`) and Thai (`/th/`) use the reviewed texts from `docs/translations/Watphou_EN_FR_TH_reviewed.xlsx`. Later changes can go in that Excel file again, or on the **FR** / **TH** sheets of the tour import workbook.
 
-To replace a language later: edit the **FR** or **TH** sheet and upload the Excel file, or open **Tours** / **Pages**, filter by French or Thai, edit that copy, then **Update**.
+To replace a language later: edit the **French** or **Thai** tab in **Manage tours**, or edit the **FR** / **TH** sheet and upload the Excel file.
 
 ## What you cannot do
 

@@ -165,13 +165,13 @@ function watphou_core_import_packages(): array {
 	}
 
 	$pages = array(
-		'about-us'      => array( 'About Us', 'Your local expert in Southern Laos — private tours with European standards.' ),
-		'contact-us'    => array( 'Contact Us', "Phone/WhatsApp: +85620 9949 5858\nEmail: sales.watphoutravel@gmail.com\nAddress: Street N°5, Ban Vat Luang, Pakse, Laos" ),
-		'book-online'   => array( 'Book Online', 'Request a private tour. We reply with a clear quote for your dates.' ),
+		'about-us'      => array( 'About Us', 'About Watphou Travels — established in 2008 in Pakse. Full page copy matches the live Wix About Us page.' ),
+		'book-online'   => array( 'Request a quote', 'You are requesting a private tour. We reply with a clear quote for your dates.' ),
+		'contact-us'    => array( 'Contact Us', "Planning a trip in Southern Laos? Contact our Pakse team by WhatsApp, phone or email and tell us your dates and travel plans.\nPhone/WhatsApp: +85620 9949 5858\nEmail: sales.watphoutravel@gmail.com\nAddress: Street N°5, Ban Vat Luang, Pakse, Laos" ),
 		'day-tours'     => array( 'Day Tours', 'Private full-day and half-day journeys from Pakse.' ),
 		'2-day-tours'   => array( '2-Day Tours', 'Overnight packages across Bolaven, Vat Phou and the 4000 Islands.' ),
 		'3-day-tours'   => array( '3-Day Tours', 'Three-day private introductions to Southern Laos.' ),
-		'4-6-day-tours' => array( '4–6 Day Tours', 'Longer private journeys with flexible end points.' ),
+		'4-6-day-tours' => array( '4-6 Day Tours', 'Longer private journeys with flexible end points.' ),
 		'destinations'  => array( 'Destinations', 'Bolaven Plateau, 4000 Islands, Vat Phou & Champasak, Pakse & Surroundings.' ),
 	);
 	foreach ( $pages as $slug => $pair ) {

@@ -180,8 +180,6 @@ PAGES = [
     ("page", "privacy-policy", "This page will be reviewed with a lawyer before the public domain launch if you need extra clauses (cookies, analytics identifiers)."),
     ("page", "terms", "Terms of Use"),
     ("page", "terms", "Watphou Travels offers 100% private tours in Southern Laos, departing from Pakse. Information on this website describes itineraries; your confirmed quote is the booking contract."),
-    ("page", "terms", "Public prices currently show as From $XX until the company confirms real rates. Do not treat placeholder prices as a payable amount."),
-    ("page", "terms", "Bookings are requested by form or WhatsApp. Banque Pour Le Commerce Exterieur Lao (BCEL) online payment is not live yet."),
     ("page", "cancellation", "Cancellation"),
     ("page", "cancellation", "Cancellation and payment terms are written on your personal quote. We do not publish a generic percentage here until the company confirms the official policy."),
     ("page", "cancellation", "To change or cancel a request, write to sales.watphoutravel@gmail.com or WhatsApp +85620 9949 5858."),

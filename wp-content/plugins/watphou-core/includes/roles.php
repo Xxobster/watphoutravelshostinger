@@ -45,8 +45,10 @@ function watphou_core_register_roles(): void {
 
 	$admin = get_role( 'administrator' );
 	if ( $admin ) {
-		foreach ( array( 'edit_tour', 'read_tour', 'delete_tour', 'edit_tours', 'edit_others_tours', 'publish_tours', 'delete_tours', 'manage_watphou_bookings' ) as $cap ) {
-			$admin->add_cap( $cap );
+		foreach ( $caps as $cap => $grant ) {
+			if ( $grant ) {
+				$admin->add_cap( $cap );
+			}
 		}
 	}
 }
@@ -82,7 +84,7 @@ add_filter( 'login_redirect', 'watphou_core_login_redirect', 10, 3 );
 
 function watphou_core_login_redirect( $redirect_to, $requested, $user ) {
 	if ( $user instanceof WP_User && in_array( 'tour_manager', (array) $user->roles, true ) ) {
-		return admin_url( 'admin.php?page=watphou-tour-desk' );
+		return admin_url( 'admin.php?page=watphou-tours' );
 	}
 	return $redirect_to;
 }

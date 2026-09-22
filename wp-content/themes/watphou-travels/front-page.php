@@ -3,15 +3,43 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$img = WATPHOU_THEME_URI . '/assets/images';
+$img    = WATPHOU_THEME_URI . '/assets/images';
+$slides = function_exists( 'watphou_home_hero_slides' ) ? watphou_home_hero_slides() : array();
+$first  = $slides[0]['url'] ?? ( $img . '/tad-fane.jpg' );
+$first_alt = $slides[0]['alt'] ?? '';
 ?>
 
-<section class="wpt-hero" style="background-image:url('<?php echo esc_url( $img . '/tad-fane.jpg' ); ?>')">
+<section class="wpt-hero wpt-hero--home" aria-roledescription="carousel" aria-label="<?php esc_attr_e( 'Southern Laos photos', 'watphou-travels' ); ?>">
+	<div class="wpt-hero__slides">
+		<?php if ( $slides ) : ?>
+			<?php foreach ( $slides as $i => $slide ) : ?>
+				<img
+					class="wpt-hero__slide<?php echo 0 === $i ? ' is-active' : ''; ?>"
+					<?php if ( 0 === $i ) : ?>
+						src="<?php echo esc_url( $slide['url'] ); ?>"
+						fetchpriority="high"
+						decoding="async"
+					<?php else : ?>
+						src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+						data-src="<?php echo esc_url( $slide['url'] ); ?>"
+						decoding="async"
+						aria-hidden="true"
+					<?php endif; ?>
+					alt="<?php echo esc_attr( $slide['alt'] ); ?>"
+				>
+			<?php endforeach; ?>
+		<?php else : ?>
+			<img class="wpt-hero__slide is-active" src="<?php echo esc_url( $first ); ?>" alt="<?php echo esc_attr( $first_alt ); ?>" fetchpriority="high" decoding="async">
+		<?php endif; ?>
+	</div>
 	<div class="wpt-hero__overlay"></div>
 	<div class="wpt-container wpt-hero__content">
 		<h1><?php esc_html_e( 'Discover Southern Laos Your Way', 'watphou-travels' ); ?></h1>
 		<p class="wpt-hero__sub">“<?php esc_html_e( 'Your private journeys with a local Pakse team and European standards', 'watphou-travels' ); ?>”</p>
-		<a class="wpt-btn-primary" href="#best-sellers"><?php esc_html_e( 'Get Started Today', 'watphou-travels' ); ?></a>
+		<div class="wpt-hero__actions">
+			<a class="wpt-btn-primary" href="#best-sellers"><?php esc_html_e( 'Get Started Today', 'watphou-travels' ); ?></a>
+			<a class="wpt-btn-whatsapp" href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>"><?php esc_html_e( 'WhatsApp', 'watphou-travels' ); ?></a>
+		</div>
 	</div>
 </section>
 
@@ -25,67 +53,59 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 	</div>
 </section>
 
-<section class="wpt-interest">
-	<div class="wpt-container">
-		<h2><?php esc_html_e( 'Tailored Tours for Your Interest', 'watphou-travels' ); ?></h2>
-	</div>
-	<div class="wpt-interest__track">
-		<?php
-		$interests = array(
-			array( 'Bolaven Plateau', '1 Day', $img . '/bolaven.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
-			array( '4000 Islands', '2 Days', $img . '/liphi.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ),
-			array( 'Vat Phou Temple', '1 Day', $img . '/vatphou.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ),
-			array( 'Coffee Culture', '1 Day', $img . '/coffee.jpg', function_exists( 'watphou_tour_url' ) ? watphou_tour_url( 'bolaven-plateau-classic-full-day-tour' ) : home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
-			array( 'Waterfalls', '1 Day', $img . '/waterfall.jpg', function_exists( 'watphou_tour_url' ) ? watphou_tour_url( 'bolaven-plateau-classic-full-day-tour' ) : home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
-			array( 'Pakse & Mekong', '1 Day', $img . '/donkhone.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ),
-		);
-		foreach ( $interests as $item ) :
-			?>
-			<article class="wpt-interest-card">
-				<div class="wpt-interest-card__image">
-					<img src="<?php echo esc_url( $item[2] ); ?>" alt="<?php echo esc_attr( $item[0] ); ?>" loading="lazy" decoding="async">
-					<div class="wpt-day-badge"><?php echo esc_html( $item[1] ); ?></div>
-				</div>
-				<div class="wpt-interest-card__body">
-					<h3><?php echo esc_html( $item[0] ); ?></h3>
-					<div class="wpt-interest-card__meta">
-						<div class="wpt-from-price">
-							<span><?php esc_html_e( 'from', 'watphou-travels' ); ?></span>
-							<strong>$XX</strong>
-							<span><?php esc_html_e( '/Person', 'watphou-travels' ); ?></span>
-						</div>
-						<span class="wpt-explore-link"><?php esc_html_e( 'Explore', 'watphou-travels' ); ?></span>
-					</div>
-				</div>
-				<a class="wpt-interest-card__hit" href="<?php echo esc_url( $item[3] ); ?>"><span class="screen-reader-text"><?php echo esc_html( $item[0] ); ?></span></a>
-			</article>
-		<?php endforeach; ?>
-	</div>
-</section>
-
 <section class="wpt-adventures" id="best-sellers">
 	<div class="wpt-container">
 		<div class="wpt-adventures__heading">
-			<h2><?php esc_html_e( 'Top Adventures Selected for You', 'watphou-travels' ); ?></h2>
-			<p><?php esc_html_e( 'These handpicked tours promise you unforgettable memories.', 'watphou-travels' ); ?></p>
+			<h2><?php esc_html_e( 'Popular Private Tours', 'watphou-travels' ); ?></h2>
+			<p><?php esc_html_e( 'A selection of our most popular journeys in Southern Laos.', 'watphou-travels' ); ?></p>
 		</div>
 		<div class="wpt-adventures__list">
 			<?php
-			$query = new WP_Query(
-				array(
-					'post_type'      => 'tour',
-					'posts_per_page' => 4,
-					'meta_key'       => 'tour_priority',
-					'orderby'        => 'meta_value_num',
-					'order'          => 'DESC',
-					'meta_query'     => array(
-						array(
-							'key'   => 'tour_bestseller',
-							'value' => '1',
+			$best_ids = function_exists( 'watphou_core_homepage_bestseller_ids' )
+				? watphou_core_homepage_bestseller_ids( 4 )
+				: array();
+			if ( ! $best_ids && function_exists( 'watphou_core_catalog_bestseller_slugs' ) && function_exists( 'watphou_core_find_tour_id' ) ) {
+				foreach ( watphou_core_catalog_bestseller_slugs() as $best_slug ) {
+					$bid = watphou_core_find_tour_id( $best_slug );
+					if ( $bid ) {
+						if ( function_exists( 'pll_get_post' ) ) {
+							$lang = function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : '';
+							$tid  = $lang ? (int) pll_get_post( $bid, $lang ) : 0;
+							$best_ids[] = $tid ?: $bid;
+						} else {
+							$best_ids[] = $bid;
+						}
+					}
+				}
+			}
+			if ( $best_ids ) {
+				$query = new WP_Query(
+					array(
+						'post_type'      => 'tour',
+						'post__in'       => $best_ids,
+						'orderby'        => 'post__in',
+						'posts_per_page' => 4,
+						'post_status'    => 'publish',
+						'lang'           => function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : '',
+					)
+				);
+			} else {
+				$query = new WP_Query(
+					array(
+						'post_type'      => 'tour',
+						'posts_per_page' => 4,
+						'meta_key'       => 'tour_priority',
+						'orderby'        => 'meta_value_num',
+						'order'          => 'DESC',
+						'meta_query'     => array(
+							array(
+								'key'   => 'tour_bestseller',
+								'value' => '1',
+							),
 						),
-					),
-				)
-			);
+					)
+				);
+			}
 			if ( ! $query->have_posts() ) {
 				$query = new WP_Query(
 					array(
@@ -104,7 +124,13 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 					$query->the_post();
 					$pid      = get_the_ID();
 					$duration = get_post_meta( $pid, 'tour_duration', true ) ?: __( 'Flexible', 'watphou-travels' );
-					$thumb    = get_the_post_thumbnail_url( $pid, 'large' );
+					if ( function_exists( 'watphou_core_translate_public_string' ) ) {
+						$duration = watphou_core_translate_public_string( (string) $duration );
+					}
+					$thumb    = function_exists( 'watphou_core_tour_featured_url' )
+						? watphou_core_tour_featured_url( (int) $pid, 'large' )
+						: get_the_post_thumbnail_url( $pid, 'large' );
+					$price    = function_exists( 'watphou_tour_price_number' ) ? watphou_tour_price_number( $pid ) : 'XX';
 					if ( ! $thumb ) {
 						$thumb = $img . '/' . $fallbacks[ $i % count( $fallbacks ) ];
 					}
@@ -123,7 +149,7 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 						<div class="wpt-tour-row__price">
 							<div class="wpt-price">
 								<span><?php esc_html_e( 'from', 'watphou-travels' ); ?></span>
-								<span class="wpt-price__num">$XX</span>
+								<span class="wpt-price__num">$<?php echo esc_html( $price ); ?></span>
 								<span><?php esc_html_e( '/Person', 'watphou-travels' ); ?></span>
 							</div>
 							<a class="wpt-view-tour" href="<?php the_permalink(); ?>"><?php esc_html_e( 'View tour', 'watphou-travels' ); ?></a>
@@ -147,12 +173,10 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 		<div class="wpt-dest-grid">
 			<?php
 			$dests = array(
-				array( 'Pakse', $img . '/donkhone.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ),
-				array( 'Bolaven Plateau', $img . '/bolaven.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
-				array( 'Vat Phou', $img . '/vatphou.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ),
-				array( '4000 Islands', $img . '/liphi.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ),
-				array( 'Tad Fane', $img . '/tad-fane.jpg', function_exists( 'watphou_tour_url' ) ? watphou_tour_url( 'bolaven-plateau-classic-full-day-tour' ) : home_url( '/tours/bolaven-plateau-classic-full-day-tour/' ) ),
-				array( 'Coffee Highlands', $img . '/coffee.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
+				array( __( 'Bolaven Plateau', 'watphou-travels' ), $img . '/bolaven.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
+				array( __( '4000 Islands', 'watphou-travels' ), $img . '/liphi.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ),
+				array( __( 'Vat Phou', 'watphou-travels' ), $img . '/vatphou.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ),
+				array( __( 'Pakse', 'watphou-travels' ), $img . '/donkhone.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ),
 			);
 			foreach ( $dests as $d ) :
 				?>
@@ -167,8 +191,8 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 
 <section class="wpt-steps">
 	<div class="wpt-container">
-		<h2><?php esc_html_e( 'Enjoy Amazing Holidays in 5 Easy Steps', 'watphou-travels' ); ?></h2>
-		<p class="wpt-section-sub"><?php esc_html_e( 'A seamless journey from planning to adventure.', 'watphou-travels' ); ?></p>
+		<h2><?php esc_html_e( 'Plan Your Private Tour in 5 Simple Steps', 'watphou-travels' ); ?></h2>
+		<p class="wpt-section-sub"><?php esc_html_e( 'We receive your request, prepare a quotation, confirm what is included, then finalise the tour with you.', 'watphou-travels' ); ?></p>
 		<div class="wpt-steps__grid">
 			<div>
 				<span class="wpt-step-num">1</span>
@@ -177,23 +201,23 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 			</div>
 			<div>
 				<span class="wpt-step-num">2</span>
-				<h3><?php esc_html_e( 'Customize Your Itinerary', 'watphou-travels' ); ?></h3>
+				<h3><?php esc_html_e( 'Send Your Request', 'watphou-travels' ); ?></h3>
 				<p><?php esc_html_e( 'Tell us your dates, pace, and interests — every tour is 100% private.', 'watphou-travels' ); ?></p>
 			</div>
 			<div>
 				<span class="wpt-step-num">3</span>
-				<h3><?php esc_html_e( 'Confirm Your Booking', 'watphou-travels' ); ?></h3>
-				<p><?php esc_html_e( 'We send a clear quote. Prices stay as From $XX until confirmed.', 'watphou-travels' ); ?></p>
+				<h3><?php esc_html_e( 'Receive a Quotation', 'watphou-travels' ); ?></h3>
+				<p><?php esc_html_e( 'Our Pakse team replies with a clear quotation for your group and dates.', 'watphou-travels' ); ?></p>
 			</div>
 			<div>
 				<span class="wpt-step-num">4</span>
-				<h3><?php esc_html_e( 'Prepare for Your Adventure', 'watphou-travels' ); ?></h3>
-				<p><?php esc_html_e( 'Receive practical tips, meeting points, and what to pack.', 'watphou-travels' ); ?></p>
+				<h3><?php esc_html_e( 'Confirm Inclusions', 'watphou-travels' ); ?></h3>
+				<p><?php esc_html_e( 'We confirm what is included with you before you accept the quotation.', 'watphou-travels' ); ?></p>
 			</div>
 			<div>
 				<span class="wpt-step-num">5</span>
-				<h3><?php esc_html_e( 'Enjoy Your Tour', 'watphou-travels' ); ?></h3>
-				<p><?php esc_html_e( 'Travel with a local driver-guide from Pakse and create lasting memories.', 'watphou-travels' ); ?></p>
+				<h3><?php esc_html_e( 'Finalise Your Tour', 'watphou-travels' ); ?></h3>
+				<p><?php esc_html_e( 'Once you accept, we finalise the itinerary and you travel with our local team.', 'watphou-travels' ); ?></p>
 			</div>
 		</div>
 	</div>
@@ -220,14 +244,6 @@ $img = WATPHOU_THEME_URI . '/assets/images';
 				<p><?php esc_html_e( 'Clear starting prices with easy comfort upgrades.', 'watphou-travels' ); ?></p>
 			</div>
 		</div>
-	</div>
-</section>
-
-<section class="wpt-reviews" id="reviews">
-	<div class="wpt-container">
-		<h2><?php esc_html_e( 'Hear from Our Happy Travelers', 'watphou-travels' ); ?></h2>
-		<p class="wpt-reviews__note"><?php esc_html_e( 'Genuine Google reviews will appear here once imported. We do not display invented reviews.', 'watphou-travels' ); ?></p>
-		<a class="wpt-cta-outline" href="https://www.google.com/maps/search/Watphou+Travels+Pakse" target="_blank" rel="noopener"><?php esc_html_e( 'Read more reviews on Google', 'watphou-travels' ); ?></a>
 	</div>
 </section>
 

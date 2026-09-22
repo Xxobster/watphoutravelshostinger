@@ -34,7 +34,7 @@
 | ID | Task | Status |
 |----|------|--------|
 | WT-101 | Re-scrape full Wix text when rate limit clears | pending |
-| WT-102 | Final photography into media library (placeholders used on staging) | pending |
+| WT-102 | Final photography into media library (placeholders used on staging) | done (September 2026 Nang photos on listings, tour pages, and homepage hero; WT-131) |
 | WT-103 | Client real prices | blocked |
 | WT-104 | Professional TH translations | done for current pack (human-reviewed Excel published as WT-117; further edits welcome) |
 | WT-105 | BCEL live integration | blocked |
@@ -50,6 +50,21 @@
 | WT-116 | Manager Excel import for tours + example workbook (3-Day Classic); fix Import packages 404 | done |
 | WT-117 | Publish reviewed FR/TH from `Watphou_EN_FR_TH_reviewed.xlsx`; add FR and TH sheets to the tour-import example Excel | done |
 | WT-118 | Public staging hostname after Hostinger preview NXDOMAIN (`watphoutravels.site`) | done |
+| WT-119 | Customer menu (Home / Day Tour / 2-DAY / 3-DAY / 4-6 / Destinations / Tailor-Made / About Us / Contact); fill listing pages; remove homepage interest row; HTTPS force; Manage tours EN/FR/TH with preview/draft/publish | done |
+| WT-120 | Lock public tour order and destination membership to `Website structures for Micah 2026-09-01.xlsx` (codes 1.1–6.1, Home best sellers, destination YES table) | done |
+| WT-121 | Pull genuine Google reviews onto Home (automatic cache via Google Places Application Programming Interface). Needs Place Identifier and Application Programming Interface key from the customer. Never invent reviews. | pending |
+| WT-122 | Pre-fill the public booking form with the current tour (name, code, duration, destinations, departure, price, headline); guest fills the rest. Same form on View tour and Book this tour. | done |
+| WT-123 | About Us page: same copy and photos as live Wix `https://www.watphou-travels.com/about-us` (Excel About Us sheet) | done |
+| WT-124 | Apply `Watphou_Travels_Text_Review_Recommendations.pdf` only to our template/legal/button copy; leave customer package, menu, and About text | done |
+| WT-125 | Terms of Use: remove From $XX and Banque Pour Le Commerce Exterieur Lao (BCEL) notes | done |
+| WT-126 | Click-to-enlarge lightbox for About Us photo rows and other content photos (not logos, icons, or destination tiles) | done |
+| WT-127 | View tour and tour-card clicks open itinerary details; request form moves below; remove extra Request this tour under the description | done |
+| WT-128 | Quick Edit price/photo/duration/homepage apply on listing, tour page, request form, and French/Thai copies | done |
+| WT-129 | Send tour request lists all missing required fields (Name, Email, Preferred date, privacy); save booking + email Pakse office | done |
+| WT-130 | Standardize menu capitalization; rename Book Online to Request a quote; fix French/Thai language Uniform Resource Locators (URLs) | done |
+| WT-131 | September 2026 tour photos + homepage hero slideshow; keep English/French/Thai when following in-language links | done |
+| WT-132 | Drop hero intervals to 2/5/10 seconds; translate leftover public English on French/Thai pages; French destination label 4000 îles | done |
+| WT-133 | Keep WordPress File Manager **on** while staging on `watphoutravels.site`. Deactivate it at real-domain cutover: it is a security issue on a public live site (file write as WordPress admin, often targeted). Until then leave it on for emergency overwrite of plugin files. | pending (leave on until live domain) |
 
 ### WT-111 — Production cutover checklist (do not run until approved)
 
@@ -61,6 +76,7 @@ Full detail: `docs/HOSTINGER_DEPLOYMENT.md`.
 - [ ] Primary `https://www.watphou-travels.com`; apex → www 301
 - [ ] Serialized-safe search-replace staging domain → final domain
 - [ ] `WATPHOU_ENV=production`; remove noindex (and any leftover staging auth constants)
+- [ ] **Deactivate WordPress File Manager** (WT-133) — leave it on during staging; it is a security issue on the public live domain
 - [ ] Submit Yoast sitemap (final Uniform Resource Locators (URLs) only) in Google Search Console — **no** Change of Address. Needs WT-114 first.
 - [ ] Add Google Analytics 4 (GA4) measurement ID (`G-XXXXXXXX`) in Settings → Watphou Travels (WT-113). Do not fire analytics on the Hostinger temporary domain.
 - [ ] Keep Wix paid 2–4 weeks; Hostinger backup
@@ -106,3 +122,23 @@ Full detail: `docs/HOSTINGER_DEPLOYMENT.md`.
 **Still blocked until production:** indexing, Google Search Console sitemap submit, Google Analytics 4 (GA4) ID, Google Business Profile, Offer schema (real prices), Review schema (genuine reviews), professional French/Thai copy.
 
 **Evidence:** `docs/SEO_CHECKLIST.md` all production items checked; sitemap accepted in Google Search Console; Lighthouse run logged in `docs/project_memory/TEST_LOG.md`.
+
+### WT-121 — Genuine Google reviews on Home (automatic)
+
+**Goal:** Show real Google reviews in the Home “Hear from Our Happy Travelers” block. Never invent quotes.
+
+**Can it be automatic?** Yes, with the official Google Places Application Programming Interface (Places API). WordPress can refresh a cache once per day (WordPress Cron). Do **not** scrape Google Search or Maps pages (breaks Google terms and is brittle).
+
+**What the customer must give us:**
+1. Google Cloud billing enabled + Places API (Place Details) turned on
+2. An Application Programming Interface key restricted to `watphoutravels.site` (and later `watphou-travels.com`)
+3. The Google Place Identifier for the Pakse office (from Google Maps → the business listing → Share / Place ID)
+
+**Limits to tell the customer:**
+- Place Details returns about **five** most-relevant reviews, not the full history
+- Must show Google attribution (Google’s rules)
+- “Read more on Google” link stays
+- A fuller feed needs Google Business Profile Application Programming Interface and the owner’s Google login (OAuth)
+
+**Until those three items exist:** keep the placeholder. Status: pending / blocked on credentials.
+

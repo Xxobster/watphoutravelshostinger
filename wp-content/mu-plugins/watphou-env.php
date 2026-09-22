@@ -7,6 +7,32 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Hostinger (and similar hosts) terminate HTTPS in front of PHP. Without this,
+ * WordPress thinks the request is HTTP and prints insecure http:// links.
+ */
+if ( ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
+	$watphou_fwd_proto = strtolower( (string) $_SERVER['HTTP_X_FORWARDED_PROTO'] );
+	if ( str_starts_with( $watphou_fwd_proto, 'https' ) ) {
+		$_SERVER['HTTPS'] = 'on';
+	}
+}
+if ( ! empty( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === strtolower( (string) $_SERVER['HTTP_X_FORWARDED_SSL'] ) ) {
+	$_SERVER['HTTPS'] = 'on';
+}
+if ( ! defined( 'FORCE_SSL_ADMIN' ) ) {
+	define( 'FORCE_SSL_ADMIN', true );
+}
+
+/**
+ * Language follows the Uniform Resource Locator (URL) only.
+ * A previous visit to /fr/ must not keep a cookie that then shows French
+ * on unprefixed English pages that share the same slug.
+ */
+if ( ! defined( 'PLL_COOKIE' ) ) {
+	define( 'PLL_COOKIE', false );
+}
+
+/**
  * Set in wp-config.php on the server (never commit):
  *   define( 'WATPHOU_ENV', 'staging' ); // or 'production'
  * Legacy: WATPHOU_DEMO true forces staging behaviour.
@@ -32,6 +58,10 @@ function watphou_is_non_production(): bool {
 }
 
 add_action( 'send_headers', function () {
+	if ( is_ssl() ) {
+		header( 'Strict-Transport-Security: max-age=31536000; includeSubDomains', false );
+		header( 'Content-Security-Policy: upgrade-insecure-requests', false );
+	}
 	if ( watphou_is_non_production() ) {
 		header( 'X-Robots-Tag: noindex, nofollow', true );
 		header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0', true );

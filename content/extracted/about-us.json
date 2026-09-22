@@ -4,10 +4,10 @@
   "page_type": "page",
   "language": "en",
   "title": "About Us",
-  "meta_description": "",
-  "body_text": "Content migrated from https://www.watphou-travels.com/about-us. Full text pending scrape or manual edit.",
+  "meta_description": "Established in 2008, Watphou Travels is a specialized travel agency focused on delivering exceptional tours throughout Southern Laos.",
+  "body_text": "Full Wix About Us copy (agency intro, hospitality venues, Calgary and Les Colchés partnerships) is rendered by wp-content/themes/watphou-travels/template-about.php. Source: live https://www.watphou-travels.com/about-us as required by Excel sheet About Us (“Same as our old website”).",
   "image_urls": [],
-  "content_source": "urls_fallback",
-  "new_url": "/en/about-us/",
-  "migration_status": "placeholder"
+  "content_source": "wix_about_us_2026-09-19",
+  "new_url": "/about-us/",
+  "migration_status": "imported"
 }
