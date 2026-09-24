@@ -85,6 +85,19 @@ class Watphou_Booking_Repository {
 		);
 	}
 
+	/**
+	 * @return object[]
+	 */
+	public static function events( int $booking_id ): array {
+		global $wpdb;
+		return $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT * FROM ' . self::events_table() . ' WHERE booking_id = %d ORDER BY id ASC',
+				$booking_id
+			)
+		);
+	}
+
 	public static function list( array $args = array() ): array {
 		global $wpdb;
 		$where = '1=1';

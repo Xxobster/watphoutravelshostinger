@@ -20,45 +20,140 @@
 
   initHomeHero();
   initLightbox();
+  initReviewsSlider();
 
   function initHomeHero() {
+    var PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+    var FADE_MS = 900;
     var root = document.querySelector('.wpt-hero--home .wpt-hero__slides');
     if (!root) {
       return;
     }
     var slides = Array.prototype.slice.call(root.querySelectorAll('.wpt-hero__slide'));
-    if (slides.length < 2) {
+    if (!slides.length) {
       return;
     }
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      slides.forEach(loadSlide);
+
+    function rememberSrc(el) {
+      if (!el.getAttribute('data-src')) {
+        var current = el.getAttribute('src') || '';
+        if (current && current.indexOf('data:') !== 0) {
+          el.setAttribute('data-src', current);
+        }
+      }
+      if (!el.getAttribute('data-srcset') && el.getAttribute('srcset')) {
+        el.setAttribute('data-srcset', el.getAttribute('srcset'));
+      }
+    }
+
+    function loadSlide(el) {
+      if (!el) {
+        return;
+      }
+      rememberSrc(el);
+      var src = el.getAttribute('data-src');
+      var srcset = el.getAttribute('data-srcset');
+      if (src && el.getAttribute('src') !== src) {
+        el.setAttribute('src', src);
+      }
+      if (srcset) {
+        el.setAttribute('srcset', srcset);
+      }
+    }
+
+    function unloadSlide(el) {
+      if (!el) {
+        return;
+      }
+      if (el.classList.contains('is-active')) {
+        return;
+      }
+      if (parseFloat(window.getComputedStyle(el).opacity) > 0.02) {
+        return;
+      }
+      rememberSrc(el);
+      if (!el.getAttribute('data-src')) {
+        return;
+      }
+      el.removeAttribute('srcset');
+      el.setAttribute('src', PLACEHOLDER);
+    }
+
+    function keepAround(index) {
+      var n = slides.length;
+      var keep = {};
+      keep[index] = true;
+      if (n > 1) {
+        keep[(index + 1) % n] = true;
+      }
+      slides.forEach(function (el, i) {
+        if (keep[i]) {
+          loadSlide(el);
+        } else {
+          unloadSlide(el);
+        }
+      });
+    }
+
+    function slideReady(el, cb) {
+      var finished = false;
+      function done() {
+        if (finished) {
+          return;
+        }
+        finished = true;
+        el.removeEventListener('load', onLoad);
+        el.removeEventListener('error', onLoad);
+        cb();
+      }
+      function onLoad() {
+        if (el.decode) {
+          el.decode().then(done, done);
+        } else {
+          done();
+        }
+      }
+      loadSlide(el);
+      if (el.complete && el.naturalWidth) {
+        onLoad();
+        return;
+      }
+      el.addEventListener('load', onLoad);
+      el.addEventListener('error', onLoad);
+      window.setTimeout(done, 4000);
+    }
+
+    loadSlide(slides[0]);
+    if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
     var intervalMs = 2000;
-    var preloadAll = true;
+    var mem = navigator.deviceMemory;
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (typeof mem === 'number' && mem > 0 && mem <= 4) {
+      intervalMs = 5000;
+    }
+    if (typeof mem === 'number' && mem > 0 && mem <= 2) {
+      intervalMs = 10000;
+    }
     if (conn) {
       if (conn.saveData) {
         intervalMs = 10000;
-        preloadAll = false;
       } else if (conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g') {
         intervalMs = 10000;
-        preloadAll = false;
       } else if (conn.effectiveType === '3g') {
-        intervalMs = 5000;
+        intervalMs = Math.max(intervalMs, 5000);
       }
       if (typeof conn.downlink === 'number' && conn.downlink > 0 && conn.downlink < 1.5) {
         intervalMs = Math.max(intervalMs, 5000);
         if (conn.downlink < 0.7) {
           intervalMs = 10000;
-          preloadAll = false;
         }
       }
     }
 
-    loadSlide(slides[0]);
-    loadSlide(slides[1]);
+    keepAround(0);
 
     var first = slides[0];
     var started = false;
@@ -71,27 +166,8 @@
       var loadMs = performance.now() - t0;
       if (loadMs > 2500) {
         intervalMs = Math.max(intervalMs, 10000);
-        preloadAll = false;
       } else if (loadMs > 1200) {
         intervalMs = Math.max(intervalMs, 5000);
-      }
-      if (preloadAll) {
-        slides.forEach(loadSlide);
-      } else {
-        var i = 2;
-        function nextIdle() {
-          if (i >= slides.length) {
-            return;
-          }
-          loadSlide(slides[i]);
-          i += 1;
-          if ('requestIdleCallback' in window) {
-            window.requestIdleCallback(nextIdle, { timeout: 4000 });
-          } else {
-            setTimeout(nextIdle, 1500);
-          }
-        }
-        nextIdle();
       }
       startRotate();
     }
@@ -103,27 +179,47 @@
       setTimeout(onFirstReady, 4000);
     }
 
-    function loadSlide(el) {
-      if (!el) {
-        return;
-      }
-      var src = el.getAttribute('data-src');
-      if (src && el.getAttribute('src') !== src) {
-        el.setAttribute('src', src);
-      }
-    }
-
     function startRotate() {
       var idx = 0;
       var timer = null;
+      var fading = false;
       function show(n) {
-        slides[idx].classList.remove('is-active');
-        slides[idx].setAttribute('aria-hidden', 'true');
-        idx = n;
-        loadSlide(slides[idx]);
-        loadSlide(slides[(idx + 1) % slides.length]);
-        slides[idx].classList.add('is-active');
-        slides[idx].removeAttribute('aria-hidden');
+        if (fading || n === idx) {
+          return;
+        }
+        var outgoing = slides[idx];
+        var incoming = slides[n];
+        fading = true;
+        loadSlide(incoming);
+        slideReady(incoming, function () {
+          if (!incoming.naturalWidth) {
+            fading = false;
+            return;
+          }
+          var finished = false;
+          function afterFade() {
+            if (finished) {
+              return;
+            }
+            finished = true;
+            outgoing.removeEventListener('transitionend', onFadeEnd);
+            keepAround(idx);
+            fading = false;
+          }
+          function onFadeEnd(event) {
+            if (event.propertyName && event.propertyName !== 'opacity') {
+              return;
+            }
+            afterFade();
+          }
+          outgoing.addEventListener('transitionend', onFadeEnd);
+          outgoing.classList.remove('is-active');
+          outgoing.setAttribute('aria-hidden', 'true');
+          incoming.classList.add('is-active');
+          incoming.removeAttribute('aria-hidden');
+          idx = n;
+          window.setTimeout(afterFade, FADE_MS + 200);
+        });
       }
       function tick() {
         show((idx + 1) % slides.length);
@@ -139,16 +235,45 @@
         }
       }
       var hero = root.closest('.wpt-hero');
+      var visible = true;
       if (hero) {
         hero.addEventListener('mouseenter', stop);
-        hero.addEventListener('mouseleave', play);
+        hero.addEventListener('mouseleave', function () {
+          if (visible && !document.hidden) {
+            play();
+          }
+        });
         hero.addEventListener('focusin', stop);
-        hero.addEventListener('focusout', play);
+        hero.addEventListener('focusout', function () {
+          if (visible && !document.hidden) {
+            play();
+          }
+        });
+      }
+      if (hero && 'IntersectionObserver' in window) {
+        var viewer = new IntersectionObserver(function (entries) {
+          visible = !!(entries[0] && entries[0].isIntersecting);
+          if (!visible) {
+            stop();
+            slides.forEach(function (el, i) {
+              if (i === idx) {
+                loadSlide(el);
+              } else {
+                unloadSlide(el);
+              }
+            });
+          } else if (!document.hidden) {
+            keepAround(idx);
+            play();
+          }
+        }, { rootMargin: '120px 0px' });
+        viewer.observe(hero);
       }
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) {
+        if (document.hidden || !visible) {
           stop();
         } else {
+          keepAround(idx);
           play();
         }
       });
@@ -178,7 +303,7 @@
       if (shouldSkip(img)) {
         return;
       }
-      var src = img.currentSrc || img.src;
+      var src = fullPictureUrl(img);
       if (!src) {
         return;
       }
@@ -343,11 +468,29 @@
       }
     }
 
+    function fullPictureUrl(img) {
+      var full = img.getAttribute('data-full');
+      if (full) {
+        return full;
+      }
+      var link = img.closest('a[href]');
+      if (link) {
+        var href = link.getAttribute('href') || '';
+        if (/\.(jpe?g|png|gif|webp|avif)(\?|$)/i.test(href.split('#')[0].split('?')[0])) {
+          return href;
+        }
+      }
+      return img.currentSrc || img.src || '';
+    }
+
     function shouldSkip(img) {
       if (img.closest(skipClosest)) {
         return true;
       }
       if (img.classList.contains('wpt-wa-icon') || img.classList.contains('wpt-footer__logo')) {
+        return true;
+      }
+      if (img.closest('.wpt-review-card')) {
         return true;
       }
       var src = img.currentSrc || img.src || '';
@@ -397,5 +540,122 @@
         .replace(/"/g, '&quot;')
         .replace(/</g, '&lt;');
     }
+  }
+
+  function initReviewsSlider() {
+    var root = document.querySelector('[data-wpt-reviews-slider]');
+    if (!root) {
+      return;
+    }
+    var viewport = root.querySelector('.wpt-reviews__viewport');
+    var track = root.querySelector('.wpt-reviews__track');
+    var prev = root.querySelector('.wpt-reviews__nav--prev');
+    var next = root.querySelector('.wpt-reviews__nav--next');
+    if (!viewport || !track) {
+      return;
+    }
+    var originals = Array.prototype.slice.call(track.children);
+    if (originals.length < 2) {
+      if (prev) prev.hidden = true;
+      if (next) next.hidden = true;
+      return;
+    }
+    originals.forEach(function (slide) {
+      track.appendChild(slide.cloneNode(true));
+    });
+    var index = 0;
+    var timer = null;
+    var hovering = false;
+    var n = originals.length;
+
+    function stepSize() {
+      var first = track.children[0];
+      if (!first) {
+        return 0;
+      }
+      var styles = window.getComputedStyle(track);
+      var gap = parseFloat(styles.columnGap || styles.gap) || 20;
+      return first.getBoundingClientRect().width + gap;
+    }
+
+    function apply(instant) {
+      track.style.transition = instant ? 'none' : 'transform 450ms ease';
+      if (!instant) {
+        track.style.willChange = 'transform';
+        window.setTimeout(function () {
+          track.style.willChange = 'auto';
+        }, 500);
+      }
+      track.style.transform = 'translate3d(' + (-index * stepSize()) + 'px,0,0)';
+    }
+
+    function go(delta) {
+      index += delta;
+      apply(false);
+      if (index >= n) {
+        window.setTimeout(function () {
+          index = 0;
+          apply(true);
+        }, 460);
+      } else if (index < 0) {
+        index = n - 1;
+        apply(false);
+      }
+    }
+
+    function start() {
+      stop();
+      if (hovering || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+      timer = window.setInterval(function () {
+        go(1);
+      }, 5000);
+    }
+
+    function stop() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    if (prev) {
+      prev.addEventListener('click', function () {
+        go(-1);
+        start();
+      });
+    }
+    if (next) {
+      next.addEventListener('click', function () {
+        go(1);
+        start();
+      });
+    }
+    root.addEventListener('mouseenter', function () {
+      hovering = true;
+      stop();
+    });
+    root.addEventListener('mouseleave', function () {
+      hovering = false;
+      start();
+    });
+    var resizeRaf = 0;
+    window.addEventListener('resize', function () {
+      if (resizeRaf) {
+        return;
+      }
+      resizeRaf = window.requestAnimationFrame(function () {
+        resizeRaf = 0;
+        apply(true);
+      });
+    }, { passive: true });
+    track.querySelectorAll('.wpt-review-avatar img').forEach(function (img) {
+      img.addEventListener('error', function () {
+        img.style.display = 'none';
+      });
+    });
+    apply(true);
+    start();
   }
 })();

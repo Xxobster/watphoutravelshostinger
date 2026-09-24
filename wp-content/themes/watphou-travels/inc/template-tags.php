@@ -109,8 +109,8 @@ function watphou_render_tour_row( WP_Post $post, int $index = 0 ): void {
 	$fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', 'coffee.jpg', 'waterfall.jpg' );
 	$pid       = (int) $post->ID;
 	$thumb     = function_exists( 'watphou_core_tour_featured_url' )
-		? watphou_core_tour_featured_url( $pid, 'large' )
-		: get_the_post_thumbnail_url( $pid, 'large' );
+		? watphou_core_tour_featured_url( $pid, 'tour-card' )
+		: get_the_post_thumbnail_url( $pid, 'tour-card' );
 	if ( ! $thumb ) {
 		$thumb = $img . '/' . $fallbacks[ $index % count( $fallbacks ) ];
 	}
@@ -149,4 +149,19 @@ function watphou_render_tour_row( WP_Post $post, int $index = 0 ): void {
  */
 function watphou_home_hero_slides(): array {
 	return function_exists( 'watphou_core_home_hero_slides' ) ? watphou_core_home_hero_slides() : array();
+}
+
+/**
+ * Responsive source set for a homepage hero JPEG (960px + 1920px).
+ */
+function watphou_hero_srcset( string $url ): string {
+	$small_url = preg_replace( '/\.(jpe?g)$/i', '-960w.$1', $url );
+	if ( ! is_string( $small_url ) || $small_url === $url ) {
+		return '';
+	}
+	$small_rel = 'assets/images/home-hero/' . basename( $small_url );
+	if ( ! is_readable( get_theme_file_path( $small_rel ) ) ) {
+		return '';
+	}
+	return $small_url . ' 960w, ' . $url . ' 1920w';
 }

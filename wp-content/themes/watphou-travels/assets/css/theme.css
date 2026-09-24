@@ -239,12 +239,16 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   align-items: center;
   color: #fff;
 }
-.wpt-hero--tour { min-height: 48vh; }
-.wpt-hero--home { overflow: hidden; }
+.wpt-hero--tour { min-height: 48vh; overflow: hidden; }
+.wpt-hero--home {
+  overflow: hidden;
+  background: #1c1917;
+}
 .wpt-hero__slides {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background: #1c1917;
 }
 .wpt-hero__slide {
   position: absolute;
@@ -254,9 +258,14 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   object-fit: cover;
   object-position: center 40%;
   opacity: 0;
-  transition: opacity 1.1s ease;
+  z-index: 0;
+  background: #1c1917;
+  transition: opacity .9s ease-in-out;
 }
-.wpt-hero__slide.is-active { opacity: 1; }
+.wpt-hero__slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
 .wpt-hero__overlay {
   position: absolute;
   inset: 0;
@@ -302,11 +311,11 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 .wpt-btn-whatsapp:hover { background: #1ebe57; color: #fff !important; }
 
 /* Explore */
-.wpt-explore { padding: 4rem 0 3rem; text-align: center; }
+.wpt-explore { padding: 1rem 0 .75rem; text-align: center; }
 .wpt-explore__inner { max-width: 760px; }
 .wpt-explore h2 { font-size: 2rem; margin: 0 0 .5rem; }
-.wpt-quote-mark { font-size: 3rem; color: var(--wpt-orange); line-height: 1; }
 .wpt-explore p { color: var(--wpt-muted); }
+.wpt-explore p:last-child { margin-bottom: 0; }
 
 /* Interest cards — photo + duration badge + price row */
 .wpt-interest { padding: 1rem 0 3rem; }
@@ -363,7 +372,7 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 }
 
 /* Tour rows like VD adventures */
-.wpt-adventures { padding: 2.5rem 0 4rem; background: #f8f9fa; }
+.wpt-adventures { padding: 1rem 0 2rem; background: #f8f9fa; }
 .wpt-adventures__heading { text-align: center; margin-bottom: 2rem; }
 .wpt-adventures__heading h2 { margin: 0 0 .35rem; }
 .wpt-adventures__heading p { color: var(--wpt-muted); margin: 0; }
@@ -463,7 +472,126 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 }
 
 /* 5 steps */
-.wpt-steps { padding: 3rem 0; }
+.wpt-steps { padding: 1.5rem 0 3rem; }
+
+/* Google reviews — IZITOUR-style rolling cards */
+.wpt-reviews { padding: 3rem 0 3.5rem; background: #fff; }
+.wpt-reviews__title { text-align: center; margin: 0 0 .4rem; font-size: 2rem; }
+.wpt-reviews__title a { color: var(--wpt-text); }
+.wpt-reviews__title a:hover { color: var(--wpt-orange); }
+.wpt-reviews__summary { margin-bottom: 1.25rem; }
+.wpt-reviews__slider { position: relative; }
+.wpt-reviews__viewport { overflow: hidden; }
+.wpt-reviews__track {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 1.5rem .25rem .5rem;
+  list-style: none;
+  transition: transform .45s ease;
+}
+.wpt-reviews__slide {
+  flex: 0 0 calc((100% - 2.5rem) / 3);
+  min-width: 0;
+}
+.wpt-review-card {
+  display: block;
+  position: relative;
+  height: 100%;
+  min-height: 246px;
+  padding: 1.35rem 1.25rem 1.25rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+  color: var(--wpt-text) !important;
+}
+.wpt-review-card:hover { color: var(--wpt-text) !important; box-shadow: 0 8px 22px rgba(0, 0, 0, .12); }
+.wpt-review-quote {
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  width: 36px;
+  height: 28px;
+  background: #fff;
+  padding: 0 4px;
+}
+.wpt-review-stars {
+  display: block;
+  color: #f8b400;
+  letter-spacing: .12em;
+  font-size: 1rem;
+  line-height: 1;
+  margin: .15rem 0 .65rem;
+}
+.wpt-review-text {
+  margin: 0 0 1rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: #444;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 6.5em;
+}
+.wpt-review-who {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  padding-top: .35rem;
+}
+.wpt-review-avatar {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  flex: 0 0 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f15a24;
+  color: #fff;
+}
+.wpt-review-avatar img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+.wpt-review-initial {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.wpt-review-meta { font-size: .875rem; line-height: 1.35; }
+.wpt-review-meta strong { color: var(--wpt-text); }
+.wpt-review-meta time { color: var(--wpt-muted); font-size: .82rem; }
+.wpt-reviews__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(33, 37, 41, .55);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.wpt-reviews__slider:hover .wpt-reviews__nav,
+.wpt-reviews__nav:focus { opacity: 1; }
+.wpt-reviews__nav--prev { left: .15rem; }
+.wpt-reviews__nav--next { right: .15rem; }
+.wpt-reviews__google { text-align: center; margin: 1.25rem 0 0; font-weight: 600; }
+
 .wpt-steps__grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -602,7 +730,12 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 .wpt-footer h3 { color: #fff; font-size: 1rem; margin: 0 0 .75rem; }
 .wpt-footer ul { list-style: none; margin: 0; padding: 0; }
 .wpt-footer li { margin-bottom: .35rem; }
-.wpt-footer__logo { height: 40px; width: auto; margin-bottom: .75rem; mix-blend-mode: lighten; }
+.wpt-footer__logo {
+  height: 72px;
+  width: auto;
+  max-width: 220px;
+  margin-bottom: .75rem;
+}
 .wpt-footer__copy { border-top: 1px solid #2c3138; padding: 1rem 0; font-size: .8rem; }
 
 .watphou-whatsapp-float {
@@ -657,6 +790,11 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   grid-template-columns: repeat(3, 1fr);
   gap: .75rem;
   margin: 1.25rem 0 1.5rem;
+}
+.wpt-about__gallery figure,
+.wpt-tour-gallery figure {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 180px;
 }
 .wpt-about__gallery figure { margin: 0; }
 .wpt-about__gallery img {
@@ -832,7 +970,8 @@ body.wpt-lightbox-open .wpt-topbar {
 @media (prefers-reduced-motion: reduce) {
   .wpt-about__gallery .wpt-lightbox-trigger img,
   .wpt-lightbox__img,
-  .wpt-hero__slide { transition: none; }
+  .wpt-hero__slide,
+  .wpt-reviews__track { transition: none; }
 }
 .wpt-about__venue {
   margin: 1.75rem 0 2rem;
@@ -854,6 +993,7 @@ body.wpt-lightbox-open .wpt-topbar {
   .wpt-why__grid { grid-template-columns: 1fr 1fr; }
   .wpt-dest-grid { grid-template-columns: 1fr 1fr; }
   .wpt-steps__grid { grid-template-columns: 1fr 1fr; }
+  .wpt-reviews__slide { flex-basis: calc((100% - 1.25rem) / 2); }
   .wpt-footer__grid { grid-template-columns: 1fr; }
   .wpt-location, .wpt-search.d-desktop { display: none; }
   .wpt-hero__content { text-align: center; max-width: none; padding: 4rem 1rem; }
@@ -878,6 +1018,8 @@ body.wpt-lightbox-open .wpt-topbar {
   .wpt-why__grid { grid-template-columns: 1fr; }
   .wpt-dest-hub { grid-template-columns: 1fr; }
   .wpt-steps__grid { grid-template-columns: 1fr; }
+  .wpt-reviews__slide { flex-basis: 100%; }
+  .wpt-reviews__nav { opacity: 1; }
   .wpt-about__gallery { grid-template-columns: 1fr; }
   .wpt-about__gallery img { height: 220px; }
   .wpt-tour-gallery { grid-template-columns: 1fr; }

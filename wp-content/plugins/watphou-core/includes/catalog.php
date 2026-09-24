@@ -139,6 +139,24 @@ function watphou_core_catalog_code_map(): array {
 	return $map;
 }
 
+/**
+ * Map a WordPress slug (including duplicate suffixes like -2) to the Excel catalog slug.
+ */
+function watphou_core_canonical_tour_slug( string $slug ): string {
+	$slug = sanitize_title( $slug );
+	if ( '' === $slug ) {
+		return '';
+	}
+	$map = watphou_core_catalog_code_map();
+	if ( isset( $map[ $slug ] ) ) {
+		return $slug;
+	}
+	if ( preg_match( '/^(.+)-\d+$/', $slug, $m ) && isset( $map[ $m[1] ] ) ) {
+		return $m[1];
+	}
+	return $slug;
+}
+
 function watphou_core_tour_catalog_slug( WP_Post $post ): string {
 	$id = (int) $post->ID;
 	if ( function_exists( 'pll_get_post' ) ) {
@@ -149,9 +167,35 @@ function watphou_core_tour_catalog_slug( WP_Post $post ): string {
 	}
 	$legacy = (string) get_post_meta( $id, 'tour_legacy_slug', true );
 	if ( '' !== $legacy ) {
-		return $legacy;
+		return watphou_core_canonical_tour_slug( $legacy );
 	}
-	return (string) get_post_field( 'post_name', $id );
+	return watphou_core_canonical_tour_slug( (string) get_post_field( 'post_name', $id ) );
+}
+
+/**
+ * Excel package code (for example 4.1). Uses stored meta, then the catalog map.
+ */
+function watphou_core_tour_package_code( $post = null ): string {
+	$post = get_post( $post );
+	if ( ! $post instanceof WP_Post || 'tour' !== $post->post_type ) {
+		return '';
+	}
+	$meta = trim( (string) get_post_meta( $post->ID, 'tour_code', true ) );
+	if ( '' !== $meta ) {
+		return $meta;
+	}
+	if ( function_exists( 'pll_get_post' ) ) {
+		$en = (int) pll_get_post( (int) $post->ID, 'en' );
+		if ( $en && $en !== (int) $post->ID ) {
+			$meta = trim( (string) get_post_meta( $en, 'tour_code', true ) );
+			if ( '' !== $meta ) {
+				return $meta;
+			}
+		}
+	}
+	$slug = watphou_core_tour_catalog_slug( $post );
+	$map  = watphou_core_catalog_code_map();
+	return (string) ( $map[ $slug ] ?? '' );
 }
 
 /**
@@ -208,14 +252,14 @@ function watphou_core_sort_tours_for_destination( array $posts, string $dest_slu
 add_action( 'init', 'watphou_core_maybe_apply_catalog', 70 );
 
 function watphou_core_maybe_apply_catalog(): void {
-	if ( '1.6.2' === (string) get_option( 'watphou_catalog_apply' ) ) {
+	if ( '1.8.0' === (string) get_option( 'watphou_catalog_apply' ) ) {
 		return;
 	}
 	if ( ! post_type_exists( 'tour' ) ) {
 		return;
 	}
 	watphou_core_apply_catalog();
-	update_option( 'watphou_catalog_apply', '1.6.2', false );
+	update_option( 'watphou_catalog_apply', '1.8.0', false );
 }
 
 function watphou_core_apply_catalog(): void {

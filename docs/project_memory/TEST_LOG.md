@@ -1034,3 +1034,287 @@ Checked live after theme 2.2.9:
 - Replaced `public_html/wp-content/plugins/watphou-core/includes/public-i18n-extras.php` in place (TUS `override=true`, 954 bytes, HTTP 204). Did not delete the file.
 - Homepage `https://watphoutravels.site/` HTTP 200. WordPress login `https://watphoutravels.site/wp-login.php` HTTP 200 (Log In form).
 - WordPress File Manager (`wp-file-manager/file_folder_manager.php`) is **active**. Leave it on until the real domain (WT-133).
+
+## 2026-09-24 — WT-134 Simple Mail Transfer Protocol (SMTP) to both office Gmails
+
+- Account has **no Hostinger Email mailbox order**. Mail is sent with Hostinger PHP mail From **`bookings@watphoutravels.site`**, not From Gmail (Sender Policy Framework).
+- Domain Name System (DNS) TXT on `watphoutravels.site` only: `v=spf1 a include:_spf.mail.hostinger.com ~all`. Live `watphou-travels.com` Joker records were not changed.
+- Recipients: **`sales.watphoutravel@gmail.com`** and **`watphoutravel.of@gmail.com`**. Reply-To is the guest.
+- Live test booking **#1** name **SMTP wiring test 24 Sep 2026**: WordPress `wp_mail` returned success; booking history: **Office email sent to sales.watphoutravel@gmail.com, watphoutravel.of@gmail.com**.
+- Homepage `https://watphoutravels.site/` HTTP 200 after deploy. `python scripts/test_office_emails.py`: OK.
+- Plugins on staging: `watphou-core` 1.7.4, `watphou-bookings` 1.1.9, must-use `watphou-smtp.php`.
+- Check both Gmail inboxes (and Spam) for From `bookings@watphoutravels.site`. WordPress reports the send; Gmail delivery cannot be read from here.
+
+## 2026-09-24 — WT-136 homepage gap and decorative quote
+
+- `.wpt-explore` top padding `4rem` → `1rem` (one line under the hero). Theme 2.4.4.
+- Removed the orange decorative `“` (`.wpt-quote-mark`) under **Explore Southern Laos like Never Before**.
+- Live check: gap 16px; no `wpt-quote-mark` on English or French home. Cascading Style Sheets (CSS) `theme.css?ver=2.4.4`.
+
+
+
+## 2026-09-24T12:30:13 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": false
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-24 — WT-137 homepage memory
+
+- `python work/test_hero_960.py`: 11 pairs, 1920 and 960 wide.
+- Live home: `theme.js?ver=2.4.5`. Hero keeps **2** of 11 slides decoded; the rest use a 1-pixel placeholder. Active slide has `srcset` including `-960w.jpg`.
+- Popular tours images: `featured-*-600x400.jpg` (was `1024x…`).
+- Hero still rotates; Home screenshot looks normal.
+- `python scripts/verify_demo.py`: Hostinger HTTP 200; Virtual Private Server (VPS) `watphou` gone. `smbistro` nginx site was **missing** on this run (not changed here; do not recreate).
+
+## 2026-09-24 — WT-138 Quick Edit top + bottom tour photos
+
+- `python scripts/test_gallery_ids.py`: unique IDs, plugin 1.7.5, desk buttons present.
+- Live plugin `watphou-core.php` Version 1.7.5 (TUS overwrite of the real `watphou-core` folder).
+- Public galleries still 10 pictures: [4-day](https://www.watphoutravels.site/tours/4-day-southern-laos-escape-2/), [5-day](https://www.watphoutravels.site/tours/5-day-exploring-southern-laos/), [6-day](https://www.watphoutravels.site/tours/6-day-journey-to-the-heart-of-southern-laos/).
+- WordPress admin **Quick edit tours**: **Change top photo**, **Change bottom photos**, **Remove all**. Media Library modal title **Choose bottom photos** / **Use these photos**.
+- Seed copied current bottom JPEGs into the Media Library (notice gone after a few refreshes).
+- `python scripts/verify_demo.py`: Hostinger HTTP 200. Virtual Private Server (VPS) `smbistro` nginx site missing (unchanged; do not recreate).
+
+
+## 2026-09-24T12:52:03 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": false
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-24 — WT-139 live on watphoutravels.site
+
+| Check | Result |
+|-------|--------|
+| Excel 4-Day Southern Laos Escape code | 4.1 |
+| Booking form Package code on /tours/4-day-southern-laos-escape-2/ | 4.1 |
+| Homepage Destinations block | Removed |
+| Explore to Popular Private Tours gap | About halved |
+| What Our Clients Say carousel | Five genuine Google Maps reviews; 4.5 from 55 |
+| Footer logo | White mark from logo-wpt.jpg, visible on dark bar |
+| Staging robots | noindex still present |
+| Schema | LocalBusiness geo + Review + aggregateRating |
+| Versions | Theme 2.5.1, watphou-core 1.8.0, watphou-bookings 1.2.0 |
+
+## 2026-09-24 — Search Engine Optimization (SEO) scores for the customer (WT-107)
+
+- Live HTML (11 pages on `https://www.watphoutravels.site`): technical on-page **100 / 100** after canonical + `hreflang` `x-default` (`watphou-core` 1.8.1).
+- Lighthouse-style Search Engine Optimization (SEO) category (10 equal-weight checks): **90 / 100** on every page. The only fail is `is-crawlable` (`noindex, nofollow` on purpose).
+- Homepage in a real browser: title, one `h1`, canonical `https://www.watphoutravels.site/`, `hreflang` en/fr/th/`x-default`.
+- `robots.txt` HTTP 200 (`Disallow:` empty; sitemap listed). Sitemap HTTP 200 with `X-Robots-Tag: noindex, follow`.
+- `npx lighthouse` desktop against the homepage: HTTP **403** (Hostinger blocks headless Chrome). Google PageSpeed Insights Application Programming Interface: quota exceeded.
+- `python scripts/verify_demo.py`: Hostinger HTTP 200. Virtual Private Server (VPS) `smbistro` nginx site missing (unchanged; do not recreate).
+- Customer-facing copy: `docs/SEO_CUSTOMER_REPORT.md`.
+
+## 2026-09-24 — Browser memory and loading (WT-140)
+
+Before (Chrome, desktop 1366×768), decoded image bytes: Home 16.2 MB, About 53.2 MB, 4-day tour 21.0 MB, Contact 5.2 MB. JavaScript heap on the homepage stayed 1.8–2.1 MB across 5 idle minutes. Listeners stayed at 56. Ten navigation cycles did not climb (heap 2.9–5.0 MB, documents 4–8).
+
+After theme 2.5.2 / core 1.8.2 / bookings 1.2.1: Home 11.6 MB (−28%), About 16.5 MB (−69%), 4-day tour 11.0 MB (−48%), Contact 0.56 MB (−89%). Mobile About 21.2 MB → 6.1 MB. Homepage Largest Contentful Paint 2.25 s desktop, 1.92 s mobile. Cumulative Layout Shift about 0.
+
+After idle (homepage, hero still in view): heap 2.94 → 1.78 → 1.96 → 2.13 → 1.80 → 1.97 MB at 0/60/120/180/240/300 seconds. Listeners 106 then 56. Decoded images 11.60 MB and flat. Image transfer stopped at 3.39 MB after the first minute (54 requests).
+
+After 10 navigation cycles, heap MB: 4.0, 3.5, 2.9, 5.0, 2.9, 4.8, 3.9, 2.9, 5.0, 3.9. Documents 8/6/4/8/4/8/6/4/8/6. Listeners 137/83/24/135/24/135/83/24/137/83. No climb.
+
+Menu open/close plus resize plus scroll: heap 3.11 → 4.41 MB, listeners 56 → 69, nodes 1494 → 1778. A small rise from decoded lower-page photos, not a growing set of listeners.
+
+Low-end simulation (Chrome, Slow 4G, processor slowed 4×): homepage DOMContentLoaded 11.3 s, load 13.4 s. Hero kept 2 of 11 frames decoded while on screen, then 1 frame after scrolling away. Mobile menu opened (`aria-expanded=true`) in about 0.7 s. At 6× the same page still opened the menu; load was about 39 s because the hero photographs are large on a slow link, not because a script loop froze the tab.
+
+`python scripts/verify_demo.py`: Hostinger HTTP 200. Exit 1 only because the old Virtual Private Server (VPS) `smbistro` nginx site is gone. That site must stay gone.
+
+Widths 360, 412, 768, 1366, and 1920 on the homepage, tours list, 4-day tour, and French homepage: no horizontal overflow and no page errors.
+
+## 2026-09-24 — Quick edit bottom photos (WT-141)
+
+Logged into staging Quick edit tours. A tour that shows “4 photos on the tour page” opened Choose bottom photos with those 4 already in the selected strip. Removing one with × and clicking two more photos changed the button to “Use these 5 photos”. Preview on the page showed 5 pictures in the same three-column grid as the tour page, with Desktop, Tablet, and Phone. The page was reloaded without Save all changes: the tour still said 4 photos, so the test did not publish.
+
+Live checks: French homepage still French; tour gallery and request form present; empty submit lists required fields and does not send; mobile menu opens; `form.js` absent on `/tours/` and `/privacy-policy/`.
+
+`python scripts/verify_demo.py` recorded below if run in this pass.
+
+Theme CSS is Brotli (`content-encoding: br`, `max-age=31536000`).
+
+## 2026-09-24T13:36:46 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": false
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-24T14:14:54 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": false
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```
+
+## 2026-09-24 — Homepage gap before 5 Simple Steps (WT-142)
+
+Before: 132 pixels from the last Popular Private Tours card to the heading Plan Your Private Tour in 5 Simple Steps (Popular section bottom padding 4 rem + Steps top padding 3 rem). After theme 2.5.3 on the live homepage: paddings 2 rem / 1.5 rem, measured gap **76 pixels**. The join (112 pixels) is now 56 pixels (half). Last-card margin stayed 20 pixels.
+
+## 2026-09-24 — Homepage Google reviews newest-first (WT-143)
+
+`python scripts/test_google_reviews.py`: **ok** — five 4–5 star quotes, order Natalie Guignard → 尾崎行雄 → Reinhard Anton → Anja Krause → Simone Kuhl. 1-star omitted.
+
+Live https://watphoutravels.site/?v=184#what-clients-say: first original card is **Natalie Guignard** (9 June 2026). Plugin `watphou-core` **1.8.4** on Hostinger. Hostinger staging HTTP **200**. Places Application Programming Interface daily refresh is coded; no key on the server yet, so the snapshot file is what visitors see until a key is added.
+
+## 2026-09-24 — Homepage hero crossfade (WT-144)
+
+`python scripts/test_hero_fade.py`: **ok**. Live `theme.js?ver=2.5.5`. Over a 13-second homepage watch, two photos overlapped (for example opacity 0.55 / 0.45) while both still had real JPEG pixels. No active or visible slide used the 1-pixel placeholder during the fade (`visibleFlashAny: false`). Hero backdrop is `rgb(28, 25, 23)`.
+
+
+
+## 2026-09-24T18:55:25 — verify_demo.py (Hostinger staging + VPS deprovision)
+
+```json
+{
+  "checks": [
+    {
+      "name": "hostinger_https",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "wp_login",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "vps_nginx",
+      "status": "active",
+      "ok": true
+    },
+    {
+      "name": "vps_watphou_vhost_removed",
+      "ok": true
+    },
+    {
+      "name": "vps_smbistro_vhost_present",
+      "ok": false
+    },
+    {
+      "name": "vps_watphou_webroot_removed",
+      "ok": true
+    }
+  ]
+}
+```

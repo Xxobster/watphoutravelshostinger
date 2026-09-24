@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="wpt-container wpt-topbar__inner">
 			<div class="wpt-topbar__left">
 				<a class="wpt-logo" href="<?php echo esc_url( function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' ) ); ?>">
-					<img src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/logo-wpt.jpg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="140" height="40">
+					<img src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/logo-wpt-header.jpg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="256" height="144">
 				</a>
 				<div class="wpt-location">
 					<span class="wpt-location__pin" aria-hidden="true">📍</span>

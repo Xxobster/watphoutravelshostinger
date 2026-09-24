@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Bookings
  * Description: Booking requests, state machine, and payment workflow for Watphou Travels.
- * Version: 1.1.8
+ * Version: 1.2.1
  * Author: Watphou Travels
  * Text Domain: watphou-bookings
  * Requires PHP: 8.0
@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_BOOKINGS_VERSION', '1.1.8' );
+define( 'WATPHOU_BOOKINGS_VERSION', '1.2.1' );
 define( 'WATPHOU_BOOKINGS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WATPHOU_BOOKINGS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -28,6 +28,9 @@ require_once WATPHOU_BOOKINGS_PATH . 'includes/payment-router.php';
 add_action( 'wp_enqueue_scripts', 'watphou_bookings_enqueue_public' );
 
 function watphou_bookings_enqueue_public(): void {
+	if ( ! watphou_bookings_page_needs_form_script() ) {
+		return;
+	}
 	wp_enqueue_script(
 		'watphou-bookings-form',
 		WATPHOU_BOOKINGS_URL . 'assets/form.js',
@@ -47,6 +50,31 @@ function watphou_bookings_enqueue_public(): void {
 			),
 		)
 	);
+}
+
+/**
+ * The request form is on the homepage, tour pages, and pages that contain the shortcode.
+ */
+function watphou_bookings_page_needs_form_script(): bool {
+	if ( is_admin() ) {
+		return false;
+	}
+	if ( is_front_page() || is_singular( 'tour' ) ) {
+		return true;
+	}
+	if ( ! is_singular() ) {
+		return false;
+	}
+	$post = get_post();
+	if ( ! $post instanceof WP_Post ) {
+		return false;
+	}
+	if ( has_shortcode( $post->post_content, 'watphou_booking_form' ) || str_contains( $post->post_content, 'watphou_booking_form' ) ) {
+		return true;
+	}
+	$slug = (string) $post->post_name;
+	$slug = preg_replace( '/-(?:2|3|fr|th)$/', '', $slug ) ?: $slug;
+	return in_array( $slug, array( 'book-online', 'contact-us', 'tailor-made-tours' ), true );
 }
 
 register_activation_hook( __FILE__, 'watphou_bookings_activate' );

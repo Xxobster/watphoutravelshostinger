@@ -404,6 +404,123 @@ Destination **place names** stay English except French **4000 îles**. The form 
 
 **Impact:** Plugin `wp-file-manager` active on staging. Task WT-133. Production cutover checklist in WT-111.
 
+---
+
+## 2026-09-24 — Booking mail to both office Gmails
+
+**Decision:** Tour requests email **both** `sales.watphoutravel@gmail.com` (`watphou_email`) and `watphoutravel.of@gmail.com` (`watphou_email_alt`). The sender is **`bookings@watphoutravels.site`**, not a Gmail address, so Sender Policy Framework (SPF) can pass. Hostinger has no Email mailbox product on this account, so WordPress uses Hostinger PHP mail plus an SPF TXT on `watphoutravels.site`. Reply-To is the guest. The booking row is always saved; history records send or failure. Optional later: authenticated Simple Mail Transfer Protocol (SMTP) via server-only `watphou-smtp-secrets.php` (Hostinger mailbox or Gmail app password). Do not add Mail Exchanger (MX) / SPF on live `watphou-travels.com` (Joker) until cutover is approved.
+
+**Reason:** Office mail was unreliable (`wp_mail` From a Gmail address on Hostinger). The customer asked to send to both inboxes.
+
+**Impact:** Must-use plugin `watphou-smtp.php`. Plugin `watphou-core` 1.7.4. Plugin `watphou-bookings` 1.1.9. Task WT-134.
+
+---
+
+## 2026-09-24 — Live From is the apex domain, Gmail stays the inbox
+
+**Decision:** At production, booking mail **From** is **`bookings@watphou-travels.com`**, not `bookings@www.watphou-travels.com`. `www` is only for the website Uniform Resource Locator (URL). **To** stays `sales.watphoutravel@gmail.com` and `watphoutravel.of@gmail.com`. The office does not need a new Hostinger inbox they read every day. Prefer a send-only From identity (Sender Policy Framework / DomainKeys Identified Mail on the apex when Mail Exchanger cutover is approved), or Gmail Simple Mail Transfer Protocol with an app password. The must-use plugin strips a leading `www.` from the From host.
+
+**Reason:** The customer asked to switch the sending address to the real domain and whether a new mailbox is required.
+
+**Impact:** Task WT-135. `watphou-smtp.php` strips `www.`.
+
+---
+
+## 2026-09-24 — Homepage must not decode all 11 hero photos at once
+
+**Decision:** Desktop Chrome often has no Network Information Application Programming Interface (`navigator.connection`), so the old script treated the computer as “fast” and decoded every homepage hero picture (~70 megabytes of uncompressed bitmaps). Keep only the **current and next** slide decoded. Phones may load a 960-pixel-wide JPEG. Listing rows use WordPress size **tour-card** (600×400), not **large** (1024). Interval stays 2 / 5 / 10 seconds, but a device that reports 4 gigabytes (GB) of memory or less uses at least 5 seconds.
+
+**Reason:** Some visitor Chromes used a large share of Random Access Memory (RAM) and felt slow. A strong office computer did not show the problem.
+
+**Impact:** Theme 2.4.5. Task WT-137. Hostinger Reach `embed.js` is still on public pages; turn it off if the office does not use Hostinger Reach.
+
+---
+
+## 2026-09-24 — Quick Edit changes the tour top photo and the bottom grid
+
+**Decision:** Store the tour-page bottom gallery as WordPress attachment IDs in `tour_gallery`. **Quick edit tours** has **Change top photo** (featured image) and **Change bottom photos** (Media Library, several pictures). Saving copies both onto French and Thai posts of the same tour. Theme JPEG files remain the fallback until a manager saves a gallery (`tour_gallery_managed`) or the seed copies current files into the Media Library. The featured image always wins over `featured.jpg` in the theme when a thumbnail is set.
+
+**Reason:** Bottom pictures came only from theme files (`assets/images/tours/{slug}/g0N.jpg`), so Quick Edit could not replace them. The customer asked to change the top picture and all bottom pictures from WordPress admin.
+
+**Impact:** Plugin `watphou-core` 1.7.5. Task WT-138.
+
+---
+
+## 2026-09-24 — Excel package codes win over WordPress duplicate slugs
+
+**Decision:** The booking form **Package code** comes from Excel (`Website structures for Micah 2026-09-01.xlsx`). The 4-day tour is **4.1**. WordPress stored that tour as `4-day-southern-laos-escape-2`, so the catalog apply had skipped it. Canonicalize trailing `-2` / `-3` slugs against the catalog map, look those posts up when applying catalog, and fill `tour_code` if it is empty.
+
+**Reason:** The customer saw an empty Package code on https://www.watphoutravels.site/tours/4-day-southern-laos-escape-2/
+
+**Impact:** `watphou-core` 1.8.0, `watphou-bookings` 1.2.0, catalog apply `1.8.0`.
+
+---
+
+## 2026-09-24 — Homepage Google reviews are the real Maps quotes, IZITOUR layout
+
+**Decision:** After **Plan Your Private Tour in 5 Simple Steps**, show a rolling three-card carousel of genuine Google Maps reviews (same motion as [IZITOUR What Our Clients Say](https://izitour.com/en)). Each card opens that reviewer’s Maps contribution. Do not use IZITOUR’s Vietnam quotes. Do not invent text. Store the Place Identifier `ChIJzWB4m7P4FDER1RsT6DS65oE`. Remove **The Most Popular Destinations in Southern Laos**. Footer uses `logo-wpt.jpg` inverted to white on the dark bar.
+
+**Reason:** Customer request 2026-09-24 with the Maps short link and the IZITOUR homepage as the layout model.
+
+**Impact:** Theme 2.5.1. Footer uses `logo-wpt-white.png` (transparent white ink taken from `logo-wpt.jpg`). WT-139. Automatic Places refresh remains WT-121.
+
+---
+
+## 2026-09-24 — Print canonical ourselves while staging is noindex
+
+**Decision:** Output `<link rel="canonical">` and `hreflang="x-default"` from `watphou-core` on every public page. Yoast Search Engine Optimization (Yoast SEO) already prints Open Graph and language alternates, but it does **not** print a canonical tag while WordPress `blog_public=0` (staging “discourage search engines”). Keep staging `noindex`. Report two scores to the customer: technical on-page **100 / 100**, and Lighthouse-style Search Engine Optimization **90 / 100** (the 10-point gap is crawlability / `noindex` only).
+
+**Reason:** The customer asked for a measured Search Engine Optimization (SEO) score after the work was complete. Live HTML was missing canonical tags, which capped the technical score at 94 / 100.
+
+**Impact:** `watphou-core` 1.8.1. Customer report `docs/SEO_CUSTOMER_REPORT.md`.
+
+---
+
+## 2026-09-24 — Shrink decoded photos; pause the hero when it is off screen
+
+**Decision:** Keep the homepage slideshow, forms, languages, and menus. Cut memory by serving smaller files for the header logo, footer mark, About grid, and tour gallery grid, and by pausing the hero timer when the hero is not visible. Do not add a cache or minifier plugin. Hostinger already caches static files (Brotli, long `max-age`). Staging HTML stays `no-store`.
+
+**Reason:** Chrome on some computers was using a large share of system memory. Measurement showed a stable JavaScript heap (about 2 MB) and large decoded photographs (About about 53 MB; a 1280×720 logo on every page).
+
+**Impact:** Theme 2.5.2. Plugin `watphou-core` 1.8.2. Plugin `watphou-bookings` 1.2.1. Report `docs/performance/watphou_performance_audit.md`. Task WT-140.
+
+---
+
+## 2026-09-24 — Bottom photos follow the selection, with a preview
+
+**Decision:** In Quick edit tours, each click on a picture adds or removes it. WordPress’s default media window was replacing the previous picture, so only one stayed selected. The tour page already prints every saved photo, so 6 selected photos show 6 and 3 show 3. Add “Preview on the page” (desktop, tablet, phone) that does not publish until Save all changes. Photos already on the tour start selected, with a strip and an × so they can be removed even if they are not on the first screen of the media library.
+
+**Reason:** The customer could only keep one bottom photo and could not see the grid before saving.
+
+**Impact:** `watphou-core` 1.8.3. Task WT-141. Top photo stays a single picture.
+
+---
+
+## 2026-09-24 — Homepage reviews: newest 4–5 star first; Places API when keyed
+
+**Decision:** Sort the homepage Google review cards by date, most recent on the left. Keep original reviewer language. Show 4–5 star quotes only (skip 1-star). Refresh automatically with Google Places Application Programming Interface (Places API) Place Details, newest sort, at most five reviews per request, cached one day. Fallback remains `data/google-reviews.json` from a one-time public Maps capture. Do not scrape Google as the production updater. Do not invent text. Key lives in `WATPHOU_GOOGLE_PLACES_KEY` or the Watphou settings option — never in git.
+
+**Alternatives considered:**
+- Keep the older Most-relevant snapshot — newer 5-star reviews would stay off the left of the carousel
+- Scrape Maps on a cron — against project rules; fragile; can include 1-star “newest” quotes
+
+**Reason:** The customer asked for date order and, if possible, the latest best reviews from Google Maps.
+
+**Impact:** `watphou-core` 1.8.4. Tasks WT-143 (done) and WT-121 (key still needed).
+
+---
+
+## 2026-09-24 — Homepage hero crossfades; do not unload during the fade
+
+**Decision:** Keep the current hero photo on screen until the next photo is loaded and decoded, then fade opacity over 0.9 seconds. Unload unused slides only after that fade. Use a dark backdrop (`#1c1917`) and a dark 1-pixel placeholder, not a transparent Graphics Interchange Format (GIF). Still keep only the current and next pictures decoded most of the time (outgoing stays during the fade).
+
+**Reason:** The previous code set the outgoing `<img>` to a transparent pixel at the same moment it started fading, so the whole hero flashed white.
+
+**Impact:** Theme 2.5.5. Task WT-144.
+
+---
+
+
 
 
 

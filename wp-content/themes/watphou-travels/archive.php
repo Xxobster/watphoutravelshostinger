@@ -24,8 +24,8 @@ $fallbacks = array( 'tad-fane.jpg', 'liphi.jpg', 'vatphou.jpg', 'bolaven.jpg', '
 				the_post();
 				$pid   = get_the_ID();
 				$thumb = function_exists( 'watphou_core_tour_featured_url' )
-					? watphou_core_tour_featured_url( (int) $pid, 'large' )
-					: get_the_post_thumbnail_url( $pid, 'large' );
+					? watphou_core_tour_featured_url( (int) $pid, 'tour-card' )
+					: get_the_post_thumbnail_url( $pid, 'tour-card' );
 				if ( ! $thumb ) {
 					$thumb = $img . '/' . $fallbacks[ $i % count( $fallbacks ) ];
 				}

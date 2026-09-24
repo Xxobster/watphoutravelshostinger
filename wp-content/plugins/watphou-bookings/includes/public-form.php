@@ -110,7 +110,9 @@ function watphou_booking_tour_context( int $tour_id ): array {
 	return array(
 		'id'           => $tour_id,
 		'name'         => (string) $post->post_title,
-		'code'         => (string) get_post_meta( $tour_id, 'tour_code', true ),
+		'code'         => function_exists( 'watphou_core_tour_package_code' )
+			? watphou_core_tour_package_code( $post )
+			: (string) get_post_meta( $tour_id, 'tour_code', true ),
 		'duration'     => function_exists( 'watphou_core_translate_public_string' )
 			? watphou_core_translate_public_string( (string) get_post_meta( $tour_id, 'tour_duration', true ) )
 			: (string) get_post_meta( $tour_id, 'tour_duration', true ),
@@ -293,6 +295,47 @@ function watphou_booking_field_errors(): array {
 	return $errors;
 }
 
+/**
+ * Inboxes that receive this tour request (primary + alt).
+ *
+ * @return string[]
+ */
+function watphou_booking_office_recipients(): array {
+	if ( function_exists( 'watphou_office_email_recipients' ) ) {
+		return watphou_office_email_recipients();
+	}
+	return array( 'sales.watphoutravel@gmail.com', 'watphoutravel.of@gmail.com' );
+}
+
+/**
+ * Email both office inboxes. The booking row is already saved; log send or failure on that row.
+ */
+function watphou_booking_notify_office( int $booking_id, string $guest_name, string $guest_email, string $tour_name, string $body ): bool {
+	$recipients = watphou_booking_office_recipients();
+	$headers    = array( 'Content-Type: text/plain; charset=UTF-8' );
+	if ( is_email( $guest_email ) ) {
+		$safe_name = trim( str_replace( array( "\r", "\n", ':', '<', '>' ), '', $guest_name ) );
+		$headers[] = $safe_name
+			? 'Reply-To: ' . $safe_name . ' <' . $guest_email . '>'
+			: 'Reply-To: ' . $guest_email;
+	}
+	$subject = 'New booking request' . ( $tour_name ? ': ' . $tour_name : '' );
+	$mail_error = '';
+	$on_fail    = static function ( $err ) use ( &$mail_error ): void {
+		if ( $err instanceof WP_Error ) {
+			$mail_error = $err->get_error_message();
+		}
+	};
+	add_action( 'wp_mail_failed', $on_fail );
+	$sent = wp_mail( $recipients, $subject, $body, $headers );
+	remove_action( 'wp_mail_failed', $on_fail );
+	$note = $sent
+		? 'Office email sent to ' . implode( ', ', $recipients )
+		: 'Office email FAILED to ' . implode( ', ', $recipients ) . ( $mail_error ? ': ' . $mail_error : '' );
+	Watphou_Booking_Repository::log_event( $booking_id, 'requested', 'requested', 0, $note );
+	return (bool) $sent;
+}
+
 function watphou_handle_booking_submit(): void {
 	check_ajax_referer( 'watphou_booking_submit', 'watphou_booking_nonce' );
 	$errors = watphou_booking_field_errors();
@@ -358,11 +401,7 @@ function watphou_handle_booking_submit(): void {
 			)
 		)
 	);
-	wp_mail(
-		get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' ),
-		'New booking request' . ( $ctx['name'] ? ': ' . $ctx['name'] : '' ),
-		$body
-	);
+	watphou_booking_notify_office( $id, $name, $email, $ctx['name'], $body );
 	wp_send_json_success(
 		array(
 			'booking_id' => $id,

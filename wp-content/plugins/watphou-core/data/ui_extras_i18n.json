@@ -344,5 +344,29 @@
   "Related tours": {
     "fr": "Circuits similaires",
     "th": "ทัวร์ที่เกี่ยวข้อง"
+  },
+  "What Our Clients Say": {
+    "fr": "Découvrez les témoignages de nos voyageurs",
+    "th": "ฟังเสียงจากนักเดินทางของเรา"
+  },
+  "Read more on Google": {
+    "fr": "Lire les avis sur Google",
+    "th": "อ่านรีวิวบน Google"
+  },
+  "Previous reviews": {
+    "fr": "Avis précédents",
+    "th": "รีวิวก่อนหน้า"
+  },
+  "Next reviews": {
+    "fr": "Avis suivants",
+    "th": "รีวิวถัดไป"
+  },
+  "%1$s out of 5 from %2$d Google reviews": {
+    "fr": "%1$s sur 5 d’après %2$d avis Google",
+    "th": "%1$s จาก 5 จากรีวิว Google %2$d รายการ"
+  },
+  "%d stars": {
+    "fr": "%d étoiles",
+    "th": "%d ดาว"
   }
 }

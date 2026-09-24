@@ -25,9 +25,35 @@ if ( $duration && function_exists( 'watphou_core_translate_public_string' ) ) {
 	$duration = watphou_core_translate_public_string( (string) $duration );
 }
 $gallery  = function_exists( 'watphou_core_tour_gallery_urls' ) ? watphou_core_tour_gallery_urls( $pid ) : array();
+$thumb_id = (int) get_post_thumbnail_id( $pid );
 ?>
 <article class="wpt-tour-single">
-	<section class="wpt-hero wpt-hero--tour" style="background-image:url('<?php echo esc_url( $thumb ); ?>')">
+	<section class="wpt-hero wpt-hero--tour">
+		<div class="wpt-hero__slides">
+			<?php
+			if ( $thumb_id ) {
+				echo wp_get_attachment_image(
+					$thumb_id,
+					'tour-hero',
+					false,
+					array(
+						'class'         => 'wpt-hero__slide is-active',
+						'fetchpriority' => 'high',
+						'loading'       => 'eager',
+						'decoding'      => 'async',
+						'sizes'         => '100vw',
+						'alt'           => get_the_title( $pid ),
+					)
+				);
+			} elseif ( $thumb ) {
+				printf(
+					'<img class="wpt-hero__slide is-active" src="%1$s" alt="%2$s" fetchpriority="high" decoding="async" width="1600" height="900">',
+					esc_url( $thumb ),
+					esc_attr( get_the_title( $pid ) )
+				);
+			}
+			?>
+		</div>
 		<div class="wpt-hero__overlay"></div>
 		<div class="wpt-container wpt-hero__content">
 			<h1><?php echo esc_html( get_the_title( $pid ) ); ?></h1>
@@ -52,9 +78,10 @@ $gallery  = function_exists( 'watphou_core_tour_gallery_urls' ) ? watphou_core_t
 			echo '<section class="wpt-tour-gallery" aria-label="' . esc_attr__( 'Tour photos', 'watphou-travels' ) . '">';
 			foreach ( $gallery as $shot ) {
 				printf(
-					'<figure><img src="%1$s" alt="%2$s" loading="lazy" decoding="async"></figure>',
+					'<figure><img src="%1$s" data-full="%3$s" alt="%2$s" loading="lazy" decoding="async"></figure>',
 					esc_url( $shot['url'] ),
-					esc_attr( $shot['alt'] )
+					esc_attr( $shot['alt'] ),
+					esc_url( $shot['full'] ?? $shot['url'] )
 				);
 			}
 			echo '</section>';

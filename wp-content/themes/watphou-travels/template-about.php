@@ -18,12 +18,19 @@ $img = WATPHOU_THEME_URI . '/assets/images/about';
 $gallery = static function ( string $base, array $items, string $group ): void {
 	echo '<div class="wpt-about__gallery">';
 	foreach ( $items as $item ) {
-		$url = $base . '/' . $item[0];
+		$file  = $item[0];
+		$full  = $base . '/' . $file;
+		$small = preg_replace( '/\.(jpe?g)$/i', '-800w.$1', $file );
+		$src   = $full;
+		if ( is_string( $small ) && $small !== $file && is_readable( get_theme_file_path( 'assets/images/about/' . $small ) ) ) {
+			$src = $base . '/' . $small;
+		}
 		printf(
-			'<figure><a class="wpt-lightbox-trigger" href="%1$s" data-wpt-lightbox data-wpt-group="%3$s"><img src="%1$s" alt="%2$s" loading="lazy" decoding="async"></a></figure>',
-			esc_url( $url ),
+			'<figure><a class="wpt-lightbox-trigger" href="%1$s" data-wpt-lightbox data-wpt-group="%3$s"><img src="%4$s" data-full="%1$s" alt="%2$s" loading="lazy" decoding="async"></a></figure>',
+			esc_url( $full ),
 			esc_attr( $item[1] ),
-			esc_attr( $group )
+			esc_attr( $group ),
+			esc_url( $src )
 		);
 	}
 	echo '</div>';

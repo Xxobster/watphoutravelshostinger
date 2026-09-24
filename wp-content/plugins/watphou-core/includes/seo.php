@@ -15,6 +15,12 @@ add_filter( 'wpseo_opengraph_title', 'watphou_core_tour_document_title', 100 );
 add_filter( 'wpseo_twitter_title', 'watphou_core_tour_document_title', 100 );
 add_filter( 'wp_get_attachment_image_attributes', 'watphou_core_default_image_alt', 10, 2 );
 add_action( 'wp_head', 'watphou_core_tracking_head', 2 );
+add_action( 'init', 'watphou_core_complete_seo_settings', 30 );
+add_action( 'wp_head', 'watphou_core_extra_seo_meta', 3 );
+add_filter( 'wpseo_opengraph_image', 'watphou_core_default_og_image', 20 );
+add_filter( 'wpseo_twitter_image', 'watphou_core_default_og_image', 20 );
+add_filter( 'wpseo_metadesc', 'watphou_core_fallback_metadesc', 20 );
+add_filter( 'wpseo_canonical', 'watphou_core_https_canonical', 20 );
 
 function watphou_core_yoast_set( string $option_group, string $key, $value ): void {
 	if ( class_exists( 'WPSEO_Options' ) ) {
@@ -103,7 +109,8 @@ function watphou_core_configure_yoast_defaults(): void {
 	if ( ! is_array( $social ) ) {
 		$social = array();
 	}
-	$social['og_default_image']     = get_theme_file_uri( 'assets/images/home-hero/01-tad-fan-hero.jpg' );
+	$hero960 = get_theme_file_uri( 'assets/images/home-hero/01-tad-fan-hero-960w.jpg' );
+	$social['og_default_image']     = $hero960 ?: get_theme_file_uri( 'assets/images/home-hero/01-tad-fan-hero.jpg' );
 	$social['og_default_image_id']  = 0;
 	$social['opengraph']            = true;
 	$social['twitter']              = true;
@@ -326,4 +333,175 @@ function watphou_core_maybe_fix_quote_yoast_titles(): void {
 		update_post_meta( $tid, '_yoast_wpseo_opengraph-title', $map[ $lang ] );
 	}
 	update_option( 'watphou_quote_yoast_titles', '1.6.13', false );
+}
+
+function watphou_core_complete_seo_settings(): void {
+	if ( '1.8.0' === (string) get_option( 'watphou_seo_complete' ) ) {
+		return;
+	}
+	if ( ! class_exists( 'WPSEO_Options' ) ) {
+		return;
+	}
+	WPSEO_Options::set( 'twitter_card_type', 'summary_large_image' );
+	WPSEO_Options::set( 'company_or_person', 'company' );
+	WPSEO_Options::set( 'company_name', 'Watphou Travels' );
+	WPSEO_Options::set( 'website_name', 'Watphou Travels' );
+	WPSEO_Options::set( 'org-description', 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' );
+	WPSEO_Options::set( 'org-email', get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' ) );
+	WPSEO_Options::set( 'org-phone', get_option( 'watphou_phone', '+85620 9949 5858' ) );
+	WPSEO_Options::set( 'breadcrumbs-enable', true );
+	WPSEO_Options::set( 'enable_xml_sitemap', true );
+	WPSEO_Options::set( 'disable-author', true );
+	WPSEO_Options::set( 'disable-date', true );
+	WPSEO_Options::set( 'keyword_analysis_active', true );
+	WPSEO_Options::set( 'content_analysis_active', true );
+	if ( function_exists( 'get_theme_file_uri' ) ) {
+		$logo = get_theme_file_uri( 'assets/images/logo-wpt.jpg' );
+		$hero = get_theme_file_uri( 'assets/images/home-hero/01-tad-fan-hero-960w.jpg' );
+		$social = get_option( 'wpseo_social', array() );
+		if ( ! is_array( $social ) ) {
+			$social = array();
+		}
+		$social['opengraph'] = true;
+		$social['twitter']   = true;
+		if ( empty( $social['og_default_image'] ) && $hero ) {
+			$social['og_default_image'] = $hero;
+		}
+		update_option( 'wpseo_social', $social );
+		if ( $logo && ! WPSEO_Options::get( 'company_logo' ) ) {
+			WPSEO_Options::set( 'company_logo', $logo );
+		}
+	}
+	update_option( 'watphou_seo_complete', '1.8.0', false );
+}
+
+function watphou_core_default_og_image( $image ) {
+	if ( is_string( $image ) && '' !== $image ) {
+		return $image;
+	}
+	if ( is_singular( 'tour' ) && function_exists( 'watphou_core_tour_featured_url' ) ) {
+		$tour_img = watphou_core_tour_featured_url( get_queried_object_id(), 'large' );
+		if ( $tour_img ) {
+			return $tour_img;
+		}
+	}
+	return get_theme_file_uri( 'assets/images/home-hero/01-tad-fan-hero-960w.jpg' );
+}
+
+function watphou_core_fallback_metadesc( $desc ) {
+	if ( is_string( $desc ) && '' !== trim( wp_strip_all_tags( $desc ) ) ) {
+		return $desc;
+	}
+	if ( is_singular( 'tour' ) ) {
+		$id      = get_queried_object_id();
+		$excerpt = wp_trim_words( wp_strip_all_tags( get_the_excerpt( $id ) ?: get_post_field( 'post_content', $id ) ), 28 );
+		if ( $excerpt ) {
+			return $excerpt;
+		}
+		return 'Private tour from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +85620 9949 5858.';
+	}
+	if ( is_front_page() ) {
+		return 'Private tours from Pakse: Bolaven Plateau waterfalls, UNESCO Vat Phou, Champasak and the 4000 Islands. Local team, European standards.';
+	}
+	if ( is_post_type_archive( 'tour' ) ) {
+		return 'Browse private day tours and multi-day journeys in Southern Laos: Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.';
+	}
+	$title = wp_strip_all_tags( wp_get_document_title() );
+	if ( $title ) {
+		return wp_trim_words( $title . '. Watphou Travels — private tours in Southern Laos from Pakse.', 28 );
+	}
+	return $desc;
+}
+
+function watphou_core_https_canonical( $url ) {
+	$ours = watphou_core_current_canonical_url();
+	if ( '' !== $ours ) {
+		return $ours;
+	}
+	if ( ! is_string( $url ) || '' === $url ) {
+		return $url;
+	}
+	return set_url_scheme( $url, 'https' );
+}
+
+/**
+ * Absolute HTTPS canonical for the current public page (language-aware).
+ */
+function watphou_core_current_canonical_url(): string {
+	$url = '';
+	if ( is_singular() ) {
+		$url = (string) get_permalink( get_queried_object_id() );
+	} elseif ( is_post_type_archive() ) {
+		$pt = get_query_var( 'post_type' );
+		if ( is_array( $pt ) ) {
+			$pt = reset( $pt );
+		}
+		$archive = get_post_type_archive_link( is_string( $pt ) ? $pt : 'tour' );
+		$url     = is_string( $archive ) ? $archive : '';
+	} elseif ( is_tax() || is_category() || is_tag() ) {
+		$term = get_queried_object();
+		if ( $term instanceof WP_Term ) {
+			$maybe = get_term_link( $term );
+			$url   = is_wp_error( $maybe ) ? '' : (string) $maybe;
+		}
+	} elseif ( is_front_page() || is_home() ) {
+		$lang = function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : 'en';
+		$url  = function_exists( 'pll_home_url' ) ? (string) pll_home_url( $lang ) : home_url( '/' );
+	}
+	if ( '' === $url ) {
+		$path = (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH );
+		$url  = home_url( $path ?: '/' );
+	}
+	$lang = function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : 'en';
+	if ( function_exists( 'watphou_core_force_lang_url' ) ) {
+		$url = watphou_core_force_lang_url( $url, $lang );
+	}
+	return set_url_scheme( $url, 'https' );
+}
+
+/**
+ * English Uniform Resource Locator (URL) for hreflang x-default.
+ */
+function watphou_core_english_alternate_url(): string {
+	if ( is_singular() && function_exists( 'pll_get_post' ) ) {
+		$en_id = (int) pll_get_post( get_queried_object_id(), 'en' );
+		if ( $en_id > 0 ) {
+			return set_url_scheme( (string) get_permalink( $en_id ), 'https' );
+		}
+	}
+	if ( function_exists( 'watphou_core_force_lang_url' ) ) {
+		return watphou_core_force_lang_url( watphou_core_current_canonical_url(), 'en' );
+	}
+	if ( function_exists( 'pll_home_url' ) ) {
+		return set_url_scheme( (string) pll_home_url( 'en' ), 'https' );
+	}
+	return set_url_scheme( home_url( '/' ), 'https' );
+}
+
+function watphou_core_extra_seo_meta(): void {
+	$lang = function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : 'en';
+	$og   = array(
+		'en' => 'en_US',
+		'fr' => 'fr_FR',
+		'th' => 'th_TH',
+	);
+	$canon = watphou_core_current_canonical_url();
+	if ( '' !== $canon ) {
+		echo '<link rel="canonical" href="' . esc_url( $canon ) . '">' . "\n";
+	}
+	$en = watphou_core_english_alternate_url();
+	if ( '' !== $en ) {
+		echo '<link rel="alternate" href="' . esc_url( $en ) . '" hreflang="x-default">' . "\n";
+	}
+	echo '<meta property="og:locale" content="' . esc_attr( $og[ $lang ] ?? 'en_US' ) . '">' . "\n";
+	echo '<meta name="geo.region" content="LA-CH">' . "\n";
+	echo '<meta name="geo.placename" content="Pakse">' . "\n";
+	echo '<meta name="geo.position" content="15.1200197;105.7988082">' . "\n";
+	echo '<meta name="ICBM" content="15.1200197, 105.7988082">' . "\n";
+	if ( is_singular( 'tour' ) && function_exists( 'watphou_core_tour_package_code' ) ) {
+		$code = watphou_core_tour_package_code( get_queried_object_id() );
+		if ( $code ) {
+			echo '<meta name="sku" content="' . esc_attr( $code ) . '">' . "\n";
+		}
+	}
 }

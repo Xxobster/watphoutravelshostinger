@@ -69,6 +69,27 @@ Public prices stay **From $XX**. Spreadsheet draft prices live only in gitignore
 - [ ] Do **not** submit the temporary-domain sitemap to Google Search Console
 - HTTP Basic Auth is **not** required: `noindex` + staging banner are enough while the temporary domain is public to reviewers
 
+## Staging email (Simple Mail Transfer Protocol)
+
+There is **no Hostinger Email mailbox order** on this account. Tour requests do **not** send From Gmail (that fails Sender Policy Framework). WordPress sends From **`bookings@watphoutravels.site`** via Hostinger PHP mail (must-use plugin `watphou-smtp.php`). Recipients are **`sales.watphoutravel@gmail.com`** and **`watphoutravel.of@gmail.com`**. Reply-To is the guest.
+
+Authenticated SMTP (Hostinger mailbox or Gmail app password) can be added later in server-only `wp-content/watphou-smtp-secrets.php` (not in git):
+
+```php
+<?php
+defined( 'ABSPATH' ) || exit;
+define( 'WATPHOU_SMTP_HOST', 'smtp.hostinger.com' ); // or smtp.gmail.com
+define( 'WATPHOU_SMTP_PORT', 465 ); // 587 for Gmail TLS
+define( 'WATPHOU_SMTP_SECURE', 'ssl' ); // tls for Gmail
+define( 'WATPHOU_SMTP_USER', 'bookings@watphoutravels.site' );
+define( 'WATPHOU_SMTP_PASS', 'replace-me' );
+define( 'WATPHOU_SMTP_FROM', 'bookings@watphoutravels.site' );
+```
+
+Sender Policy Framework (SPF) TXT on **`watphoutravels.site` only** (not Joker / live `watphou-travels.com`).
+
+**Cutover (WT-135):** keep emailing the two Gmail inboxes. Change only the **From** identity to **`bookings@watphou-travels.com`** (apex host, never `bookings@www.watphou-travels.com`). The office does not need a new mailbox they check every day: Gmail stays the inbox. A send-only Hostinger address, or Gmail Simple Mail Transfer Protocol (SMTP) with an app password, is enough. Do not add Mail Exchanger (MX) / Sender Policy Framework (SPF) on live `watphou-travels.com` until cutover is approved.
+
 ## Cutover / Domain Name System (DNS) / email (later — do not do now)
 
 Recorded so nothing is forgotten at launch. **Do not change Joker Domain Name System (DNS) or Wix until approved.**

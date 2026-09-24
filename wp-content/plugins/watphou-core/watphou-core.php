@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Core
  * Description: Tours, destinations, settings, and business logic for Watphou Travels.
- * Version: 1.7.3
+ * Version: 1.8.4
  * Author: Watphou Travels
  * Text Domain: watphou-core
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_CORE_VERSION', '1.7.3' );
+define( 'WATPHOU_CORE_VERSION', '1.8.4' );
 define( 'WATPHOU_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WATPHOU_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -19,9 +19,11 @@ require_once WATPHOU_CORE_PATH . 'includes/post-types.php';
 require_once WATPHOU_CORE_PATH . 'includes/taxonomies.php';
 require_once WATPHOU_CORE_PATH . 'includes/meta.php';
 require_once WATPHOU_CORE_PATH . 'includes/settings.php';
+require_once WATPHOU_CORE_PATH . 'includes/mail.php';
 require_once WATPHOU_CORE_PATH . 'includes/roles.php';
 require_once WATPHOU_CORE_PATH . 'includes/blocks.php';
 require_once WATPHOU_CORE_PATH . 'includes/redirects.php';
+require_once WATPHOU_CORE_PATH . 'includes/reviews.php';
 require_once WATPHOU_CORE_PATH . 'includes/schema.php';
 require_once WATPHOU_CORE_PATH . 'includes/seo.php';
 require_once WATPHOU_CORE_PATH . 'includes/i18n.php';
@@ -81,10 +83,16 @@ function watphou_core_pll_taxonomies( array $taxonomies, $is_settings = false ):
 }
 
 register_activation_hook( __FILE__, 'watphou_core_activate' );
+register_deactivation_hook( __FILE__, 'watphou_core_deactivate' );
 
 function watphou_core_activate(): void {
 	watphou_core_register_post_types();
 	watphou_core_register_taxonomies();
 	watphou_core_register_roles();
+	watphou_core_ensure_google_reviews_cron();
 	flush_rewrite_rules();
+}
+
+function watphou_core_deactivate(): void {
+	wp_clear_scheduled_hook( WATPHOU_CORE_REVIEWS_CRON );
 }

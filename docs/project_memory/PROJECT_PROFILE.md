@@ -132,7 +132,7 @@ real_tour_prices: UNRESOLVED
 google_review_text: UNRESOLVED
 petit_fute_reviews: UNRESOLVED
 verified_since_2008: UNRESOLVED
-smtp_demo: UNRESOLVED
+smtp_demo: staging_hostinger_php_mail
 bcel_merchant_contract: UNRESOLVED
 bluehost_ssh_access: SUPERSEDED_BY_HOSTINGER
 hostinger_temporary_domain: watphoutravels.site (preview fallback darkslategray-snake-182151.hostingersite.com)

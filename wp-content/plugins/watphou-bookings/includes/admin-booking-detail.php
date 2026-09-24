@@ -49,6 +49,18 @@ function watphou_bookings_detail_page( int $id ): void {
 				<tr><th><?php echo esc_html( ucwords( str_replace( '_', ' ', $f ) ) ); ?></th><td><?php echo nl2br( esc_html( (string) ( $booking->$f ?? '' ) ) ); ?></td></tr>
 			<?php endforeach; ?>
 		</tbody></table>
+		<h2><?php esc_html_e( 'History', 'watphou-bookings' ); ?></h2>
+		<table class="widefat striped"><thead><tr>
+			<th><?php esc_html_e( 'When', 'watphou-bookings' ); ?></th>
+			<th><?php esc_html_e( 'Note', 'watphou-bookings' ); ?></th>
+		</tr></thead><tbody>
+			<?php foreach ( Watphou_Booking_Repository::events( $id ) as $event ) : ?>
+				<tr>
+					<td><?php echo esc_html( (string) $event->created_at ); ?></td>
+					<td><?php echo esc_html( (string) $event->note ); ?></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody></table>
 		<h2><?php esc_html_e( 'Actions', 'watphou-bookings' ); ?></h2>
 		<form method="post">
 			<?php wp_nonce_field( 'watphou_booking_' . $id ); ?>

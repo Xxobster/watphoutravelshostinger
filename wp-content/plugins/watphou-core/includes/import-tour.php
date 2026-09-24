@@ -72,19 +72,35 @@ function watphou_core_build_tour_content( array $data ): string {
 function watphou_core_find_tour_id( string $slug, string $code = '' ): int {
 	$slug = sanitize_title( $slug );
 	if ( $slug ) {
-		$by_name = get_posts(
-			array(
-				'post_type'      => 'tour',
-				'name'           => $slug,
-				'posts_per_page' => 5,
-				'post_status'    => 'any',
-				'fields'         => 'ids',
-				'lang'           => '',
-			)
-		);
-		$id      = watphou_core_prefer_english_tour( $by_name );
-		if ( $id ) {
-			return $id;
+		$names = array( $slug );
+		if ( function_exists( 'watphou_core_canonical_tour_slug' ) ) {
+			$canonical = watphou_core_canonical_tour_slug( $slug );
+			if ( $canonical && $canonical !== $slug ) {
+				array_unshift( $names, $canonical );
+			} elseif ( $canonical ) {
+				$names[] = $canonical . '-2';
+				$names[] = $canonical . '-3';
+			}
+		} elseif ( ! preg_match( '/-\d+$/', $slug ) ) {
+			$names[] = $slug . '-2';
+			$names[] = $slug . '-3';
+		}
+		$names = array_values( array_unique( array_filter( $names ) ) );
+		foreach ( $names as $name ) {
+			$by_name = get_posts(
+				array(
+					'post_type'      => 'tour',
+					'name'           => $name,
+					'posts_per_page' => 5,
+					'post_status'    => 'any',
+					'fields'         => 'ids',
+					'lang'           => '',
+				)
+			);
+			$id = watphou_core_prefer_english_tour( $by_name );
+			if ( $id ) {
+				return $id;
+			}
 		}
 		$by_legacy = get_posts(
 			array(

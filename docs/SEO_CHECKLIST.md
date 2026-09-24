@@ -14,8 +14,8 @@
 - [ ] Enable XML sitemap (Yoast)
 - [ ] Submit sitemap to Google Search Console
 - [x] Unique title + meta description per page/tour (staging; copy is English until translations exist)
-- [x] Canonical Uniform Resource Locators (URLs) (Yoast)
-- [x] hreflang EN/FR/TH (Polylang + Yoast on published placeholders)
+- [x] Canonical Uniform Resource Locators (URLs) (`watphou-core` 1.8.1 prints them; Yoast skips them while staging `blog_public=0`)
+- [x] hreflang EN/FR/TH plus `x-default` (Polylang + Yoast + `watphou-core`)
 - [x] Open Graph images per tour (featured image; default image = logo / Tad Fane)
 - [x] Breadcrumbs (Yoast on pages, tours, archives)
 - [x] 301 redirects from Wix URLs (`content/redirects.csv`)
@@ -25,13 +25,14 @@
 - [x] Schema: TravelAgency, Organization, LocalBusiness (homepage)
 - [x] Schema: TouristTrip on tours
 - [x] Schema: Offer only when real price visible (skipped for `XX`)
-- [x] Schema: Review only with genuine reviews (none yet)
+- [x] Schema: Review only with genuine reviews (homepage Google Maps quotes, 2026-09-24)
 - [x] Google Analytics 4 (GA4) placeholder configured (Settings field; not fired on staging)
 - [ ] Google Search Console verification (needs production domain + real code)
 - [ ] Google Business Profile aligned with production Uniform Resource Locator (URL), Pakse address, and phone
-- [ ] Lighthouse performance ≥ 80 (target); Core Web Vitals in the “good” range
-- [ ] One `h1` per page and a clear heading hierarchy
-- [ ] Mobile-friendly layout verified
+- [ ] Lighthouse performance ≥ 80 (target); Core Web Vitals in the “good” range — Hostinger returns HTTP 403 to Lighthouse’s automated Chrome; re-run from a normal browser after launch
+- [x] One `h1` per page (checked on 11 live pages, 2026-09-24)
+- [x] Mobile viewport meta present; layout previously verified on staging (re-check Core Web Vitals after launch)
+- [x] Lighthouse-style Search Engine Optimization (SEO) **90 / 100** on staging (only fail: `is-crawlable` / `noindex`); technical on-page **100 / 100**; report in `docs/SEO_CUSTOMER_REPORT.md`
 
 ## Content SEO
 

@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 <footer class="wpt-footer">
 	<div class="wpt-container wpt-footer__grid">
 		<div>
-			<img class="wpt-footer__logo" src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/logo-white.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="160">
+			<img class="wpt-footer__logo" src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/logo-wpt-white-footer.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="360" height="219">
 			<p><?php esc_html_e( 'Your local expert in Southern Laos — private tours with European standards.', 'watphou-travels' ); ?></p>
 		</div>
 		<div>

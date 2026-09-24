@@ -19,6 +19,8 @@ function watphou_core_register_meta(): void {
 		'tour_legacy_slug'           => 'string',
 		'tour_price_note'            => 'string',
 		'tour_code'                  => 'string',
+		'tour_gallery'               => 'string',
+		'tour_gallery_managed'       => 'string',
 		'testimonial_rating'         => 'number',
 		'testimonial_reviewer'       => 'string',
 		'testimonial_date'           => 'string',

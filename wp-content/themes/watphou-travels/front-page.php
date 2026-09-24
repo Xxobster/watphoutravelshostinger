@@ -13,15 +13,31 @@ $first_alt = $slides[0]['alt'] ?? '';
 	<div class="wpt-hero__slides">
 		<?php if ( $slides ) : ?>
 			<?php foreach ( $slides as $i => $slide ) : ?>
+				<?php
+				$srcset = function_exists( 'watphou_hero_srcset' ) ? watphou_hero_srcset( $slide['url'] ) : '';
+				?>
 				<img
 					class="wpt-hero__slide<?php echo 0 === $i ? ' is-active' : ''; ?>"
+					width="1920"
+					height="822"
+					sizes="100vw"
 					<?php if ( 0 === $i ) : ?>
 						src="<?php echo esc_url( $slide['url'] ); ?>"
+						<?php if ( $srcset ) : ?>
+							srcset="<?php echo esc_attr( $srcset ); ?>"
+						<?php endif; ?>
+						data-src="<?php echo esc_url( $slide['url'] ); ?>"
+						<?php if ( $srcset ) : ?>
+							data-srcset="<?php echo esc_attr( $srcset ); ?>"
+						<?php endif; ?>
 						fetchpriority="high"
 						decoding="async"
 					<?php else : ?>
-						src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+						src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
 						data-src="<?php echo esc_url( $slide['url'] ); ?>"
+						<?php if ( $srcset ) : ?>
+							data-srcset="<?php echo esc_attr( $srcset ); ?>"
+						<?php endif; ?>
 						decoding="async"
 						aria-hidden="true"
 					<?php endif; ?>
@@ -46,7 +62,6 @@ $first_alt = $slides[0]['alt'] ?? '';
 <section class="wpt-explore">
 	<div class="wpt-container wpt-explore__inner">
 		<h2><?php esc_html_e( 'Explore Southern Laos like Never Before', 'watphou-travels' ); ?></h2>
-		<div class="wpt-quote-mark" aria-hidden="true">“</div>
 		<p><?php esc_html_e( 'Welcome to Southern Laos, a captivating region where the mighty Mekong River carves its path through lush landscapes, ancient histories whisper from forgotten temples, and life unfolds at an incredibly gentle pace.', 'watphou-travels' ); ?></p>
 		<p><?php esc_html_e( 'Far from the bustling crowds, this enchanting part of Laos offers a truly authentic Southeast Asian experience. Discover Pakse, the Bolaven Plateau with its waterfalls and coffee farms, the UNESCO-listed Vat Phou temple, and the peaceful 4000 Islands.', 'watphou-travels' ); ?></p>
 		<p><?php esc_html_e( 'As a local agency based in Pakse, Watphou Travels is uniquely positioned to help you uncover hidden gems. Whether you seek a one-day waterfall escape or a week-long private journey, every itinerary is 100% private and crafted around you.', 'watphou-travels' ); ?></p>
@@ -128,8 +143,8 @@ $first_alt = $slides[0]['alt'] ?? '';
 						$duration = watphou_core_translate_public_string( (string) $duration );
 					}
 					$thumb    = function_exists( 'watphou_core_tour_featured_url' )
-						? watphou_core_tour_featured_url( (int) $pid, 'large' )
-						: get_the_post_thumbnail_url( $pid, 'large' );
+						? watphou_core_tour_featured_url( (int) $pid, 'tour-card' )
+						: get_the_post_thumbnail_url( $pid, 'tour-card' );
 					$price    = function_exists( 'watphou_tour_price_number' ) ? watphou_tour_price_number( $pid ) : 'XX';
 					if ( ! $thumb ) {
 						$thumb = $img . '/' . $fallbacks[ $i % count( $fallbacks ) ];
@@ -162,29 +177,6 @@ $first_alt = $slides[0]['alt'] ?? '';
 				wp_reset_postdata();
 			endif;
 			?>
-		</div>
-	</div>
-</section>
-
-<section class="wpt-destinations">
-	<div class="wpt-container">
-		<h2><?php esc_html_e( 'The Most Popular Destinations in Southern Laos', 'watphou-travels' ); ?></h2>
-		<p class="wpt-section-sub"><?php esc_html_e( 'Here are just a few trip ideas to get you started!', 'watphou-travels' ); ?></p>
-		<div class="wpt-dest-grid">
-			<?php
-			$dests = array(
-				array( __( 'Bolaven Plateau', 'watphou-travels' ), $img . '/bolaven.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'bolaven-plateau' ) : home_url( '/destinations/bolaven-plateau/' ) ),
-				array( __( '4000 Islands', 'watphou-travels' ), $img . '/liphi.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', '4000-islands' ) : home_url( '/destinations/4000-islands/' ) ),
-				array( __( 'Vat Phou', 'watphou-travels' ), $img . '/vatphou.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'champasak' ) : home_url( '/destinations/champasak/' ) ),
-				array( __( 'Pakse', 'watphou-travels' ), $img . '/donkhone.jpg', function_exists( 'watphou_term_url' ) ? watphou_term_url( 'destination', 'pakse' ) : home_url( '/destinations/pakse/' ) ),
-			);
-			foreach ( $dests as $d ) :
-				?>
-				<a class="wpt-dest-tile" href="<?php echo esc_url( $d[2] ); ?>">
-					<img src="<?php echo esc_url( $d[1] ); ?>" alt="<?php echo esc_attr( $d[0] ); ?>" loading="lazy" decoding="async">
-					<h3><?php echo esc_html( $d[0] ); ?></h3>
-				</a>
-			<?php endforeach; ?>
 		</div>
 	</div>
 </section>
@@ -222,6 +214,12 @@ $first_alt = $slides[0]['alt'] ?? '';
 		</div>
 	</div>
 </section>
+
+<?php
+if ( function_exists( 'watphou_core_render_google_reviews' ) ) {
+	watphou_core_render_google_reviews();
+}
+?>
 
 <section class="wpt-why" id="why-us">
 	<div class="wpt-container">

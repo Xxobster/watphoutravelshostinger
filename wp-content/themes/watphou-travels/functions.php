@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_THEME_VERSION', '2.4.3' );
+define( 'WATPHOU_THEME_VERSION', '2.5.5' );
 define( 'WATPHOU_THEME_PATH', get_template_directory() );
 define( 'WATPHOU_THEME_URI', get_template_directory_uri() );
 
@@ -70,10 +70,37 @@ function watphou_preload_hero(): void {
 	if ( ! $slides ) {
 		return;
 	}
-	echo '<link rel="preload" as="image" href="' . esc_url( $slides[0]['url'] ) . '" fetchpriority="high">' . "\n";
+	echo '<link rel="preload" as="image" href="' . esc_url( $slides[0]['url'] ) . '" fetchpriority="high"';
+	$srcset = function_exists( 'watphou_hero_srcset' ) ? watphou_hero_srcset( $slides[0]['url'] ) : '';
+	if ( $srcset ) {
+		echo ' imagesrcset="' . esc_attr( $srcset ) . '" imagesizes="100vw"';
+	}
+	echo '>' . "\n";
 }
 
 require_once WATPHOU_THEME_PATH . '/inc/template-tags.php';
+
+add_filter( 'script_loader_tag', 'watphou_defer_third_party_scripts', 20, 3 );
+
+/**
+ * Hostinger Reach marketing scripts stay available, but they must not compete
+ * with the first paint. defer keeps their order and runs them after parsing.
+ *
+ * @param string $tag    Script tag.
+ * @param string $handle WordPress handle.
+ * @param string $src    Script URL.
+ */
+function watphou_defer_third_party_scripts( string $tag, string $handle, string $src ): string {
+	unset( $handle );
+	if ( is_admin() || '' === $src ) {
+		return $tag;
+	}
+	$delay = str_contains( $src, 'cdn-reach.hostinger.com' ) || str_contains( $src, '/hostinger-reach/' );
+	if ( ! $delay || str_contains( $tag, ' defer' ) || str_contains( $tag, ' async' ) ) {
+		return $tag;
+	}
+	return str_replace( '<script ', '<script defer ', $tag );
+}
 
 add_filter( 'template_include', 'watphou_theme_template_include' );
 

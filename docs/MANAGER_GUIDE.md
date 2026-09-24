@@ -29,10 +29,11 @@ You do **not** need to edit the public website or the block editor for this. **E
 ## Change prices and photos (easiest)
 
 1. Left menu → **Watphou** → **Quick edit tours**
-2. You see every English tour in one table (published and drafts): photo, price, duration, homepage bestseller
-3. **Photo:** click **Change photo** → pick or upload in the Media Library → **Use this photo**
-4. **Price:** type a number (for example `95`) in **From $ (USD)**. Until real prices are confirmed, leave `XX` (the site shows “From $XX”)
-5. Click **Save all changes** at the top or bottom
+2. You see every English tour in one table (published and drafts): top photo, bottom photos, price, duration, homepage bestseller
+3. **Top photo:** click **Change top photo** → pick or upload in the Media Library → **Use this photo**. This is the large picture at the top of the tour page and on listing cards
+4. **Bottom photos:** click **Change bottom photos** → select every picture you want in the Media Library (hold Ctrl on Windows or Command on Mac to pick several) → **Use these photos**. This is the picture grid under the itinerary. **Remove all** clears that grid. The first time you open this page, WordPress may copy the current bottom photos into the Media Library — refresh if you see a notice
+5. **Price:** type a number (for example `95`) in **From $ (USD)**. Until real prices are confirmed, leave `XX` (the site shows “From $XX”)
+6. Click **Save all changes** at the top or bottom. Photos also apply to the French and Thai copies of the same tour
 
 You can also open **Tours → All Tours** and click the blue **Quick edit prices & photos** button.
 
@@ -45,7 +46,7 @@ You can also open **Tours → All Tours** and click the blue **Quick edit prices
 5. French text goes on the **FR** sheet. Thai text goes on the **TH** sheet. Keep the **same slug**. Hover the yellow header cells (or open **Column meanings**) to read what `slug`, `cta` (Call To Action), and the other columns mean
 6. Leave `price_from` as `XX` until the real price is confirmed
 7. Upload the file on the same WordPress page and click **Upload and save tours**
-8. Then open **Quick edit tours** and click **Change photo** — the Excel file does not upload pictures
+8. Then open **Quick edit tours** and click **Change top photo** / **Change bottom photos** — the Excel file does not upload pictures
 
 Allowed destination names (comma-separated): `bolaven-plateau`, `4000-islands`, `champasak`, `pakse`. Duration menu: `1-day`, `2-day`, `3-day`, `4-6-day`.
 
@@ -55,7 +56,7 @@ Prefer **Watphou → Manage tours**. The old **Tours → All Tours** list still 
 
 ## Contact details (phone, email, address)
 
-**Settings → Watphou Travels** (administrators only).
+**Settings → Watphou Travels** (administrators only). The homepage Google reviews can refresh automatically if the webmaster pastes a Google Places Application Programming Interface key there (or sets `WATPHOU_GOOGLE_PLACES_KEY` in `wp-config.php`). The site then shows the newest 4–5 star quotes, most recent on the left. Do not invent reviews.
 
 ## Booking requests
 

@@ -39,7 +39,7 @@
 | WT-104 | Professional TH translations | done for current pack (human-reviewed Excel published as WT-117; further edits welcome) |
 | WT-105 | BCEL live integration | blocked |
 | WT-106 | Hostinger production domain attach + Joker cutover | blocked |
-| WT-107 | Complete Search Engine Optimization (SEO) for the highest possible Google ranking | staging done; production indexing blocked |
+| WT-107 | Complete Search Engine Optimization (SEO) for the highest possible Google ranking | staging technical SEO **100 / 100** (live 2026-09-24); Lighthouse-style **90 / 100** (only fail is intentional `noindex`); production indexing still blocked |
 | WT-109 | Deploy custom theme + plugins + content to Hostinger temporary domain | done |
 | WT-110 | Finish Polylang admin wizard on staging (EN default hide URL; FR/TH empty drafts) | done (superseded: FR/TH now published English placeholders, not empty drafts) |
 | WT-111 | Production cutover checklist (DNS A/www only; SSL; remove noindex; SMTP test) | pending |
@@ -52,7 +52,7 @@
 | WT-118 | Public staging hostname after Hostinger preview NXDOMAIN (`watphoutravels.site`) | done |
 | WT-119 | Customer menu (Home / Day Tour / 2-DAY / 3-DAY / 4-6 / Destinations / Tailor-Made / About Us / Contact); fill listing pages; remove homepage interest row; HTTPS force; Manage tours EN/FR/TH with preview/draft/publish | done |
 | WT-120 | Lock public tour order and destination membership to `Website structures for Micah 2026-09-01.xlsx` (codes 1.1–6.1, Home best sellers, destination YES table) | done |
-| WT-121 | Pull genuine Google reviews onto Home (automatic cache via Google Places Application Programming Interface). Needs Place Identifier and Application Programming Interface key from the customer. Never invent reviews. | pending |
+| WT-121 | Pull genuine Google reviews onto Home (automatic cache via Google Places Application Programming Interface). Needs Place Identifier and Application Programming Interface key from the customer. Never invent reviews. | newest 4–5 star carousel live; daily Places Application Programming Interface refresh coded; still needs a key |
 | WT-122 | Pre-fill the public booking form with the current tour (name, code, duration, destinations, departure, price, headline); guest fills the rest. Same form on View tour and Book this tour. | done |
 | WT-123 | About Us page: same copy and photos as live Wix `https://www.watphou-travels.com/about-us` (Excel About Us sheet) | done |
 | WT-124 | Apply `Watphou_Travels_Text_Review_Recommendations.pdf` only to our template/legal/button copy; leave customer package, menu, and About text | done |
@@ -65,6 +65,16 @@
 | WT-131 | September 2026 tour photos + homepage hero slideshow; keep English/French/Thai when following in-language links | done |
 | WT-132 | Drop hero intervals to 2/5/10 seconds; translate leftover public English on French/Thai pages; French destination label 4000 îles | done |
 | WT-133 | Keep WordPress File Manager **on** while staging on `watphoutravels.site`. Deactivate it at real-domain cutover: it is a security issue on a public live site (file write as WordPress admin, often targeted). Until then leave it on for emergency overwrite of plugin files. | pending (leave on until live domain) |
+| WT-134 | Simple Mail Transfer Protocol (SMTP): email both office Gmails from Hostinger `bookings@watphoutravels.site`; log send/fail on the booking | done |
+| WT-136 | Homepage: one-line gap under the hero; remove the decorative quotation mark under **Explore Southern Laos like Never Before** | done |
+| WT-137 | Reduce homepage browser memory: decode only current+next hero slides; 960-pixel hero files; listing photos `tour-card` 600×400 | done |
+| WT-138 | Quick Edit can change the tour-page **top photo** and the **bottom photo grid**; French/Thai copies follow | done |
+| WT-139 | Package code 4.1 on the 4-day booking form; homepage spacing; remove Destinations block; Google reviews carousel; white footer logo; staging Search Engine Optimization (SEO) completeness | done |
+| WT-140 | Browser Random Access Memory (RAM), processor, and loading audit; shrink oversized photos without removing features | done |
+| WT-141 | Quick edit bottom photos: select any number, preview the grid before save | done |
+| WT-142 | Cut homepage gap before Plan Your Private Tour in 5 Simple Steps in half | done |
+| WT-143 | Homepage Google reviews: newest 4–5 star first (left); Places Application Programming Interface refresh when a key exists | done (key still needed for live daily pull) |
+| WT-144 | Smooth homepage hero change: no white flash | done |
 
 ### WT-111 — Production cutover checklist (do not run until approved)
 
@@ -80,7 +90,8 @@ Full detail: `docs/HOSTINGER_DEPLOYMENT.md`.
 - [ ] Submit Yoast sitemap (final Uniform Resource Locators (URLs) only) in Google Search Console — **no** Change of Address. Needs WT-114 first.
 - [ ] Add Google Analytics 4 (GA4) measurement ID (`G-XXXXXXXX`) in Settings → Watphou Travels (WT-113). Do not fire analytics on the Hostinger temporary domain.
 - [ ] Keep Wix paid 2–4 weeks; Hostinger backup
-- [ ] Test contact form off office network after Simple Mail Transfer Protocol (SMTP)
+- [ ] Test contact form off office network (staging Simple Mail Transfer Protocol is WT-134; repeat after live-domain cutover)
+- [ ] **WT-135** Sending From `bookings@watphou-travels.com` (not `@www…`). Recipients stay the two Gmails. Do not change Joker Mail Exchanger (MX) until approved.
 
 ### WT-107 — Complete Search Engine Optimization (SEO) for Google ranking
 
@@ -117,28 +128,17 @@ Full detail: `docs/HOSTINGER_DEPLOYMENT.md`.
    - Google Business Profile alignment (Pakse address, phone, website) when production Uniform Resource Locator (URL) is live
    - Open Graph images per tour for social and search previews
 
-**Staging (2026-09-10):** Yoast company representation, unique titles/meta descriptions, breadcrumbs, sitemap enabled but **not** submitted, `hreflang` for published EN/FR/TH Uniform Resource Locators (URLs), TravelAgency + TouristTrip schema, legal pages, travel-guide stub, image `loading=lazy`. Temporary domain stays `noindex`.
+**Staging (2026-09-24):** Yoast company representation, unique titles/meta descriptions, **canonical tags printed by `watphou-core` 1.8.1** (Yoast omits them while `blog_public=0`), breadcrumbs, sitemap enabled but **not** submitted, `hreflang` EN/FR/TH plus `x-default`, TravelAgency + LocalBusiness (geo, opening hours, aggregate rating) + TouristTrip schema, genuine Review schema from Google Maps quotes, legal pages, travel-guide stub, image `loading=lazy`. Temporary domain stays `noindex`. Live scores: technical **100 / 100**, Lighthouse-style Search Engine Optimization **90 / 100**. Customer copy: `docs/SEO_CUSTOMER_REPORT.md`.
 
-**Still blocked until production:** indexing, Google Search Console sitemap submit, Google Analytics 4 (GA4) ID, Google Business Profile, Offer schema (real prices), Review schema (genuine reviews), professional French/Thai copy.
+**Still blocked until production:** indexing, Google Search Console sitemap submit, Google Analytics 4 (GA4) ID, Google Business Profile website URL swap, Offer schema (real prices), professional French/Thai Search Engine Optimization titles if the office wants them.
 
-**Evidence:** `docs/SEO_CHECKLIST.md` all production items checked; sitemap accepted in Google Search Console; Lighthouse run logged in `docs/project_memory/TEST_LOG.md`.
+**Evidence:** `docs/SEO_CHECKLIST.md`; `docs/SEO_CUSTOMER_REPORT.md`; Lighthouse-equivalent run in `docs/project_memory/TEST_LOG.md`.
 
 ### WT-121 — Genuine Google reviews on Home (automatic)
 
-**Goal:** Show real Google reviews in the Home “Hear from Our Happy Travelers” block. Never invent quotes.
+**Goal:** Show real Google reviews in the Home **What Our Clients Say** block. Never invent quotes.
 
-**Can it be automatic?** Yes, with the official Google Places Application Programming Interface (Places API). WordPress can refresh a cache once per day (WordPress Cron). Do **not** scrape Google Search or Maps pages (breaks Google terms and is brittle).
+**Done 2026-09-24 (WT-139 then WT-143):** Five genuine 4–5 star reviews from the public listing [Watphou Travels on Google Maps](https://maps.app.goo.gl/QUTghqefjS9LCZSA8) (Place Identifier `ChIJzWB4m7P4FDER1RsT6DS65oE`), **newest first** (leftmost). 1-star quotes are not shown. Rolling cards match IZITOUR. Each card opens that reviewer’s Maps contribution. “Read more on Google” opens the listing.
 
-**What the customer must give us:**
-1. Google Cloud billing enabled + Places API (Place Details) turned on
-2. An Application Programming Interface key restricted to `watphoutravels.site` (and later `watphou-travels.com`)
-3. The Google Place Identifier for the Pakse office (from Google Maps → the business listing → Share / Place ID)
-
-**Limits to tell the customer:**
-- Place Details returns about **five** most-relevant reviews, not the full history
-- Must show Google attribution (Google’s rules)
-- “Read more on Google” link stays
-- A fuller feed needs Google Business Profile Application Programming Interface and the owner’s Google login (OAuth)
-
-**Until those three items exist:** keep the placeholder. Status: pending / blocked on credentials.
+**Automatic when a key exists:** Google Places Application Programming Interface (Places API) Place Details, `reviewsSort=NEWEST`, cached in WordPress option `watphou_google_reviews_cache` for one day. Key from `WATPHOU_GOOGLE_PLACES_KEY` in `wp-config.php` or Settings → Watphou Travels. Google returns at most five reviews per request; we keep rating ≥ 4 and backfill from `data/google-reviews.json`. Do not scrape Google as the production updater. Need a restricted Application Programming Interface key from the customer.
 
