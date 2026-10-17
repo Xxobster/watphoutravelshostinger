@@ -591,3 +591,50 @@ function watphou_core_maybe_widen_group_rows(): void {
 		watphou_core_set_price_table( $tour_id, $table );
 	}
 }
+
+add_action( 'init', 'watphou_core_maybe_set_test_prices', 63 );
+
+/**
+ * Once (customer's request 2026-10-17, test prices): 1-2 people $66, 3-5 people $77, 6-8 people $88
+ * in every price cell (single room only on tours with nights). Only tables with exactly these
+ * three lines are changed. "From $" is untouched.
+ */
+function watphou_core_maybe_set_test_prices(): void {
+	if ( '1' === get_option( 'watphou_price_table_test_667788' ) ) {
+		return;
+	}
+	update_option( 'watphou_price_table_test_667788', '1', false );
+	$args = array(
+		'post_type'      => 'tour',
+		'posts_per_page' => -1,
+		'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+		'fields'         => 'ids',
+	);
+	if ( function_exists( 'pll_default_language' ) ) {
+		$args['lang'] = pll_default_language() ?: 'en';
+	}
+	$prices = array(
+		'1-2' => '66',
+		'3-5' => '77',
+		'6-8' => '88',
+	);
+	foreach ( get_posts( $args ) as $tour_id ) {
+		$tour_id = (int) $tour_id;
+		$table   = watphou_core_get_price_table( $tour_id );
+		$keys    = array_map(
+			static function ( $r ) {
+				return $r['min'] . '-' . $r['max'];
+			},
+			$table['rows']
+		);
+		if ( array_keys( $prices ) !== $keys ) {
+			continue;
+		}
+		$day = watphou_core_price_table_is_day( $tour_id, $table );
+		foreach ( $table['rows'] as $i => $row ) {
+			$table['rows'][ $i ]['a'] = $prices[ $keys[ $i ] ];
+			$table['rows'][ $i ]['b'] = $day ? '' : $prices[ $keys[ $i ] ];
+		}
+		watphou_core_set_price_table( $tour_id, $table );
+	}
+}
