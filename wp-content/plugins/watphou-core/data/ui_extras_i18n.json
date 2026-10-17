@@ -368,5 +368,145 @@
   "%d stars": {
     "fr": "%d étoiles",
     "th": "%d ดาว"
+  },
+  "Prices": {
+    "fr": "Tarifs",
+    "th": "ราคา"
+  },
+  "Private tour. Prices in US dollars (USD) per person, depending on the size of your group.": {
+    "fr": "Circuit privé. Prix en dollars américains (USD) par personne, selon la taille de votre groupe.",
+    "th": "ทัวร์ส่วนตัว ราคาเป็นดอลลาร์สหรัฐ (USD) ต่อท่าน ขึ้นอยู่กับจำนวนผู้เดินทางในกลุ่มของคุณ"
+  },
+  "Group size": {
+    "fr": "Taille du groupe",
+    "th": "จำนวนผู้เดินทาง"
+  },
+  "Price": {
+    "fr": "Prix",
+    "th": "ราคา"
+  },
+  "per person": {
+    "fr": "par personne",
+    "th": "ต่อท่าน"
+  },
+  "price per person": {
+    "fr": "prix par personne",
+    "th": "ราคาต่อท่าน"
+  },
+  "Price per person": {
+    "fr": "Prix par personne",
+    "th": "ราคาต่อท่าน"
+  },
+  "Sharing Twin/Double Room": {
+    "fr": "Chambre twin/double partagée",
+    "th": "ห้องพักคู่ (เตียงคู่/เตียงใหญ่)"
+  },
+  "Private Single Room": {
+    "fr": "Chambre individuelle",
+    "th": "ห้องพักเดี่ยว"
+  },
+  "Send Inquiry": {
+    "fr": "Envoyer une demande",
+    "th": "ส่งคำสอบถาม"
+  },
+  "pax": {
+    "fr": "pers.",
+    "th": "ท่าน"
+  },
+  "%d pax": {
+    "fr": "%d pers.",
+    "th": "%d ท่าน"
+  },
+  "%d people": {
+    "fr": "%d personnes",
+    "th": "%d ท่าน"
+  },
+  "%1$d/%2$d people": {
+    "fr": "%1$d/%2$d personnes",
+    "th": "%1$d/%2$d ท่าน"
+  },
+  "%1$d/%2$d pax": {
+    "fr": "%1$d/%2$d pers.",
+    "th": "%1$d/%2$d ท่าน"
+  },
+  "Total price": {
+    "fr": "Prix total",
+    "th": "ราคารวม"
+  },
+  "Total (Twin/Double Room)": {
+    "fr": "Total (chambre twin/double)",
+    "th": "ราคารวม (ห้องพักคู่)"
+  },
+  "Total (Single Room)": {
+    "fr": "Total (chambre individuelle)",
+    "th": "ราคารวม (ห้องพักเดี่ยว)"
+  },
+  "On request": {
+    "fr": "Sur demande",
+    "th": "สอบถามราคา"
+  },
+  "Prices for this private tour are on request. Send us an inquiry and we will reply with a quote for your group.": {
+    "fr": "Les tarifs de ce circuit privé sont sur demande. Envoyez-nous une demande et nous vous répondrons avec un devis pour votre groupe.",
+    "th": "ราคาทัวร์ส่วนตัวนี้สอบถามได้ กรุณาส่งคำสอบถามมา แล้วเราจะตอบกลับพร้อมใบเสนอราคาสำหรับกลุ่มของคุณ"
+  },
+  "Traveling with more than %d people? You can select a different group size in the next step.": {
+    "fr": "Vous voyagez à plus de %d personnes ? Vous pourrez indiquer la taille de votre groupe à l’étape suivante.",
+    "th": "เดินทางมากกว่า %d ท่านใช่ไหม? คุณสามารถระบุจำนวนผู้เดินทางได้ในขั้นตอนถัดไป"
+  },
+  "Group size %d+": {
+    "fr": "Groupe de %d+",
+    "th": "กลุ่ม %d ท่านขึ้นไป"
+  },
+  "Contact details": {
+    "fr": "Coordonnées",
+    "th": "ข้อมูลติดต่อ"
+  },
+  "Number of people": {
+    "fr": "Nombre de personnes",
+    "th": "จำนวนผู้เดินทาง"
+  },
+  "Nationality": {
+    "fr": "Nationalité",
+    "th": "สัญชาติ"
+  },
+  "Type or choose from the list": {
+    "fr": "Saisissez ou choisissez dans la liste",
+    "th": "พิมพ์หรือเลือกจากรายการ"
+  },
+  "%d or more": {
+    "fr": "%d ou plus",
+    "th": "%d ท่านขึ้นไป"
+  },
+  "Please verify the number of people.": {
+    "fr": "Veuillez vérifier le nombre de personnes.",
+    "th": "กรุณาตรวจสอบจำนวนผู้เดินทาง"
+  },
+  "%s is required.": {
+    "fr": "%s est obligatoire.",
+    "th": "กรุณากรอก%s"
+  },
+  "Please choose a date in the future.": {
+    "fr": "Veuillez choisir une date à venir.",
+    "th": "กรุณาเลือกวันที่ในอนาคต"
+  },
+  "This page has expired. Please reload the page and send the form again.": {
+    "fr": "Cette page a expiré. Veuillez recharger la page et renvoyer le formulaire.",
+    "th": "หน้านี้หมดอายุแล้ว กรุณาโหลดหน้าใหม่แล้วส่งแบบฟอร์มอีกครั้ง"
+  },
+  "Too many requests from this connection. Please wait a few minutes, or contact us on WhatsApp.": {
+    "fr": "Trop de demandes depuis cette connexion. Veuillez patienter quelques minutes ou nous contacter sur WhatsApp.",
+    "th": "มีคำขอจากการเชื่อมต่อนี้มากเกินไป กรุณารอสักครู่ หรือติดต่อเราทาง WhatsApp"
+  },
+  "View prices": {
+    "fr": "Voir les tarifs",
+    "th": "ดูราคา"
+  },
+  "Booking summary": {
+    "fr": "Récapitulatif",
+    "th": "สรุปการจอง"
+  },
+  "Prices in USD per person. Our team confirms availability and the final price by email or WhatsApp.": {
+    "fr": "Prix en USD par personne. Notre équipe confirme la disponibilité et le prix final par e-mail ou WhatsApp.",
+    "th": "ราคาเป็น USD ต่อท่าน ทีมงานของเราจะยืนยันความพร้อมและราคาสุดท้ายทางอีเมลหรือ WhatsApp"
   }
 }

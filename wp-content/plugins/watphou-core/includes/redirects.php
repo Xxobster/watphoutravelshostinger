@@ -21,9 +21,22 @@ function watphou_core_handle_redirects(): void {
 	}
 }
 
+/**
+ * Bump when data/redirects.csv changes: the stored map is rebuilt from the CSV once.
+ */
+const WATPHOU_REDIRECTS_VERSION = '2026-10-16';
+
+// Old Wix paths must not be "guessed" onto a same-slug post in another language (Thai).
+add_filter( 'do_redirect_guess_404_permalink', '__return_false' );
+
 function watphou_core_get_redirect_map(): array {
 	$cache_key = 'watphou_redirect_map';
-	$cached    = get_transient( $cache_key );
+	if ( WATPHOU_REDIRECTS_VERSION !== get_option( 'watphou_redirect_map_version' ) ) {
+		delete_option( 'watphou_redirect_map' );
+		delete_transient( $cache_key );
+		update_option( 'watphou_redirect_map_version', WATPHOU_REDIRECTS_VERSION, false );
+	}
+	$cached = get_transient( $cache_key );
 	if ( is_array( $cached ) ) {
 		return $cached;
 	}
@@ -35,10 +48,11 @@ function watphou_core_get_redirect_map(): array {
 	}
 
 	$map   = array();
+	// Plugin copy first: it ships with every deploy, so it is never stale.
 	$files = array(
+		WATPHOU_CORE_PATH . 'data/redirects.csv',
 		WP_CONTENT_DIR . '/../content/redirects.csv',
 		dirname( ABSPATH ) . '/content/redirects.csv',
-		WATPHOU_CORE_PATH . 'data/redirects.csv',
 	);
 	foreach ( $files as $file ) {
 		$file = wp_normalize_path( $file );

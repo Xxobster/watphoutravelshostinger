@@ -249,9 +249,6 @@ if ( function_exists( 'watphou_core_render_google_reviews' ) ) {
 	<div class="wpt-container">
 		<h2><?php esc_html_e( 'Ready to plan your Southern Laos journey?', 'watphou-travels' ); ?></h2>
 		<a class="wpt-btn-primary" href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>"><?php esc_html_e( 'WhatsApp us now', 'watphou-travels' ); ?></a>
-		<div class="wpt-contact-form">
-			<?php echo do_shortcode( '[watphou_booking_form]' ); ?>
-		</div>
 	</div>
 </section>
 

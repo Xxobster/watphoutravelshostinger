@@ -12,28 +12,28 @@ old_url,new_url,http_code,notes
 /4000-islands,/destinations/4000-islands/,301,old destination
 /champasak,/destinations/champasak/,301,old destination
 /pakse-city,/destinations/pakse/,301,old destination
-/bolaven-plateau-classic-full-day-tour,/tours/bolaven-plateau-classic-full-day-tour/,301,tour root to nested
-/bolaven-plateau-classic-2-day,/tours/bolaven-plateau-classic-2-day/,301,tour root to nested
-/4000islands-vatphu-temple-2-day-1-night,/tours/4000islands-vatphu-temple-2-day-1-night/,301,tour root to nested
-/3-day-classic-experience-in-southern-laos,/tours/3-day-classic-experience-in-southern-laos/,301,tour root to nested
-/4-day-southern-laos-escape,/tours/4-day-southern-laos-escape/,301,tour root to nested
-/5-day-exploring-southern-laos,/tours/5-day-exploring-southern-laos/,301,tour root to nested
-/6-day-journey-to-the-heart-of-southern-laos,/tours/6-day-journey-to-the-heart-of-southern-laos/,301,tour root to nested
-/vatphu-riverside-gems-full-day,/tours/vatphu-riverside-gems-full-day/,301,tour root to nested
-/4000islands-full-day,/tours/4000islands-full-day/,301,tour root to nested
-/pakse-cultural-riverside-exploration-full-day,/tours/pakse-cultural-riverside-exploration-full-day/,301,tour root to nested
-/dan-sinxai-eco-adventure-trek-full-day,/tours/dan-sinxai-eco-adventure-trek-full-day/,301,tour root to nested
-/champasak-cycling-experience,/tours/champasak-cycling-experience/,301,tour root to nested
-/full-day-trekking-at-dan-yai-tiger-falls,/tours/full-day-trekking-at-dan-yai-tiger-falls/,301,tour root to nested
-/vatphu-champasak-discovery-2days-1night,/tours/vatphu-champasak-discovery-2days-1night/,301,tour root to nested
-/3-day-highlights-of-southern-laos,/tours/3-day-highlights-of-southern-laos/,301,tour root to nested
-/explore-vatphu-bolaven-plateau-full-day,/tours/vatphu-riverside-gems-full-day/,301,retired package to closest
-/bolaven-plateau-half-day,/tours/bolaven-plateau-classic-full-day-tour/,301,retired half-day to 1.1
-/vatphu-temple-half-day,/tours/vatphu-riverside-gems-full-day/,301,retired half-day to 1.2
-/pakse-half-day-city-tours,/tours/pakse-cultural-riverside-exploration-full-day/,301,retired half-day to 1.4
-/mystic-mountain-full-day-tour,/tours/dan-sinxai-eco-adventure-trek-full-day/,301,retired to closest trek
-/mystic-mountain-trail-2-day1-night,/tours/bolaven-plateau-classic-2-day/,301,retired to closest overnight
-/3-days-in-southern-laos-with-cycling-escape,/tours/3-day-classic-experience-in-southern-laos/,301,retired to flagship 3-day
+/bolaven-plateau-classic-full-day-tour,/tours/bolaven-plateau-classic-full-day-tour-2/,301,tour root to nested
+/bolaven-plateau-classic-2-day,/tours/bolaven-plateau-classic-2-day-2/,301,tour root to nested
+/4000islands-vatphu-temple-2-day-1-night,/tours/4000islands-vatphu-temple-2-day-1-night-2/,301,tour root to nested
+/3-day-classic-experience-in-southern-laos,/tours/3-day-classic-experience-in-southern-laos-2/,301,tour root to nested
+/4-day-southern-laos-escape,/tours/4-day-southern-laos-escape-2/,301,tour root to nested
+/5-day-exploring-southern-laos,/tours/5-day-exploring-southern-laos-2/,301,tour root to nested
+/6-day-journey-to-the-heart-of-southern-laos,/tours/6-day-journey-to-the-heart-of-southern-laos-2/,301,tour root to nested
+/vatphu-riverside-gems-full-day,/tours/vatphu-riverside-gems-full-day-2/,301,tour root to nested
+/4000islands-full-day,/tours/4000islands-full-day-2/,301,tour root to nested
+/pakse-cultural-riverside-exploration-full-day,/tours/pakse-cultural-riverside-exploration-full-day-2/,301,tour root to nested
+/dan-sinxai-eco-adventure-trek-full-day,/tours/dan-sinxai-eco-adventure-trek-full-day-2/,301,tour root to nested
+/champasak-cycling-experience,/tours/champasak-cycling-experience-2/,301,tour root to nested
+/full-day-trekking-at-dan-yai-tiger-falls,/tours/full-day-trekking-at-dan-yai-tiger-falls-2/,301,tour root to nested
+/vatphu-champasak-discovery-2days-1night,/tours/vatphu-champasak-discovery-2days-1night-2/,301,tour root to nested
+/3-day-highlights-of-southern-laos,/tours/3-day-highlights-of-southern-laos-2/,301,tour root to nested
+/explore-vatphu-bolaven-plateau-full-day,/tours/vatphu-riverside-gems-full-day-2/,301,retired package to closest
+/bolaven-plateau-half-day,/tours/bolaven-plateau-classic-full-day-tour-2/,301,retired half-day to 1.1
+/vatphu-temple-half-day,/tours/vatphu-riverside-gems-full-day-2/,301,retired half-day to 1.2
+/pakse-half-day-city-tours,/tours/pakse-cultural-riverside-exploration-full-day-2/,301,retired half-day to 1.4
+/mystic-mountain-full-day-tour,/tours/dan-sinxai-eco-adventure-trek-full-day-2/,301,retired to closest trek
+/mystic-mountain-trail-2-day1-night,/tours/bolaven-plateau-classic-2-day-2/,301,retired to closest overnight
+/3-days-in-southern-laos-with-cycling-escape,/tours/3-day-classic-experience-in-southern-laos-2/,301,retired to flagship 3-day
 /traditional-bamboo-weaving-class,/tailor-made-tours/,301,retired activity to tailor-made
 /traditional-lao-cotton-weaving-class,/tailor-made-tours/,301,retired activity to tailor-made
 /en/,/,301,remove language prefix default EN
@@ -57,3 +57,19 @@ old_url,new_url,http_code,notes
 /product-page/i-m-a-product-10,,410,dummy wix store
 /product-page/i-m-a-product-11,,410,dummy wix store
 /category/all-products,,410,dummy wix store
+/tours/bolaven-plateau-classic-full-day-tour,/tours/bolaven-plateau-classic-full-day-tour-2/,301,unsuffixed tour slug to live English page
+/tours/4000islands-full-day,/tours/4000islands-full-day-2/,301,unsuffixed tour slug to live English page
+/tours/champasak-cycling-experience,/tours/champasak-cycling-experience-2/,301,unsuffixed tour slug to live English page
+/tours/dan-sinxai-eco-adventure-trek-full-day,/tours/dan-sinxai-eco-adventure-trek-full-day-2/,301,unsuffixed tour slug to live English page
+/tours/full-day-trekking-at-dan-yai-tiger-falls,/tours/full-day-trekking-at-dan-yai-tiger-falls-2/,301,unsuffixed tour slug to live English page
+/tours/pakse-cultural-riverside-exploration-full-day,/tours/pakse-cultural-riverside-exploration-full-day-2/,301,unsuffixed tour slug to live English page
+/tours/4-day-southern-laos-escape,/tours/4-day-southern-laos-escape-2/,301,unsuffixed tour slug to live English page
+/tours/4000islands-vatphu-temple-2-day-1-night,/tours/4000islands-vatphu-temple-2-day-1-night-2/,301,unsuffixed tour slug to live English page
+/tours/5-day-exploring-southern-laos,/tours/5-day-exploring-southern-laos-2/,301,unsuffixed tour slug to live English page
+/tours/6-day-journey-to-the-heart-of-southern-laos,/tours/6-day-journey-to-the-heart-of-southern-laos-2/,301,unsuffixed tour slug to live English page
+/tours/bolaven-plateau-classic-2-day,/tours/bolaven-plateau-classic-2-day-2/,301,unsuffixed tour slug to live English page
+/tours/vatphu-champasak-discovery-2days-1night,/tours/vatphu-champasak-discovery-2days-1night-2/,301,unsuffixed tour slug to live English page
+/tours/3-day-classic-experience-in-southern-laos,/tours/3-day-classic-experience-in-southern-laos-2/,301,unsuffixed tour slug to live English page
+/tours/3-day-highlights-of-southern-laos,/tours/3-day-highlights-of-southern-laos-2/,301,unsuffixed tour slug to live English page
+/tours/vatphu-riverside-gems-full-day,/tours/vatphu-riverside-gems-full-day-2/,301,unsuffixed tour slug to live English page
+/contact,/contact-us/,301,duplicate contact page

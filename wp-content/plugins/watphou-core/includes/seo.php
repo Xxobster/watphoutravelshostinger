@@ -131,6 +131,12 @@ function watphou_core_tracking_head(): void {
 	if ( $gsc && ! class_exists( 'WPSEO_Options' ) ) {
 		echo '<meta name="google-site-verification" content="' . esc_attr( $gsc ) . '">' . "\n";
 	}
+	// Live domain only: keep the Search Console property of watphou-travels.com verified after the
+	// move from Wix (same token the Wix site publishes), unless another code was entered.
+	$yoast_gsc = class_exists( 'WPSEO_Options' ) ? (string) WPSEO_Options::get( 'googleverify', '' ) : '';
+	if ( '' === $gsc && '' === $yoast_gsc && function_exists( 'watphou_is_non_production' ) && ! watphou_is_non_production() ) {
+		echo '<meta name="google-site-verification" content="QH3GAjV28KcT9PFKjQVheavnOXt5p6_bO2GVAwN84jY">' . "\n";
+	}
 
 	if ( function_exists( 'watphou_is_non_production' ) && watphou_is_non_production() ) {
 		return;
@@ -140,7 +146,10 @@ function watphou_core_tracking_head(): void {
 		return;
 	}
 	echo '<script async src="https://www.googletagmanager.com/gtag/js?id=' . esc_attr( $ga4 ) . '"></script>' . "\n";
-	echo '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","' . esc_js( $ga4 ) . '");</script>' . "\n";
+	echo '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","' . esc_js( $ga4 ) . '");'
+		// The quote form fires this event after a request is saved: counted as a GA4 lead (conversion).
+		. 'document.addEventListener("watphou:booking-sent",function(e){var d=e.detail||{};gtag("event","generate_lead",{tour_name:String(d.tour||"").slice(0,100),group_size:String(d.group||"").slice(0,20)});});'
+		. '</script>' . "\n";
 }
 
 function watphou_core_sync_yoast_for_post( int $post_id, WP_Post $post ): void {
@@ -504,4 +513,146 @@ function watphou_core_extra_seo_meta(): void {
 			echo '<meta name="sku" content="' . esc_attr( $code ) . '">' . "\n";
 		}
 	}
+}
+
+/*
+ * Keyword pass (October 2026 audit), English pages only.
+ * French and Thai keep their reviewed wording until the translations of these
+ * lines are approved (drafts: docs/translations/seo_keywords_fr_th_drafts.csv).
+ * Filters only: nothing is written to the database, so removing this block undoes it.
+ */
+add_filter( 'gettext', 'watphou_core_keyword_headings', 30, 3 );
+add_filter( 'pre_get_document_title', 'watphou_core_keyword_document_title', 101 );
+add_filter( 'wpseo_title', 'watphou_core_keyword_document_title', 101 );
+add_filter( 'wpseo_opengraph_title', 'watphou_core_keyword_document_title', 101 );
+add_filter( 'wpseo_twitter_title', 'watphou_core_keyword_document_title', 101 );
+add_filter( 'wpseo_metadesc', 'watphou_core_keyword_metadesc', 30 );
+add_filter( 'wpseo_opengraph_desc', 'watphou_core_keyword_metadesc', 30 );
+add_filter( 'get_the_archive_description', 'watphou_core_keyword_destination_intro', 20 );
+
+function watphou_core_keyword_is_english(): bool {
+	if ( is_admin() ) {
+		return false;
+	}
+	$lang = function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : 'en';
+	return 'en' === $lang;
+}
+
+/**
+ * Homepage headings with the search words people type.
+ */
+function watphou_core_keyword_headings( $translated, $text, $domain ) {
+	if ( 'watphou-travels' !== $domain || ! watphou_core_keyword_is_english() ) {
+		return $translated;
+	}
+	static $map = array(
+		'Discover Southern Laos Your Way'        => 'Private Tours in Southern Laos from Pakse',
+		'Popular Private Tours'                  => 'Popular Private Tours in Southern Laos',
+		'Why Us!'                                => 'Why Travel with a Local Pakse Tour Agency',
+		'Ready to plan your Southern Laos journey?' => 'Ready to plan your private tour in Laos?',
+	);
+	return $map[ $text ] ?? $translated;
+}
+
+/**
+ * Current English page key: front, listing page slug, or destination term slug.
+ */
+function watphou_core_keyword_page_key(): string {
+	if ( is_front_page() ) {
+		return 'front';
+	}
+	if ( is_tax( 'destination' ) ) {
+		$term = get_queried_object();
+		return ( $term instanceof WP_Term ) ? 'dest:' . $term->slug : '';
+	}
+	if ( is_post_type_archive( 'tour' ) ) {
+		return 'tours';
+	}
+	if ( is_page() ) {
+		$name = (string) get_post_field( 'post_name', get_queried_object_id() );
+		return function_exists( 'watphou_core_canonical_content_slug' ) ? watphou_core_canonical_content_slug( $name ) : $name;
+	}
+	return '';
+}
+
+/**
+ * @return array<string, array{0:string,1:string}> key => [title, meta description]
+ */
+function watphou_core_keyword_seo_map(): array {
+	return array(
+		'front'                => array( 'Private Tours in Southern Laos from Pakse | Watphou Travels', 'Local Laos tour agency in Pakse since 2008. Private tours to the Bolaven Plateau waterfalls, UNESCO Vat Phou, Champasak and the 4000 Islands. Ask for a free quote.' ),
+		'tours'                => array( 'All Private Tours in Southern Laos | Watphou Travels', 'Private day tours and 2- to 6-day trips from Pakse: Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands. 100% private with a local Laos tour agency.' ),
+		'day-tours'            => array( 'Day Tours from Pakse, Laos | Bolaven Plateau, Vat Phou | Watphou Travels', 'Private day tours from Pakse: Bolaven Plateau waterfalls and coffee, Vat Phou temple, 4000 Islands, trekking and cycling. Hotel pickup in Pakse.' ),
+		'2-day-tours'          => array( '2-Day Tours from Pakse | Bolaven Plateau & 4000 Islands | Watphou Travels', 'Two-day private tours from Pakse with one night: Bolaven Plateau, Vat Phou and Champasak, or the 4000 Islands. Local Pakse team.' ),
+		'3-day-tours'          => array( '3-Day Southern Laos Tours from Pakse | Watphou Travels', 'Three-day private tours of Southern Laos from Pakse: Bolaven Plateau waterfalls, Vat Phou, Champasak and the 4000 Islands.' ),
+		'4-6-day-tours'        => array( '4 to 6-Day Southern Laos Tour Packages | Watphou Travels', 'Private 4, 5 and 6-day Southern Laos tours from Pakse: Bolaven Plateau, Vat Phou, Champasak, the 4000 Islands and Khone Phapheng Falls.' ),
+		'destinations'         => array( 'Southern Laos Destinations: Bolaven, Vat Phou, 4000 Islands | Watphou Travels', 'Where to go in Southern Laos: Pakse, the Bolaven Plateau, UNESCO Vat Phou and Champasak, and the 4000 Islands. Private tours from Pakse.' ),
+		'tailor-made-tours'    => array( 'Tailor-Made Laos Tours from Pakse | Watphou Travels', 'Custom private tours in Southern Laos built around your dates, pace and interests by a local tour agency in Pakse.' ),
+		'about-us'             => array( 'About Watphou Travels | Local Tour Agency in Pakse, Laos', 'Watphou Travels is a local tour agency in Pakse, Laos, since 2008. Private tours with a driver and guide across Southern Laos.' ),
+		'contact-us'           => array( 'Contact Watphou Travels | Tour Agency in Pakse, Laos', 'WhatsApp +85620 9949 5858 or email sales.watphoutravel@gmail.com. Our office is on Street N°5, Ban Vat Luang, Pakse. Private tours in Southern Laos.' ),
+		'travel-guide'         => array( 'Southern Laos Travel Guide: Pakse, Bolaven, 4000 Islands | Watphou Travels', 'Practical tips for visiting Southern Laos: Pakse, the Bolaven Plateau, Vat Phou and the 4000 Islands, from a local Pakse tour agency.' ),
+		'dest:bolaven-plateau' => array( 'Bolaven Plateau Tours from Pakse | Waterfalls & Coffee | Watphou Travels', 'Private Bolaven Plateau tours from Pakse: Tad Fane, Tad Yuang and Tad Champee waterfalls, coffee farms and highland villages. Day trips and overnight tours.' ),
+		'dest:4000-islands'    => array( '4000 Islands Tours (Si Phan Don) from Pakse | Watphou Travels', 'Private 4000 Islands tours from Pakse: Don Khone, Don Det, Khone Phapheng and Li Phi waterfalls on the Mekong. Day trips and overnight tours.' ),
+		'dest:champasak'       => array( 'Vat Phou & Champasak Tours from Pakse | UNESCO Temple | Watphou Travels', 'Private tours to Vat Phou, the UNESCO World Heritage Khmer temple, and Champasak town, about an hour south of Pakse. Day trips, cycling and overnight tours.' ),
+		'dest:pakse'           => array( 'Pakse Tours & Things to Do in Pakse | Watphou Travels', 'Private Pakse city tours and day trips: temples, the Mekong riverside, Phou Salao Golden Buddha and nearby weaving villages. Local Pakse agency.' ),
+	);
+}
+
+function watphou_core_keyword_document_title( $title ) {
+	if ( ! watphou_core_keyword_is_english() ) {
+		return $title;
+	}
+	$map = watphou_core_keyword_seo_map();
+	$key = watphou_core_keyword_page_key();
+	return isset( $map[ $key ] ) ? $map[ $key ][0] : $title;
+}
+
+function watphou_core_keyword_metadesc( $desc ) {
+	if ( ! watphou_core_keyword_is_english() ) {
+		return $desc;
+	}
+	$map = watphou_core_keyword_seo_map();
+	$key = watphou_core_keyword_page_key();
+	return isset( $map[ $key ] ) ? $map[ $key ][1] : $desc;
+}
+
+/**
+ * Longer English intro on destination pages (they were one sentence long).
+ * Escaped paragraphs joined with </p><p>; the template wraps the result in <p>…</p>.
+ */
+function watphou_core_keyword_destination_intro( $description ) {
+	if ( ! is_tax( 'destination' ) || ! watphou_core_keyword_is_english() ) {
+		return $description;
+	}
+	$term = get_queried_object();
+	if ( ! $term instanceof WP_Term ) {
+		return $description;
+	}
+	$copy = array(
+		'bolaven-plateau' => array(
+			'The Bolaven Plateau rises about 1,000 to 1,300 metres above the Mekong, roughly an hour and a half east of Pakse. Its cool air, red volcanic soil and dozens of waterfalls make it the most popular day trip in Southern Laos.',
+			'On a private Bolaven Plateau tour from Pakse you can see Tad Fane, the twin waterfall dropping into a deep jungle gorge, swim near Tad Yuang and Tad Champee, walk through a highland market and taste Lao coffee with the families who grow it around Paksong.',
+			'Best time to visit: November to February is cool and dry; June to October brings the fullest waterfalls and the greenest scenery. Choose a full-day tour, or stay overnight to add villages, Tad Lo and quieter falls.',
+		),
+		'4000-islands'    => array(
+			'Si Phan Don, the 4000 Islands, is where the Mekong spreads up to 14 kilometres wide just before the Cambodian border, about two and a half to three hours south of Pakse.',
+			'A private 4000 Islands tour from Pakse visits Khone Phapheng, the largest waterfall by volume in Southeast Asia, the Li Phi (Somphamit) falls on Don Khone, the old French railway bridge between Don Khone and Don Det, and quiet island villages by boat or bicycle.',
+			'It works as a long day trip, but most travellers prefer two days with one night on the islands, often combined with Vat Phou and Champasak on the way.',
+		),
+		'champasak'       => array(
+			'Vat Phou (Wat Phu) is a Khmer temple complex at the foot of Phou Kao mountain, with origins older than Angkor Wat. It is a UNESCO World Heritage Site and lies near the small riverside town of Champasak, about an hour south of Pakse.',
+			'A private Vat Phou and Champasak tour from Pakse climbs the ancient stairway to the hillside sanctuary for views over the Mekong plain, then continues to Champasak town, rice fields and riverside villages. You can add a cycling route or a ferry to Don Daeng island.',
+			'Go early in the morning or late in the afternoon for softer light and cooler temperatures. Vat Phou combines easily with the 4000 Islands in a two-day tour.',
+		),
+		'pakse'           => array(
+			'Pakse, the capital of Champasak Province, sits where the Xe Don river meets the Mekong. It is the main gateway to Southern Laos and the starting point of every Watphou Travels tour.',
+			'Things to do in Pakse include the hilltop Golden Buddha at Wat Phou Salao, Wat Luang and other temples, the morning market, the Mekong riverside at sunset and nearby villages known for silk and cotton weaving.',
+			'Our office is in Pakse, so we pick you up at your hotel. From here the Bolaven Plateau, Vat Phou and the 4000 Islands are all within easy reach on a private day tour or a longer trip.',
+		),
+	);
+	$slug = $term->slug;
+	if ( ! isset( $copy[ $slug ] ) ) {
+		return $description;
+	}
+	return implode( '</p><p>', array_map( 'esc_html', $copy[ $slug ] ) );
 }

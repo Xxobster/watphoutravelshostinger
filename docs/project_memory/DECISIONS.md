@@ -520,12 +520,12 @@ Destination **place names** stay English except French **4000 îles**. The form 
 
 ---
 
+## 2026-10-16 — Price table per tour; inquiry form on its own page
 
+**Decision:** Store each tour’s group price table as JSON in post meta `tour_price_table` (copied to FR/TH translations). Layout follows the duration (1 day = one price; nights = twin/double + single) unless Quick Edit overrides it. Send Inquiry opens `?inquiry=1&group=<row|more>` on the same tour URL, so language and slug handling stay as they are; that variant is `noindex`. The server never accepts prices from the browser: it maps the number of people to a table row itself. Nationality is free text with a datalist of CLDR country names; the office email adds the English name when it matches.
 
+**Reason:** Customer request 2026-10-16 (izitour.com model). A query-string variant avoids creating FR/TH pages and new rewrite rules.
 
+**Impact:** Theme 2.6.0, `watphou-core` 1.9.0, `watphou-bookings` 1.3.0. Task WT-145.
 
-
-
-
-
-
+---

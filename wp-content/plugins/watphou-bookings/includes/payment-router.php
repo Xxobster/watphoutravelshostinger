@@ -1,6 +1,14 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * The website takes no payments. Payment links and the payment callback stay off
+ * unless wp-config.php defines WATPHOU_PAYMENTS_ENABLED true (with a real provider).
+ */
+function watphou_payments_enabled(): bool {
+	return defined( 'WATPHOU_PAYMENTS_ENABLED' ) && WATPHOU_PAYMENTS_ENABLED;
+}
+
 function watphou_get_payment_provider(): Watphou_Payment_Provider {
 	if ( defined( 'WATPHOU_DEMO' ) && WATPHOU_DEMO ) {
 		return new Watphou_Mock_Payment_Provider();
@@ -16,6 +24,10 @@ function watphou_bookings_handle_pay_route(): void {
 	$token = get_query_var( 'watphou_pay_token' );
 	if ( ! $token ) {
 		return;
+	}
+	if ( ! watphou_payments_enabled() ) {
+		status_header( 404 );
+		wp_die( esc_html__( 'Invalid payment link.', 'watphou-bookings' ), '', array( 'response' => 404 ) );
 	}
 	$booking = Watphou_Booking_Repository::get_by_token( sanitize_text_field( $token ) );
 	if ( ! $booking ) {
@@ -40,6 +52,9 @@ function watphou_bookings_handle_pay_route(): void {
 }
 
 function watphou_bookings_register_callback_route(): void {
+	if ( ! watphou_payments_enabled() ) {
+		return;
+	}
 	register_rest_route(
 		'watphou/v1',
 		'/payment/callback',

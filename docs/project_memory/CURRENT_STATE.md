@@ -1,6 +1,6 @@
 # Current State — Watphou Travels
 
-**Last updated:** 2026-09-24 (homepage hero: crossfade, no white flash)
+**Last updated:** 2026-10-16 (tour price table + Send Inquiry form page, WT-145)
 
 ## Summary
 
@@ -68,6 +68,7 @@ The old DuckDNS demo on Virtual Private Server (VPS) `sm` was removed; `smbistro
 - [x] WT-142 Homepage: gap between Popular Private Tours and Plan Your Private Tour in 5 Simple Steps cut in half (theme 2.5.3)
 - [x] WT-143 Homepage Google reviews sorted newest-first (left); 4–5 star only; Places Application Programming Interface daily refresh when a key exists (`watphou-core` 1.8.4)
 - [x] WT-144 Homepage hero crossfade: wait until the next photo is decoded; keep the current photo until the fade ends; dark backdrop instead of a transparent pixel (theme 2.5.5)
+- [x] WT-145 (code, 2026-10-16; theme 2.6.0, `watphou-core` 1.9.0, `watphou-bookings` 1.3.0) Tour pages show a **Prices** table by group size instead of “Request this tour”: day tours one price per person, tours with nights **Sharing Twin/Double Room** and **Private Single Room**, a **Send Inquiry** button per line, and “Traveling with more than N people?” + **Group size N+1+**. Send Inquiry opens `?inquiry=1&group=…` on the same tour (noindex): **CONTACT DETAILS** form + booking summary. Tour fields removed except Tour name; Adults → **Number of people** (filled for 2 pax / 4 pax, empty and required for 6/8 pax and 9+, “Please verify the number of people.”); Children removed; Country → **Nationality** (type or pick from 244 CLDR country names in EN/FR/TH). Price, group and tour are recomputed on the server from the number of people; drafts rejected; honeypot, 3-second minimum, signed time token, 6 requests / 15 min per address, length caps, date checks. Quick edit tours → **Edit price table**: add/move/remove lines, Enter moves down, paste cells from Excel; “From $” follows the lowest table price. Also fixed: every booking was stored with reference `0`, status `0` and empty dates (missing insert formats), so bookings after the first failed to save in admin (emails still went out). Follow-up (`watphou-core` 1.9.1): a one-time loader (option `watphou_price_table_seed`) fills every tour without a table with Micah's sample sheet: 1-day tours 2/4/6-8 pax at $605/$550/$510; tours with nights twin $605/$550/$510, single $670/$620/$580; “From $” set to 510 only where it was XX. Existing tables are never overwritten. Revert: work/backups/2026-10-16_1145_sample-prices/.
 
 ## Blocked / client input needed
 

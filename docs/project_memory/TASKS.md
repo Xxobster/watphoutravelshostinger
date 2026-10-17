@@ -75,6 +75,7 @@
 | WT-142 | Cut homepage gap before Plan Your Private Tour in 5 Simple Steps in half | done |
 | WT-143 | Homepage Google reviews: newest 4–5 star first (left); Places Application Programming Interface refresh when a key exists | done (key still needed for live daily pull) |
 | WT-144 | Smooth homepage hero change: no white flash | done |
+| WT-145 | Per-tour price table (group size, day / overnight) with Send Inquiry; CONTACT DETAILS form page; Number of people + Nationality; Quick Edit table editor; FR/TH | done in code 2026-10-16 (deploy to Hostinger pending; real prices still needed) |
 
 ### WT-111 — Production cutover checklist (do not run until approved)
 

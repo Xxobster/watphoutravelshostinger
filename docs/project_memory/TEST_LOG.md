@@ -1318,3 +1318,11 @@ Live https://watphoutravels.site/?v=184#what-clients-say: first original card is
   ]
 }
 ```
+
+## 2026-10-16 — Price table + inquiry form (WT-145), local WordPress 6.5 + SQLite
+
+Playwright (desktop 1280 and phone 390): day and overnight tables render; 6/8 pax opens the form with Number of people empty, submit shows “Please verify the number of people.”; 7 people → summary 6/8 pax $510 / $580; 4 pax prefills 4; 9+ empty with placeholder “9 or more”; no horizontal scroll on phone. Quick Edit: add line, paste two Excel rows, delete, invalid group blocks save, saved meta correct, From $ = lowest price. FR/TH render of table and form checked from CLI. Attack checks (HTTP): forged time token → 400; honeypot → fake success, nothing saved; bad nonce → 403; people empty/0/500/-3/4abc → error; past or malformed date → error; CRLF in email/name → single address, no extra header; tampered price fields ignored; draft tour id → stored as no tour; tags stripped from nationality; 7th request in 15 min → 429. Booking rows now get a real reference and status.
+
+## 2026-10-16 — Sample price tables loader (core 1.9.1), local
+
+New 2-day/1-night tour got Twin/Double + Single rows (605/670, 550/620, 510/580); new 1-day tour got one Price column (605, 550, 510); tours that already had a table were left unchanged; loader ran once. Desktop and phone screenshots checked.

@@ -46,7 +46,17 @@ function watphou_bookings_detail_page( int $id ): void {
 			$show = array( 'tour_name', 'tour_id', 'customer_name', 'email', 'phone', 'whatsapp', 'preferred_date', 'alt_date', 'adults', 'children', 'country', 'pickup_location', 'customer_message', 'staff_notes', 'language' );
 			foreach ( $show as $f ) :
 				?>
-				<tr><th><?php echo esc_html( ucwords( str_replace( '_', ' ', $f ) ) ); ?></th><td><?php echo nl2br( esc_html( (string) ( $booking->$f ?? '' ) ) ); ?></td></tr>
+				<?php
+				$labels = array(
+					'adults'  => __( 'Number of people', 'watphou-bookings' ),
+					'country' => __( 'Nationality', 'watphou-bookings' ),
+				);
+				$label  = $labels[ $f ] ?? ucwords( str_replace( '_', ' ', $f ) );
+				if ( 'children' === $f && empty( $booking->children ) ) {
+					continue;
+				}
+				?>
+				<tr><th><?php echo esc_html( $label ); ?></th><td><?php echo nl2br( esc_html( (string) ( $booking->$f ?? '' ) ) ); ?></td></tr>
 			<?php endforeach; ?>
 		</tbody></table>
 		<h2><?php esc_html_e( 'History', 'watphou-bookings' ); ?></h2>

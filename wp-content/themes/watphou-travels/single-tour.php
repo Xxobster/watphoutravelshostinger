@@ -26,6 +26,74 @@ if ( $duration && function_exists( 'watphou_core_translate_public_string' ) ) {
 }
 $gallery  = function_exists( 'watphou_core_tour_gallery_urls' ) ? watphou_core_tour_gallery_urls( $pid ) : array();
 $thumb_id = (int) get_post_thumbnail_id( $pid );
+
+// "Send Inquiry" on the price table opens this same tour URL with ?inquiry=1: a page with only the form.
+if ( function_exists( 'watphou_core_is_inquiry_page' ) && watphou_core_is_inquiry_page() ) {
+	$group   = function_exists( 'watphou_booking_requested_group' ) ? watphou_booking_requested_group() : '';
+	$pdata   = function_exists( 'watphou_core_price_table_public_data' ) ? watphou_core_price_table_public_data( $pid ) : array( 'day' => true, 'max' => 8, 'rows' => array() );
+	// The row the visitor clicked fills the summary until they type a number of people.
+	$chosen = null;
+	if ( 'more' === $group ) {
+		$chosen = array( 'label' => ( (int) $pdata['max'] + 1 ) . '+', 'a' => '', 'b' => '' );
+	} elseif ( '' !== $group && isset( $pdata['rows'][ (int) $group ] ) ) {
+		$chosen = $pdata['rows'][ (int) $group ];
+	}
+	$pdata['chosen'] = $chosen;
+	$on_request      = __( 'On request', 'watphou-core' );
+	// Total = people x price per person, only when the clicked row is one exact group size (2, 4).
+	$chosen_n = ( isset( $chosen['min'] ) && $chosen['min'] === $chosen['max'] ) ? (int) $chosen['min'] : 0;
+	$total_of = static function ( string $key ) use ( $chosen, $chosen_n, $on_request ): string {
+		if ( ! $chosen ) {
+			return '—';
+		}
+		if ( empty( $chosen[ $key . 'n' ] ) ) {
+			return $on_request;
+		}
+		return $chosen_n ? watphou_core_format_usd( (string) ( $chosen[ $key . 'n' ] * $chosen_n ) ) : '—';
+	};
+	$back    = function_exists( 'watphou_localized_permalink' ) ? watphou_localized_permalink( $pid ) : get_permalink( $pid );
+	$home    = function_exists( 'watphou_page_url' ) ? watphou_page_url( '/' ) : home_url( '/' );
+	?>
+	<div class="wpt-container wpt-inquiry">
+		<nav class="wpt-breadcrumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'watphou-travels' ); ?>">
+			<a href="<?php echo esc_url( $home ); ?>"><?php esc_html_e( 'Home', 'watphou-travels' ); ?></a>
+			<span aria-hidden="true">»</span>
+			<a href="<?php echo esc_url( $back ); ?>"><?php echo esc_html( get_the_title( $pid ) ); ?></a>
+			<span aria-hidden="true">»</span>
+			<span><?php esc_html_e( 'Contact details', 'watphou-bookings' ); ?></span>
+		</nav>
+		<div class="wpt-inquiry__grid">
+			<div class="wpt-inquiry__form">
+				<?php echo do_shortcode( '[watphou_booking_form tour_id="' . (int) $pid . '" group="' . esc_attr( $group ) . '"]' ); ?>
+			</div>
+			<aside class="wpt-inquiry-summary" data-prices="<?php echo esc_attr( wp_json_encode( $pdata ) ); ?>">
+				<h2 class="wpt-inquiry-summary__head"><?php esc_html_e( 'Booking summary', 'watphou-travels' ); ?></h2>
+				<div class="wpt-inquiry-summary__body">
+					<p class="wpt-inquiry-summary__tour"><?php echo esc_html( get_the_title( $pid ) ); ?></p>
+					<?php if ( $duration ) : ?>
+						<p class="wpt-inquiry-summary__dur"><?php echo esc_html( $duration ); ?></p>
+					<?php endif; ?>
+					<dl>
+						<div><dt><?php esc_html_e( 'Number of people', 'watphou-bookings' ); ?></dt><dd data-summary="people"><?php echo esc_html( isset( $chosen['min'] ) && $chosen['min'] === $chosen['max'] ? (string) $chosen['min'] : '—' ); ?></dd></div>
+						<?php if ( $pdata['day'] ) : ?>
+							<div><dt><?php esc_html_e( 'Price per person', 'watphou-travels' ); ?></dt><dd data-summary="a"><?php echo esc_html( $chosen ? ( '' !== $chosen['a'] ? $chosen['a'] : $on_request ) : '—' ); ?></dd></div>
+							<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total price', 'watphou-core' ); ?></dt><dd data-summary="total-a"><?php echo esc_html( $total_of( 'a' ) ); ?></dd></div>
+						<?php else : ?>
+							<div><dt><?php esc_html_e( 'Sharing Twin/Double Room', 'watphou-core' ); ?></dt><dd data-summary="a"><?php echo esc_html( $chosen ? ( '' !== $chosen['a'] ? $chosen['a'] : $on_request ) : '—' ); ?></dd></div>
+							<div><dt><?php esc_html_e( 'Private Single Room', 'watphou-core' ); ?></dt><dd data-summary="b"><?php echo esc_html( $chosen ? ( '' !== $chosen['b'] ? $chosen['b'] : $on_request ) : '—' ); ?></dd></div>
+							<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total (Twin/Double Room)', 'watphou-core' ); ?></dt><dd data-summary="total-a"><?php echo esc_html( $total_of( 'a' ) ); ?></dd></div>
+							<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total (Single Room)', 'watphou-core' ); ?></dt><dd data-summary="total-b"><?php echo esc_html( $total_of( 'b' ) ); ?></dd></div>
+						<?php endif; ?>
+					</dl>
+					<p class="wpt-inquiry-summary__note"><?php esc_html_e( 'Prices in USD per person. Our team confirms availability and the final price by email or WhatsApp.', 'watphou-travels' ); ?></p>
+				</div>
+			</aside>
+		</div>
+	</div>
+	<?php
+	get_footer();
+	return;
+}
 ?>
 <article class="wpt-tour-single">
 	<section class="wpt-hero wpt-hero--tour">
@@ -61,7 +129,7 @@ $thumb_id = (int) get_post_thumbnail_id( $pid );
 				<p class="wpt-hero__sub"><?php echo esc_html( $duration ); ?></p>
 			<?php endif; ?>
 			<p class="wpt-price-bar"><?php echo esc_html( function_exists( 'watphou_get_tour_price_display' ) ? watphou_get_tour_price_display( $pid ) : '' ); ?></p>
-			<a class="wpt-btn-primary" href="#booking"><?php esc_html_e( 'Request this tour', 'watphou-travels' ); ?></a>
+			<a class="wpt-btn-primary" href="#prices"><?php esc_html_e( 'View prices', 'watphou-travels' ); ?></a>
 		</div>
 	</section>
 	<div class="wpt-container wpt-prose">
@@ -116,9 +184,7 @@ $thumb_id = (int) get_post_thumbnail_id( $pid );
 		?>
 	</div>
 	<div class="wpt-container wpt-tour-booking" id="booking">
-		<h2><?php esc_html_e( 'Request this tour', 'watphou-travels' ); ?></h2>
-		<p class="wpt-tour-booking__note"><?php esc_html_e( 'Tour details are filled in. Add your dates and contact details.', 'watphou-travels' ); ?></p>
-		<?php echo do_shortcode( '[watphou_booking_form tour_id="' . $pid . '"]' ); ?>
+		<?php echo function_exists( 'watphou_core_render_price_table' ) ? watphou_core_render_price_table( $pid ) : ''; // Escaped inside. ?>
 	</div>
 </article>
 <?php

@@ -228,6 +228,19 @@
         stop();
         timer = setInterval(tick, intervalMs);
       }
+      // Watchdog: if anything ever cleared the timer while the hero is on screen, restart it.
+      setInterval(function () {
+        if (!timer && visible && !document.hidden) {
+          keepAround(idx);
+          play();
+        }
+      }, 3000);
+      window.addEventListener('pageshow', function () {
+        if (visible && !document.hidden) {
+          keepAround(idx);
+          play();
+        }
+      });
       function stop() {
         if (timer) {
           clearInterval(timer);
@@ -236,20 +249,8 @@
       }
       var hero = root.closest('.wpt-hero');
       var visible = true;
-      if (hero) {
-        hero.addEventListener('mouseenter', stop);
-        hero.addEventListener('mouseleave', function () {
-          if (visible && !document.hidden) {
-            play();
-          }
-        });
-        hero.addEventListener('focusin', stop);
-        hero.addEventListener('focusout', function () {
-          if (visible && !document.hidden) {
-            play();
-          }
-        });
-      }
+      // No pause on hover/focus/touch: the slideshow has no controls, and a pause
+      // that never resumed (touch screens fire mouseenter but no mouseleave) froze it.
       if (hero && 'IntersectionObserver' in window) {
         var viewer = new IntersectionObserver(function (entries) {
           visible = !!(entries[0] && entries[0].isIntersecting);

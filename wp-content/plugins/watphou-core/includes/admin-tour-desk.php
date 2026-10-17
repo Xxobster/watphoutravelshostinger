@@ -93,6 +93,15 @@ function watphou_core_render_tour_desk(): void {
 					delete_post_thumbnail( $tid );
 				}
 			}
+			if ( ! empty( $row['prices_dirty'] ) && function_exists( 'watphou_core_set_price_table' ) ) {
+				$json  = is_string( $row['price_table'] ?? null ) ? $row['price_table'] : '';
+				$table = ( '' !== $json && strlen( $json ) <= 20000 ) ? json_decode( $json, true, 6 ) : null;
+				if ( is_array( $table ) ) {
+					$table = watphou_core_sanitize_price_table( $table );
+					// "From $" is its own field; the table never changes it (customer's decision 2026-10-16).
+					watphou_core_set_price_table( $id, $table );
+				}
+			}
 			if ( ! empty( $row['gallery_dirty'] ) && function_exists( 'watphou_core_unique_positive_ids' ) ) {
 				$gids = watphou_core_unique_positive_ids( (string) ( $row['gallery'] ?? '' ) );
 				if ( function_exists( 'watphou_core_apply_tour_gallery' ) ) {
@@ -132,6 +141,10 @@ function watphou_core_render_tour_desk(): void {
 			<strong><?php esc_html_e( 'Price:', 'watphou-core' ); ?></strong>
 			<?php esc_html_e( 'Type a number (for example 95) or leave XX until the real price is confirmed. The website shows “From $XX” until then.', 'watphou-core' ); ?>
 		</p>
+		<p>
+			<strong><?php esc_html_e( 'Price table:', 'watphou-core' ); ?></strong>
+			<?php esc_html_e( 'Click “Edit price table” under a tour. Each line is a group size (type 2, 4, or 6/8) with the price per person in US dollars. Day tours have one price; tours with nights have a twin/double room price and a single room price. Use “Add line” or copy cells from Excel and paste them into the first cell. “From $” is not changed by the table. Then click Save all changes.', 'watphou-core' ); ?>
+		</p>
 		<?php if ( $seed_left ) : ?>
 			<div class="notice notice-info"><p><?php echo esc_html( sprintf( __( 'WordPress is copying the current bottom photos into the Media Library so you can change them. Refresh this page — about %d tours still need a copy.', 'watphou-core' ), $seed_left ) ); ?></p></div>
 		<?php endif; ?>
@@ -151,6 +164,7 @@ function watphou_core_render_tour_desk(): void {
 						<th style="width:160px;"><?php esc_html_e( 'Duration', 'watphou-core' ); ?></th>
 						<th style="width:110px;"><?php esc_html_e( 'Bestseller', 'watphou-core' ); ?></th>
 						<th><?php esc_html_e( 'Full text', 'watphou-core' ); ?></th>
+						<th style="width:170px;"><?php esc_html_e( 'Price table', 'watphou-core' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -216,6 +230,47 @@ function watphou_core_render_tour_desk(): void {
 						<td>
 							<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=watphou-tours&tour=' . (int) $tid ) ); ?>"><?php esc_html_e( 'Edit text', 'watphou-core' ); ?></a>
 						</td>
+						<td>
+							<?php
+							$ptable   = function_exists( 'watphou_core_get_price_table' ) ? watphou_core_get_price_table( $tid ) : array( 'layout' => 'auto', 'rows' => array() );
+							$auto_day = function_exists( 'watphou_tour_is_day_only' ) ? watphou_tour_is_day_only( $tid ) : true;
+							$plines   = count( $ptable['rows'] );
+							?>
+							<span class="watphou-pt-count"><?php echo esc_html( $plines ? sprintf( _n( '%d line', '%d lines', $plines, 'watphou-core' ), $plines ) : __( 'No prices yet', 'watphou-core' ) ); ?></span><br>
+							<button type="button" class="button watphou-pt-toggle" aria-expanded="false" aria-controls="watphou-pt-<?php echo (int) $tid; ?>"><?php esc_html_e( 'Edit price table', 'watphou-core' ); ?></button>
+						</td>
+					</tr>
+					<tr class="watphou-pt-row" id="watphou-pt-<?php echo (int) $tid; ?>" hidden>
+						<td colspan="8">
+							<div class="watphou-pt" data-auto-day="<?php echo $auto_day ? '1' : '0'; ?>" data-table="<?php echo esc_attr( (string) wp_json_encode( $ptable ) ); ?>">
+								<input type="hidden" class="watphou-pt-json" name="tour[<?php echo (int) $tid; ?>][price_table]" value="">
+								<input type="hidden" class="watphou-pt-dirty" name="tour[<?php echo (int) $tid; ?>][prices_dirty]" value="0">
+								<p class="watphou-pt-head">
+									<strong><?php echo esc_html( sprintf( __( 'Price table — %s', 'watphou-core' ), get_the_title( $tid ) ) ); ?></strong>
+									<label><?php esc_html_e( 'Layout', 'watphou-core' ); ?>
+										<select class="watphou-pt-layout">
+											<option value="auto"><?php echo esc_html( $auto_day ? __( 'Automatic (day tour, from duration)', 'watphou-core' ) : __( 'Automatic (tour with nights, from duration)', 'watphou-core' ) ); ?></option>
+											<option value="day"><?php esc_html_e( 'Day tour: one price per person', 'watphou-core' ); ?></option>
+											<option value="overnight"><?php esc_html_e( 'Tour with nights: twin/double and single room', 'watphou-core' ); ?></option>
+										</select>
+									</label>
+								</p>
+								<table class="watphou-pt-grid">
+									<thead><tr>
+										<th><?php esc_html_e( 'Group size', 'watphou-core' ); ?></th>
+										<th class="watphou-pt-col-a"></th>
+										<th class="watphou-pt-col-b"><?php esc_html_e( 'Private Single Room (price per person, USD)', 'watphou-core' ); ?></th>
+										<th></th>
+									</tr></thead>
+									<tbody></tbody>
+								</table>
+								<p>
+									<button type="button" class="button watphou-pt-add"><?php esc_html_e( 'Add line', 'watphou-core' ); ?></button>
+									<button type="button" class="button-link watphou-pt-clear"><?php esc_html_e( 'Clear table', 'watphou-core' ); ?></button>
+									<span class="watphou-pt-msg" aria-live="polite"></span>
+								</p>
+							</div>
+						</td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
@@ -254,6 +309,17 @@ function watphou_core_render_tour_desk(): void {
 		.watphou-gallery-screen__grid[data-cols="1"] { grid-template-columns: 1fr; max-width: 360px; }
 		.watphou-gallery-screen__grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; display: block; background: #eee; }
 		.watphou-gallery-screen__grid[data-cols="1"] img { height: 220px; }
+		.watphou-pt-row > td { background: #fff8f3; border-left: 4px solid #f15a24; }
+		.watphou-pt-head { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+		.watphou-pt-grid { border-collapse: collapse; margin: 6px 0; background: #fff; }
+		.watphou-pt-grid th { text-align: left; padding: 4px 6px; font-size: 12px; border: 1px solid #dcdcde; background: #f6f7f7; }
+		.watphou-pt-grid td { padding: 0; border: 1px solid #dcdcde; }
+		.watphou-pt-grid td input { border: 0; border-radius: 0; width: 150px; padding: 4px 8px; margin: 0; box-shadow: none; }
+		.watphou-pt-grid td input:focus { outline: 2px solid #2271b1; outline-offset: -2px; }
+		.watphou-pt-grid td input[aria-invalid="true"] { background: #fcf0f1; }
+		.watphou-pt-grid td.watphou-pt-tools { border: 0; padding-left: 6px; white-space: nowrap; }
+		.watphou-pt-grid.is-day .watphou-pt-col-b { display: none; }
+		.watphou-pt-msg { margin-left: 10px; color: #646970; }
 		.watphou-selected-bar { display: flex; gap: 8px; align-items: flex-start; padding: 8px 12px; background: #f6f7f7; border-bottom: 1px solid #dcdcde; }
 		.watphou-selected-bar__label { margin: 6px 0 0; min-width: 150px; font-size: 12px; }
 		.watphou-selected-bar__items { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -523,6 +589,198 @@ function watphou_core_render_tour_desk(): void {
 			renderGallery($row, []);
 		});
 	});
+	</script>
+	<script>
+	(function(){
+		var L = <?php echo wp_json_encode(
+			array(
+				'priceDay'   => __( 'Price (per person, USD)', 'watphou-core' ),
+				'priceTwin'  => __( 'Sharing Twin/Double Room (price per person, USD)', 'watphou-core' ),
+				'remove'     => __( 'Remove line', 'watphou-core' ),
+				'up'         => __( 'Move up', 'watphou-core' ),
+				'down'       => __( 'Move down', 'watphou-core' ),
+				'badGroup'   => __( 'Group size: type a number such as 2 or a range such as 6/8.', 'watphou-core' ),
+				'badPrice'   => __( 'Price: numbers only, for example 605. Leave empty for “On request”.', 'watphou-core' ),
+				'clearAsk'   => __( 'Remove every line of this price table?', 'watphou-core' ),
+				'changed'    => __( 'Changed — click Save all changes.', 'watphou-core' ),
+				'lines'      => __( '%d lines', 'watphou-core' ),
+				'line'       => __( '%d line', 'watphou-core' ),
+				'none'       => __( 'No prices yet', 'watphou-core' ),
+			)
+		); ?>;
+		var GROUP_RE = /^\s*(\d{1,2})\s*(?:[\/\-–—]|to)?\s*(\d{1,2})?\s*(?:pax|people|persons?)?\s*\+?\s*$/i;
+		var PRICE_RE = /^\d{1,6}(\.\d{1,2})?$/;
+		function cleanPrice(v){
+			v = String(v || '').replace(/\$|USD|\/\s*pax|pax|\s| /gi, '');
+			if (/^\d{1,3}(,\d{3})+(\.\d{1,2})?$/.test(v)) { v = v.replace(/,/g, ''); }
+			return v;
+		}
+		function rowLabel(r){ return r.min === r.max ? String(r.min) : r.min + '/' + r.max; }
+		document.querySelectorAll('.watphou-pt').forEach(function(box){
+			var tr = box.closest('tr');
+			var mainRow = tr.previousElementSibling;
+			var toggle = mainRow ? mainRow.querySelector('.watphou-pt-toggle') : null;
+			var countEl = mainRow ? mainRow.querySelector('.watphou-pt-count') : null;
+			var grid = box.querySelector('.watphou-pt-grid');
+			var body = grid.querySelector('tbody');
+			var layout = box.querySelector('.watphou-pt-layout');
+			var jsonIn = box.querySelector('.watphou-pt-json');
+			var dirtyIn = box.querySelector('.watphou-pt-dirty');
+			var msg = box.querySelector('.watphou-pt-msg');
+			var autoDay = box.getAttribute('data-auto-day') === '1';
+			var data = {};
+			try { data = JSON.parse(box.getAttribute('data-table') || '{}'); } catch (e) { data = {}; }
+			layout.value = ['auto','day','overnight'].indexOf(data.layout) >= 0 ? data.layout : 'auto';
+			function isDay(){ return layout.value === 'day' || (layout.value === 'auto' && autoDay); }
+			function makeInput(cls, value){
+				var td = document.createElement('td');
+				var input = document.createElement('input');
+				input.type = 'text';
+				input.className = cls;
+				input.value = value || '';
+				input.setAttribute('autocomplete', 'off');
+				td.appendChild(input);
+				return td;
+			}
+			function addRow(values, after){
+				values = values || ['', '', ''];
+				var row = document.createElement('tr');
+				row.appendChild(makeInput('watphou-pt-g', values[0]));
+				row.appendChild(makeInput('watphou-pt-a', values[1]));
+				var b = makeInput('watphou-pt-b', values[2]);
+				b.className = 'watphou-pt-col-b';
+				row.appendChild(b);
+				var tools = document.createElement('td');
+				tools.className = 'watphou-pt-tools';
+				[['↑', L.up, 'up'], ['↓', L.down, 'down'], ['✕', L.remove, 'del']].forEach(function(spec){
+					var btn = document.createElement('button');
+					btn.type = 'button';
+					btn.className = 'button button-small';
+					btn.textContent = spec[0];
+					btn.title = spec[1];
+					btn.setAttribute('aria-label', spec[1]);
+					btn.setAttribute('data-act', spec[2]);
+					tools.appendChild(btn);
+				});
+				row.appendChild(tools);
+				if (after && after.parentNode === body) { body.insertBefore(row, after.nextSibling); } else { body.appendChild(row); }
+				return row;
+			}
+			function paint(){
+				grid.classList.toggle('is-day', isDay());
+				grid.querySelector('.watphou-pt-col-a').textContent = isDay() ? L.priceDay : L.priceTwin;
+			}
+			function collect(){
+				var rows = [];
+				var ok = true;
+				body.querySelectorAll('tr').forEach(function(row){
+					var g = row.querySelector('.watphou-pt-g');
+					var a = row.querySelector('.watphou-pt-a');
+					var b = row.querySelector('.watphou-pt-b');
+					var gv = g.value.trim(), av = cleanPrice(a.value), bv = cleanPrice(b.value);
+					if (!gv && !av && !bv) { [g,a,b].forEach(function(i){ i.removeAttribute('aria-invalid'); }); return; }
+					var gOk = GROUP_RE.test(gv);
+					var aOk = !av || PRICE_RE.test(av);
+					var bOk = isDay() || !bv || PRICE_RE.test(bv);
+					g.toggleAttribute('aria-invalid', !gOk);
+					a.toggleAttribute('aria-invalid', !aOk);
+					b.toggleAttribute('aria-invalid', !bOk);
+					if (!gOk || !aOk || !bOk) { ok = false; return; }
+					rows.push([gv, av, isDay() ? '' : bv]);
+				});
+				return { ok: ok, rows: rows };
+			}
+			function changed(){
+				var res = collect();
+				jsonIn.value = JSON.stringify({ layout: layout.value, rows: res.rows });
+				dirtyIn.value = '1';
+				msg.textContent = res.ok ? L.changed : (L.badGroup + ' ' + L.badPrice);
+				msg.style.color = res.ok ? '' : '#b32d2e';
+				if (countEl) {
+					var n = res.rows.length;
+					countEl.textContent = n ? (n === 1 ? L.line : L.lines).replace('%d', n) : L.none;
+				}
+			}
+			(Array.isArray(data.rows) ? data.rows : []).forEach(function(r){
+				addRow([rowLabel(r), r.a || '', r.b || '']);
+			});
+			if (!body.children.length) { addRow(); }
+			paint();
+			if (toggle) {
+				toggle.addEventListener('click', function(){
+					var open = tr.hidden;
+					tr.hidden = !open;
+					toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+					if (open) { var first = body.querySelector('input'); if (first) { first.focus(); } }
+				});
+			}
+			layout.addEventListener('change', function(){ paint(); changed(); });
+			box.querySelector('.watphou-pt-add').addEventListener('click', function(){
+				var row = addRow();
+				row.querySelector('input').focus();
+				changed();
+			});
+			box.querySelector('.watphou-pt-clear').addEventListener('click', function(){
+				if (!window.confirm(L.clearAsk)) { return; }
+				body.innerHTML = '';
+				addRow();
+				changed();
+			});
+			body.addEventListener('input', changed);
+			body.addEventListener('click', function(e){
+				var btn = e.target.closest('button[data-act]');
+				if (!btn) { return; }
+				var row = btn.closest('tr');
+				var act = btn.getAttribute('data-act');
+				if (act === 'del') { row.remove(); if (!body.children.length) { addRow(); } }
+				if (act === 'up' && row.previousElementSibling) { body.insertBefore(row, row.previousElementSibling); }
+				if (act === 'down' && row.nextElementSibling) { body.insertBefore(row.nextElementSibling, row); }
+				changed();
+			});
+			// Enter moves down a line like Excel; a new line is added at the bottom.
+			body.addEventListener('keydown', function(e){
+				if (e.key !== 'Enter' || !e.target.matches('input')) { return; }
+				e.preventDefault();
+				var row = e.target.closest('tr');
+				var col = Array.prototype.indexOf.call(row.children, e.target.parentNode);
+				var next = row.nextElementSibling || addRow(null, row);
+				var target = next.children[col] && next.children[col].querySelector('input');
+				if (target) { target.focus(); }
+			});
+			// Paste a block of cells copied from Excel (tabs between columns, one line per row).
+			body.addEventListener('paste', function(e){
+				if (!e.target.matches('input')) { return; }
+				var text = (e.clipboardData || window.clipboardData).getData('text');
+				if (!/[\t\n]/.test(text)) { return; }
+				e.preventDefault();
+				var lines = text.replace(/\r/g, '').replace(/\n+$/, '').split('\n').slice(0, 20);
+				var row = e.target.closest('tr');
+				var startCol = Array.prototype.indexOf.call(row.children, e.target.parentNode);
+				lines.forEach(function(line, i){
+					var cells = line.split('\t');
+					if (i > 0) { row = row.nextElementSibling || addRow(null, row); }
+					cells.forEach(function(cell, j){
+						var td = row.children[startCol + j];
+						var input = td && td.querySelector('input');
+						if (input && startCol + j < 3) { input.value = cell.trim(); }
+					});
+				});
+				changed();
+			});
+		});
+		var deskForm = document.querySelector('.watphou-desk-table') && document.querySelector('.watphou-desk-table').closest('form');
+		if (deskForm) {
+			deskForm.addEventListener('submit', function(e){
+				var bad = deskForm.querySelector('.watphou-pt [aria-invalid]');
+				if (!bad) { return; }
+				e.preventDefault();
+				var tr = bad.closest('.watphou-pt-row');
+				if (tr) { tr.hidden = false; }
+				bad.focus();
+				window.alert(L.badGroup + '\n' + L.badPrice);
+			});
+		}
+	})();
 	</script>
 	<?php
 }

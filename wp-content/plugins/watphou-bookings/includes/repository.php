@@ -19,19 +19,19 @@ class Watphou_Booking_Repository {
 	public static function create( array $data ): int {
 		global $wpdb;
 		$now = current_time( 'mysql' );
-		$wpdb->insert(
-			self::table(),
-			array_merge(
-				$data,
-				array(
-					'reference'  => self::generate_reference(),
-					'status'     => 'requested',
-					'created_at' => $now,
-					'updated_at' => $now,
-				)
-			),
-			self::formats( $data )
+		// Formats must cover every column. With formats for $data only, wpdb reused the
+		// first format (%d) for reference/status/dates: every booking got reference "0",
+		// so the second insert hit the unique key and was lost.
+		$row = array_merge(
+			$data,
+			array(
+				'reference'  => self::generate_reference(),
+				'status'     => 'requested',
+				'created_at' => $now,
+				'updated_at' => $now,
+			)
 		);
+		$wpdb->insert( self::table(), $row, self::formats( $row ) );
 		$id = (int) $wpdb->insert_id;
 		self::log_event( $id, null, 'requested', 0, 'Booking created' );
 		return $id;
