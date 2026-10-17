@@ -508,5 +508,37 @@
   "Prices in USD per person. Our team confirms availability and the final price by email or WhatsApp.": {
     "fr": "Prix en USD par personne. Notre équipe confirme la disponibilité et le prix final par e-mail ou WhatsApp.",
     "th": "ราคาเป็น USD ต่อท่าน ทีมงานของเราจะยืนยันความพร้อมและราคาสุดท้ายทางอีเมลหรือ WhatsApp"
+  },
+  "%1$d-%2$d people": {
+    "fr": "%1$d-%2$d personnes",
+    "th": "%1$d-%2$d ท่าน"
+  },
+  "1 person": {
+    "fr": "1 personne",
+    "th": "1 ท่าน"
+  },
+  "On request – we will send you a quotation": {
+    "fr": "Sur demande – nous vous enverrons un devis",
+    "th": "สอบถามราคา – เราจะส่งใบเสนอราคาให้คุณ"
+  },
+  "Accommodation": {
+    "fr": "Hébergement",
+    "th": "ที่พัก"
+  },
+  "One person less in %s": {
+    "fr": "Une personne de moins en %s",
+    "th": "ลดหนึ่งท่านใน %s"
+  },
+  "One person more in %s": {
+    "fr": "Une personne de plus en %s",
+    "th": "เพิ่มหนึ่งท่านใน %s"
+  },
+  "Please enter %d people or more.": {
+    "fr": "Veuillez indiquer %d personnes ou plus.",
+    "th": "กรุณาระบุ %d ท่านขึ้นไป"
+  },
+  "Prices in USD. Our team confirms availability and the final price by email or WhatsApp.": {
+    "fr": "Prix en USD. Notre équipe confirme la disponibilité et le prix final par e-mail ou WhatsApp.",
+    "th": "ราคาเป็น USD ทีมงานของเราจะยืนยันความพร้อมและราคาสุดท้ายทางอีเมลหรือ WhatsApp"
   }
 }

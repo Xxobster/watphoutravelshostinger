@@ -272,8 +272,8 @@ function watphou_core_group_label( array $row ): string {
 		/* translators: %d: number of people */
 		return sprintf( __( '%d people', 'watphou-core' ), $row['min'] );
 	}
-	/* translators: 1: smallest group, 2: largest group, e.g. 6/8 people */
-	return sprintf( __( '%1$d/%2$d people', 'watphou-core' ), $row['min'], $row['max'] );
+	/* translators: 1: smallest group, 2: largest group, e.g. 3-5 people */
+	return sprintf( __( '%1$d-%2$d people', 'watphou-core' ), $row['min'], $row['max'] );
 }
 
 function watphou_core_format_usd( string $amount ): string {
@@ -292,6 +292,54 @@ function watphou_core_price_total( string $amount, int $people ): string {
 		return '';
 	}
 	return watphou_core_format_usd( (string) ( (float) $amount * $people ) );
+}
+
+/**
+ * Price for a group split between room types, from the stored table only.
+ * Day tours: pass everyone as $twin and 0 as $single. The row is the one matching the
+ * total number of people, so 2 people use the 1-2 row even if the 3-5 row was clicked.
+ *
+ * @return array{people:int, row:int, label:string, lines:array<int, array{key:string,people:int,unit:string,amount:string}>, total:string}
+ *   unit/amount/total are '' when the price is on request (no matching row or empty cell).
+ */
+function watphou_core_price_quote( array $table, bool $day, int $twin, int $single ): array {
+	$twin   = max( 0, $twin );
+	$single = $day ? 0 : max( 0, $single );
+	$people = $twin + $single;
+	$idx    = $people > 0 ? watphou_core_price_table_row_for( $table, $people ) : -1;
+	$row    = $idx >= 0 ? $table['rows'][ $idx ] : null;
+	$out    = array(
+		'people' => $people,
+		'row'    => $idx,
+		'label'  => $row ? watphou_core_group_label( $row ) : '',
+		'lines'  => array(),
+		'total'  => '',
+	);
+	$sum     = 0.0;
+	$priced  = (bool) $row;
+	$parts   = $day ? array( array( 'a', $twin ) ) : array( array( 'a', $twin ), array( 'b', $single ) );
+	foreach ( $parts as $part ) {
+		list( $key, $n ) = $part;
+		if ( $n < 1 ) {
+			continue;
+		}
+		$unit = $row ? (string) $row[ $key ] : '';
+		if ( '' === $unit ) {
+			$priced = false;
+		} else {
+			$sum += (float) $unit * $n;
+		}
+		$out['lines'][] = array(
+			'key'    => $key,
+			'people' => $n,
+			'unit'   => $unit,
+			'amount' => '' === $unit ? '' : (string) ( (float) $unit * $n ),
+		);
+	}
+	if ( $priced && $out['lines'] ) {
+		$out['total'] = (string) $sum;
+	}
+	return $out;
 }
 
 /**
@@ -332,6 +380,12 @@ function watphou_core_price_table_public_data( int $post_id ): array {
 		'day'  => watphou_core_price_table_is_day( $post_id, $table ),
 		'max'  => watphou_core_price_table_max_people( $table ),
 		'rows' => $rows,
+		'i18n' => array(
+			'people'    => __( '%d people', 'watphou-core' ),
+			'person'    => __( '1 person', 'watphou-core' ),
+			'onRequest' => __( 'On request', 'watphou-core' ),
+			'quote'     => __( 'On request – we will send you a quotation', 'watphou-core' ),
+		),
 	);
 }
 
@@ -420,8 +474,8 @@ add_action( 'init', 'watphou_core_maybe_seed_sample_price_tables', 60 );
  */
 function watphou_core_sample_price_rows( bool $day ): array {
 	return $day
-		? array( array( '2', '66', '' ), array( '4', '66', '' ), array( '6/8', '66', '' ) )
-		: array( array( '2', '66', '66' ), array( '4', '66', '66' ), array( '6/8', '66', '66' ) );
+		? array( array( '1-2', '66', '' ), array( '3-5', '66', '' ), array( '6-8', '66', '' ) )
+		: array( array( '1-2', '66', '66' ), array( '3-5', '66', '66' ), array( '6-8', '66', '66' ) );
 }
 
 /**
@@ -489,6 +543,50 @@ function watphou_core_maybe_set_placeholder_prices(): void {
 		foreach ( $table['rows'] as $i => $row ) {
 			$table['rows'][ $i ]['a'] = '66';
 			$table['rows'][ $i ]['b'] = $day ? '' : '66';
+		}
+		watphou_core_set_price_table( $tour_id, $table );
+	}
+}
+
+add_action( 'init', 'watphou_core_maybe_widen_group_rows', 62 );
+
+/**
+ * Once (customer's request 2026-10-17): the sample lines "2 / 4 / 6-8 people" become
+ * "1-2 / 3-5 / 6-8 people", keeping their prices. Tables with other lines are left alone.
+ */
+function watphou_core_maybe_widen_group_rows(): void {
+	if ( '1' === get_option( 'watphou_price_table_ranges' ) ) {
+		return;
+	}
+	update_option( 'watphou_price_table_ranges', '1', false );
+	$args = array(
+		'post_type'      => 'tour',
+		'posts_per_page' => -1,
+		'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+		'fields'         => 'ids',
+	);
+	if ( function_exists( 'pll_default_language' ) ) {
+		$args['lang'] = pll_default_language() ?: 'en';
+	}
+	$map = array(
+		'2-2' => array( 1, 2 ),
+		'4-4' => array( 3, 5 ),
+		'6-8' => array( 6, 8 ),
+	);
+	foreach ( get_posts( $args ) as $tour_id ) {
+		$tour_id = (int) $tour_id;
+		$table   = watphou_core_get_price_table( $tour_id );
+		$keys    = array_map(
+			static function ( $r ) {
+				return $r['min'] . '-' . $r['max'];
+			},
+			$table['rows']
+		);
+		if ( array( '2-2', '4-4', '6-8' ) !== $keys ) {
+			continue;
+		}
+		foreach ( $table['rows'] as $i => $row ) {
+			list( $table['rows'][ $i ]['min'], $table['rows'][ $i ]['max'] ) = $map[ $keys[ $i ] ];
 		}
 		watphou_core_set_price_table( $tour_id, $table );
 	}

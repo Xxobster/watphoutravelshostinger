@@ -196,41 +196,106 @@ function watphou_booking_requested_group(): string {
 }
 
 /**
- * Price-table facts for a booking, recomputed on the server from the number of people.
- *
- * @return array{group:string, prices:string}
+ * True when the tour's price table has room types (tours with nights).
  */
-function watphou_booking_price_for( int $tour_id, int $people ): array {
+function watphou_booking_tour_has_rooms( int $tour_id ): bool {
+	if ( $tour_id < 1 || ! function_exists( 'watphou_core_price_table_is_day' ) ) {
+		return false;
+	}
+	return ! watphou_core_price_table_is_day( $tour_id );
+}
+
+/**
+ * Number of people from the form. Tours with nights: people per room type, the total is
+ * their sum (the posted total is ignored). Null values mean the field is missing or invalid.
+ *
+ * @return array{rooms:bool, twin:?int, single:?int, people:?int}
+ */
+function watphou_booking_posted_people( int $tour_id ): array {
+	$num = static function ( string $key, int $max ): ?int {
+		$v = watphou_booking_clean( $key, 3 );
+		return ( ctype_digit( $v ) && (int) $v <= $max ) ? (int) $v : null;
+	};
+	if ( ! watphou_booking_tour_has_rooms( $tour_id ) ) {
+		$people = $num( 'people', 99 );
+		return array(
+			'rooms'  => false,
+			'twin'   => $people,
+			'single' => 0,
+			'people' => ( null !== $people && $people >= 1 ) ? $people : null,
+		);
+	}
+	$twin   = $num( 'people_twin', 99 );
+	$single = $num( 'people_single', 99 );
+	$total  = ( null !== $twin && null !== $single ) ? $twin + $single : null;
+	return array(
+		'rooms'  => true,
+		'twin'   => $twin,
+		'single' => $single,
+		'people' => ( null !== $total && $total >= 1 && $total <= 99 ) ? $total : null,
+	);
+}
+
+/**
+ * Smallest group allowed: the 9+ button ("more") requires more people than the table's largest line.
+ */
+function watphou_booking_min_people( int $tour_id ): int {
+	$group = watphou_booking_clean( 'group', 8 );
+	if ( 'more' !== $group || $tour_id < 1 || ! function_exists( 'watphou_core_get_price_table' ) ) {
+		return 1;
+	}
+	return watphou_core_price_table_max_people( watphou_core_get_price_table( $tour_id ) ) + 1;
+}
+
+/**
+ * Price-table facts for a booking, recomputed on the server from the number of people
+ * in each room type. Nothing about price is read from the browser.
+ *
+ * @return array{group:string, rooms:string, prices:string}
+ */
+function watphou_booking_price_for( int $tour_id, int $twin, int $single = 0 ): array {
 	$out = array(
 		'group'  => '',
+		'rooms'  => '',
 		'prices' => '',
 	);
-	if ( $tour_id < 1 || $people < 1 || ! function_exists( 'watphou_core_get_price_table' ) ) {
+	$people = $twin + $single;
+	if ( $tour_id < 1 || $people < 1 || ! function_exists( 'watphou_core_price_quote' ) ) {
 		return $out;
 	}
 	$table = watphou_core_get_price_table( $tour_id );
+	$day   = watphou_core_price_table_is_day( $tour_id, $table );
 	$max   = watphou_core_price_table_max_people( $table );
-	$idx   = watphou_core_price_table_row_for( $table, $people );
-	if ( $idx < 0 ) {
+	$quote = watphou_core_price_quote( $table, $day, $twin, $single );
+	$names = array(
+		'a' => 'Sharing Twin/Double Room',
+		'b' => 'Private Single Room',
+	);
+	if ( ! $day ) {
+		$rooms = array();
+		foreach ( array( 'a' => $twin, 'b' => $single ) as $key => $n ) {
+			if ( $n > 0 ) {
+				$rooms[] = $n . ' in ' . $names[ $key ];
+			}
+		}
+		$out['rooms'] = implode( ', ', $rooms );
+	}
+	if ( $quote['row'] < 0 ) {
 		$out['group']  = $people > $max ? ( $max + 1 ) . '+ people' : $people . ' people (not in table)';
-		$out['prices'] = 'On request';
+		$out['prices'] = 'On request (send the customer a quotation)';
 		return $out;
 	}
-	$row = $table['rows'][ $idx ];
-	$out['group'] = $row['min'] === $row['max'] ? $row['min'] . ' people' : $row['min'] . '/' . $row['max'] . ' people';
-	$fmt = static function ( string $p ): string {
-		return '' === $p ? 'on request' : watphou_core_format_usd( $p ) . ' per person';
-	};
-	// Total from the stored table and the server-checked number of people, never from the browser.
-	$tot = static function ( string $p ) use ( $people ): string {
-		$t = function_exists( 'watphou_core_price_total' ) ? watphou_core_price_total( $p, $people ) : '';
-		return '' === $t ? 'on request' : $t;
-	};
-	if ( watphou_core_price_table_is_day( $tour_id, $table ) ) {
-		$out['prices'] = $fmt( $row['a'] ) . '; total ' . $tot( $row['a'] );
-	} else {
-		$out['prices'] = 'Sharing Twin/Double Room ' . $fmt( $row['a'] ) . ' (total ' . $tot( $row['a'] ) . '); Private Single Room ' . $fmt( $row['b'] ) . ' (total ' . $tot( $row['b'] ) . ')';
+	$row          = $table['rows'][ $quote['row'] ];
+	$out['group'] = $row['min'] === $row['max'] ? $row['min'] . ' people' : $row['min'] . '-' . $row['max'] . ' people';
+	$parts        = array();
+	foreach ( $quote['lines'] as $line ) {
+		$what    = $day ? '' : $names[ $line['key'] ] . ' ';
+		$parts[] = '' === $line['unit']
+			? $what . $line['people'] . ' x on request'
+			: $what . $line['people'] . ' x ' . watphou_core_format_usd( $line['unit'] ) . ' = ' . watphou_core_format_usd( $line['amount'] );
 	}
+	$parts[]       = 'Total ' . ( '' === $quote['total'] ? 'on request' : watphou_core_format_usd( $quote['total'] ) );
+	$out['prices'] = implode( '; ', $parts );
 	return $out;
 }
 
@@ -277,11 +342,15 @@ function watphou_booking_form_shortcode( $atts ): string {
 
 	// Number of people: filled in for a single group size (2 pax, 4 pax); empty and
 	// required for a range (6/8 pax) or for "Group size 9+".
+	// The line clicked on the price table fills in its largest group size (3-5 people → 5).
+	// Tours with nights: everyone starts in Sharing Twin/Double Room; the visitor moves people
+	// to Private Single Room and the total follows.
 	$group       = (string) $atts['group'];
 	$group       = ( 'more' === $group || ctype_digit( $group ) ) ? $group : '';
 	$people      = '';
 	$placeholder = '';
 	$people_min  = 1;
+	$rooms       = $locked && watphou_booking_tour_has_rooms( $ctx['id'] );
 	if ( $locked && '' !== $group && function_exists( 'watphou_core_get_price_table' ) ) {
 		$table = watphou_core_get_price_table( $ctx['id'] );
 		if ( 'more' === $group ) {
@@ -291,14 +360,13 @@ function watphou_booking_form_shortcode( $atts ): string {
 				__( '%d or more', 'watphou-bookings' ),
 				$people_min
 			);
+			$people = $rooms ? (string) $people_min : '';
 		} elseif ( isset( $table['rows'][ (int) $group ] ) ) {
-			$row = $table['rows'][ (int) $group ];
-			if ( $row['min'] === $row['max'] ) {
-				$people = (string) $row['min'];
-			} else {
-				$placeholder = $row['min'] . '–' . $row['max'];
-			}
+			$people = (string) $table['rows'][ (int) $group ]['max'];
 		}
+	}
+	if ( $rooms && '' === $people ) {
+		$people = '2';
 	}
 	$countries = function_exists( 'watphou_core_countries' ) ? watphou_core_countries( $ui_lang ) : array();
 	$uid       = wp_unique_id( 'wpt-bf-' );
@@ -344,10 +412,36 @@ function watphou_booking_form_shortcode( $atts ): string {
 				<span class="watphou-booking-form__field-error" hidden></span>
 			</label></p>
 			<p><label><?php esc_html_e( 'Alternative date', 'watphou-bookings' ); ?> <input name="alt_date" type="date" min="<?php echo esc_attr( wp_date( 'Y-m-d' ) ); ?>" lang="<?php echo esc_attr( $form_lang ); ?>"/></label></p>
+			<?php if ( $rooms ) : ?>
+				<div class="wpt-rooms">
+					<p class="wpt-rooms__title"><?php esc_html_e( 'Accommodation', 'watphou-bookings' ); ?> <span class="watphou-booking-form__req"><?php esc_html_e( '(required)', 'watphou-bookings' ); ?></span></p>
+					<?php
+					$room_types = array(
+						'people_twin'   => array( __( 'Sharing Twin/Double Room', 'watphou-core' ), (int) $people ),
+						'people_single' => array( __( 'Private Single Room', 'watphou-core' ), 0 ),
+					);
+					foreach ( $room_types as $field => $room ) :
+						?>
+						<div class="wpt-rooms__row">
+							<span class="wpt-rooms__label" id="<?php echo esc_attr( $uid . '-' . $field ); ?>"><?php echo esc_html( $room[0] ); ?></span>
+							<span class="wpt-stepper">
+								<button type="button" class="wpt-stepper__btn" data-step="-1" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: room type */ __( 'One person less in %s', 'watphou-bookings' ), $room[0] ) ); ?>">−</button>
+								<input name="<?php echo esc_attr( $field ); ?>" type="number" inputmode="numeric" min="0" max="99" step="1" value="<?php echo (int) $room[1]; ?>" aria-labelledby="<?php echo esc_attr( $uid . '-' . $field ); ?>"/>
+								<button type="button" class="wpt-stepper__btn" data-step="1" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: room type */ __( 'One person more in %s', 'watphou-bookings' ), $room[0] ) ); ?>">+</button>
+							</span>
+						</div>
+					<?php endforeach; ?>
+					<p><label><?php esc_html_e( 'Number of people', 'watphou-bookings' ); ?>
+						<input name="people" type="number" readonly tabindex="-1" value="<?php echo esc_attr( $people ); ?>" data-min="<?php echo (int) $people_min; ?>" data-label="<?php esc_attr_e( 'Number of people', 'watphou-bookings' ); ?>"/>
+						<span class="watphou-booking-form__field-error" hidden></span>
+					</label></p>
+				</div>
+			<?php else : ?>
 			<p><label><?php esc_html_e( 'Number of people', 'watphou-bookings' ); ?> <span class="watphou-booking-form__req"><?php esc_html_e( '(required)', 'watphou-bookings' ); ?></span>
-				<input required name="people" type="number" inputmode="numeric" min="1" max="99" step="1" value="<?php echo esc_attr( $people ); ?>" placeholder="<?php echo esc_attr( $placeholder ); ?>" data-min="<?php echo (int) $people_min; ?>" data-label="<?php esc_attr_e( 'Number of people', 'watphou-bookings' ); ?>"/>
+				<input required name="people" type="number" inputmode="numeric" min="<?php echo (int) $people_min; ?>" max="99" step="1" value="<?php echo esc_attr( $people ); ?>" placeholder="<?php echo esc_attr( $placeholder ); ?>" data-min="<?php echo (int) $people_min; ?>" data-label="<?php esc_attr_e( 'Number of people', 'watphou-bookings' ); ?>"/>
 				<span class="watphou-booking-form__field-error" hidden></span>
 			</label></p>
+			<?php endif; ?>
 			<p><label><?php esc_html_e( 'Nationality', 'watphou-bookings' ); ?>
 				<input name="nationality" type="text" maxlength="64" list="<?php echo esc_attr( $uid ); ?>-countries" autocomplete="country-name" placeholder="<?php esc_attr_e( 'Type or choose from the list', 'watphou-bookings' ); ?>"/>
 			</label></p>
@@ -420,9 +514,14 @@ function watphou_booking_field_errors( string $lang ): array {
 	} elseif ( $pref < $earliest ) {
 		$errors['preferred_date'] = watphou_booking_tr( 'Please choose a date in the future.', $lang );
 	}
-	$people = watphou_booking_clean( 'people', 3 );
-	if ( ! ctype_digit( $people ) || (int) $people < 1 || (int) $people > 99 ) {
+	$tour_id = (int) watphou_booking_tour_context( absint( $_POST['tour_id'] ?? 0 ) )['id']; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$count   = watphou_booking_posted_people( $tour_id );
+	$min     = watphou_booking_min_people( $tour_id );
+	if ( null === $count['people'] ) {
 		$errors['people'] = watphou_booking_tr( 'Please verify the number of people.', $lang );
+	} elseif ( $count['people'] < $min ) {
+		/* translators: %d: smallest group size allowed */
+		$errors['people'] = sprintf( watphou_booking_tr( 'Please enter %d people or more.', $lang ), $min );
 	}
 	if ( empty( $_POST['privacy_consent'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$errors['privacy_consent'] = watphou_booking_tr( 'Please agree to the privacy policy.', $lang );
@@ -501,8 +600,9 @@ function watphou_handle_booking_submit(): void {
 	$tour_id = absint( $_POST['tour_id'] ?? 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$ctx     = watphou_booking_tour_context( $tour_id );
 	$tour_id = (int) $ctx['id'];
-	$people  = (int) watphou_booking_clean( 'people', 3 );
-	$price   = watphou_booking_price_for( $tour_id, $people );
+	$count   = watphou_booking_posted_people( $tour_id );
+	$people  = (int) $count['people'];
+	$price   = watphou_booking_price_for( $tour_id, (int) $count['twin'], (int) $count['single'] );
 	$name    = watphou_booking_clean( 'customer_name', 120 );
 	$email   = sanitize_email( watphou_booking_clean( 'email', 120 ) );
 	$phone   = watphou_booking_clean( 'phone', 40 );
@@ -516,7 +616,9 @@ function watphou_handle_booking_submit(): void {
 	$msg     = watphou_booking_clean( 'customer_message', 3000, true );
 	$snap    = watphou_booking_snapshot_text( $ctx );
 	if ( $price['group'] ) {
-		$snap .= ( $snap ? "\n" : '' ) . 'Group size: ' . $price['group'] . "\nPrice (USD): " . $price['prices'];
+		$snap .= ( $snap ? "\n" : '' ) . 'Group size: ' . $price['group']
+			. ( $price['rooms'] ? "\nAccommodation: " . $price['rooms'] : '' )
+			. "\nPrice (USD): " . $price['prices'];
 	}
 	$id = Watphou_Booking_Repository::create(
 		array(

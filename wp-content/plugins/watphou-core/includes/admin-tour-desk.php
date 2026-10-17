@@ -615,7 +615,7 @@ function watphou_core_render_tour_desk(): void {
 			if (/^\d{1,3}(,\d{3})+(\.\d{1,2})?$/.test(v)) { v = v.replace(/,/g, ''); }
 			return v;
 		}
-		function rowLabel(r){ return r.min === r.max ? String(r.min) : r.min + '/' + r.max; }
+		function rowLabel(r){ return r.min === r.max ? String(r.min) : r.min + '-' + r.max; }
 		document.querySelectorAll('.watphou-pt').forEach(function(box){
 			var tr = box.closest('tr');
 			var mainRow = tr.previousElementSibling;

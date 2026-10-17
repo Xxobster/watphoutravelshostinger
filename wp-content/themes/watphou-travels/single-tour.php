@@ -40,17 +40,30 @@ if ( function_exists( 'watphou_core_is_inquiry_page' ) && watphou_core_is_inquir
 	}
 	$pdata['chosen'] = $chosen;
 	$on_request      = __( 'On request', 'watphou-core' );
-	// Total = people x price per person, only when the clicked row is one exact group size (2, 4).
-	$chosen_n = ( isset( $chosen['min'] ) && $chosen['min'] === $chosen['max'] ) ? (int) $chosen['min'] : 0;
-	$total_of = static function ( string $key ) use ( $chosen, $chosen_n, $on_request ): string {
-		if ( ! $chosen ) {
-			return '—';
-		}
-		if ( empty( $chosen[ $key . 'n' ] ) ) {
-			return $on_request;
-		}
-		return $chosen_n ? watphou_core_format_usd( (string) ( $chosen[ $key . 'n' ] * $chosen_n ) ) : '—';
+	// Starting count, as the form fills it in: largest size of the clicked line (3-5 → 5),
+	// 9+ on tours with nights starts at 9, and everyone starts in Sharing Twin/Double Room.
+	$start = 0;
+	if ( 'more' === $group ) {
+		$start = $pdata['day'] ? 0 : (int) $pdata['max'] + 1;
+	} elseif ( isset( $chosen['max'] ) ) {
+		$start = (int) $chosen['max'];
+	} elseif ( ! $pdata['day'] ) {
+		$start = 2;
+	}
+	$table = function_exists( 'watphou_core_get_price_table' ) ? watphou_core_get_price_table( $pid ) : array( 'rows' => array() );
+	$quote = function_exists( 'watphou_core_price_quote' ) ? watphou_core_price_quote( $table, (bool) $pdata['day'], $start, 0 ) : array( 'row' => -1, 'lines' => array(), 'total' => '' );
+	$usd   = static function ( string $v ): string {
+		return function_exists( 'watphou_core_format_usd' ) ? watphou_core_format_usd( $v ) : $v;
 	};
+	$count = static function ( int $n ): string {
+		/* translators: %d: number of people */
+		return 1 === $n ? __( '1 person', 'watphou-core' ) : sprintf( __( '%d people', 'watphou-core' ), $n );
+	};
+	$line_a = $quote['lines'][0] ?? null;
+	$total  = '—';
+	if ( $start > 0 ) {
+		$total = $quote['row'] < 0 ? __( 'On request – we will send you a quotation', 'watphou-core' ) : ( '' !== $quote['total'] ? $usd( $quote['total'] ) : $on_request );
+	}
 	$back    = function_exists( 'watphou_localized_permalink' ) ? watphou_localized_permalink( $pid ) : get_permalink( $pid );
 	$home    = function_exists( 'watphou_page_url' ) ? watphou_page_url( '/' ) : home_url( '/' );
 	?>
@@ -74,18 +87,25 @@ if ( function_exists( 'watphou_core_is_inquiry_page' ) && watphou_core_is_inquir
 						<p class="wpt-inquiry-summary__dur"><?php echo esc_html( $duration ); ?></p>
 					<?php endif; ?>
 					<dl>
-						<div><dt><?php esc_html_e( 'Number of people', 'watphou-bookings' ); ?></dt><dd data-summary="people"><?php echo esc_html( isset( $chosen['min'] ) && $chosen['min'] === $chosen['max'] ? (string) $chosen['min'] : '—' ); ?></dd></div>
+						<div><dt><?php esc_html_e( 'Number of people', 'watphou-bookings' ); ?></dt><dd data-summary="people"><?php echo esc_html( $start > 0 ? (string) $start : '—' ); ?></dd></div>
 						<?php if ( $pdata['day'] ) : ?>
-							<div><dt><?php esc_html_e( 'Price per person', 'watphou-travels' ); ?></dt><dd data-summary="a"><?php echo esc_html( $chosen ? ( '' !== $chosen['a'] ? $chosen['a'] : $on_request ) : '—' ); ?></dd></div>
-							<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total price', 'watphou-core' ); ?></dt><dd data-summary="total-a"><?php echo esc_html( $total_of( 'a' ) ); ?></dd></div>
+							<div><dt><?php esc_html_e( 'Price per person', 'watphou-travels' ); ?></dt><dd data-summary="unit"><?php echo esc_html( $start > 0 ? ( $line_a && '' !== $line_a['unit'] ? $usd( $line_a['unit'] ) : $on_request ) : '—' ); ?></dd></div>
 						<?php else : ?>
-							<div><dt><?php esc_html_e( 'Sharing Twin/Double Room', 'watphou-core' ); ?></dt><dd data-summary="a"><?php echo esc_html( $chosen ? ( '' !== $chosen['a'] ? $chosen['a'] : $on_request ) : '—' ); ?></dd></div>
-							<div><dt><?php esc_html_e( 'Private Single Room', 'watphou-core' ); ?></dt><dd data-summary="b"><?php echo esc_html( $chosen ? ( '' !== $chosen['b'] ? $chosen['b'] : $on_request ) : '—' ); ?></dd></div>
-							<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total (Twin/Double Room)', 'watphou-core' ); ?></dt><dd data-summary="total-a"><?php echo esc_html( $total_of( 'a' ) ); ?></dd></div>
-							<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total (Single Room)', 'watphou-core' ); ?></dt><dd data-summary="total-b"><?php echo esc_html( $total_of( 'b' ) ); ?></dd></div>
+							<?php
+							// Only room types with people in them are shown.
+							foreach ( array( 'a' => __( 'Sharing Twin/Double Room', 'watphou-core' ), 'b' => __( 'Private Single Room', 'watphou-core' ) ) as $key => $room_name ) :
+								$line = ( 'a' === $key && $line_a ) ? $line_a : null;
+								$sub  = $line ? $count( (int) $line['people'] ) . ( '' !== $line['unit'] ? ' × ' . $usd( $line['unit'] ) : '' ) : '';
+								?>
+								<div data-summary="room-<?php echo esc_attr( $key ); ?>"<?php echo $line ? '' : ' hidden'; ?>>
+									<dt><?php echo esc_html( $room_name ); ?><small data-summary="room-<?php echo esc_attr( $key ); ?>-sub"><?php echo esc_html( $sub ); ?></small></dt>
+									<dd data-summary="room-<?php echo esc_attr( $key ); ?>-amount"><?php echo esc_html( $line && '' !== $line['amount'] ? $usd( $line['amount'] ) : $on_request ); ?></dd>
+								</div>
+							<?php endforeach; ?>
 						<?php endif; ?>
+						<div class="wpt-inquiry-summary__total"><dt><?php esc_html_e( 'Total price', 'watphou-core' ); ?></dt><dd data-summary="total"><?php echo esc_html( $total ); ?></dd></div>
 					</dl>
-					<p class="wpt-inquiry-summary__note"><?php esc_html_e( 'Prices in USD per person. Our team confirms availability and the final price by email or WhatsApp.', 'watphou-travels' ); ?></p>
+					<p class="wpt-inquiry-summary__note"><?php esc_html_e( 'Prices in USD. Our team confirms availability and the final price by email or WhatsApp.', 'watphou-travels' ); ?></p>
 				</div>
 			</aside>
 		</div>

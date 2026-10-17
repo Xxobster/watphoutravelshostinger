@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Bookings
  * Description: Booking requests, state machine, and payment workflow for Watphou Travels.
- * Version: 1.3.3
+ * Version: 1.4.0
  * Author: Watphou Travels
  * Text Domain: watphou-bookings
  * Requires PHP: 8.0
@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_BOOKINGS_VERSION', '1.3.3' );
+define( 'WATPHOU_BOOKINGS_VERSION', '1.4.0' );
 define( 'WATPHOU_BOOKINGS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WATPHOU_BOOKINGS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -52,6 +52,8 @@ function watphou_bookings_enqueue_public(): void {
 				'required'     => __( '%s is required.', 'watphou-bookings' ),
 				'invalidEmail' => __( 'Please enter a valid email address (for example name@example.com).', 'watphou-bookings' ),
 				'onRequest'    => __( 'On request', 'watphou-bookings' ),
+				/* translators: %d: smallest group size allowed */
+				'minPeople'    => __( 'Please enter %d people or more.', 'watphou-bookings' ),
 			),
 		)
 	);

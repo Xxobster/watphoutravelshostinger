@@ -43,7 +43,10 @@
     var value = (input.value || '').trim();
     if (input.name === 'people') {
       var n = Number(value);
-      return value && /^\d+$/.test(value) && n >= 1 && n <= 99 ? '' : 'people';
+      if (!(value && /^\d+$/.test(value) && n >= 1 && n <= 99)) {
+        return 'people';
+      }
+      return n < (Number(input.getAttribute('data-min')) || 1) ? 'min' : '';
     }
     if (!value) {
       return 'required';
@@ -90,12 +93,14 @@
       var text;
       if (kind === 'people') {
         text = t('verifyPeople', 'Please verify the number of people.');
+      } else if (kind === 'min') {
+        text = t('minPeople', 'Please enter %d people or more.').replace('%d', input.getAttribute('data-min'));
       } else if (kind === 'email') {
         text = t('invalidEmail', 'Please enter a valid email address (for example name@example.com).');
       } else {
         text = t('required', '%s is required.').replace('%s', label);
       }
-      missing.push(kind === 'people' ? text : label);
+      missing.push(kind === 'people' || kind === 'min' ? text : label);
       showFieldError(input, text);
     });
     return missing;
@@ -137,7 +142,52 @@
     showAlert(form, 'error', message || t('missingTitle', 'Please complete these required fields:'), list);
   }
 
-  // Booking summary on the inquiry page follows the number of people typed.
+  function toCount(input) {
+    var v = (input && input.value || '').trim();
+    return /^\d{1,2}$/.test(v) ? Number(v) : 0;
+  }
+
+  // Tours with nights: people per room type (Sharing Twin/Double, Private Single) with - and +.
+  // The read-only Number of people is their sum. The server recomputes it on its own.
+  function bindRooms(form, onChange) {
+    var twin = form.querySelector('[name="people_twin"]');
+    var single = form.querySelector('[name="people_single"]');
+    var people = form.querySelector('[name="people"]');
+    if (!twin || !single || !people) {
+      return;
+    }
+    function sync() {
+      [twin, single].forEach(function (input) {
+        var n = toCount(input);
+        if (String(n) !== input.value) {
+          input.value = String(n);
+        }
+      });
+      var sum = toCount(twin) + toCount(single);
+      people.value = sum ? String(Math.min(sum, 99)) : '';
+      onChange();
+    }
+    form.querySelectorAll('.wpt-stepper__btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var input = btn.parentElement.querySelector('input');
+        var other = input === twin ? single : twin;
+        var n = toCount(input) + Number(btn.getAttribute('data-step'));
+        if (n < 0 || n + toCount(other) > 99) {
+          return;
+        }
+        input.value = String(n);
+        sync();
+      });
+    });
+    [twin, single].forEach(function (input) {
+      input.addEventListener('input', sync);
+      input.addEventListener('blur', sync);
+    });
+    sync();
+  }
+
+  // Booking summary on the inquiry page. Display only: prices and totals in the
+  // stored request are recomputed on the server from the price table.
   function bindSummary(form) {
     var box = document.querySelector('.wpt-inquiry-summary[data-prices]');
     var input = form.querySelector('[name="people"]');
@@ -151,34 +201,27 @@
       return;
     }
     var rows = Array.isArray(data.rows) ? data.rows : [];
-    // Row picked on the price table; shown until a number of people is typed.
-    var chosen = data.chosen && typeof data.chosen === 'object' ? data.chosen : null;
-    var peopleOut = box.querySelector('[data-summary="people"]');
-    var groupOut = box.querySelector('[data-summary="group"]');
-    var aOut = box.querySelector('[data-summary="a"]');
-    var bOut = box.querySelector('[data-summary="b"]');
-    var totalAOut = box.querySelector('[data-summary="total-a"]');
-    var totalBOut = box.querySelector('[data-summary="total-b"]');
+    var words = data.i18n || {};
+    var twin = form.querySelector('[name="people_twin"]');
+    var single = form.querySelector('[name="people_single"]');
+    function out(name) {
+      return box.querySelector('[data-summary="' + name + '"]');
+    }
+    function set(el, text) {
+      if (el) {
+        el.textContent = text;
+      }
+    }
     function money(v) {
       return '$' + v.toLocaleString('en-US', { maximumFractionDigits: 2 });
     }
-    // Display only: the emailed total is recomputed on the server from the stored table.
-    function total(r, key, people, priced, onRequest) {
-      if (!r) {
-        return priced ? onRequest : '\u2014';
-      }
-      var unit = Number(r[key + 'n']) || 0;
-      if (!unit) {
-        return onRequest;
-      }
-      return people ? money(unit * people) : '\u2014';
+    function count(n) {
+      return n === 1 ? (words.person || '1 person') : (words.people || '%d people').replace('%d', String(n));
     }
+    var onRequest = words.onRequest || t('onRequest', 'On request');
     function update() {
-      var n = parseInt(input.value, 10);
+      var n = toCount(input);
       var valid = n >= 1 && n <= 99;
-      if (peopleOut) {
-        peopleOut.textContent = valid ? String(n) : '—';
-      }
       var row = null;
       if (valid) {
         rows.forEach(function (r) {
@@ -187,27 +230,41 @@
           }
         });
       }
-      var onRequest = t('onRequest', 'On request');
-      var show = row || (!valid ? chosen : null);
-      var priced = valid || !!show;
-      if (groupOut) {
-        groupOut.textContent = show ? show.label : (valid && n > data.max ? (data.max + 1) + '+' : '—');
+      set(out('people'), valid ? String(n) : '—');
+      var parts = data.day ? [['a', n]] : [['a', toCount(twin)], ['b', toCount(single)]];
+      var sum = 0;
+      var priced = !!row;
+      parts.forEach(function (p) {
+        var key = p[0];
+        var people = valid ? p[1] : 0;
+        var unit = row ? Number(row[key + 'n']) || 0 : 0;
+        if (people > 0) {
+          if (unit) {
+            sum += unit * people;
+          } else {
+            priced = false;
+          }
+        }
+        if (data.day) {
+          set(out('unit'), !valid ? '—' : (unit ? money(unit) : onRequest));
+          return;
+        }
+        // Only room types with people in them are shown.
+        var wrap = out('room-' + key);
+        if (wrap) {
+          wrap.hidden = people < 1;
+        }
+        set(out('room-' + key + '-sub'), people ? count(people) + (unit ? ' × ' + money(unit) : '') : '');
+        set(out('room-' + key + '-amount'), unit ? money(unit * people) : onRequest);
+      });
+      var total = '—';
+      if (valid) {
+        total = !row ? (words.quote || onRequest) : (priced ? money(sum) : onRequest);
       }
-      if (aOut) {
-        aOut.textContent = show && show.a ? show.a : (priced ? onRequest : '—');
-      }
-      if (bOut) {
-        bOut.textContent = show && show.b ? show.b : (priced ? onRequest : '—');
-      }
-      var people = valid ? n : (show && show.min && show.min === show.max ? show.min : 0);
-      if (totalAOut) {
-        totalAOut.textContent = total(show, 'a', people, priced, onRequest);
-      }
-      if (totalBOut) {
-        totalBOut.textContent = total(show, 'b', people, priced, onRequest);
-      }
+      set(out('total'), total);
     }
     input.addEventListener('input', update);
+    bindRooms(form, update);
     update();
   }
 
