@@ -87,10 +87,11 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas: "logo top" "logo nav";
-  column-gap: 1.25rem;
+  column-gap: .75rem;
 }
-.wpt-logo { grid-area: logo; display: flex; align-items: center; }
-.wpt-logo img { height: 116px; width: auto; max-width: none; }
+/* Even space left of the logo and between it and "Home", a few pixels above and below */
+.wpt-logo { grid-area: logo; display: flex; align-items: center; justify-content: center; padding: 6px 0 6px 1.45rem; }
+.wpt-logo img { height: 104px; width: auto; max-width: none; }
 .wpt-header__grid > .wpt-topbar { grid-area: top; min-width: 0; }
 .wpt-header__grid > .wpt-nav { grid-area: nav; min-width: 0; }
 
@@ -1012,6 +1013,7 @@ body.wpt-lightbox-open .wpt-logo {
 @media (max-width: 768px) {
   .wpt-nav-toggle { display: block; }
   .wpt-header__grid { grid-template-areas: "logo top" "nav nav"; column-gap: .75rem; }
+  .wpt-logo { padding: 0; }
   .wpt-logo img { height: 44px; }
   .wpt-topbar__inner { justify-content: flex-end; }
   .wpt-topbar__right { gap: .6rem; }
