@@ -82,16 +82,22 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 .wpt-topbar__right { display: flex; align-items: center; gap: 1rem; }
 
 /* Header: logo spans the top bar and the menu row; everything else sits to its right */
-.wpt-header { background: #fff; box-shadow: var(--wpt-shadow); }
+.wpt-header { background: #fff; box-shadow: var(--wpt-shadow); container-type: inline-size; }
 .wpt-header__grid {
+  /* --m: space between the window edge and the page content; the logo cell reaches the window edge */
+  --m: max(1rem, calc((100cqw - var(--wpt-max)) / 2));
+  --wpt-logo-w: 210px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: calc(var(--m) + var(--wpt-logo-w)) minmax(0, 1fr);
   grid-template-areas: "logo top" "logo nav";
-  column-gap: .75rem;
+  width: 100%;
+  margin: 0;
+  padding-right: var(--m);
 }
-/* Even space left of the logo and between it and "Home", a few pixels above and below */
-.wpt-logo { grid-area: logo; display: flex; align-items: center; justify-content: center; padding: 6px 0 6px 1.45rem; }
-.wpt-logo img { height: 104px; width: auto; max-width: none; }
+/* Logo centered between the window's left edge and the start of "Home" (menu links have .7rem padding),
+   12px of space above and below. */
+.wpt-logo { grid-area: logo; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
+.wpt-logo img { height: 92px; width: auto; max-width: none; position: relative; left: .35rem; }
 .wpt-header__grid > .wpt-topbar { grid-area: top; min-width: 0; }
 .wpt-header__grid > .wpt-nav { grid-area: nav; min-width: 0; }
 
@@ -1012,9 +1018,9 @@ body.wpt-lightbox-open .wpt-logo {
 
 @media (max-width: 768px) {
   .wpt-nav-toggle { display: block; }
-  .wpt-header__grid { grid-template-areas: "logo top" "nav nav"; column-gap: .75rem; }
+  .wpt-header__grid { grid-template-areas: "logo top" "nav nav"; grid-template-columns: auto minmax(0, 1fr); column-gap: .75rem; padding-inline: 1rem; }
   .wpt-logo { padding: 0; }
-  .wpt-logo img { height: 44px; }
+  .wpt-logo img { height: 44px; left: 0; }
   .wpt-topbar__inner { justify-content: flex-end; }
   .wpt-topbar__right { gap: .6rem; }
   .wpt-whatsapp-phone { font-size: .85rem; white-space: nowrap; }
@@ -1128,4 +1134,5 @@ body.wpt-lightbox-open .wpt-logo {
 @media (min-width: 769px) and (max-width: 1280px) {
   .wpt-menu { gap: 0; }
   .wpt-menu > li > a { padding: .75rem .5rem; font-size: .88rem; }
+  .wpt-logo img { left: .25rem; }
 }
