@@ -11,12 +11,13 @@ defined( 'ABSPATH' ) || exit;
 <?php wp_body_open(); ?>
 
 <header class="wpt-header">
+	<div class="wpt-container wpt-header__grid">
+		<a class="wpt-logo" href="<?php echo esc_url( function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' ) ); ?>">
+			<img src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/logo-wpt-header-crop.jpg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="440" height="262">
+		</a>
 	<div class="wpt-topbar">
-		<div class="wpt-container wpt-topbar__inner">
+		<div class="wpt-topbar__inner">
 			<div class="wpt-topbar__left">
-				<a class="wpt-logo" href="<?php echo esc_url( function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' ) ); ?>">
-					<img src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/logo-wpt-header.jpg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="256" height="144">
-				</a>
 				<div class="wpt-location">
 					<span class="wpt-location__pin" aria-hidden="true">📍</span>
 					<span><?php esc_html_e( 'Southern Laos', 'watphou-travels' ); ?></span>
@@ -27,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 					<button type="submit" aria-label="<?php esc_attr_e( 'Search', 'watphou-travels' ); ?>">⌕</button>
 					<input type="search" name="s" placeholder="<?php esc_attr_e( 'Search', 'watphou-travels' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>">
 				</form>
-				<a class="wpt-whatsapp-phone" href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">
+				<a class="wpt-whatsapp-phone" aria-label="WhatsApp +85620 9949 5858" href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">
 					<img class="wpt-wa-icon" src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/whatsapp.svg' ); ?>" width="24" height="24" alt="">
 					<strong>+85620 9949 5858</strong>
 				</a>
@@ -48,7 +49,7 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 
 	<nav class="wpt-nav" id="wpt-nav" aria-label="<?php esc_attr_e( 'Primary', 'watphou-travels' ); ?>">
-		<div class="wpt-container wpt-nav__inner">
+		<div class="wpt-nav__inner">
 			<ul class="wpt-menu">
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '/' ) : home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'day-tours' ) : home_url( '/day-tours/' ) ); ?>"><?php esc_html_e( 'Day Tours', 'watphou-travels' ); ?></a></li>
@@ -68,7 +69,7 @@ defined( 'ABSPATH' ) || exit;
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'about-us' ) : home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About Us', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'contact-us' ) : home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact', 'watphou-travels' ); ?></a></li>
 			</ul>
-			<a class="wpt-cta-outline" href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'book-online' ) : home_url( '/book-online/' ) ); ?>"><?php esc_html_e( 'Request a quote', 'watphou-travels' ); ?></a>
 		</div>
 	</nav>
+	</div>
 </header>

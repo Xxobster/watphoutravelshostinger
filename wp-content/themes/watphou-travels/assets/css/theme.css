@@ -67,10 +67,6 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 /* Top bar — white, sticky */
 .wpt-topbar {
   background: #fff;
-  box-shadow: var(--wpt-shadow);
-  position: sticky;
-  top: 0;
-  z-index: 200;
 }
 
 .wpt-topbar__inner,
@@ -85,7 +81,18 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 .wpt-topbar__left,
 .wpt-topbar__right { display: flex; align-items: center; gap: 1rem; }
 
-.wpt-logo img { height: 36px; width: auto; }
+/* Header: logo spans the top bar and the menu row; everything else sits to its right */
+.wpt-header { background: #fff; box-shadow: var(--wpt-shadow); }
+.wpt-header__grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "logo top" "logo nav";
+  column-gap: 1.25rem;
+}
+.wpt-logo { grid-area: logo; display: flex; align-items: center; }
+.wpt-logo img { height: 116px; width: auto; max-width: none; }
+.wpt-header__grid > .wpt-topbar { grid-area: top; min-width: 0; }
+.wpt-header__grid > .wpt-nav { grid-area: nav; min-width: 0; }
 
 .wpt-location {
   display: flex;
@@ -152,10 +159,7 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 /* Second nav */
 .wpt-nav {
   background: #fff;
-  border-bottom: 1px solid var(--wpt-border);
-  position: sticky;
-  top: 64px;
-  z-index: 190;
+  border-top: 1px solid var(--wpt-border);
 }
 .wpt-nav__inner { min-height: 52px; }
 
@@ -866,7 +870,8 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 
 body.wpt-lightbox-open { overflow: hidden; }
 body.wpt-lightbox-open .watphou-whatsapp-float,
-body.wpt-lightbox-open .wpt-topbar {
+body.wpt-lightbox-open .wpt-topbar,
+body.wpt-lightbox-open .wpt-logo {
   visibility: hidden;
   pointer-events: none;
 }
@@ -1006,7 +1011,12 @@ body.wpt-lightbox-open .wpt-topbar {
 
 @media (max-width: 768px) {
   .wpt-nav-toggle { display: block; }
-  .wpt-nav { display: none; top: auto; }
+  .wpt-header__grid { grid-template-areas: "logo top" "nav nav"; column-gap: .75rem; }
+  .wpt-logo img { height: 44px; }
+  .wpt-topbar__inner { justify-content: flex-end; }
+  .wpt-topbar__right { gap: .6rem; }
+  .wpt-whatsapp-phone { font-size: .85rem; white-space: nowrap; }
+  .wpt-nav { display: none; }
   .wpt-nav.is-open { display: block; }
   .wpt-menu { flex-direction: column; }
   .wpt-dropdown { position: static; box-shadow: none; display: none; }
@@ -1105,4 +1115,15 @@ body.wpt-lightbox-open .wpt-topbar {
   .wpt-prices__action { text-align: left !important; display: block !important; padding-top: .6rem !important; }
   .wpt-prices__action .wpt-btn-inquiry { width: 100%; }
   .wpt-prices__more { flex-direction: column; align-items: stretch; }
+}
+
+/* Very narrow phones: keep the WhatsApp icon (still a link), drop the number so the bigger logo fits */
+@media (max-width: 420px) {
+  .wpt-whatsapp-phone strong { display: none; }
+}
+
+/* The logo takes the left of the menu row, so tighten the menu a little before it wraps */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .wpt-menu { gap: 0; }
+  .wpt-menu > li > a { padding: .75rem .5rem; font-size: .88rem; }
 }
