@@ -38,7 +38,7 @@ function watphou_core_home_hero_slides(): array {
 		}
 		$slides[] = array(
 			'url' => get_theme_file_uri( $rel ),
-			'alt' => (string) ( $row['alt'] ?? '' ),
+			'alt' => watphou_core_fx_tr( (string) ( $row['alt'] ?? '' ) ),
 		);
 	}
 	return $slides;
@@ -147,7 +147,7 @@ function watphou_core_tour_gallery_urls( int $post_id ): array {
 			$out[] = array(
 				'url'  => $url,
 				'full' => $full ? $full : $url,
-				'alt'  => '' !== $alt ? $alt : (string) get_the_title( $post_id ),
+				'alt'  => '' !== $alt ? watphou_core_fx_tr( $alt ) : (string) get_the_title( $post_id ),
 			);
 		}
 		return $out;
@@ -184,7 +184,7 @@ function watphou_core_tour_gallery_urls( int $post_id ): array {
 		$out[] = array(
 			'url'  => $display,
 			'full' => $full_url,
-			'alt'  => (string) ( $item['alt'] ?? get_the_title( $post_id ) ),
+			'alt'  => watphou_core_fx_tr( (string) ( $item['alt'] ?? get_the_title( $post_id ) ) ),
 		);
 	}
 	return $out;

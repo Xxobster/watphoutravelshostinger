@@ -28,6 +28,16 @@ function watphou_term_url( string $taxonomy, string $slug ): string {
 			}
 		}
 	}
+	if ( '' === $link && in_array( $lang, array( 'fr', 'th' ), true ) ) {
+		// Polylang gave no translated term: use the term whose slug ends in "-fr" / "-th".
+		$copy = get_term_by( 'slug', $slug . '-' . $lang, $taxonomy );
+		if ( $copy && ! is_wp_error( $copy ) ) {
+			$maybe = get_term_link( $copy );
+			if ( ! is_wp_error( $maybe ) ) {
+				$link = $maybe;
+			}
+		}
+	}
 	if ( '' === $link ) {
 		$maybe = get_term_link( $term );
 		$link  = is_wp_error( $maybe ) ? home_url( '/' . $base . '/' . $slug . '/' ) : $maybe;

@@ -83,6 +83,9 @@ add_action( 'wp_body_open', function () {
 	$label = 'staging' === WATPHOU_ENV
 		? 'Staging website — not indexed, mock payments only. Do not share publicly.'
 		: 'Demonstration website — not indexed, mock payments only';
+	if ( function_exists( 'watphou_core_translate_public_string' ) && function_exists( 'watphou_core_current_lang_slug' ) && 'en' !== watphou_core_current_lang_slug() ) {
+		$label = watphou_core_translate_public_string( $label );
+	}
 	echo '<div class="watphou-demo-banner" role="status">' . esc_html( $label ) . '</div>';
 }, 1 );
 

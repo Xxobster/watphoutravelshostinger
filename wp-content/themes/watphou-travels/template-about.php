@@ -28,7 +28,7 @@ $gallery = static function ( string $base, array $items, string $group ): void {
 		printf(
 			'<figure><a class="wpt-lightbox-trigger" href="%1$s" data-wpt-lightbox data-wpt-group="%3$s"><img src="%4$s" data-full="%1$s" alt="%2$s" loading="lazy" decoding="async"></a></figure>',
 			esc_url( $full ),
-			esc_attr( $item[1] ),
+			esc_attr( __( $item[1], 'watphou-travels' ) ),
 			esc_attr( $group ),
 			esc_url( $src )
 		);

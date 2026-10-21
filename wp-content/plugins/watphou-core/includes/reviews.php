@@ -501,6 +501,9 @@ function watphou_core_render_google_reviews(): void {
 							$url     = watphou_core_reviewer_maps_url( $review );
 							$stars   = (int) $review['rating'];
 							$label   = $review['date_label'] ?: $review['date'];
+							if ( function_exists( 'watphou_core_fx_review_label' ) ) {
+								$label = watphou_core_fx_review_label( (string) $label );
+							}
 							$initial = watphou_core_reviewer_initial( $review['author'] );
 							$lang    = preg_replace( '/[^a-z-]/', '', strtolower( (string) ( $review['language'] ?? '' ) ) );
 							?>

@@ -70,7 +70,7 @@ function watphou_core_schema_agency_base(): array {
 			),
 		),
 		'sameAs'          => $same,
-		'description'     => 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, UNESCO Vat Phou, Champasak and the 4000 Islands.',
+		'description'     => function_exists( 'watphou_core_fx_tr' ) ? watphou_core_fx_tr( 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, UNESCO Vat Phou, Champasak and the 4000 Islands.' ) : 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, UNESCO Vat Phou, Champasak and the 4000 Islands.',
 	);
 	$rating = (float) ( $reviews['rating'] ?? 0 );
 	$count  = (int) ( $reviews['review_count'] ?? 0 );

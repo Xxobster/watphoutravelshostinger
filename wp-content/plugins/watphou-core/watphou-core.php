@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Watphou Core
  * Description: Tours, destinations, settings, and business logic for Watphou Travels.
- * Version: 1.10.1
+ * Version: 1.10.2
  * Author: Watphou Travels
  * Text Domain: watphou-core
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_CORE_VERSION', '1.10.1' );
+define( 'WATPHOU_CORE_VERSION', '1.10.2' );
 define( 'WATPHOU_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WATPHOU_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -41,6 +41,7 @@ require_once WATPHOU_CORE_PATH . 'includes/photos.php';
 require_once WATPHOU_CORE_PATH . 'includes/admin-tour-manager.php';
 require_once WATPHOU_CORE_PATH . 'includes/apply-reviewed-i18n.php';
 require_once WATPHOU_CORE_PATH . 'includes/copy-review.php';
+require_once WATPHOU_CORE_PATH . 'includes/fr-text-fixes.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-cli.php';
 require_once WATPHOU_CORE_PATH . 'includes/import-admin.php';
 require_once WATPHOU_CORE_PATH . 'includes/shortcodes.php';
