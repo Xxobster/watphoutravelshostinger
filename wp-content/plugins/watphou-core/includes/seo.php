@@ -478,6 +478,15 @@ function watphou_core_english_alternate_url(): string {
 			return set_url_scheme( (string) get_permalink( $en_id ), 'https' );
 		}
 	}
+	if ( is_tax() && function_exists( 'pll_get_term' ) ) {
+		$en_term = (int) pll_get_term( get_queried_object_id(), 'en' );
+		if ( $en_term > 0 ) {
+			$en_link = get_term_link( $en_term );
+			if ( ! is_wp_error( $en_link ) ) {
+				return set_url_scheme( (string) $en_link, 'https' );
+			}
+		}
+	}
 	if ( function_exists( 'watphou_core_force_lang_url' ) ) {
 		return watphou_core_force_lang_url( watphou_core_current_canonical_url(), 'en' );
 	}

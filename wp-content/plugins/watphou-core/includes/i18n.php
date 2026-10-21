@@ -7,13 +7,23 @@ defined( 'ABSPATH' ) || exit;
 
 function watphou_term_url( string $taxonomy, string $slug ): string {
 	$term = get_term_by( 'slug', $slug, $taxonomy );
+	$lang = watphou_core_current_lang_slug();
+	if ( in_array( $lang, array( 'fr', 'th' ), true ) ) {
+		// In French / Thai the English term can be hidden by Polylang: use the "-fr" / "-th" copy directly.
+		$copy = get_term_by( 'slug', $slug . '-' . $lang, $taxonomy );
+		if ( $copy && ! is_wp_error( $copy ) ) {
+			$copy_link = get_term_link( $copy );
+			if ( ! is_wp_error( $copy_link ) ) {
+				return watphou_core_force_lang_url( $copy_link, $lang );
+			}
+		}
+	}
 	$rewrite = array(
 		'destination' => 'destinations',
 		'duration'    => 'duration',
 		'tour_type'   => 'tour-type',
 	);
 	$base = $rewrite[ $taxonomy ] ?? $taxonomy;
-	$lang = watphou_core_current_lang_slug();
 	if ( ! $term || is_wp_error( $term ) ) {
 		$link = home_url( '/' . $base . '/' . $slug . '/' );
 		return watphou_core_force_lang_url( $link, $lang );
