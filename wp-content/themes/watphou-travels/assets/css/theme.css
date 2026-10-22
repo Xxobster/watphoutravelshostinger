@@ -53,7 +53,18 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 }
 .wpt-related { margin: 2rem 0 1rem; }
 .wpt-related ul { padding-left: 1.2rem; }
-.wpt-related a { color: var(--wpt-text); }
+.wpt-related a {
+  color: var(--wpt-orange);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  font-weight: 600;
+}
+.wpt-related a:hover,
+.wpt-related a:focus-visible {
+  color: var(--wpt-orange-dark);
+  text-decoration-thickness: 2px;
+}
+.wpt-tour-more { padding-bottom: 3rem; }
 
 .watphou-demo-banner {
   background: #fff3cd;

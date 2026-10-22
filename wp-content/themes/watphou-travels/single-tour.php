@@ -162,6 +162,13 @@ if ( function_exists( 'watphou_core_is_inquiry_page' ) && watphou_core_is_inquir
 		} else {
 			the_content();
 		}
+		?>
+	</div>
+	<div class="wpt-container wpt-tour-booking" id="booking">
+		<?php echo function_exists( 'watphou_core_render_price_table' ) ? watphou_core_render_price_table( $pid ) : ''; // Escaped inside. ?>
+	</div>
+	<div class="wpt-container wpt-prose wpt-tour-more">
+		<?php
 		if ( $gallery ) {
 			echo '<section class="wpt-tour-gallery" aria-label="' . esc_attr__( 'Tour photos', 'watphou-travels' ) . '">';
 			foreach ( $gallery as $shot ) {
@@ -202,9 +209,6 @@ if ( function_exists( 'watphou_core_is_inquiry_page' ) && watphou_core_is_inquir
 			}
 		}
 		?>
-	</div>
-	<div class="wpt-container wpt-tour-booking" id="booking">
-		<?php echo function_exists( 'watphou_core_render_price_table' ) ? watphou_core_render_price_table( $pid ) : ''; // Escaped inside. ?>
 	</div>
 </article>
 <?php
