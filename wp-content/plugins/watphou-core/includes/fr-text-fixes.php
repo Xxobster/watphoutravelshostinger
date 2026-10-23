@@ -52,6 +52,14 @@ function watphou_core_fx_tr( $text ) {
 			return 'Circuits privés ' . $phrases[ $m[1] ][1] . ' dans le sud du Laos, organisés depuis Pakse par Watphou Travels.';
 		}
 	}
+	if ( 'th' === watphou_core_fx_lang() ) {
+		if ( preg_match( '/^(.+) tours - Watphou Travels$/u', $plain, $m ) ) {
+			return 'ทัวร์' . $m[1] . ' - Watphou Travels';
+		}
+		if ( preg_match( '/^Private tours to (.+) in Southern Laos, organised from Pakse by Watphou Travels\.$/u', $plain, $m ) ) {
+			return 'ทัวร์ส่วนตัวที่ ' . $m[1] . ' ในลาวใต้ จัดโดย Watphou Travels จากปากเซ';
+		}
+	}
 	return $text;
 }
 
@@ -59,20 +67,22 @@ function watphou_core_fx_tr( $text ) {
  * French description of the tour being viewed, or '' when there is none.
  */
 function watphou_core_fx_tour_meta(): string {
-	static $map = null;
-	if ( 'fr' !== watphou_core_fx_lang() || ! is_singular( 'tour' ) ) {
+	static $maps = null;
+	$lang = watphou_core_fx_lang();
+	if ( ! in_array( $lang, array( 'fr', 'th' ), true ) || ! is_singular( 'tour' ) ) {
 		return '';
 	}
-	if ( null === $map ) {
-		$map  = array();
+	if ( null === $maps ) {
+		$maps = array();
 		$path = WATPHOU_CORE_PATH . 'data/fr_tour_meta.json';
 		if ( is_readable( $path ) ) {
 			$raw = json_decode( (string) file_get_contents( $path ), true );
-			if ( is_array( $raw ) && isset( $raw['fr'] ) && is_array( $raw['fr'] ) ) {
-				$map = $raw['fr'];
+			if ( is_array( $raw ) ) {
+				$maps = $raw;
 			}
 		}
 	}
+	$map = isset( $maps[ $lang ] ) && is_array( $maps[ $lang ] ) ? $maps[ $lang ] : array();
 	$post = get_queried_object();
 	if ( ! $post instanceof WP_Post ) {
 		return '';
@@ -121,7 +131,7 @@ function watphou_core_fx_schema_piece( $data ) {
 		$data['description'] = $tour;
 		$post                = get_queried_object();
 		if ( $post instanceof WP_Post && isset( $data['name'] ) ) {
-			$data['name'] = wp_strip_all_tags( $post->post_title ) . ' | Circuit privé | Watphou Travels';
+			$data['name'] = wp_strip_all_tags( $post->post_title ) . ( 'th' === watphou_core_fx_lang() ? ' | ทัวร์ส่วนตัว | Watphou Travels' : ' | Circuit privé | Watphou Travels' );
 		}
 	}
 	return $data;
@@ -159,7 +169,7 @@ add_filter( 'the_title', 'watphou_core_fx_the_title', 20 );
  * English sentences stored in the French copy of the Contact / Cancellation pages.
  */
 function watphou_core_fx_the_content( $content ) {
-	if ( ! is_string( $content ) || is_admin() || 'fr' !== watphou_core_fx_lang() || ! in_the_loop() ) {
+	if ( ! is_string( $content ) || is_admin() || ! watphou_core_fx_active() || ! in_the_loop() ) {
 		return $content;
 	}
 	$pairs = array(
@@ -175,7 +185,7 @@ function watphou_core_fx_the_content( $content ) {
 		}
 	}
 	// "a@x.com or b@x.com" between two mail links.
-	$content = preg_replace( '#(</a>)\s+or\s+(<a )#', '$1 ou $2', $content ) ?? $content;
+	$content = preg_replace( '#(</a>)\s+or\s+(<a )#', '$1 ' . ( 'th' === watphou_core_fx_lang() ? 'หรือ' : 'ou' ) . ' $2', $content ) ?? $content;
 	return $content;
 }
 add_filter( 'the_content', 'watphou_core_fx_the_content', 20 );
@@ -206,6 +216,27 @@ add_filter( 'get_post_metadata', 'watphou_core_fx_image_alt', 10, 4 );
  * Google review dates arrive in English ("5 months ago", "Jun 9, 2026").
  */
 function watphou_core_fx_review_label( string $label ): string {
+	if ( 'th' === watphou_core_fx_lang() && '' !== $label ) {
+		$tu = array( 'year' => 'ปี', 'month' => 'เดือน', 'week' => 'สัปดาห์', 'day' => 'วัน', 'hour' => 'ชั่วโมง', 'minute' => 'นาที' );
+		$l  = strtolower( trim( $label ) );
+		if ( preg_match( '/^(a|an|\d+)\s+(year|month|week|day|hour|minute)s?\s+ago$/', $l, $m ) ) {
+			$n = ( 'a' === $m[1] || 'an' === $m[1] ) ? 1 : (int) $m[1];
+			return $n . ' ' . $tu[ $m[2] ] . 'ที่แล้ว';
+		}
+		if ( 'yesterday' === $l ) {
+			return 'เมื่อวาน';
+		}
+		if ( 'today' === $l ) {
+			return 'วันนี้';
+		}
+		if ( preg_match( '/^([A-Z][a-z]{2})[a-z]*\.? (\d{1,2}), (\d{4})$/', trim( $label ), $m ) ) {
+			$tm = array( 'Jan' => 'มกราคม', 'Feb' => 'กุมภาพันธ์', 'Mar' => 'มีนาคม', 'Apr' => 'เมษายน', 'May' => 'พฤษภาคม', 'Jun' => 'มิถุนายน', 'Jul' => 'กรกฎาคม', 'Aug' => 'สิงหาคม', 'Sep' => 'กันยายน', 'Oct' => 'ตุลาคม', 'Nov' => 'พฤศจิกายน', 'Dec' => 'ธันวาคม' );
+			if ( isset( $tm[ $m[1] ] ) ) {
+				return (int) $m[2] . ' ' . $tm[ $m[1] ] . ' ' . $m[3];
+			}
+		}
+		return $label;
+	}
 	if ( 'fr' !== watphou_core_fx_lang() || '' === $label ) {
 		return $label;
 	}

@@ -547,155 +547,204 @@
     "th": "ปากเซและบริเวณใกล้เคียง"
   },
   "Language": {
-    "fr": "Langue"
+    "fr": "Langue",
+    "th": "ภาษา"
   },
   "Street N°5, Ban Vat Luang, Pakse, Laos": {
-    "fr": "Rue n°5, Ban Vat Luang, Pakse, Laos"
+    "fr": "Rue n°5, Ban Vat Luang, Pakse, Laos",
+    "th": "ถนนเลขที่ 5 บ้านวัดหลวง ปากเซ ลาว"
   },
   "Address: Street N°5, Ban Vat Luang, Pakse - Laos": {
-    "fr": "Adresse : Rue n°5, Ban Vat Luang, Pakse - Laos"
+    "fr": "Adresse : Rue n°5, Ban Vat Luang, Pakse - Laos",
+    "th": "ที่อยู่: ถนนเลขที่ 5 บ้านวัดหลวง ปากเซ - ลาว"
   },
   "Address: Street N°5, Ban Vat Luang, Pakse, Laos": {
-    "fr": "Adresse : Rue n°5, Ban Vat Luang, Pakse, Laos"
+    "fr": "Adresse : Rue n°5, Ban Vat Luang, Pakse, Laos",
+    "th": "ที่อยู่: ถนนเลขที่ 5 บ้านวัดหลวง ปากเซ ลาว"
   },
   "or": {
-    "fr": "ou"
+    "fr": "ou",
+    "th": "หรือ"
   },
   "Southern Laos photos": {
-    "fr": "Photos du sud du Laos"
+    "fr": "Photos du sud du Laos",
+    "th": "ภาพถ่ายลาวใต้"
   },
   "Staging website — not indexed, mock payments only. Do not share publicly.": {
-    "fr": "Site de test — non indexé, paiements fictifs uniquement. Ne pas partager publiquement."
+    "fr": "Site de test — non indexé, paiements fictifs uniquement. Ne pas partager publiquement.",
+    "th": "เว็บไซต์ทดสอบ — ไม่เปิดให้ค้นหาจากเสิร์ชเอนจิน ใช้การชำระเงินจำลองเท่านั้น โปรดอย่าเผยแพร่ต่อสาธารณะ"
   },
   "4-DAY TOURS (3 nights)": {
-    "fr": "CIRCUITS DE 4 JOURS (3 nuits)"
+    "fr": "CIRCUITS DE 4 JOURS (3 nuits)",
+    "th": "ทัวร์ 4 วัน (3 คืน)"
   },
   "5-DAY TOURS (4 nights)": {
-    "fr": "CIRCUITS DE 5 JOURS (4 nuits)"
+    "fr": "CIRCUITS DE 5 JOURS (4 nuits)",
+    "th": "ทัวร์ 5 วัน (4 คืน)"
   },
   "6-DAY TOURS (5 nights)": {
-    "fr": "CIRCUITS DE 6 JOURS (5 nuits)"
+    "fr": "CIRCUITS DE 6 JOURS (5 nuits)",
+    "th": "ทัวร์ 6 วัน (5 คืน)"
   },
   "Waterfalls, coffee farms, and cool highland villages.": {
-    "fr": "Cascades, plantations de café et villages frais des hautes terres."
+    "fr": "Cascades, plantations de café et villages frais des hautes terres.",
+    "th": "น้ำตก ไร่กาแฟ และหมู่บ้านบนที่ราบสูงอากาศเย็น"
   },
   "View tours": {
-    "fr": "Voir les circuits"
+    "fr": "Voir les circuits",
+    "th": "ดูทัวร์"
   },
   "Si Phan Don: islands, waterfalls, and slow river life.": {
-    "fr": "Si Phan Don : îles, cascades et vie paisible au fil du fleuve."
+    "fr": "Si Phan Don : îles, cascades et vie paisible au fil du fleuve.",
+    "th": "สีพันดอน: เกาะ น้ำตก และวิถีชีวิตริมน้ำที่เนิบช้า"
   },
   "Vat Phou temple and the historic Mekong towns.": {
-    "fr": "Le temple de Vat Phou et les villes historiques du Mékong."
+    "fr": "Le temple de Vat Phou et les villes historiques du Mékong.",
+    "th": "วัดพูและเมืองประวัติศาสตร์ริมแม่น้ำโขง"
   },
   "The riverside hub where private journeys begin.": {
-    "fr": "La ville au bord du fleuve où commencent nos voyages privés."
+    "fr": "La ville au bord du fleuve où commencent nos voyages privés.",
+    "th": "เมืองริมแม่น้ำที่ทริปส่วนตัวของเราเริ่มต้น"
   },
   "About Watphou Travels": {
     "fr": "À propos de Watphou Travels",
     "th": "เกี่ยวกับ Watphou Travels"
   },
   "Our Hospitality Services": {
-    "fr": "Nos services d’hébergement et de restauration"
+    "fr": "Nos services d’hébergement et de restauration",
+    "th": "บริการที่พักและร้านอาหารของเรา"
   },
   "As part of our commitment to exceptional service, we proudly operate Pakse Hotel & Restaurant along with two unique dining experiences: Le Panorama Rooftop and Pakse Burger 66. These offerings complement our travel services by providing comfortable accommodation and memorable culinary moments.": {
-    "fr": "Dans le même esprit d’exigence, nous gérons avec fierté le Pakse Hotel & Restaurant ainsi que deux adresses de restauration originales : Le Panorama Rooftop et Pakse Burger 66. Elles complètent nos services de voyage en proposant un hébergement confortable et des moments gourmands mémorables."
+    "fr": "Dans le même esprit d’exigence, nous gérons avec fierté le Pakse Hotel & Restaurant ainsi que deux adresses de restauration originales : Le Panorama Rooftop et Pakse Burger 66. Elles complètent nos services de voyage en proposant un hébergement confortable et des moments gourmands mémorables.",
+    "th": "ด้วยความมุ่งมั่นในการให้บริการที่ยอดเยี่ยม เรามีความภูมิใจที่ได้บริหารโรงแรมและร้านอาหารปากเซ (Pakse Hotel & Restaurant) พร้อมร้านอาหารสองแห่งที่มีเอกลักษณ์ ได้แก่ Le Panorama Rooftop และ Pakse Burger 66 ซึ่งเสริมบริการท่องเที่ยวของเราด้วยที่พักสะดวกสบายและมื้ออาหารที่น่าจดจำ"
   },
   "Pakse Hotel offers comfortable and welcoming accommodation in the heart of Pakse, ideal for travelers exploring Southern Laos. The hotel features well-appointed rooms with modern amenities designed for a restful stay.": {
-    "fr": "Le Pakse Hotel propose un hébergement confortable et accueillant au cœur de Pakse, idéal pour les voyageurs qui découvrent le sud du Laos. Ses chambres bien équipées disposent d’un confort moderne pour un séjour reposant."
+    "fr": "Le Pakse Hotel propose un hébergement confortable et accueillant au cœur de Pakse, idéal pour les voyageurs qui découvrent le sud du Laos. Ses chambres bien équipées disposent d’un confort moderne pour un séjour reposant.",
+    "th": "โรงแรมปากเซให้บริการที่พักสะดวกสบายและอบอุ่นใจกลางเมืองปากเซ เหมาะสำหรับนักเดินทางที่มาเที่ยวลาวใต้ ห้องพักจัดอย่างดี มีสิ่งอำนวยความสะดวกทันสมัยเพื่อการพักผ่อนที่ดี"
   },
   "Guests enjoy convenient access to major attractions and the nearby Mekong River. Each morning, a generous breakfast buffet is served, featuring a wide selection of fresh local and international dishes to energize you for the day ahead. The on-site restaurant also serves a variety of flavorful meals throughout the day, prepared with fresh ingredients. Friendly staff and attentive service ensure every guest feels at home.": {
-    "fr": "Les clients bénéficient d’un accès facile aux principaux sites et au Mékong tout proche. Chaque matin, un copieux buffet de petit-déjeuner propose un large choix de plats locaux et internationaux frais pour bien commencer la journée. Le restaurant de l’hôtel sert également des repas savoureux tout au long de la journée, préparés avec des produits frais. Un personnel souriant et attentif veille à ce que chacun se sente comme chez soi."
+    "fr": "Les clients bénéficient d’un accès facile aux principaux sites et au Mékong tout proche. Chaque matin, un copieux buffet de petit-déjeuner propose un large choix de plats locaux et internationaux frais pour bien commencer la journée. Le restaurant de l’hôtel sert également des repas savoureux tout au long de la journée, préparés avec des produits frais. Un personnel souriant et attentif veille à ce que chacun se sente comme chez soi.",
+    "th": "แขกเดินทางไปยังสถานที่ท่องเที่ยวสำคัญและแม่น้ำโขงที่อยู่ใกล้ได้สะดวก ทุกเช้ามีบุฟเฟต์อาหารเช้าหลากหลายทั้งอาหารท้องถิ่นและนานาชาติสดใหม่ เพื่อเติมพลังให้พร้อมสำหรับวันใหม่ ร้านอาหารในโรงแรมยังเสิร์ฟอาหารรสชาติดีตลอดวัน ปรุงจากวัตถุดิบสด พนักงานเป็นกันเองและใส่ใจ ทำให้แขกทุกท่านรู้สึกเหมือนอยู่บ้าน"
   },
   "Le Panorama Rooftop provides an unforgettable dining experience with stunning views over Pakse and the Mekong River. This elegant rooftop venue is perfect for relaxing evenings and special occasions. The menu features a mix of local favorites and international cuisine, crafted by skilled chefs. Guests can enjoy refreshing cocktails while taking in breathtaking sunsets.": {
-    "fr": "Le Panorama Rooftop offre une expérience gastronomique inoubliable, avec une vue magnifique sur Pakse et le Mékong. Ce bel établissement en terrasse est parfait pour des soirées détendues et les occasions spéciales. La carte associe spécialités locales et cuisine internationale, préparées par des chefs expérimentés. On y déguste des cocktails rafraîchissants en admirant des couchers de soleil à couper le souffle."
+    "fr": "Le Panorama Rooftop offre une expérience gastronomique inoubliable, avec une vue magnifique sur Pakse et le Mékong. Ce bel établissement en terrasse est parfait pour des soirées détendues et les occasions spéciales. La carte associe spécialités locales et cuisine internationale, préparées par des chefs expérimentés. On y déguste des cocktails rafraîchissants en admirant des couchers de soleil à couper le souffle.",
+    "th": "Le Panorama Rooftop มอบประสบการณ์รับประทานอาหารที่น่าประทับใจ พร้อมวิวสวยงามเหนือเมืองปากเซและแม่น้ำโขง ดาดฟ้าสุดหรูแห่งนี้เหมาะกับค่ำคืนสบาย ๆ และโอกาสพิเศษ เมนูผสมผสานอาหารท้องถิ่นยอดนิยมและอาหารนานาชาติ ปรุงโดยเชฟฝีมือดี แขกสามารถจิบค็อกเทลสดชื่นพร้อมชมพระอาทิตย์ตกที่งดงาม"
   },
   "From 5 to 6 pm, enjoy Happy Hour with a 20% discount on selected drinks. The stylish atmosphere combines comfort with a vibrant social vibe, making it an ideal spot to unwind after a day of exploring.": {
-    "fr": "De 17 h à 18 h, profitez de l’Happy Hour avec 20 % de réduction sur une sélection de boissons. Le cadre élégant allie confort et ambiance conviviale : un endroit idéal pour se détendre après une journée de découvertes."
+    "fr": "De 17 h à 18 h, profitez de l’Happy Hour avec 20 % de réduction sur une sélection de boissons. Le cadre élégant allie confort et ambiance conviviale : un endroit idéal pour se détendre après une journée de découvertes.",
+    "th": "ระหว่างเวลา 17.00–18.00 น. ร่วมสนุกกับ Happy Hour ลด 20% สำหรับเครื่องดื่มที่เลือก บรรยากาศทันสมัยผสมความสบายและความคึกคักเป็นกันเอง เหมาะสำหรับผ่อนคลายหลังวันท่องเที่ยว"
   },
   "Pakse Burger 66 is a popular casual eatery known for its delicious homemade burgers made from quality ingredients. Open for lunch, it offers a laid-back setting where locals and travelers alike can unwind and enjoy hearty meals. Beyond burgers, the menu includes a variety of sides and beverages to satisfy all tastes.": {
-    "fr": "Pakse Burger 66 est un restaurant décontracté très apprécié, réputé pour ses délicieux burgers maison préparés avec des produits de qualité. Ouvert pour le déjeuner, il offre un cadre détendu où habitants et voyageurs viennent se restaurer. Outre les burgers, la carte propose divers accompagnements et boissons pour tous les goûts."
+    "fr": "Pakse Burger 66 est un restaurant décontracté très apprécié, réputé pour ses délicieux burgers maison préparés avec des produits de qualité. Ouvert pour le déjeuner, il offre un cadre détendu où habitants et voyageurs viennent se restaurer. Outre les burgers, la carte propose divers accompagnements et boissons pour tous les goûts.",
+    "th": "Pakse Burger 66 เป็นร้านอาหารสบาย ๆ ยอดนิยม ขึ้นชื่อเรื่องเบอร์เกอร์โฮมเมดรสอร่อยจากวัตถุดิบคุณภาพ เปิดบริการมื้อกลางวัน บรรยากาศผ่อนคลายที่ทั้งคนท้องถิ่นและนักเดินทางมานั่งพักและอิ่มอร่อย นอกจากเบอร์เกอร์ ยังมีเมนูเคียงและเครื่องดื่มหลากหลายถูกใจทุกคน"
   },
   "The restaurant’s commitment to great food and warm service has made it a favorite spot in Pakse. Whether for a quick bite or a relaxed meal, Pakse Burger 66 delivers satisfying flavors in a welcoming atmosphere.": {
-    "fr": "Sa cuisine soignée et son accueil chaleureux en ont fait une adresse incontournable de Pakse. Pour un petit creux ou un repas tranquille, Pakse Burger 66 offre des saveurs généreuses dans une ambiance accueillante."
+    "fr": "Sa cuisine soignée et son accueil chaleureux en ont fait une adresse incontournable de Pakse. Pour un petit creux ou un repas tranquille, Pakse Burger 66 offre des saveurs généreuses dans une ambiance accueillante.",
+    "th": "ความใส่ใจในอาหารอร่อยและการบริการอบอุ่นทำให้ร้านนี้เป็นที่โปรดปรานในปากเซ ไม่ว่าจะแวะทานเร็ว ๆ หรือนั่งทานสบาย ๆ Pakse Burger 66 ก็มอบรสชาติที่อิ่มใจในบรรยากาศต้อนรับ"
   },
   "Our Partnerships for Community Development in Southern Laos": {
-    "fr": "Nos partenariats pour le développement des communautés du sud du Laos"
+    "fr": "Nos partenariats pour le développement des communautés du sud du Laos",
+    "th": "ความร่วมมือเพื่อการพัฒนาชุมชนในลาวใต้"
   },
   "Local people are our main partners, and our mission is to support communities in a way that is socially, economically, and environmentally sustainable. All of our tours follow responsible eco-tourism principles: traveling to natural areas while improving the wellbeing of local people, minimizing environmental impact, and helping protect delicate cultures and habitats.": {
-    "fr": "Les habitants sont nos principaux partenaires, et notre mission est de soutenir les communautés de manière socialement, économiquement et écologiquement durable. Tous nos circuits respectent les principes de l’écotourisme responsable : voyager dans des espaces naturels tout en améliorant le bien-être des populations locales, en limitant l’impact environnemental et en contribuant à protéger des cultures et des milieux fragiles."
+    "fr": "Les habitants sont nos principaux partenaires, et notre mission est de soutenir les communautés de manière socialement, économiquement et écologiquement durable. Tous nos circuits respectent les principes de l’écotourisme responsable : voyager dans des espaces naturels tout en améliorant le bien-être des populations locales, en limitant l’impact environnemental et en contribuant à protéger des cultures et des milieux fragiles.",
+    "th": "ชาวบ้านในท้องถิ่นคือพันธมิตรหลักของเรา ภารกิจของเราคือสนับสนุนชุมชนอย่างยั่งยืนทั้งทางสังคม เศรษฐกิจ และสิ่งแวดล้อม ทุกทัวร์ของเราปฏิบัติตามหลักการท่องเที่ยวเชิงนิเวศอย่างรับผิดชอบ คือเดินทางสู่พื้นที่ธรรมชาติพร้อมยกระดับความเป็นอยู่ที่ดีของคนในท้องถิ่น ลดผลกระทบต่อสิ่งแวดล้อม และช่วยปกป้องวัฒนธรรมและถิ่นที่อยู่อาศัยที่เปราะบาง"
   },
   "University of Calgary – Cumming School of Medicine": {
-    "fr": "Université de Calgary – Cumming School of Medicine"
+    "fr": "Université de Calgary – Cumming School of Medicine",
+    "th": "มหาวิทยาลัยคาลการี – Cumming School of Medicine"
   },
   "We are proud to work alongside the University of Calgary through its Cumming School of Medicine as part of the Laos Community Development Initiative. The University’s long-standing commitment to rural Laos—especially in medical education and community support—greatly strengthens our efforts on the ground.": {
-    "fr": "Nous sommes fiers de travailler aux côtés de l’Université de Calgary, par l’intermédiaire de sa Cumming School of Medicine, dans le cadre de la Laos Community Development Initiative. L’engagement de longue date de l’université auprès du Laos rural, en particulier dans la formation médicale et le soutien aux communautés, renforce considérablement notre action sur le terrain."
+    "fr": "Nous sommes fiers de travailler aux côtés de l’Université de Calgary, par l’intermédiaire de sa Cumming School of Medicine, dans le cadre de la Laos Community Development Initiative. L’engagement de longue date de l’université auprès du Laos rural, en particulier dans la formation médicale et le soutien aux communautés, renforce considérablement notre action sur le terrain.",
+    "th": "เรามีความภูมิใจที่ได้ทำงานร่วมกับมหาวิทยาลัยคาลการี ผ่าน Cumming School of Medicine ภายใต้โครงการ Laos Community Development Initiative ความมุ่งมั่นระยะยาวของมหาวิทยาลัยต่อชนบทลาว โดยเฉพาะด้านการศึกษาแพทยศาสตร์และการสนับสนุนชุมชน ช่วยเสริมความเข้มแข็งให้งานของเราในพื้นที่อย่างมาก"
   },
   "At the heart of this initiative is Dr. Janice Heard, a clinical professor whose compassion, expertise, and leadership have been essential in launching and sustaining major projects, including the Meuang Kang School Project in Champasak Province. Her work connects academic excellence with real community needs, and her dedication has been recognized through the Order of the University of Calgary for international development leadership.": {
-    "fr": "Au cœur de cette initiative se trouve la Dre Janice Heard, professeure clinicienne, dont la bienveillance, l’expertise et le leadership ont été essentiels pour lancer et faire vivre de grands projets, dont le projet scolaire de Meuang Kang, dans la province de Champasak. Son travail relie l’excellence universitaire aux besoins réels des communautés, et son engagement a été distingué par l’Ordre de l’Université de Calgary pour son leadership en matière de développement international."
+    "fr": "Au cœur de cette initiative se trouve la Dre Janice Heard, professeure clinicienne, dont la bienveillance, l’expertise et le leadership ont été essentiels pour lancer et faire vivre de grands projets, dont le projet scolaire de Meuang Kang, dans la province de Champasak. Son travail relie l’excellence universitaire aux besoins réels des communautés, et son engagement a été distingué par l’Ordre de l’Université de Calgary pour son leadership en matière de développement international.",
+    "th": "หัวใจของโครงการนี้คือ ดร.เจนิส เฮิร์ด (Dr. Janice Heard) ศาสตราจารย์คลินิก ผู้มีความเมตตา ความเชี่ยวชาญ และภาวะผู้นำที่เป็นหัวใจสำคัญในการริเริ่มและดำเนินโครงการสำคัญ รวมถึงโครงการโรงเรียนเมืองคัง (Meuang Kang) ในแขวงจำปาสัก งานของเธอเชื่อมความเป็นเลิศทางวิชาการกับความต้องการจริงของชุมชน และความทุ่มเทของเธอได้รับการยกย่องด้วยรางวัล Order of the University of Calgary สำหรับภาวะผู้นำด้านการพัฒนาระหว่างประเทศ"
   },
   "Through this collaboration, we are able to:": {
-    "fr": "Grâce à cette collaboration, nous pouvons :"
+    "fr": "Grâce à cette collaboration, nous pouvons :",
+    "th": "จากความร่วมมือนี้ เราสามารถ:"
   },
   "Rebuild and improve schools in Meuang Kang and nearby villages.": {
-    "fr": "Reconstruire et améliorer les écoles de Meuang Kang et des villages voisins."
+    "fr": "Reconstruire et améliorer les écoles de Meuang Kang et des villages voisins.",
+    "th": "สร้างใหม่และปรับปรุงโรงเรียนในเมืองคังและหมู่บ้านใกล้เคียง"
   },
   "Strengthen community engagement through regular planning and coordination meetings.": {
-    "fr": "Renforcer l’implication des communautés grâce à des réunions régulières de planification et de coordination."
+    "fr": "Renforcer l’implication des communautés grâce à des réunions régulières de planification et de coordination.",
+    "th": "เสริมความมีส่วนร่วมของชุมชนผ่านการประชุมวางแผนและประสานงานอย่างสม่ำเสมอ"
   },
   "Support the University’s medical education mission by welcoming medical students and residents to teach and learn in rural Laos.": {
-    "fr": "Soutenir la mission de formation médicale de l’université en accueillant des étudiants et des internes en médecine qui viennent enseigner et apprendre dans le Laos rural."
+    "fr": "Soutenir la mission de formation médicale de l’université en accueillant des étudiants et des internes en médecine qui viennent enseigner et apprendre dans le Laos rural.",
+    "th": "สนับสนุนพันธกิจด้านการศึกษาแพทยศาสตร์ของมหาวิทยาลัย โดยต้อนรับนักศึกษาแพทย์และแพทย์ประจำบ้านมาสอนและเรียนรู้ในชนบทลาว"
   },
   "Maintain long-term project sustainability through ongoing fundraising and donor outreach.": {
-    "fr": "Assurer la pérennité des projets grâce à une collecte de fonds et à une mobilisation continues des donateurs."
+    "fr": "Assurer la pérennité des projets grâce à une collecte de fonds et à une mobilisation continues des donateurs.",
+    "th": "รักษาความยั่งยืนของโครงการในระยะยาวด้วยการระดมทุนและการประสานงานกับผู้บริจาคอย่างต่อเนื่อง"
   },
   "This partnership helps us move beyond infrastructure—towards empowering communities, nurturing future generations, and creating a lasting, positive impact across Southern Laos.": {
-    "fr": "Ce partenariat nous permet d’aller au-delà des infrastructures : donner aux communautés les moyens d’agir, accompagner les générations futures et créer un impact positif et durable dans tout le sud du Laos."
+    "fr": "Ce partenariat nous permet d’aller au-delà des infrastructures : donner aux communautés les moyens d’agir, accompagner les générations futures et créer un impact positif et durable dans tout le sud du Laos.",
+    "th": "ความร่วมมือนี้ช่วยให้เราก้าวไกลกว่าการสร้างสิ่งปลูกสร้าง สู่การเสริมพลังให้ชุมชน ดูแลคนรุ่นต่อไป และสร้างผลกระทบเชิงบวกที่ยั่งยืนทั่วลาวใต้"
   },
   "For more details about these meaningful initiatives, please visit:": {
-    "fr": "Pour en savoir plus sur ces initiatives, consultez :"
+    "fr": "Pour en savoir plus sur ces initiatives, consultez :",
+    "th": "ดูรายละเอียดเพิ่มเติมเกี่ยวกับโครงการที่มีความหมายเหล่านี้ได้ที่:"
   },
   "Our work is also strengthened by the meaningful support of Les Colchés d’Asie, a French association deeply dedicated to education and solidarity across Southeast Asia.": {
-    "fr": "Notre action est aussi renforcée par le précieux soutien des Colchés d’Asie, une association française profondément engagée pour l’éducation et la solidarité en Asie du Sud-Est."
+    "fr": "Notre action est aussi renforcée par le précieux soutien des Colchés d’Asie, une association française profondément engagée pour l’éducation et la solidarité en Asie du Sud-Est.",
+    "th": "งานของเรายังได้รับกำลังใจจากการสนับสนุนอันมีความหมายของ Les Colchés d’Asie สมาคมฝรั่งเศสที่ทุ่มเทเพื่อการศึกษาและความสามัคคีทั่วเอเชียตะวันออกเฉียงใต้"
   },
   "Two individuals, Mr. Gilbert Leseigneur and Mr. Jean-Claude Collet, have played an especially important role in bringing hands-on assistance, resources, and encouragement to our communities. Their long-term engagement, generosity, and personal involvement have helped improve school conditions, provide essential materials, and support vulnerable families in remote villages.": {
-    "fr": "Deux personnes, M. Gilbert Leseigneur et M. Jean-Claude Collet, ont joué un rôle particulièrement important en apportant aide concrète, ressources et encouragements à nos communautés. Leur engagement de longue date, leur générosité et leur implication personnelle ont permis d’améliorer les conditions de scolarité, de fournir du matériel essentiel et de soutenir des familles vulnérables dans des villages isolés."
+    "fr": "Deux personnes, M. Gilbert Leseigneur et M. Jean-Claude Collet, ont joué un rôle particulièrement important en apportant aide concrète, ressources et encouragements à nos communautés. Leur engagement de longue date, leur générosité et leur implication personnelle ont permis d’améliorer les conditions de scolarité, de fournir du matériel essentiel et de soutenir des familles vulnérables dans des villages isolés.",
+    "th": "สองท่าน คือ คุณ Gilbert Leseigneur และคุณ Jean-Claude Collet มีบทบาทสำคัญเป็นพิเศษในการนำความช่วยเหลือจริง ทรัพยากร และกำลังใจมาสู่ชุมชนของเรา ความผูกพันระยะยาว ความเอื้อเฟื้อ และการลงมือด้วยตนเองของทั้งสองท่านช่วยปรับปรุงสภาพโรงเรียน จัดหาอุปกรณ์จำเป็น และสนับสนุนครอบครัวที่เปราะบางในหมู่บ้านห่างไกล"
   },
   "Through their efforts and the mission of Les Colchés d’Asie, we are able to:": {
-    "fr": "Grâce à leurs efforts et à la mission des Colchés d’Asie, nous pouvons :"
+    "fr": "Grâce à leurs efforts et à la mission des Colchés d’Asie, nous pouvons :",
+    "th": "ด้วยความพยายามของทั้งสองท่านและพันธกิจของ Les Colchés d’Asie เราสามารถ:"
   },
   "Deliver direct support to rural schools and teachers.": {
-    "fr": "Apporter un soutien direct aux écoles et aux enseignants en milieu rural."
+    "fr": "Apporter un soutien direct aux écoles et aux enseignants en milieu rural.",
+    "th": "ให้การสนับสนุนโดยตรงแก่โรงเรียนและครูในชนบท"
   },
   "Provide materials and improvements that enhance daily learning conditions.": {
-    "fr": "Fournir du matériel et réaliser des améliorations qui facilitent l’apprentissage au quotidien."
+    "fr": "Fournir du matériel et réaliser des améliorations qui facilitent l’apprentissage au quotidien.",
+    "th": "จัดหาอุปกรณ์และปรับปรุงสภาพการเรียนรู้ในแต่ละวันให้ดีขึ้น"
   },
   "Strengthen community activities focused on children’s education and well-being.": {
-    "fr": "Renforcer les activités communautaires centrées sur l’éducation et le bien-être des enfants."
+    "fr": "Renforcer les activités communautaires centrées sur l’éducation et le bien-être des enfants.",
+    "th": "เสริมกิจกรรมของชุมชนที่เน้นการศึกษาและความเป็นอยู่ที่ดีของเด็ก"
   },
   "Build a reliable network of solidarity between France and Southern Laos.": {
-    "fr": "Construire un réseau solide de solidarité entre la France et le sud du Laos."
+    "fr": "Construire un réseau solide de solidarité entre la France et le sud du Laos.",
+    "th": "สร้างเครือข่ายแห่งความสามัคคีที่เชื่อถือได้ระหว่างฝรั่งเศสกับลาวใต้"
   },
   "Their commitment reflects the best of international friendship—quiet, generous, and deeply human.": {
-    "fr": "Leur engagement incarne le meilleur de l’amitié entre les peuples : discret, généreux et profondément humain."
+    "fr": "Leur engagement incarne le meilleur de l’amitié entre les peuples : discret, généreux et profondément humain.",
+    "th": "ความมุ่งมั่นของพวกเขาสะท้อนมิตรภาพระหว่างประเทศที่ดีที่สุด — เงียบ ๆ ใจกว้าง และเปี่ยมด้วยความเป็นมนุษย์"
   },
   "For full details about LESCOLCHE-ASIE (France):": {
-    "fr": "Pour plus de détails sur LESCOLCHE-ASIE (France) :"
+    "fr": "Pour plus de détails sur LESCOLCHE-ASIE (France) :",
+    "th": "ดูรายละเอียดทั้งหมดเกี่ยวกับ LESCOLCHE-ASIE (ฝรั่งเศส) ได้ที่:"
   },
   "Across all our partnerships, our mission is clear: to nurture future generations, strengthen local capacity, and create a positive, lasting impact for communities throughout Southern Laos.": {
-    "fr": "Dans tous nos partenariats, notre mission est claire : accompagner les générations futures, renforcer les capacités locales et créer un impact positif et durable pour les communautés de tout le sud du Laos."
+    "fr": "Dans tous nos partenariats, notre mission est claire : accompagner les générations futures, renforcer les capacités locales et créer un impact positif et durable pour les communautés de tout le sud du Laos.",
+    "th": "ในทุกความร่วมมือ ภารกิจของเราชัดเจน คือเลี้ยงดูคนรุ่นต่อไป เสริมศักยภาพในท้องถิ่น และสร้างผลกระทบเชิงบวกที่ยั่งยืนให้ชุมชนทั่วลาวใต้"
   },
   "Your Local Expert in Southern Laos": {
-    "fr": "Votre expert local du sud du Laos"
+    "fr": "Votre expert local du sud du Laos",
+    "th": "ผู้เชี่ยวชาญท้องถิ่นของคุณในลาวใต้"
   },
   "If you have any questions, Let us help you!": {
-    "fr": "Une question ? Nous sommes à votre écoute !"
+    "fr": "Une question ? Nous sommes à votre écoute !",
+    "th": "มีคำถามไหม? ให้เราช่วยคุณ!"
   },
   "Established in 2008, Watphou Travels is a specialized travel agency focused on delivering exceptional tours throughout Southern Laos. We offer a wide variety of options, from day trips to multi-day and extended adventures lasting up to seven days, tailored to suit every traveler’s preferences. Conveniently located right in front of Pakse Hotel & Restaurant in Pakse, Champasak Province, our office serves as a convenient starting point for your journey. We pride ourselves on crafting private, customized tours that provide an authentic and immersive experience of the region. Every tour includes a private car and professional driver, with the option to add a qualified guide for deeper cultural insights.": {
-    "fr": "Fondée en 2008, Watphou Travels est une agence de voyages spécialisée dans l’organisation de circuits d’exception dans tout le sud du Laos. Nous proposons un large choix de formules, de l’excursion d’une journée aux voyages de plusieurs jours pouvant aller jusqu’à sept jours, adaptés aux envies de chaque voyageur. Idéalement située juste en face du Pakse Hotel & Restaurant, à Pakse (province de Champasak), notre agence est un point de départ pratique pour votre voyage. Nous sommes fiers de concevoir des circuits privés et personnalisés qui offrent une expérience authentique et immersive de la région. Chaque circuit comprend un véhicule privé avec chauffeur professionnel, avec la possibilité d’ajouter un guide qualifié pour une meilleure compréhension de la culture locale."
+    "fr": "Fondée en 2008, Watphou Travels est une agence de voyages spécialisée dans l’organisation de circuits d’exception dans tout le sud du Laos. Nous proposons un large choix de formules, de l’excursion d’une journée aux voyages de plusieurs jours pouvant aller jusqu’à sept jours, adaptés aux envies de chaque voyageur. Idéalement située juste en face du Pakse Hotel & Restaurant, à Pakse (province de Champasak), notre agence est un point de départ pratique pour votre voyage. Nous sommes fiers de concevoir des circuits privés et personnalisés qui offrent une expérience authentique et immersive de la région. Chaque circuit comprend un véhicule privé avec chauffeur professionnel, avec la possibilité d’ajouter un guide qualifié pour une meilleure compréhension de la culture locale.",
+    "th": "Watphou Travels ก่อตั้งขึ้นในปี 2008 เป็นบริษัทท่องเที่ยวเฉพาะทางที่มุ่งมั่นจัดทัวร์คุณภาพทั่วลาวใต้ เรามีให้เลือกหลากหลาย ตั้งแต่ทริปวันเดียวไปจนถึงทริปหลายวันนานสูงสุดเจ็ดวัน ปรับให้เหมาะกับความต้องการของนักเดินทางทุกคน สำนักงานของเราตั้งอยู่ตรงข้ามโรงแรมและร้านอาหารปากเซ (Pakse Hotel & Restaurant) ในเมืองปากเซ แขวงจำปาสัก จึงเป็นจุดเริ่มต้นการเดินทางที่สะดวก เรามีความภูมิใจในการออกแบบทัวร์ส่วนตัวที่ปรับแต่งได้ ให้ประสบการณ์แท้จริงและลึกซึ้งของภูมิภาคนี้ ทุกทัวร์รวมรถส่วนตัวพร้อมคนขับมืออาชีพ และสามารถเพิ่มไกด์ที่มีคุณวุฒิเพื่อเรียนรู้วัฒนธรรมได้ลึกยิ่งขึ้น"
   },
   "Our multilingual team speaks English, Italian, French, Thai, and Lao, combining local knowledge with international professionalism. We are dedicated to ensuring a seamless, memorable, and enriching travel experience for all our guests. With Watphou Travels, exploring Southern Laos becomes effortless and unforgettable.": {
-    "fr": "Notre équipe multilingue parle anglais, italien, français, thaï et lao, et allie connaissance du terrain et professionnalisme international. Nous veillons à offrir à tous nos voyageurs une expérience fluide, mémorable et enrichissante. Avec Watphou Travels, découvrir le sud du Laos devient simple et inoubliable."
+    "fr": "Notre équipe multilingue parle anglais, italien, français, thaï et lao, et allie connaissance du terrain et professionnalisme international. Nous veillons à offrir à tous nos voyageurs une expérience fluide, mémorable et enrichissante. Avec Watphou Travels, découvrir le sud du Laos devient simple et inoubliable.",
+    "th": "ทีมงานหลายภาษาของเราพูดอังกฤษ อิตาลี ฝรั่งเศส ไทย และลาว ผสมผสานความรู้ในท้องถิ่นกับความเป็นมืออาชีพระดับสากล เรามุ่งมั่นให้แขกทุกท่านได้รับประสบการณ์การเดินทางที่ราบรื่น น่าจดจำ และอุดมด้วยคุณค่า กับ Watphou Travels การเที่ยวลาวใต้จึงเป็นเรื่องง่ายและประทับใจไม่รู้ลืม"
   },
   "About Us": {
     "fr": "À propos de nous",
@@ -706,240 +755,320 @@
     "th": "ติดต่อเรา"
   },
   "Home": {
-    "fr": "Accueil"
+    "fr": "Accueil",
+    "th": "หน้าแรก"
   },
   "Planning a trip in Southern Laos? Contact our Pakse team by WhatsApp, phone or email and tell us your dates and travel plans.": {
-    "fr": "Vous préparez un voyage dans le sud du Laos ? Contactez notre équipe de Pakse par WhatsApp, téléphone ou e-mail et indiquez-nous vos dates et vos projets de voyage."
+    "fr": "Vous préparez un voyage dans le sud du Laos ? Contactez notre équipe de Pakse par WhatsApp, téléphone ou e-mail et indiquez-nous vos dates et vos projets de voyage.",
+    "th": "วางแผนเที่ยวลาวใต้อยู่ใช่ไหม? ติดต่อทีมงานปากเซของเราทาง WhatsApp โทรศัพท์ หรืออีเมล แล้วบอกวันเดินทางและแผนการเที่ยวของคุณ"
   },
   "Address: No. 5 Ban Wat Luang, Pakse, Champasak Province - 16000, Southern Laos": {
-    "fr": "Adresse : n° 5 Ban Wat Luang, Pakse, province de Champasak - 16000, sud du Laos"
+    "fr": "Adresse : n° 5 Ban Wat Luang, Pakse, province de Champasak - 16000, sud du Laos",
+    "th": "ที่อยู่: เลขที่ 5 บ้านวัดหลวง ปากเซ แขวงจำปาสัก 16000 ลาวใต้"
   },
   "Address: Rooftop of Pakse Hotel & Restaurant, No. 5 Ban Wat Luang, Pakse, Champasak Province - 16000, Southern Laos": {
-    "fr": "Adresse : sur le toit du Pakse Hotel & Restaurant, n° 5 Ban Wat Luang, Pakse, province de Champasak - 16000, sud du Laos"
+    "fr": "Adresse : sur le toit du Pakse Hotel & Restaurant, n° 5 Ban Wat Luang, Pakse, province de Champasak - 16000, sud du Laos",
+    "th": "ที่อยู่: ชั้นดาดฟ้าของโรงแรมและร้านอาหารปากเซ เลขที่ 5 บ้านวัดหลวง ปากเซ แขวงจำปาสัก 16000 ลาวใต้"
   },
   "Hours: Opens 4.30 PM, Closes 11.00 PM": {
-    "fr": "Horaires : ouverture à 16 h 30, fermeture à 23 h 00"
+    "fr": "Horaires : ouverture à 16 h 30, fermeture à 23 h 00",
+    "th": "เวลาทำการ: เปิด 16.30 น. ปิด 23.00 น."
   },
   "Address: Ground floor of Pakse Hotel & Restaurant, No. 5 Ban Wat Luang, Pakse, Champasak Province - 16000, Southern Laos": {
-    "fr": "Adresse : rez-de-chaussée du Pakse Hotel & Restaurant, n° 5 Ban Wat Luang, Pakse, province de Champasak - 16000, sud du Laos"
+    "fr": "Adresse : rez-de-chaussée du Pakse Hotel & Restaurant, n° 5 Ban Wat Luang, Pakse, province de Champasak - 16000, sud du Laos",
+    "th": "ที่อยู่: ชั้นล่างของโรงแรมและร้านอาหารปากเซ เลขที่ 5 บ้านวัดหลวง ปากเซ แขวงจำปาสัก 16000 ลาวใต้"
   },
   "Hours: Opens 10:00 AM, Closes 14.00 PM": {
-    "fr": "Horaires : ouverture à 10 h 00, fermeture à 14 h 00"
+    "fr": "Horaires : ouverture à 10 h 00, fermeture à 14 h 00",
+    "th": "เวลาทำการ: เปิด 10.00 น. ปิด 14.00 น."
   },
   "2-day private tours | Watphou Travels": {
-    "fr": "Circuits privés de 2 jours | Watphou Travels"
+    "fr": "Circuits privés de 2 jours | Watphou Travels",
+    "th": "ทัวร์ส่วนตัว 2 วัน | Watphou Travels"
   },
   "Two-day private journeys from Pakse: Bolaven Plateau or 4000 Islands and Vat Phou.": {
-    "fr": "Voyages privés de deux jours au départ de Pakse : plateau des Bolovens, ou 4 000 îles et Vat Phou."
+    "fr": "Voyages privés de deux jours au départ de Pakse : plateau des Bolovens, ou 4 000 îles et Vat Phou.",
+    "th": "ทริปส่วนตัว 2 วันจากปากเซ: ที่ราบสูงโบลาเวน หรือสี่พันเกาะและวัดพู"
   },
   "3-day Southern Laos tours | Watphou Travels": {
-    "fr": "Circuits de 3 jours dans le sud du Laos | Watphou Travels"
+    "fr": "Circuits de 3 jours dans le sud du Laos | Watphou Travels",
+    "th": "ทัวร์ลาวใต้ 3 วัน | Watphou Travels"
   },
   "Three-day private itineraries in Southern Laos, departing from Pakse with a local team.": {
-    "fr": "Itinéraires privés de trois jours dans le sud du Laos, au départ de Pakse avec une équipe locale."
+    "fr": "Itinéraires privés de trois jours dans le sud du Laos, au départ de Pakse avec une équipe locale.",
+    "th": "เส้นทางส่วนตัว 3 วันในลาวใต้ ออกเดินทางจากปากเซพร้อมทีมงานท้องถิ่น"
   },
   "4–6 day Southern Laos journeys | Watphou Travels": {
-    "fr": "Voyages de 4 à 6 jours dans le sud du Laos | Watphou Travels"
+    "fr": "Voyages de 4 à 6 jours dans le sud du Laos | Watphou Travels",
+    "th": "ทริปลาวใต้ 4–6 วัน | Watphou Travels"
   },
   "Longer private journeys from Pakse across the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.": {
-    "fr": "Voyages privés plus longs au départ de Pakse : plateau des Bolovens, Vat Phou, Champasak et 4 000 îles."
+    "fr": "Voyages privés plus longs au départ de Pakse : plateau des Bolovens, Vat Phou, Champasak et 4 000 îles.",
+    "th": "ทริปส่วนตัวระยะยาวจากปากเซ ครอบคลุมที่ราบสูงโบลาเวน วัดพู จำปาสัก และสี่พันเกาะ"
   },
   "Day tours from Pakse | Watphou Travels": {
-    "fr": "Excursions à la journée au départ de Pakse | Watphou Travels"
+    "fr": "Excursions à la journée au départ de Pakse | Watphou Travels",
+    "th": "ทัวร์วันเดียวจากปากเซ | Watphou Travels"
   },
   "Private one-day tours from Pakse: Bolaven Plateau waterfalls, Vat Phou, Champasak and Pakse riverside.": {
-    "fr": "Excursions privées d’une journée au départ de Pakse : cascades des Bolovens, Vat Phou, Champasak et rives de Pakse."
+    "fr": "Excursions privées d’une journée au départ de Pakse : cascades des Bolovens, Vat Phou, Champasak et rives de Pakse.",
+    "th": "ทัวร์ส่วนตัวหนึ่งวันจากปากเซ: น้ำตกที่ราบสูงโบลาเวน วัดพู จำปาสัก และริมแม่น้ำปากเซ"
   },
   "Destinations in Southern Laos | Watphou Travels": {
-    "fr": "Destinations dans le sud du Laos | Watphou Travels"
+    "fr": "Destinations dans le sud du Laos | Watphou Travels",
+    "th": "จุดหมายปลายทางในลาวใต้ | Watphou Travels"
   },
   "Pakse, Bolaven Plateau, Vat Phou and Champasak, and the 4000 Islands — private tours with a local Pakse team.": {
-    "fr": "Pakse, plateau des Bolovens, Vat Phou et Champasak, 4 000 îles : circuits privés avec une équipe locale de Pakse."
+    "fr": "Pakse, plateau des Bolovens, Vat Phou et Champasak, 4 000 îles : circuits privés avec une équipe locale de Pakse.",
+    "th": "ปากเซ ที่ราบสูงโบลาเวน วัดพูและจำปาสัก และสี่พันเกาะ — ทัวร์ส่วนตัวกับทีมงานท้องถิ่นของปากเซ"
   },
   "Private tours in Southern Laos - Watphou Travels": {
-    "fr": "Circuits privés dans le sud du Laos - Watphou Travels"
+    "fr": "Circuits privés dans le sud du Laos - Watphou Travels",
+    "th": "ทัวร์ส่วนตัวในลาวใต้ - Watphou Travels"
   },
   "Browse private day tours and multi-day journeys in Southern Laos: Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.": {
-    "fr": "Découvrez nos excursions privées d’une journée et nos voyages de plusieurs jours dans le sud du Laos : plateau des Bolovens, Vat Phou, Champasak et 4 000 îles."
+    "fr": "Découvrez nos excursions privées d’une journée et nos voyages de plusieurs jours dans le sud du Laos : plateau des Bolovens, Vat Phou, Champasak et 4 000 îles.",
+    "th": "เลือกทัวร์ส่วนตัวแบบวันเดียวและหลายวันในลาวใต้: ที่ราบสูงโบลาเวน วัดพู จำปาสัก และสี่พันเกาะ"
   },
   "Tailor-made tours in Southern Laos | Watphou Travels": {
-    "fr": "Circuits sur mesure dans le sud du Laos | Watphou Travels"
+    "fr": "Circuits sur mesure dans le sud du Laos | Watphou Travels",
+    "th": "ทัวร์ออกแบบเองในลาวใต้ | Watphou Travels"
   },
   "Build a private itinerary around your dates and pace. Watphou Travels is based in Pakse.": {
-    "fr": "Composez un itinéraire privé selon vos dates et votre rythme. Watphou Travels est basée à Pakse."
+    "fr": "Composez un itinéraire privé selon vos dates et votre rythme. Watphou Travels est basée à Pakse.",
+    "th": "ออกแบบเส้นทางส่วนตัวตามวันเดินทางและจังหวะการเที่ยวของคุณ Watphou Travels ตั้งอยู่ที่ปากเซ"
   },
   "About Watphou Travels | Local team in Pakse": {
-    "fr": "À propos de Watphou Travels | Équipe locale à Pakse"
+    "fr": "À propos de Watphou Travels | Équipe locale à Pakse",
+    "th": "เกี่ยวกับ Watphou Travels | ทีมงานท้องถิ่นในปากเซ"
   },
   "Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.": {
-    "fr": "Agence locale à Pakse, au Laos. Circuits privés sur le plateau des Bolovens, à Vat Phou, à Champasak et dans les 4 000 îles."
+    "fr": "Agence locale à Pakse, au Laos. Circuits privés sur le plateau des Bolovens, à Vat Phou, à Champasak et dans les 4 000 îles.",
+    "th": "บริษัททัวร์ท้องถิ่นในปากเซ ประเทศลาว ทัวร์ส่วนตัวที่ราบสูงโบลาเวน วัดพู จำปาสัก และสี่พันเกาะ"
   },
   "Contact Watphou Travels | Pakse, Laos": {
-    "fr": "Contacter Watphou Travels | Pakse, Laos"
+    "fr": "Contacter Watphou Travels | Pakse, Laos",
+    "th": "ติดต่อ Watphou Travels | ปากเซ ลาว"
   },
   "WhatsApp +85620 9949 5858 · sales.watphoutravel@gmail.com · Street N°5, Ban Vat Luang, Pakse. Ask for a private tour in Southern Laos.": {
-    "fr": "WhatsApp +85620 9949 5858 · sales.watphoutravel@gmail.com · Rue n°5, Ban Vat Luang, Pakse. Demandez un circuit privé dans le sud du Laos."
+    "fr": "WhatsApp +85620 9949 5858 · sales.watphoutravel@gmail.com · Rue n°5, Ban Vat Luang, Pakse. Demandez un circuit privé dans le sud du Laos.",
+    "th": "WhatsApp +85620 9949 5858 · sales.watphoutravel@gmail.com · ถนนเลขที่ 5 บ้านวัดหลวง ปากเซ สอบถามทัวร์ส่วนตัวในลาวใต้ได้เลย"
   },
   "Send dates and group size for a private tour from Pakse. We reply by email or WhatsApp. Prices show as From $XX until confirmed.": {
-    "fr": "Indiquez vos dates et la taille de votre groupe pour un circuit privé au départ de Pakse. Nous répondons par e-mail ou WhatsApp. Les prix affichés « À partir de XX $ » sont indicatifs jusqu’à confirmation."
+    "fr": "Indiquez vos dates et la taille de votre groupe pour un circuit privé au départ de Pakse. Nous répondons par e-mail ou WhatsApp. Les prix affichés « À partir de XX $ » sont indicatifs jusqu’à confirmation.",
+    "th": "ส่งวันเดินทางและจำนวนคนสำหรับทัวร์ส่วนตัวจากปากเซ เราตอบกลับทางอีเมลหรือ WhatsApp ราคาที่แสดงเป็น “เริ่มต้น XX ดอลลาร์” จนกว่าจะยืนยัน"
   },
   "Southern Laos travel guide | Watphou Travels": {
-    "fr": "Guide de voyage du sud du Laos | Watphou Travels"
+    "fr": "Guide de voyage du sud du Laos | Watphou Travels",
+    "th": "คู่มือท่องเที่ยวลาวใต้ | Watphou Travels"
   },
   "Short guide to Pakse, the Bolaven Plateau, Vat Phou and the 4000 Islands, written from our local tours.": {
-    "fr": "Petit guide de Pakse, du plateau des Bolovens, de Vat Phou et des 4 000 îles, rédigé à partir de nos circuits locaux."
+    "fr": "Petit guide de Pakse, du plateau des Bolovens, de Vat Phou et des 4 000 îles, rédigé à partir de nos circuits locaux.",
+    "th": "คู่มือสั้น ๆ เกี่ยวกับปากเซ ที่ราบสูงโบลาเวน วัดพู และสี่พันเกาะ เขียนจากประสบการณ์ทัวร์ของเราในพื้นที่"
   },
   "Privacy Policy | Watphou Travels": {
-    "fr": "Politique de confidentialité | Watphou Travels"
+    "fr": "Politique de confidentialité | Watphou Travels",
+    "th": "นโยบายความเป็นส่วนตัว | Watphou Travels"
   },
   "How Watphou Travels in Pakse uses the contact details you send by form, email, or WhatsApp.": {
-    "fr": "Comment Watphou Travels, à Pakse, utilise les coordonnées que vous envoyez par formulaire, e-mail ou WhatsApp."
+    "fr": "Comment Watphou Travels, à Pakse, utilise les coordonnées que vous envoyez par formulaire, e-mail ou WhatsApp.",
+    "th": "Watphou Travels ในปากเซใช้ข้อมูลติดต่อที่คุณส่งผ่านแบบฟอร์ม อีเมล หรือ WhatsApp อย่างไร"
   },
   "Terms of Use | Watphou Travels": {
-    "fr": "Conditions d’utilisation | Watphou Travels"
+    "fr": "Conditions d’utilisation | Watphou Travels",
+    "th": "เงื่อนไขการใช้งาน | Watphou Travels"
   },
   "How private tours, placeholder prices, and booking requests work at Watphou Travels in Pakse.": {
-    "fr": "Fonctionnement des circuits privés, des prix provisoires et des demandes de réservation chez Watphou Travels, à Pakse."
+    "fr": "Fonctionnement des circuits privés, des prix provisoires et des demandes de réservation chez Watphou Travels, à Pakse.",
+    "th": "ทัวร์ส่วนตัว ราคาชั่วคราว และคำขอจองของ Watphou Travels ในปากเซ ทำงานอย่างไร"
   },
   "Cancellation | Watphou Travels": {
-    "fr": "Annulation | Watphou Travels"
+    "fr": "Annulation | Watphou Travels",
+    "th": "การยกเลิก | Watphou Travels"
   },
   "How to change or cancel a Watphou Travels request. Final terms are on your personal quote.": {
-    "fr": "Comment modifier ou annuler une demande Watphou Travels. Les conditions finales figurent sur votre devis personnalisé."
+    "fr": "Comment modifier ou annuler une demande Watphou Travels. Les conditions finales figurent sur votre devis personnalisé.",
+    "th": "วิธีเปลี่ยนแปลงหรือยกเลิกคำขอกับ Watphou Travels เงื่อนไขสุดท้ายระบุในใบเสนอราคาส่วนตัวของคุณ"
   },
   "Page not found - Watphou Travels": {
-    "fr": "Page introuvable - Watphou Travels"
+    "fr": "Page introuvable - Watphou Travels",
+    "th": "ไม่พบหน้านี้ - Watphou Travels"
   },
   "Page not found - Watphou Travels. Watphou Travels — private tours in Southern Laos from Pakse.": {
-    "fr": "Page introuvable. Watphou Travels — circuits privés dans le sud du Laos au départ de Pakse."
+    "fr": "Page introuvable. Watphou Travels — circuits privés dans le sud du Laos au départ de Pakse.",
+    "th": "ไม่พบหน้านี้. Watphou Travels — ทัวร์ส่วนตัวในลาวใต้จากปากเซ"
   },
   "Watphou Travels | Private tours in Southern Laos": {
-    "fr": "Watphou Travels | Circuits privés dans le sud du Laos"
+    "fr": "Watphou Travels | Circuits privés dans le sud du Laos",
+    "th": "Watphou Travels | ทัวร์ส่วนตัวในลาวใต้"
   },
   "Private tours from Pakse: Bolaven Plateau waterfalls, UNESCO Vat Phou, Champasak and the 4000 Islands. Local team, European standards.": {
-    "fr": "Circuits privés au départ de Pakse : cascades du plateau des Bolovens, Vat Phou (UNESCO), Champasak et 4 000 îles. Équipe locale, standards européens."
+    "fr": "Circuits privés au départ de Pakse : cascades du plateau des Bolovens, Vat Phou (UNESCO), Champasak et 4 000 îles. Équipe locale, standards européens.",
+    "th": "ทัวร์ส่วนตัวจากปากเซ: น้ำตกที่ราบสูงโบลาเวน วัดพู (มรดกโลก UNESCO) จำปาสัก และสี่พันเกาะ ทีมงานท้องถิ่น มาตรฐานยุโรป"
   },
   "Tad Fane waterfall on the Bolaven Plateau": {
-    "fr": "Cascade de Tad Fane sur le plateau des Bolovens"
+    "fr": "Cascade de Tad Fane sur le plateau des Bolovens",
+    "th": "น้ำตกตาดเฟินบนที่ราบสูงโบลาเวน"
   },
   "Sunrise and a fisherman on the Mekong River": {
-    "fr": "Lever de soleil et pêcheur sur le Mékong"
+    "fr": "Lever de soleil et pêcheur sur le Mékong",
+    "th": "พระอาทิตย์ขึ้นและชาวประมงบนแม่น้ำโขง"
   },
   "Vat Phou temple near Champasak": {
-    "fr": "Temple de Vat Phou près de Champasak"
+    "fr": "Temple de Vat Phou près de Champasak",
+    "th": "วัดพูใกล้จำปาสัก"
   },
   "Khone Phapheng waterfall": {
-    "fr": "Cascade de Khone Phapheng"
+    "fr": "Cascade de Khone Phapheng",
+    "th": "น้ำตกคอนพะเพ็ง"
   },
   "Don Khon in Champasak": {
-    "fr": "Don Khon, province de Champasak"
+    "fr": "Don Khon, province de Champasak",
+    "th": "ดอนคอน แขวงจำปาสัก"
   },
   "Tad Yuang waterfall": {
-    "fr": "Cascade de Tad Yuang"
+    "fr": "Cascade de Tad Yuang",
+    "th": "น้ำตกตาดยุ่ง"
   },
   "Wat Phou temple": {
-    "fr": "Temple de Wat Phou"
+    "fr": "Temple de Wat Phou",
+    "th": "วัดพู"
   },
   "Temple Buddha on Khong Island": {
-    "fr": "Bouddha du temple sur l’île de Khong"
+    "fr": "Bouddha du temple sur l’île de Khong",
+    "th": "พระพุทธรูปในวัดบนเกาะคอน"
   },
   "Fishermen at sunrise on the Mekong River": {
-    "fr": "Pêcheurs au lever du soleil sur le Mékong"
+    "fr": "Pêcheurs au lever du soleil sur le Mékong",
+    "th": "ชาวประมงยามพระอาทิตย์ขึ้นบนแม่น้ำโขง"
   },
   "Phou Salao viewpoint above Pakse": {
-    "fr": "Point de vue de Phou Salao au-dessus de Pakse"
+    "fr": "Point de vue de Phou Salao au-dessus de Pakse",
+    "th": "จุดชมวิวภูเสลาเหนือปากเซ"
   },
   "Phou Salao mountain above Pakse": {
-    "fr": "Colline de Phou Salao au-dessus de Pakse"
+    "fr": "Colline de Phou Salao au-dessus de Pakse",
+    "th": "ภูเสลาเหนือปากเซ"
   },
   "Le Panorama rooftop in Pakse": {
-    "fr": "Le Panorama, restaurant en terrasse à Pakse"
+    "fr": "Le Panorama, restaurant en terrasse à Pakse",
+    "th": "Le Panorama ร้านอาหารดาดฟ้าในปากเซ"
   },
   "Imported beer in Pakse": {
-    "fr": "Bières importées à Pakse"
+    "fr": "Bières importées à Pakse",
+    "th": "เบียร์นำเข้าในปากเซ"
   },
   "School in Champasak": {
-    "fr": "École à Champasak"
+    "fr": "École à Champasak",
+    "th": "โรงเรียนในจำปาสัก"
   },
   "University of Calgary in Champasak": {
-    "fr": "Université de Calgary à Champasak"
+    "fr": "Université de Calgary à Champasak",
+    "th": "มหาวิทยาลัยคาลการีในจำปาสัก"
   },
   "Students in Champasak": {
-    "fr": "Élèves à Champasak"
+    "fr": "Élèves à Champasak",
+    "th": "นักเรียนในจำปาสัก"
   },
   "Les Colchés d’Asie Association in Champasak": {
-    "fr": "Association Les Colchés d’Asie à Champasak"
+    "fr": "Association Les Colchés d’Asie à Champasak",
+    "th": "สมาคม Les Colchés d’Asie ในจำปาสัก"
   },
   "Watphou Travels office": {
-    "fr": "Agence Watphou Travels"
+    "fr": "Agence Watphou Travels",
+    "th": "สำนักงาน Watphou Travels"
   },
   "Sunset on the Mekong": {
-    "fr": "Coucher de soleil sur le Mékong"
+    "fr": "Coucher de soleil sur le Mékong",
+    "th": "พระอาทิตย์ตกริมแม่น้ำโขง"
   },
   "Boat in 4000 islands": {
-    "fr": "Bateau dans les 4 000 îles"
+    "fr": "Bateau dans les 4 000 îles",
+    "th": "เรือในสี่พันเกาะ"
   },
   "Coffee in Bolaven": {
-    "fr": "Café sur le plateau des Bolovens"
+    "fr": "Café sur le plateau des Bolovens",
+    "th": "กาแฟบนที่ราบสูงโบลาเวน"
   },
   "Coffee in Bolaven Plateau": {
-    "fr": "Café sur le plateau des Bolovens"
+    "fr": "Café sur le plateau des Bolovens",
+    "th": "กาแฟบนที่ราบสูงโบลาเวน"
   },
   "Fisherman in 4000 islands": {
-    "fr": "Pêcheur dans les 4 000 îles"
+    "fr": "Pêcheur dans les 4 000 îles",
+    "th": "ชาวประมงในสี่พันเกาะ"
   },
   "The fisherman in 4000 islands": {
-    "fr": "Pêcheur dans les 4 000 îles"
+    "fr": "Pêcheur dans les 4 000 îles",
+    "th": "ชาวประมงในสี่พันเกาะ"
   },
   "French colonial bridge in 4000 islands": {
-    "fr": "Pont colonial français dans les 4 000 îles"
+    "fr": "Pont colonial français dans les 4 000 îles",
+    "th": "สะพานฝรั่งเศสสมัยอาณานิคมในสี่พันเกาะ"
   },
   "Vatphou temple": {
-    "fr": "Temple de Vat Phou"
+    "fr": "Temple de Vat Phou",
+    "th": "วัดพู"
   },
   "Boat in Champasak": {
-    "fr": "Bateau à Champasak"
+    "fr": "Bateau à Champasak",
+    "th": "เรือในจำปาสัก"
   },
   "Bicycle in Champasak": {
-    "fr": "Vélo à Champasak"
+    "fr": "Vélo à Champasak",
+    "th": "จักรยานในจำปาสัก"
   },
   "Cotton weaving in Champasak": {
-    "fr": "Tissage du coton à Champasak"
+    "fr": "Tissage du coton à Champasak",
+    "th": "การทอผ้าฝ้ายในจำปาสัก"
   },
   "Liphi with sunset": {
-    "fr": "Li Phi au coucher du soleil"
+    "fr": "Li Phi au coucher du soleil",
+    "th": "ลี่ผียามพระอาทิตย์ตก"
   },
   "Spirit house at Ban Khieng Tad Soung, Bolaven": {
-    "fr": "Maison des esprits à Ban Khieng Tad Soung, plateau des Bolovens"
+    "fr": "Maison des esprits à Ban Khieng Tad Soung, plateau des Bolovens",
+    "th": "ศาลพระภูมิที่บ้านเขียงตาดซุง โบลาเวน"
   },
   "Boat on the Mekong": {
-    "fr": "Bateau sur le Mékong"
+    "fr": "Bateau sur le Mékong",
+    "th": "เรือบนแม่น้ำโขง"
   },
   "Buddha Carving": {
-    "fr": "Sculpture de Bouddha"
+    "fr": "Sculpture de Bouddha",
+    "th": "การแกะสลักพระพุทธรูป"
   },
   "Salao Mountain": {
-    "fr": "Colline de Salao"
+    "fr": "Colline de Salao",
+    "th": "ภูเสลา"
   },
   "French locomotive": {
-    "fr": "Locomotive française"
+    "fr": "Locomotive française",
+    "th": "หัวรถจักรฝรั่งเศส"
   },
   "Champasak colonial house": {
-    "fr": "Maison coloniale de Champasak"
+    "fr": "Maison coloniale de Champasak",
+    "th": "บ้านสมัยอาณานิคมในจำปาสัก"
   },
   "Railway Memorail": {
-    "fr": "Mémorial du chemin de fer"
+    "fr": "Mémorial du chemin de fer",
+    "th": "อนุสรณ์ทางรถไฟ"
   },
   "Mr Vieng coffee": {
-    "fr": "Café de M. Vieng"
+    "fr": "Café de M. Vieng",
+    "th": "กาแฟของคุณเวียง"
   },
   "Mr Vieng Katou coffee": {
-    "fr": "Café de M. Vieng"
+    "fr": "Café de M. Vieng",
+    "th": "กาแฟของคุณเวียง"
   },
   "Bolaven Plateau": {
     "th": "ที่ราบสูงโบลาเวน"
   },
   "Vat Phou & Champasak": {
     "th": "วัดพูและจำปาสัก"
+  },
+  "Destinations": {
+    "th": "จุดหมายปลายทาง"
   }
 }
