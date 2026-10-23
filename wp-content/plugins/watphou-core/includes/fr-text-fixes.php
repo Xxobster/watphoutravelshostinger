@@ -147,7 +147,7 @@ add_filter( 'wpseo_schema_breadcrumb', 'watphou_core_fx_schema_breadcrumb', 101 
  * Page titles stored in English on the French copy (breadcrumb and heading).
  */
 function watphou_core_fx_the_title( $title ) {
-	if ( ! is_string( $title ) || '' === $title || is_admin() || 'fr' !== watphou_core_fx_lang() ) {
+	if ( ! is_string( $title ) || '' === $title || ! watphou_core_fx_active() ) {
 		return $title;
 	}
 	static $exact = array( 'Contact Us', 'About Us' );
@@ -237,3 +237,20 @@ function watphou_core_fx_review_label( string $label ): string {
 	}
 	return $label;
 }
+
+/**
+ * Thai destination names: the terms are stored in English, so translate them when read on the public site.
+ */
+function watphou_core_fx_term_name( $term, $taxonomy = '' ) {
+	if ( ! $term instanceof WP_Term || 'destination' !== $term->taxonomy || 'th' !== watphou_core_fx_lang() || ! watphou_core_fx_active() ) {
+		return $term;
+	}
+	$th = watphou_core_fx_tr( $term->name );
+	if ( $th === $term->name ) {
+		return $term;
+	}
+	$copy       = clone $term;
+	$copy->name = $th;
+	return $copy;
+}
+add_filter( 'get_term', 'watphou_core_fx_term_name', 20, 2 );

@@ -51,7 +51,8 @@
     "fr": "4000 îles"
   },
   "4000 Islands (Si Phan Don)": {
-    "fr": "4000 îles"
+    "fr": "4000 îles",
+    "th": "สี่พันเกาะ (สีพันดอน)"
   },
   "From $%s per person — Standard accommodation. Comfort upgrades available.": {
     "fr": "À partir de %s $ par personne — Hébergement standard. Options de confort disponibles.",
@@ -542,7 +543,8 @@
     "th": "ราคาเป็น USD ทีมงานของเราจะยืนยันความพร้อมและราคาสุดท้ายทางอีเมลหรือ WhatsApp"
   },
   "Pakse & Surroundings": {
-    "fr": "Pakse et ses environs"
+    "fr": "Pakse et ses environs",
+    "th": "ปากเซและบริเวณใกล้เคียง"
   },
   "Language": {
     "fr": "Langue"
@@ -590,7 +592,8 @@
     "fr": "La ville au bord du fleuve où commencent nos voyages privés."
   },
   "About Watphou Travels": {
-    "fr": "À propos de Watphou Travels"
+    "fr": "À propos de Watphou Travels",
+    "th": "เกี่ยวกับ Watphou Travels"
   },
   "Our Hospitality Services": {
     "fr": "Nos services d’hébergement et de restauration"
@@ -695,10 +698,12 @@
     "fr": "Notre équipe multilingue parle anglais, italien, français, thaï et lao, et allie connaissance du terrain et professionnalisme international. Nous veillons à offrir à tous nos voyageurs une expérience fluide, mémorable et enrichissante. Avec Watphou Travels, découvrir le sud du Laos devient simple et inoubliable."
   },
   "About Us": {
-    "fr": "À propos de nous"
+    "fr": "À propos de nous",
+    "th": "เกี่ยวกับเรา"
   },
   "Contact Us": {
-    "fr": "Nous contacter"
+    "fr": "Nous contacter",
+    "th": "ติดต่อเรา"
   },
   "Home": {
     "fr": "Accueil"
@@ -930,5 +935,11 @@
   },
   "Mr Vieng Katou coffee": {
     "fr": "Café de M. Vieng"
+  },
+  "Bolaven Plateau": {
+    "th": "ที่ราบสูงโบลาเวน"
+  },
+  "Vat Phou & Champasak": {
+    "th": "วัดพูและจำปาสัก"
   }
 }

@@ -45,8 +45,15 @@ function watphou_tour_price_number( int $post_id ): string {
  */
 function watphou_get_tours_for_duration( string $term_slug ): array {
 	$term_id = 0;
-	$term    = get_term_by( 'slug', $term_slug, 'duration' );
 	$lang    = function_exists( 'watphou_core_current_lang_slug' ) ? watphou_core_current_lang_slug() : '';
+	$term    = false;
+	if ( in_array( $lang, array( 'fr', 'th' ), true ) ) {
+		// In French / Thai Polylang hides the English term: use the "-fr" / "-th" copy directly.
+		$term = get_term_by( 'slug', $term_slug . '-' . $lang, 'duration' );
+	}
+	if ( ! $term || is_wp_error( $term ) ) {
+		$term = get_term_by( 'slug', $term_slug, 'duration' );
+	}
 	if ( $term && ! is_wp_error( $term ) ) {
 		$term_id = (int) $term->term_id;
 		if ( function_exists( 'pll_get_term' ) ) {
