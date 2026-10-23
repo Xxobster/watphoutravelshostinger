@@ -160,7 +160,7 @@ function watphou_core_fx_the_title( $title ) {
 	if ( ! is_string( $title ) || '' === $title || ! watphou_core_fx_active() ) {
 		return $title;
 	}
-	static $exact = array( 'Contact Us', 'About Us' );
+	static $exact = array( 'Contact Us', 'About Us', 'Destinations' );
 	return in_array( $title, $exact, true ) ? watphou_core_fx_tr( $title ) : $title;
 }
 add_filter( 'the_title', 'watphou_core_fx_the_title', 20 );
