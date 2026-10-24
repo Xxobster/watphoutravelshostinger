@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_THEME_VERSION', '2.6.8' );
+define( 'WATPHOU_THEME_VERSION', '2.7.0' );
 define( 'WATPHOU_THEME_PATH', get_template_directory() );
 define( 'WATPHOU_THEME_URI', get_template_directory_uri() );
 
@@ -136,6 +136,12 @@ function watphou_theme_template_include( string $template ): string {
 	}
 	if ( 'destinations' === $slug ) {
 		$custom = WATPHOU_THEME_PATH . '/template-destinations.php';
+		if ( is_readable( $custom ) ) {
+			return $custom;
+		}
+	}
+	if ( 'guide-faq' === $slug ) {
+		$custom = WATPHOU_THEME_PATH . '/template-guide.php';
 		if ( is_readable( $custom ) ) {
 			return $custom;
 		}

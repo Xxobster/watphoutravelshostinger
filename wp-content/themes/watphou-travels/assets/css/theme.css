@@ -1147,3 +1147,50 @@ body.wpt-lightbox-open .wpt-logo {
   .wpt-menu > li > a { padding: .75rem .5rem; font-size: .88rem; }
   .wpt-logo img { left: .25rem; }
 }
+
+/* Guide / FAQ page (mirrors the PDF "Practical Guide"): one accent colour, change --wpt-guide to restyle. */
+.wpt-guide { --wpt-guide: #1a5c45; --wpt-guide-soft: #eef5f1; padding-bottom: 3rem; max-width: 900px; margin: 0 auto; }
+.wpt-guide__hero { text-align: center; padding: 1.25rem 0 1rem; }
+.wpt-guide__hero h1 { margin: 0; font-size: 2.4rem; color: var(--wpt-guide); line-height: 1.2; }
+.wpt-guide__subtitle { margin: .25rem 0 1rem; font-size: 1.6rem; font-weight: 700; color: var(--wpt-guide); }
+.wpt-guide__tagline { margin: 0 0 .75rem; color: var(--wpt-muted); }
+.wpt-guide__note { margin: 0; font-size: .95rem; color: var(--wpt-text); }
+.wpt-guide__toc { background: var(--wpt-guide-soft); border-radius: 8px; padding: .9rem 1.1rem; margin: 1.25rem 0 2rem; }
+.wpt-guide__toc-label { display: block; font-weight: 700; color: var(--wpt-guide); margin-bottom: .4rem; }
+.wpt-guide__toc ol { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; counter-reset: guide-toc; }
+.wpt-guide__toc li { counter-increment: guide-toc; }
+.wpt-guide__toc li::before { content: counter(guide-toc) "."; color: var(--wpt-guide); font-weight: 700; margin-right: .3rem; }
+.wpt-guide__toc a { color: var(--wpt-guide); font-weight: 600; text-decoration: underline; }
+.wpt-guide__section { margin-bottom: 2.5rem; scroll-margin-top: 1rem; }
+.wpt-guide__banner { display: flex; align-items: center; gap: .75rem; margin: 0 0 1.25rem; padding: .7rem 1rem; background: var(--wpt-guide); color: #fff; font-size: 1.45rem; border-radius: 4px; }
+.wpt-guide__num { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 2rem; height: 2rem; border-radius: 50%; background: #fff; color: var(--wpt-guide); font-weight: 700; font-size: 1.1rem; }
+.wpt-guide h3 { margin: 1.5rem 0 .6rem; font-size: 1.2rem; color: var(--wpt-guide); }
+.wpt-guide p { margin: 0 0 1rem; }
+.wpt-guide__list { margin: 0 0 1rem; padding-left: 1.4rem; }
+.wpt-guide__list li { margin-bottom: .4rem; }
+.wpt-guide__table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+.wpt-guide__table { width: 100%; border-collapse: collapse; }
+.wpt-guide__table th { background: var(--wpt-guide); color: #fff; text-align: left; padding: .6rem .8rem; }
+.wpt-guide__table td { padding: .6rem .8rem; border-bottom: 1px solid var(--wpt-border); vertical-align: top; }
+.wpt-guide__table tbody tr:nth-child(odd) td { background: var(--wpt-guide-soft); }
+.wpt-guide__table td:first-child { font-weight: 600; white-space: nowrap; }
+.wpt-guide__tips { margin: 0 0 1rem; }
+.wpt-guide__tips div { margin-bottom: .8rem; }
+.wpt-guide__tips dt { display: inline; font-weight: 700; }
+.wpt-guide__tips dt::after { content: ": "; }
+html[lang^="fr"] .wpt-guide__tips dt::after { content: " : "; }
+.wpt-guide__tips dd { display: inline; margin: 0; }
+.wpt-guide__qa { margin-bottom: 1.1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--wpt-border); }
+.wpt-guide__qa:last-child { border-bottom: 0; }
+.wpt-guide__qa h3 { margin: 0 0 .35rem; font-size: 1.05rem; color: var(--wpt-text); }
+.wpt-guide__qa p { margin: 0; }
+.wpt-guide__cta { background: var(--wpt-guide-soft); border-radius: 8px; padding: 1.5rem; text-align: center; }
+.wpt-guide__cta h2 { margin: 0 0 .5rem; color: var(--wpt-guide); }
+@media (max-width: 640px) {
+  .wpt-guide__hero h1 { font-size: 1.9rem; }
+  .wpt-guide__subtitle { font-size: 1.3rem; }
+  .wpt-guide__banner { font-size: 1.2rem; }
+  .wpt-guide__table td:first-child { white-space: normal; }
+}
+/* Thai menu labels are long: tighter padding keeps the 11 items on one row. */
+@media (min-width: 901px) { html[lang^="th"] .wpt-menu { gap: 0; } html[lang^="th"] .wpt-menu > li > a { padding-left: .3rem; padding-right: .3rem; font-size: .85rem; } }

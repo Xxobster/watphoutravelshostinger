@@ -91,3 +91,7 @@ The old DuckDNS demo on Virtual Private Server (VPS) `sm` was removed; `smbistro
 1. Ask the customer for a restricted Places Application Programming Interface key (WT-121). The Place Identifier is already stored.
 2. Customer still needs real prices (photography for the current pack is on staging)
 3. At real-domain cutover: deactivate WordPress File Manager (WT-133); sending From `bookings@watphou-travels.com` (WT-135, not `@www…`); keep Gmail as the office inbox.
+
+## Guide / FAQ page (2026-10-24, theme 2.7.0, core 1.11.0)
+
+Menu item **Guide / FAQ** between Tailor-made and About Us, page slug `guide-faq` in EN / FR / TH (pages created once by `includes/guide-pages.php`, option `watphou_guide_pages_version`). Copy lives in `plugins/watphou-core/data/guide_content.json` (source: Watphou_Travels_Practical_Guide.pdf; Thai written from the English, needs a native-speaker review). Template `template-guide.php`; FAQPage structured data included. SEO title/description translations are in `data/ui_extras_i18n.json`.

@@ -66,6 +66,7 @@ defined( 'ABSPATH' ) || exit;
 					</ul>
 				</li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'tailor-made-tours' ) : home_url( '/tailor-made-tours/' ) ); ?>"><?php esc_html_e( 'Tailor-made', 'watphou-travels' ); ?></a></li>
+				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'guide-faq' ) : home_url( '/guide-faq/' ) ); ?>"><?php esc_html_e( 'Guide / FAQ', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'about-us' ) : home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About Us', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'contact-us' ) : home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact', 'watphou-travels' ); ?></a></li>
 			</ul>
