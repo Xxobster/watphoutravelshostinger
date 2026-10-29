@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-define( 'WATPHOU_THEME_VERSION', '2.7.0' );
+define( 'WATPHOU_THEME_VERSION', '2.7.1' );
 define( 'WATPHOU_THEME_PATH', get_template_directory() );
 define( 'WATPHOU_THEME_URI', get_template_directory_uri() );
 

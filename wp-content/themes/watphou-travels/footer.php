@@ -20,7 +20,6 @@ defined( 'ABSPATH' ) || exit;
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'tailor-made-tours' ) : home_url( '/tailor-made-tours/' ) ); ?>"><?php esc_html_e( 'Tailor-made tours', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'about-us' ) : home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About us', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'contact-us' ) : home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact', 'watphou-travels' ); ?></a></li>
-				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'travel-guide' ) : home_url( '/travel-guide/' ) ); ?>"><?php esc_html_e( 'Travel guide', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'privacy-policy' ) : home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'terms' ) : home_url( '/terms/' ) ); ?>"><?php esc_html_e( 'Terms', 'watphou-travels' ); ?></a></li>
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'cancellation' ) : home_url( '/cancellation/' ) ); ?>"><?php esc_html_e( 'Cancellation', 'watphou-travels' ); ?></a></li>

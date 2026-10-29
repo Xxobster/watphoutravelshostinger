@@ -223,6 +223,8 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   font-size: .875rem;
 }
 .wpt-dropdown a:hover { background: #fff7ed; color: var(--wpt-orange); }
+/* "All tours" repeated inside its own submenu: only needed on mobile, where the parent link toggles the accordion */
+.wpt-dropdown__all { display: none; }
 
 .wpt-cta-outline {
   display: inline-block;
@@ -1041,6 +1043,7 @@ body.wpt-lightbox-open .wpt-logo {
   .wpt-dropdown { position: static; box-shadow: none; display: none; }
   .has-children:hover > .wpt-dropdown { display: none; }
   .has-children.is-open > .wpt-dropdown { display: block; }
+  .wpt-dropdown__all { display: block; }
   .wpt-cta-outline { margin: .5rem 1rem 1rem; }
   .wpt-whatsapp-phone .text, .wpt-login-link { display: none; }
   .wpt-hero { min-height: 55vh; }
@@ -1194,3 +1197,5 @@ html[lang^="fr"] .wpt-guide__tips dt::after { content: " : "; }
 }
 /* Thai menu labels are long: tighter padding keeps the 11 items on one row. */
 @media (min-width: 901px) { html[lang^="th"] .wpt-menu { gap: 0; } html[lang^="th"] .wpt-menu > li > a { padding-left: .3rem; padding-right: .3rem; font-size: .85rem; } }
+/* Tablets: FR/TH labels are longer, so tighten the menu to keep it on one row. */
+@media (min-width: 769px) and (max-width: 949px) { html[lang^="fr"] .wpt-menu > li > a, html[lang^="th"] .wpt-menu > li > a { padding-left: .3rem; padding-right: .3rem; font-size: .8rem; } }

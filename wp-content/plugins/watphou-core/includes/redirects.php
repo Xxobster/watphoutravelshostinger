@@ -24,7 +24,7 @@ function watphou_core_handle_redirects(): void {
 /**
  * Bump when data/redirects.csv changes: the stored map is rebuilt from the CSV once.
  */
-const WATPHOU_REDIRECTS_VERSION = '2026-10-16';
+const WATPHOU_REDIRECTS_VERSION = '2026-10-29';
 
 // Old Wix paths must not be "guessed" onto a same-slug post in another language (Thai).
 add_filter( 'do_redirect_guess_404_permalink', '__return_false' );

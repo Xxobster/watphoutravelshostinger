@@ -52,10 +52,16 @@ defined( 'ABSPATH' ) || exit;
 		<div class="wpt-nav__inner">
 			<ul class="wpt-menu">
 				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '/' ) : home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'watphou-travels' ); ?></a></li>
-				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'day-tours' ) : home_url( '/day-tours/' ) ); ?>"><?php esc_html_e( 'Day Tours', 'watphou-travels' ); ?></a></li>
-				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '2-day-tours' ) : home_url( '/2-day-tours/' ) ); ?>"><?php esc_html_e( '2-Day Tours', 'watphou-travels' ); ?></a></li>
-				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '3-day-tours' ) : home_url( '/3-day-tours/' ) ); ?>"><?php esc_html_e( '3-Day Tours', 'watphou-travels' ); ?></a></li>
-				<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '4-6-day-tours' ) : home_url( '/4-6-day-tours/' ) ); ?>"><?php esc_html_e( '4-6 Day Tours', 'watphou-travels' ); ?></a></li>
+				<li class="has-children">
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'tour' ) ); ?>"><?php esc_html_e( 'All tours', 'watphou-travels' ); ?> <span>▾</span></a>
+					<ul class="wpt-dropdown">
+						<li class="wpt-dropdown__all"><a href="<?php echo esc_url( get_post_type_archive_link( 'tour' ) ); ?>"><?php esc_html_e( 'All tours', 'watphou-travels' ); ?></a></li>
+							<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'day-tours' ) : home_url( '/day-tours/' ) ); ?>"><?php esc_html_e( 'Day Tours', 'watphou-travels' ); ?></a></li>
+							<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '2-day-tours' ) : home_url( '/2-day-tours/' ) ); ?>"><?php esc_html_e( '2-Day Tours', 'watphou-travels' ); ?></a></li>
+							<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '3-day-tours' ) : home_url( '/3-day-tours/' ) ); ?>"><?php esc_html_e( '3-Day Tours', 'watphou-travels' ); ?></a></li>
+							<li><a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( '4-6-day-tours' ) : home_url( '/4-6-day-tours/' ) ); ?>"><?php esc_html_e( '4-6 Day Tours', 'watphou-travels' ); ?></a></li>
+					</ul>
+				</li>
 				<li class="has-children">
 					<a href="<?php echo esc_url( function_exists( 'watphou_page_url' ) ? watphou_page_url( 'destinations' ) : home_url( '/destinations/' ) ); ?>"><?php esc_html_e( 'Destinations', 'watphou-travels' ); ?> <span>▾</span></a>
 					<ul class="wpt-dropdown">

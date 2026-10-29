@@ -150,3 +150,35 @@ function watphou_core_ensure_guide_pages(): void {
 	update_option( 'watphou_guide_pages_version', '4', false );
 	flush_rewrite_rules( false );
 }
+
+/**
+ * One-time retirement of the old "Travel guide" page (EN, FR, TH): it is replaced by Guide / FAQ.
+ * The pages go to the Trash (restorable from wp-admin > Pages > Trash); /travel-guide URLs 301 via data/redirects.csv.
+ */
+add_action( 'init', 'watphou_core_retire_travel_guide', 50 );
+
+function watphou_core_retire_travel_guide(): void {
+	if ( get_option( 'watphou_travel_guide_retired' ) === '1' || wp_installing() ) {
+		return;
+	}
+	$ids = get_posts(
+		array(
+			'post_type'      => 'page',
+			'name'           => 'travel-guide',
+			'post_status'    => array( 'publish', 'draft', 'pending', 'private' ),
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+			'lang'           => '',
+		)
+	);
+	foreach ( $ids as $id ) {
+		wp_trash_post( (int) $id );
+	}
+	// Polylang names the FR/TH copies travel-guide-fr / travel-guide-th.
+	foreach ( array( 'travel-guide-fr', 'travel-guide-th' ) as $slug ) {
+		foreach ( get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_status' => array( 'publish', 'draft', 'pending', 'private' ), 'posts_per_page' => -1, 'fields' => 'ids', 'lang' => '' ) ) as $id ) {
+			wp_trash_post( (int) $id );
+		}
+	}
+	update_option( 'watphou_travel_guide_retired', '1', false );
+}

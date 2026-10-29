@@ -73,3 +73,8 @@ old_url,new_url,http_code,notes
 /tours/3-day-highlights-of-southern-laos,/tours/3-day-highlights-of-southern-laos-2/,301,unsuffixed tour slug to live English page
 /tours/vatphu-riverside-gems-full-day,/tours/vatphu-riverside-gems-full-day-2/,301,unsuffixed tour slug to live English page
 /contact,/contact-us/,301,duplicate contact page
+/travel-guide,/guide-faq/,301,old Travel guide page replaced by Guide / FAQ
+/fr/travel-guide,/fr/guide-faq/,301,old Travel guide page replaced by Guide / FAQ
+/th/travel-guide,/th/guide-faq/,301,old Travel guide page replaced by Guide / FAQ
+/fr/travel-guide-fr,/fr/guide-faq/,301,old Travel guide page replaced by Guide / FAQ
+/th/travel-guide-th,/th/guide-faq/,301,old Travel guide page replaced by Guide / FAQ
