@@ -25,8 +25,8 @@ function watphou_core_google_places_key(): string {
 function watphou_core_google_reviews_empty(): array {
 	return array(
 		'place_id'       => '',
-		'maps_url'       => 'https://maps.app.goo.gl/QUTghqefjS9LCZSA8',
-		'maps_place_url' => '',
+		'maps_url'       => 'https://maps.app.goo.gl/pKk8yvQeNeVcFutz6',
+		'maps_place_url' => 'https://www.google.com/maps/place/Watphou+Travels/@15.120021,105.7975905,19z/data=!4m9!3m8!1s0x3114f8b39b7860cd:0x81e6ba34e8131bd5!5m2!4m1!1i2!8m2!3d15.1200197!4d105.7988082!16s%2Fg%2F11fz9jvbhx',
 		'rating'         => 0,
 		'review_count'   => 0,
 		'geo'            => array(),
@@ -185,7 +185,7 @@ function watphou_core_google_reviews_file_payload(): array {
 	$meta = array(
 		'place_id'       => (string) ( $raw['place_id'] ?? '' ),
 		'maps_url'       => (string) ( $raw['maps_url'] ?? $empty['maps_url'] ),
-		'maps_place_url' => (string) ( $raw['maps_place_url'] ?? '' ),
+		'maps_place_url' => (string) ( $raw['maps_place_url'] ?? $empty['maps_place_url'] ),
 		'rating'         => (float) ( $raw['rating'] ?? 0 ),
 		'review_count'   => (int) ( $raw['review_count'] ?? 0 ),
 		'geo'            => is_array( $raw['geo'] ?? null ) ? $raw['geo'] : array(),

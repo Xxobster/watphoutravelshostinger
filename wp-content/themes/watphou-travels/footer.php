@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 			<p><?php esc_html_e( 'Phone/WhatsApp:', 'watphou-travels' ); ?> <a href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">+856 20 9949 5858</a></p>
 			<p><?php esc_html_e( 'Email:', 'watphou-travels' ); ?> <a href="mailto:sales.watphoutravel@gmail.com">sales.watphoutravel@gmail.com</a></p>
 			<p><?php esc_html_e( 'Street N°5, Ban Vat Luang, Pakse, Laos', 'watphou-travels' ); ?></p>
+			<p><a href="https://maps.app.goo.gl/pKk8yvQeNeVcFutz6" target="_blank" rel="noopener noreferrer">Google Maps</a></p>
 		</div>
 		<div>
 			<h3><?php esc_html_e( 'Explore', 'watphou-travels' ); ?></h3>

@@ -19,7 +19,8 @@ function watphou_core_schema_agency_base(): array {
 				get_option( 'watphou_facebook', '' ),
 				get_option( 'watphou_instagram', '' ),
 				get_option( 'watphou_tripadvisor', '' ),
-				(string) ( $reviews['maps_url'] ?? 'https://maps.app.goo.gl/QUTghqefjS9LCZSA8' ),
+				(string) ( $reviews['maps_url'] ?? 'https://maps.app.goo.gl/pKk8yvQeNeVcFutz6' ),
+				'https://maps.app.goo.gl/QUTghqefjS9LCZSA8',
 				'https://www.watphou-travels.com/',
 			)
 		)
