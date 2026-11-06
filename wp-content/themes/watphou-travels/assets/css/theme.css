@@ -9,7 +9,7 @@
   --wpt-bg: #fff;
   --wpt-footer: #1a1d21;
   --wpt-max: 1140px;
-  --wpt-gutter: 1.25rem; /* space between the window edge and page text */
+  --wpt-gutter: 1rem; /* space between the window edge and page text */
   --wpt-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
   --wpt-why-bg: #f0f7fd;
 }
@@ -303,7 +303,7 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   text-align: left;
   padding: 5rem 0;
   max-width: 640px;
-  margin-inline: max(var(--wpt-gutter), calc((100% - var(--wpt-max)) / 2)) 0; /* text starts where the page content starts, never at the window edge */
+  margin-inline: 1.5rem 0; /* small fixed space from the left window edge (24px) */
 }
 .wpt-hero h1 {
   font-size: clamp(2.1rem, 4.8vw, 3.4rem);
@@ -1201,4 +1201,4 @@ html[lang^="fr"] .wpt-guide__tips dt::after { content: " : "; }
 /* Tablets: FR/TH labels are longer, so tighten the menu to keep it on one row. */
 @media (min-width: 769px) and (max-width: 949px) { html[lang^="fr"] .wpt-menu > li > a, html[lang^="th"] .wpt-menu > li > a { padding-left: .3rem; padding-right: .3rem; font-size: .8rem; } }
 
-@media (min-width: 769px) { :root { --wpt-gutter: 2.5rem; } }
+@media (min-width: 769px) { :root { --wpt-gutter: 1.5rem; } }
