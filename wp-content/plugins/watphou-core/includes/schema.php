@@ -30,7 +30,7 @@ function watphou_core_schema_agency_base(): array {
 		'name'            => 'Watphou Travels',
 		'legalName'       => 'Watphou Travels',
 		'url'             => home_url( '/' ),
-		'telephone'       => get_option( 'watphou_phone', '+85620 9949 5858' ),
+		'telephone'       => get_option( 'watphou_phone', '+856 20 9949 5858' ),
 		'email'           => get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' ),
 		'image'           => watphou_core_schema_logo_url(),
 		'logo'            => watphou_core_schema_logo_url(),

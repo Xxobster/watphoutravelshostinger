@@ -9,6 +9,7 @@
   --wpt-bg: #fff;
   --wpt-footer: #1a1d21;
   --wpt-max: 1140px;
+  --wpt-gutter: 1.25rem; /* space between the window edge and page text */
   --wpt-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
   --wpt-why-bg: #f0f7fd;
 }
@@ -32,7 +33,7 @@ a:hover { color: var(--wpt-orange-dark); }
 h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
 
 .wpt-container {
-  width: min(100% - 2rem, var(--wpt-max));
+  width: min(100% - 2 * var(--wpt-gutter), var(--wpt-max));
   margin-inline: auto;
 }
 
@@ -302,7 +303,7 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   text-align: left;
   padding: 5rem 0;
   max-width: 640px;
-  margin-inline: 0;
+  margin-inline: max(var(--wpt-gutter), calc((100% - var(--wpt-max)) / 2)) 0; /* text starts where the page content starts, never at the window edge */
 }
 .wpt-hero h1 {
   font-size: clamp(2.1rem, 4.8vw, 3.4rem);
@@ -348,7 +349,7 @@ h1, h2, h3, h4 { color: var(--wpt-text); font-weight: 700; }
   display: flex;
   gap: 1.1rem;
   overflow-x: auto;
-  padding: 0 max(1rem, calc((100% - var(--wpt-max)) / 2)) 1rem;
+  padding: 0 max(var(--wpt-gutter), calc((100% - var(--wpt-max)) / 2)) 1rem;
   scroll-snap-type: x mandatory;
 }
 .wpt-interest-card {
@@ -1021,7 +1022,7 @@ body.wpt-lightbox-open .wpt-logo {
   .wpt-reviews__slide { flex-basis: calc((100% - 1.25rem) / 2); }
   .wpt-footer__grid { grid-template-columns: 1fr; }
   .wpt-location, .wpt-search.d-desktop { display: none; }
-  .wpt-hero__content { text-align: center; max-width: none; padding: 4rem 1rem; }
+  .wpt-hero__content { text-align: center; max-width: none; padding: 4rem 0; margin-inline: auto; }
   .wpt-about__gallery { grid-template-columns: 1fr 1fr; }
   .wpt-tour-gallery { grid-template-columns: 1fr 1fr; }
   .wpt-lightbox__prev { left: .35rem; }
@@ -1199,3 +1200,5 @@ html[lang^="fr"] .wpt-guide__tips dt::after { content: " : "; }
 @media (min-width: 901px) { html[lang^="th"] .wpt-menu { gap: 0; } html[lang^="th"] .wpt-menu > li > a { padding-left: .3rem; padding-right: .3rem; font-size: .85rem; } }
 /* Tablets: FR/TH labels are longer, so tighten the menu to keep it on one row. */
 @media (min-width: 769px) and (max-width: 949px) { html[lang^="fr"] .wpt-menu > li > a, html[lang^="th"] .wpt-menu > li > a { padding-left: .3rem; padding-right: .3rem; font-size: .8rem; } }
+
+@media (min-width: 769px) { :root { --wpt-gutter: 2.5rem; } }

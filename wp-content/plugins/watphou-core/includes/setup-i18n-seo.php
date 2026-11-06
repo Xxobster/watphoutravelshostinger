@@ -125,7 +125,7 @@ function watphou_core_ensure_term_translations(): void {
 }
 
 function watphou_core_seed_legal_and_guide_pages(): void {
-	$phone = get_option( 'watphou_phone', '+85620 9949 5858' );
+	$phone = get_option( 'watphou_phone', '+856 20 9949 5858' );
 	$email = get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' );
 	$addr  = get_option( 'watphou_address', 'Street N°5, Ban Vat Luang, Pakse, Laos' );
 
@@ -298,7 +298,7 @@ function watphou_core_copy_post_to_language( WP_Post $source, string $code, $mod
 function watphou_core_backfill_yoast_meta(): void {
 	$page_seo = array(
 		'about-us'         => array( 'About Watphou Travels | Local team in Pakse', 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' ),
-		'contact-us'       => array( 'Contact Watphou Travels | Pakse, Laos', 'WhatsApp +85620 9949 5858 · sales.watphoutravel@gmail.com · Street N°5, Ban Vat Luang, Pakse. Ask for a private tour in Southern Laos.' ),
+		'contact-us'       => array( 'Contact Watphou Travels | Pakse, Laos', 'WhatsApp +856 20 9949 5858 · sales.watphoutravel@gmail.com · Street N°5, Ban Vat Luang, Pakse. Ask for a private tour in Southern Laos.' ),
 		'book-online'      => array( 'Request a quote | Watphou Travels', 'Send dates and group size for a private tour from Pakse. We reply with a quote by email or WhatsApp.' ),
 		'day-tours'        => array( 'Day tours from Pakse | Watphou Travels', 'Private one-day tours from Pakse: Bolaven Plateau waterfalls, Vat Phou, Champasak and Pakse riverside.' ),
 		'2-day-tours'      => array( '2-day private tours | Watphou Travels', 'Two-day private journeys from Pakse: Bolaven Plateau or 4000 Islands and Vat Phou.' ),
@@ -348,7 +348,7 @@ function watphou_core_backfill_yoast_meta(): void {
 		if ( 'tour' === $post->post_type ) {
 			$excerpt = wp_trim_words( wp_strip_all_tags( $post->post_excerpt ?: $post->post_content ), 28 );
 			if ( '' === $excerpt ) {
-				$excerpt = 'Private tour from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +85620 9949 5858.';
+				$excerpt = 'Private tour from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +856 20 9949 5858.';
 			}
 			update_post_meta( $post_id, '_yoast_wpseo_title', $title . ' | Private tour | Watphou Travels' );
 			update_post_meta( $post_id, '_yoast_wpseo_metadesc', $excerpt );

@@ -178,7 +178,7 @@ function watphou_core_apply_copy_review_price_notes(): void {
 }
 
 function watphou_core_apply_copy_review_pages(): void {
-	$phone = get_option( 'watphou_phone', '+85620 9949 5858' );
+	$phone = get_option( 'watphou_phone', '+856 20 9949 5858' );
 	$email = get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' );
 	$addr  = get_option( 'watphou_address', 'Street N°5, Ban Vat Luang, Pakse, Laos' );
 

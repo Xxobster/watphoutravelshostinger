@@ -28,9 +28,9 @@ defined( 'ABSPATH' ) || exit;
 					<button type="submit" aria-label="<?php esc_attr_e( 'Search', 'watphou-travels' ); ?>">⌕</button>
 					<input type="search" name="s" placeholder="<?php esc_attr_e( 'Search', 'watphou-travels' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>">
 				</form>
-				<a class="wpt-whatsapp-phone" aria-label="WhatsApp +85620 9949 5858" href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">
+				<a class="wpt-whatsapp-phone" aria-label="WhatsApp +856 20 9949 5858" href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">
 					<img class="wpt-wa-icon" src="<?php echo esc_url( WATPHOU_THEME_URI . '/assets/images/whatsapp.svg' ); ?>" width="24" height="24" alt="">
-					<strong>+85620 9949 5858</strong>
+					<strong>+856 20 9949 5858</strong>
 				</a>
 				<nav class="wpt-langs" aria-label="<?php esc_attr_e( 'Language', 'watphou-travels' ); ?>">
 					<?php

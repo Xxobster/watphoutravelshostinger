@@ -51,7 +51,7 @@ function watphou_core_configure_yoast_defaults(): void {
 	WPSEO_Options::set( 'company_alternate_name', 'Watphou Travels Pakse' );
 	WPSEO_Options::set( 'org-description', 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' );
 	WPSEO_Options::set( 'org-email', get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' ) );
-	WPSEO_Options::set( 'org-phone', get_option( 'watphou_phone', '+85620 9949 5858' ) );
+	WPSEO_Options::set( 'org-phone', get_option( 'watphou_phone', '+856 20 9949 5858' ) );
 	WPSEO_Options::set( 'org-legal-name', 'Watphou Travels' );
 
 	WPSEO_Options::set( 'title-home-wpseo', 'Watphou Travels %%sep%% Private tours in Southern Laos' );
@@ -60,7 +60,7 @@ function watphou_core_configure_yoast_defaults(): void {
 	WPSEO_Options::set( 'open_graph_frontpage_desc', 'Private tours from Pakse across the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' );
 
 	WPSEO_Options::set( 'title-tour', '%%title%% %%sep%% Private tour %%sep%% Watphou Travels' );
-	WPSEO_Options::set( 'metadesc-tour', 'Private %%title%% from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +85620 9949 5858.' );
+	WPSEO_Options::set( 'metadesc-tour', 'Private %%title%% from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +856 20 9949 5858.' );
 	WPSEO_Options::set( 'title-ptarchive-tour', 'Private tours in Southern Laos %%sep%% Watphou Travels' );
 	WPSEO_Options::set( 'metadesc-ptarchive-tour', 'Browse private day tours and multi-day journeys in Southern Laos: Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' );
 
@@ -357,7 +357,7 @@ function watphou_core_complete_seo_settings(): void {
 	WPSEO_Options::set( 'website_name', 'Watphou Travels' );
 	WPSEO_Options::set( 'org-description', 'Local tour agency in Pakse, Laos. Private tours of the Bolaven Plateau, Vat Phou, Champasak and the 4000 Islands.' );
 	WPSEO_Options::set( 'org-email', get_option( 'watphou_email', 'sales.watphoutravel@gmail.com' ) );
-	WPSEO_Options::set( 'org-phone', get_option( 'watphou_phone', '+85620 9949 5858' ) );
+	WPSEO_Options::set( 'org-phone', get_option( 'watphou_phone', '+856 20 9949 5858' ) );
 	WPSEO_Options::set( 'breadcrumbs-enable', true );
 	WPSEO_Options::set( 'enable_xml_sitemap', true );
 	WPSEO_Options::set( 'disable-author', true );
@@ -407,7 +407,7 @@ function watphou_core_fallback_metadesc( $desc ) {
 		if ( $excerpt ) {
 			return $excerpt;
 		}
-		return 'Private tour from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +85620 9949 5858.';
+		return 'Private tour from Pakse with Watphou Travels. Local team, flexible dates. WhatsApp +856 20 9949 5858.';
 	}
 	if ( is_front_page() ) {
 		return 'Private tours from Pakse: Bolaven Plateau waterfalls, UNESCO Vat Phou, Champasak and the 4000 Islands. Local team, European standards.';
@@ -599,7 +599,7 @@ function watphou_core_keyword_seo_map(): array {
 		'tailor-made-tours'    => array( 'Tailor-Made Laos Tours from Pakse | Watphou Travels', 'Custom private tours in Southern Laos built around your dates, pace and interests by a local tour agency in Pakse.' ),
 		'about-us'             => array( 'About Watphou Travels | Local Tour Agency in Pakse, Laos', 'Watphou Travels is a local tour agency in Pakse, Laos, since 2008. Private tours with a driver and guide across Southern Laos.' ),
 		'guide-faq'            => array( 'Practical Guide & FAQ | Southern Laos Private Tours | Watphou Travels', 'Best time to visit Southern Laos, practical travel tips, what to pack and answers to common questions about private tours from Pakse.' ),
-		'contact-us'           => array( 'Contact Watphou Travels | Tour Agency in Pakse, Laos', 'WhatsApp +85620 9949 5858 or email sales.watphoutravel@gmail.com. Our office is on Street N°5, Ban Vat Luang, Pakse. Private tours in Southern Laos.' ),
+		'contact-us'           => array( 'Contact Watphou Travels | Tour Agency in Pakse, Laos', 'WhatsApp +856 20 9949 5858 or email sales.watphoutravel@gmail.com. Our office is on Street N°5, Ban Vat Luang, Pakse. Private tours in Southern Laos.' ),
 		'travel-guide'         => array( 'Southern Laos Travel Guide: Pakse, Bolaven, 4000 Islands | Watphou Travels', 'Practical tips for visiting Southern Laos: Pakse, the Bolaven Plateau, Vat Phou and the 4000 Islands, from a local Pakse tour agency.' ),
 		'dest:bolaven-plateau' => array( 'Bolaven Plateau Tours from Pakse | Waterfalls & Coffee | Watphou Travels', 'Private Bolaven Plateau tours from Pakse: Tad Fane, Tad Yuang and Tad Champee waterfalls, coffee farms and highland villages. Day trips and overnight tours.' ),
 		'dest:4000-islands'    => array( '4000 Islands Tours (Si Phan Don) from Pakse | Watphou Travels', 'Private 4000 Islands tours from Pakse: Don Khone, Don Det, Khone Phapheng and Li Phi waterfalls on the Mekong. Day trips and overnight tours.' ),

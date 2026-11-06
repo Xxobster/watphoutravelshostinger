@@ -84,7 +84,7 @@ $gallery = static function ( string $base, array $items, string $group ): void {
 					<p class="wpt-about__meta">
 						<?php esc_html_e( 'Address: No. 5 Ban Wat Luang, Pakse, Champasak Province - 16000, Southern Laos', 'watphou-travels' ); ?><br>
 						<?php esc_html_e( 'Phone/WhatsApp:', 'watphou-travels' ); ?>
-						<a href="https://wa.me/8562056030192">+85620 5603 0192</a>,
+						<a href="https://wa.me/8562056030192">+856 20 5603 0192</a>,
 						<?php esc_html_e( 'Facebook page:', 'watphou-travels' ); ?>
 						<a href="https://www.facebook.com/hotel.pakse/" rel="noopener noreferrer">https://www.facebook.com/hotel.pakse/</a>
 					</p>
@@ -109,7 +109,7 @@ $gallery = static function ( string $base, array $items, string $group ): void {
 						<?php esc_html_e( 'Address: Rooftop of Pakse Hotel & Restaurant, No. 5 Ban Wat Luang, Pakse, Champasak Province - 16000, Southern Laos', 'watphou-travels' ); ?><br>
 						<?php esc_html_e( 'Hours: Opens 4.30 PM, Closes 11.00 PM', 'watphou-travels' ); ?><br>
 						<?php esc_html_e( 'Phone/WhatsApp:', 'watphou-travels' ); ?>
-						<a href="https://wa.me/8562055621261">+85620 5562 1261</a>,
+						<a href="https://wa.me/8562055621261">+856 20 5562 1261</a>,
 						<?php esc_html_e( 'Facebook page:', 'watphou-travels' ); ?>
 						<a href="https://www.facebook.com/Lepanoramarooftoprestaurant" rel="noopener noreferrer">https://www.facebook.com/Lepanoramarooftoprestaurant</a>
 					</p>
@@ -211,7 +211,7 @@ $gallery = static function ( string $base, array $items, string $group ): void {
 				<p><?php esc_html_e( 'Your Local Expert in Southern Laos', 'watphou-travels' ); ?></p>
 				<p>
 					<?php esc_html_e( 'Phone/WhatsApp:', 'watphou-travels' ); ?>
-					<a href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">+85620 9949 5858</a><br>
+					<a href="<?php echo esc_url( function_exists( 'watphou_get_whatsapp_url' ) ? watphou_get_whatsapp_url() : 'https://wa.me/8562099495858' ); ?>">+856 20 9949 5858</a><br>
 					<?php esc_html_e( 'Email:', 'watphou-travels' ); ?>
 					<a href="mailto:sales.watphoutravel@gmail.com">sales.watphoutravel@gmail.com</a>
 					<?php esc_html_e( 'or', 'watphou-travels' ); ?>

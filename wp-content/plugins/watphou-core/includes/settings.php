@@ -60,7 +60,7 @@ function watphou_core_settings_page(): void {
 			<?php settings_fields( 'watphou_settings' ); ?>
 			<table class="form-table">
 				<tr><th><?php esc_html_e( 'Phone', 'watphou-core' ); ?></th>
-					<td><input name="watphou_phone" class="regular-text" value="<?php echo esc_attr( get_option( 'watphou_phone', '+85620 9949 5858' ) ); ?>"/></td></tr>
+					<td><input name="watphou_phone" class="regular-text" value="<?php echo esc_attr( get_option( 'watphou_phone', '+856 20 9949 5858' ) ); ?>"/></td></tr>
 				<tr><th><?php esc_html_e( 'WhatsApp', 'watphou-core' ); ?></th>
 					<td><input name="watphou_whatsapp" class="regular-text" value="<?php echo esc_attr( get_option( 'watphou_whatsapp', '+8562099495858' ) ); ?>"/></td></tr>
 				<tr><th><?php esc_html_e( 'Email', 'watphou-core' ); ?></th>
